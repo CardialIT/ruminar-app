@@ -7,7 +7,7 @@ import {
   Modal,
   Alert,
 } from "react-native";
-import styles from "./styles.js";
+import styles from "../Home/styles.js";
 
 import { Feather } from "@expo/vector-icons";
 
