@@ -1,37 +1,69 @@
-import {
-  View,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  StyleSheet,
-  Modal,
-  Alert,
-} from "react-native";
-import styles from "./styles.js";
-
-import { Feather } from "@expo/vector-icons";
+import React, { useState } from "react";
+import { View, Text, TextInput, TouchableOpacity, Image } from "react-native";
+import styles from "./styles";
+import IconReturn from "../../assets/icons-voltar-.png";
+import { Ionicons } from "@expo/vector-icons";
 
 export default function LoginScreen() {
+  const [input, setInput] = useState({
+    email: "",
+    password: "",
+  });
+  const [showPassword, setShowPassword] = useState(true);
+
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Login</Text>
-      <View style={styles.form}>
-        <Text style={styles.inputLabel}>E-mail</Text>
-        <TextInput style={styles.input} placeholder="Digite seu e-mail" />
+      <TouchableOpacity style={styles.topLeftButton}>
+        <Image source={IconReturn} style={styles.buttonReturn} />
+      </TouchableOpacity>
 
-        <Text style={styles.inputLabel}>Senha</Text>
+      <Text style={styles.welcomeText}>
+        Bem vindo! Fico feliz em vê-lo novamente
+      </Text>
 
-        <TouchableOpacity style={styles.loginButton}>
-          <Text style={styles.loginButtonText}>Login</Text>
+      <View style={styles.inputField}>
+        <TextInput
+          style={styles.input}
+          placeholder="Email"
+          value={input.email}
+          onChangeText={(text) => setInput({ ...input, email: text })}
+        />
+      </View>
+
+      <View style={styles.inputField}>
+        <TextInput
+          style={styles.input}
+          placeholder="Senha"
+          secureTextEntry={showPassword}
+          value={input.password}
+          onChangeText={(text) => setInput({ ...input, password: text })}
+        />
+        <TouchableOpacity
+          style={styles.icon}
+          onPress={() => setShowPassword(!showPassword)}
+        >
+          {showPassword ? (
+            <Ionicons name="eye-off" size={24} color="black" />
+          ) : (
+            <Ionicons name="eye" size={24} color="black" />
+          )}
         </TouchableOpacity>
       </View>
 
-      <View style={styles.signupContainer}>
-        <Text style={styles.signupText}>Não tem uma conta?</Text>
-        <TouchableOpacity>
-          <Text style={styles.signupLinkText}>Faça agora</Text>
-        </TouchableOpacity>
-      </View>
+      <TouchableOpacity>
+        <Text style={styles.forgotPassword}>Esqueceu sua senha?</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity style={styles.loginButton}>
+        <Text style={styles.buttonText}>LOGIN</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity>
+        <Text style={styles.register}>
+          Não tem uma conta?{" "}
+          <Text style={styles.register2}>Cadastre-se agora</Text>
+        </Text>
+      </TouchableOpacity>
     </View>
   );
 }

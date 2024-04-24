@@ -1,148 +1,102 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, Dimensions } from "react-native";
+
+const { width, height } = Dimensions.get("window");
 
 export default StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
+    padding: width * 0.05,
     justifyContent: "center",
-    padding: 20,
+    backgroundColor: "#F5F5F5",
+    marginBottom: height * 0.25,
   },
-  title: {
-    fontFamily: "Alata-Regular",
-    fontSize: 28,
+
+  welcomeText: {
+    fontSize: width * 0.07,
+    marginBottom: height * 0.02,
+    color: "#1E232C",
     fontWeight: "bold",
-    marginBottom: 20,
   },
-  form: {
+
+  inputField: {
+    flexDirection: "row",
     width: "100%",
-    height: 400,
-    display: "flex",
-    flexDirection: "column",
+    backgroundColor: "#E8ECF4",
+    borderRadius: width * 0.02,
+    height: 70,
     alignItems: "center",
-    justifyContent: "center",
+    marginBottom: height * 0.02,
   },
+
   input: {
-    width: "100%",
-    height: 40,
-    borderColor: "gray",
-    borderWidth: 1,
-    marginBottom: 10,
-    paddingHorizontal: 10,
-    backgroundColor: "white",
-    borderRadius: 10,
-  },
-  signupContainer: {
-    width: "100%",
-    borderRadius: 10,
-    marginTop: 20,
-    flexDirection: "row",
-    alignItems: "center",
-  },
-  signupText: {
-    fontFamily: "Alata-Regular",
+    width: "85%",
+    height: 50,
+    padding: 8,
     fontSize: 16,
-  },
-  signupLinkText: {
-    fontFamily: "Alata-Regular",
-    color: "#EC4760",
-    textDecorationLine: "underline",
-    marginLeft: 5,
-  },
-  passwordInputContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "flex-end",
-    borderColor: "gray",
-    paddingHorizontal: "auto",
-    marginTop: 10,
-  },
-  passwordIconContainer: {
-    position: "absolute",
-    right: 10,
-    top: 0,
-    bottom: 0,
-    justifyContent: "center",
   },
 
-  passwordInput: {
-    flex: 1,
-    height: 40,
-    borderColor: "gray",
-    borderWidth: 1,
-    marginBottom: 10,
-    paddingHorizontal: 10,
-    backgroundColor: "white",
-    borderRadius: 10,
-  },
-  passwordIcon: {
-    marginLeft: 10,
-  },
-  inputLabel: {
-    fontFamily: "Alata-Regular",
-    fontSize: 16,
-    fontWeight: "bold",
-    marginBottom: 5,
-    textAlign: "left",
-    color: "#A7A6A5",
-    width: "100%",
-  },
-  loginButtonContainer: {
-    marginTop: 270,
+  icon: {
+    width: "15%",
+    height: 50,
+    justifyContent: "center",
     alignItems: "center",
   },
+
+  returnIcon: {
+    width: width * 0.06,
+    height: width * 0.06,
+    marginBottom: height * 0.02,
+  },
+
   loginButton: {
-    marginTop: 40,
-    width: "60%",
-    paddingVertical: 15,
-    paddingHorizontal: 30,
-    backgroundColor: "#EC4760",
-    borderRadius: 20,
-    alignItems: "center",
+    height: height * 0.08,
+    backgroundColor: "#307C31",
     justifyContent: "center",
-  },
-  inputBackground: {
-    backgroundColor: "#EFF2F1",
-    borderWidth: 0,
-    borderRadius: 8,
-  },
-  loginButtonText: {
-    fontFamily: "Alata-Regular",
-    fontWeight: "bold",
-    color: "white",
+    borderRadius: width * 0.02,
+    marginBottom: height * 0.01,
   },
 
-  centeredView: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    marginTop: 22,
-  },
-  modalView: {
-    margin: 20,
-    backgroundColor: "white",
-    borderRadius: 20,
-    padding: 35,
-    alignItems: "center",
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-  },
-  buttonCloseModalLogin: {
-    marginTop: 20,
-    fontFamily: "Alata-Regular",
-    backgroundColor: "#EC4760",
-    width: 90,
-    height: 30,
-    borderRadius: "50%",
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  buttonTextCloseModalLogin: {
-    fontWeight: "bold",
+  buttonText: {
     color: "white",
+    fontSize: width * 0.04,
+    textAlign: "center",
+    alignItems: "center",
+    fontWeight: "bold",
+  },
+
+  buttonReturn: {
+    color: "black",
+    fontSize: width * 0.04,
+    textAlign: "left",
+    padding: width * 0.05,
+    alignSelf: "flex-start",
+    marginBottom: height * 0.04,
+    borderWidth: width * 0.0004,
+    borderColor: "black",
+    borderRadius: width * 0.02,
+  },
+
+  forgotPassword: {
+    color: "#6A707C",
+    marginTop: height * 0.001,
+    fontSize: width * 0.04,
+    marginBottom: height * 0.025,
+    alignSelf: "flex-end",
+  },
+  register: {
+    position: "relative",
+    flexDirection: "row",
+    bottom: -height * 0.31,
+    fontSize: width * 0.04,
+    alignSelf: "center",
+    color: "#6A707C",
+  },
+  register2: {
+    flexDirection: "row",
+    bottom: -height * 0.31,
+    fontSize: width * 0.04,
+    alignSelf: "center",
+    color: "#FEAB13",
+    fontWeight: "bold",
   },
 });
