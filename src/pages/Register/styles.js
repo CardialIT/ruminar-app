@@ -45,7 +45,7 @@ export default StyleSheet.create({
   returnIcon: {
     width: width * 0.06,
     height: width * 0.06,
-    marginBottom: height * 0.02,
+    marginBottom: height * 0.01,
   },
 
   loginButton: {
@@ -65,12 +65,11 @@ export default StyleSheet.create({
   },
 
   buttonReturn: {
-    color: "black",
-    fontSize: width * 0.04,
-    textAlign: "left",
-    padding: width * 0.05,
-    alignSelf: "flex-start",
-    marginBottom: height * 0.04,
+    padding: width * 0.01,
+    marginBottom: height * 0.03,
+    marginTop: height * 0.3,
+    width: width * 0.1,
+    height: width * 0.1,
     borderWidth: width * 0.0004,
     borderColor: "black",
     borderRadius: width * 0.02,
@@ -83,6 +82,7 @@ export default StyleSheet.create({
     marginBottom: height * 0.025,
     alignSelf: "flex-end",
   },
+
   register: {
     position: "relative",
     flexDirection: "row",
@@ -91,6 +91,7 @@ export default StyleSheet.create({
     alignSelf: "center",
     color: "#6A707C",
   },
+
   register2: {
     flexDirection: "row",
     bottom: 20,

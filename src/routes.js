@@ -5,7 +5,7 @@ const Stack = createNativeStackNavigator();
 
 import RegisterScreen from "./pages/Register/index";
 import HomeScreen from "./pages/Home";
-import LoginScreen from "./pages/Login"
+import LoginScreen from "./pages/Login";
 
 export default function Routes() {
   return (
