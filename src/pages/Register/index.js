@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { View, Text, TextInput, TouchableOpacity, Image } from "react-native";
 import styles from "./styles";
 import IconReturn from "../../assets/icons-voltar-.png";
-import { Ionicons } from "@expo/vector-icons";
 
 export default function RegisterScreen({ navigation }) {
   const handlePress = () => {
@@ -24,6 +23,14 @@ export default function RegisterScreen({ navigation }) {
 
         <View style={styles.inputField}>
           <TextInput style={styles.input} placeholder="Email" />
+        </View>
+
+        <View style={styles.inputField}>
+          <TextInput style={styles.input} placeholder="CPF" />
+        </View>
+
+        <View style={styles.inputField}>
+          <TextInput style={styles.input} placeholder="Telefone" />
         </View>
 
         <View style={styles.inputField}>
