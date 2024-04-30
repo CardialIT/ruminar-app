@@ -123,7 +123,6 @@ function BottomTabsScreen() {
     </Tab.Navigator>
   )
 }
-import LoginScreen from "./pages/Login";
 
 export default function Routes() {
   return (
