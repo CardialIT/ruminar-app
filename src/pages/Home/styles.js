@@ -9,7 +9,7 @@ export default StyleSheet.create({
     firstContainer: {
         flexDirection: "row",
         alignItems: "center",
-        justifyContent: "space-between",
+        justifyContent: "flex-end",
         backgroundColor: "#307C31",
         height: "16%",
         paddingHorizontal: 20,

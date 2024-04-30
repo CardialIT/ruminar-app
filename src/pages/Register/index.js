@@ -4,7 +4,11 @@ import styles from "./styles";
 import IconReturn from "../../assets/icons-voltar-.png";
 import { Ionicons } from "@expo/vector-icons";
 
-export default function RegisterScreen() {
+export default function RegisterScreen({ navigation }) {
+  const handlePress = () => {
+    navigation.navigate('HomeScreen');
+  };
+
   return (
     <>
       <View style={styles.container}>
@@ -38,7 +42,9 @@ export default function RegisterScreen() {
           />
         </View>
 
-        <TouchableOpacity style={styles.loginButton}>
+        <TouchableOpacity
+          onPress={handlePress}
+          style={styles.loginButton}>
           <Text style={styles.buttonText}>REGISTRAR-SE</Text>
         </TouchableOpacity>
       </View>

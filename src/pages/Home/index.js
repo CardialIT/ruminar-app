@@ -15,13 +15,6 @@ export default function HomeScreen() {
         <TouchableOpacity
           onPress={handlePress}>
           <Image
-            source={require('../../../assets/Menu.png')}
-            style={styles.containerItem}
-          />
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={handlePress}>
-          <Image
             source={require('../../../assets/Fill.png')}
             style={styles.containerItem}
           />
