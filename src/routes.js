@@ -9,7 +9,11 @@ import RegisterScreen from "./pages/Register/index";
 import LoginScreen from "./pages/Login";
 import HomeScreen from "./pages/Home";
 import LivrariaScreen from "./pages/Livraria";
+import DietasScreen from "./pages/Dietas";
 import Profile from "./pages/Profile";
+
+import CadastroLivrariaScreen from "./pages/CadastroLivraria";
+import DetalhesLivrariaScreen from "./pages/DetalhesLivraria"
 
 
 // const Stack = createNativeStackNavigator();
@@ -53,6 +57,14 @@ function LibraryStackScreen() {
         name="LivrariaDietas"
         component={LivrariaScreen}
       />
+      <LibraryStack.Screen
+        name="CadastroLivrariaScreen"
+        component={CadastroLivrariaScreen}
+      />
+      <LibraryStack.Screen
+        name="DetalhesLivrariaScreen"
+        component={DetalhesLivrariaScreen}
+      />
     </LibraryStack.Navigator>
   )
 }
@@ -73,31 +85,48 @@ function ProfileStackScreen() {
   )
 }
 
+const DietasStack = createNativeStackNavigator();
+
+function DietasStackScreen() {
+  return (
+    <DietasStack.Navigator
+      screenOptions={{ headerShown: false }}>
+      <DietasStack.Screen
+        name="Diets"
+        component={DietasScreen} />
+    </DietasStack.Navigator>
+  )
+}
+
 const Tab = createBottomTabNavigator();
 
 function BottomTabsScreen() {
   return (
     <Tab.Navigator
-      screenOptions={ ({ route }) => ({
+      screenOptions={({ route }) => ({
         tabBarIcon: ({ focused }) => {
           let iconName;
           switch (route.name) {
-            case "Início":
+            case "HomeScreen":
               iconName = focused ? "home" : "home-outline";
               break;
-            case "Livraria":
+            case "DietasScreen":
+              iconName = focused ? "fast-food" : "fast-food-outline";
+              break;
+            case "LivrariaScreen":
               iconName = focused ? "book" : "book-outline";
               break;
-            case "Profile":
+            case "ProfileScreen":
               iconName = focused ? "person-circle" : "person-circle-outline";
               break;
             default:
               break;
           }
-          return <Ionicons name={iconName} size={24} color={"#307C31"} />;
+          return <Ionicons name={iconName} size={22} color={"#307C31"} style={{ flex: 1, marginTop: 12 }} />;
         },
         tabBarActiveTintColor: '#307C31',
         tabBarInactiveTintColor: '#307C31',
+        tabBarLabel: " ",
       })}
     >
       <Tab.Screen
@@ -109,15 +138,19 @@ function BottomTabsScreen() {
             shadowOpacity: 0,
           }
         }}
-        name="Início"
+        name="HomeScreen"
         component={HomeStackScreen}
       />
       <Tab.Screen
-        name="Livraria"
+        name="DietasScreen"
+        component={DietasStackScreen}
+      />
+      <Tab.Screen
+        name="LivrariaScreen"
         component={LibraryStackScreen}
       />
       <Tab.Screen
-        name="Profile"
+        name="ProfileScreen"
         component={ProfileStackScreen}
       />
     </Tab.Navigator>
