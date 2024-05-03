@@ -9,7 +9,7 @@ export default function CadastroLivrariaScreen() {
   const [itemName, setItemName] = React.useState('');
 
   return (
-    <ScrollView style={styles.container}>
+    <View style={styles.container}>
       <View style={styles.firstContainer}>
         <TouchableOpacity onPress={() => navigation.navigate("HomeScreen")}>
           <Ionicons name="chevron-back-outline" size={24} color="white" />
@@ -69,29 +69,15 @@ export default function CadastroLivrariaScreen() {
           style={styles.containerInput}
         />
       </View>
-      <View style={styles.containerItem}>
-        <Text style={styles.containerTitle}>PNDR:</Text>
-        <TextInput
-          value={itemName}
-          onChangeText={text => setItemName(text)}
-          placeholder="Digite o nome do item"
-          style={styles.containerInput}
-        />
-      </View>
-      <View style={styles.containerItem}>
-        <Text style={styles.containerTitle}>NDT:</Text>
-        <TextInput
-          value={itemName}
-          onChangeText={text => setItemName(text)}
-          placeholder="Digite o nome do item"
-          style={styles.containerInput}
-        />
-      </View>
-      <View style={styles.createButton}>
-        <TouchableOpacity onPress={() => navigation.navigate("DetalhesLivrariaScreen")}>
+    
+      
+      <View style={styles.containerButton}>
+        <TouchableOpacity 
+        onPress={() => navigation.navigate("DetalhesLivrariaScreen")}
+        style={styles.createButton}>
           <Text style={styles.textButton}>Criar Item</Text>
         </TouchableOpacity>
       </View>
-    </ScrollView>
+    </View>
   );
 }

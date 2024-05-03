@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity, Image, ScrollView } from 'react-native';
+import { View, Text, TouchableOpacity, Image, ScrollView, Modal } from 'react-native';
 import styles from '../Livraria/styles';
 import React, { useState } from 'react';
 import { Ionicons } from '@expo/vector-icons';
@@ -25,6 +25,11 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 export default function LivrariaScreen() {
   const navigation = useNavigation();
+  const [isModalVisible, setModalVisible] = useState(false);
+
+  const toggleModal = () => {
+    setModalVisible(!isModalVisible);
+  };
   // const [items, setItems] = useState([]);
 
   // const handleEditItem = (item) => {
@@ -78,14 +83,19 @@ export default function LivrariaScreen() {
                 onPress={() => navigation.navigate("DetalhesLivrariaScreen")}>
                 <Text style={styles.listTextItem}>Pastagem</Text>
                 <View style={styles.containerImages}>
+
                   <Image
                     source={require('../../assets/Edit.png')}
                     style={styles.containerItem}
                   />
-                  <Image
-                    source={require('../../assets/Trash.png')}
-                    style={styles.containerItem}
-                  />
+                  <TouchableOpacity
+                    style={styles.deleteButton}
+                    onPress={toggleModal}>
+                    <Image
+                      source={require('../../assets/Trash.png')}
+                      style={styles.containerItem}
+                    />
+                  </TouchableOpacity>
                 </View>
               </TouchableOpacity>
             </View>
@@ -173,6 +183,30 @@ export default function LivrariaScreen() {
           </ScrollView>
         </View>
       </View>
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={isModalVisible}
+        onRequestClose={toggleModal}>
+        <View style={styles.modalContainer}>
+          <View style={styles.modalContent}>
+            <Text style={styles.modalTitle}>Excluir livraria</Text>
+            <Text style={styles.modalText}>Você tem certeza que deseja excluir a livria "Pastagem"?</Text>
+            <View style={styles.modalButtons}>
+              <TouchableOpacity 
+              style={styles.cancelButton}
+              onPress={toggleModal}>
+                <Text style={styles.modalButton}>Cancelar</Text>
+              </TouchableOpacity>
+              <TouchableOpacity 
+              style={styles.excluirButton}
+              onPress={toggleModal}>
+                <Text style={styles.modalButtonDelete}>Excluir</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </View>
+      </Modal>
     </GestureHandlerRootView>
   )
 }

@@ -90,5 +90,69 @@ export default StyleSheet.create({
         marginHorizontal: width * 0.012
     },
 
+ // modal
+    modalContainer: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#fff',
+    },
+
+    modalContent: {
+        backgroundColor: '#fff',
+        width: width * 0.8,
+        padding: 20,
+        borderWidth: 0.2,
+        borderRadius: 10,
+    },
+
+    modalTitle: {
+        fontWeight: "bold",
+        fontSize: 20,
+        marginBottom: 10
+    },
+
+    modalText: {
+        fontSize: 18,
+        marginBottom: 20,
+    },
+
+    modalButtons: {
+        flexDirection: 'row',
+        justifyContent: 'flex-end',
+       
+
+    },
+    modalButton: {
+        fontSize: 16,
+        color: '#307C31',
+    },
+
+    cancelButton: {
+        color: "#307C31",
+        borderWidth: 1,
+        padding: 8,
+        borderColor: "#307C31",
+        borderRadius: 8,
+        marginRight: 8,
+        width: "40%",
+        justifyContent: "center",
+        alignItems: "center"
+    },
+
+    excluirButton: {
+        backgroundColor: "#DF1642",
+        borderWidth: 1,
+        padding: 8,
+        borderColor: "#DF1642",
+        borderRadius: 8,
+        width: "40%",
+        justifyContent: "center",
+        alignItems: "center"
+    },
+
+    modalButtonDelete: {
+        color: "#fff",
+    }
+
 
 });

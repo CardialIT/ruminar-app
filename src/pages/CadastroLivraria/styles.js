@@ -4,7 +4,6 @@ const { width, height } = Dimensions.get("window");
 
 export default StyleSheet.create({
     container: {
-        flex: 1,
         backgroundColor: "#fff"
     },
 
@@ -47,17 +46,24 @@ export default StyleSheet.create({
         backgroundColor: "#F7F8F9"
     },
 
+    containerButton: {
+        marginTop: height * 0.02
+    },
+
     createButton: {
-        backgroundColor: "#FEAB13",
-        paddingVertical: height * 0.08, 
-        paddingHorizontal: width * 0.2, 
-        borderRadius: 4,
-        height: "auto",
-        alignContent: "flex-start"
+        backgroundColor: "#307C31",
+        width: width * 0.86,
+        height: height * 0.06,
+        borderRadius: width * 0.02,
+        padding: width * 0.02,
+        justifyContent: "center",
+        alignSelf: "center",
     },
 
     textButton: {
         color: "#fff",
-        
+        fontWeight: "bold",
+        alignSelf: "center"
+
     }
- })
+})
