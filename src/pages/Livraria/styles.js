@@ -1,18 +1,19 @@
 import { StyleSheet, Dimensions } from "react-native";
+import { colors } from "../../colors.js";
 
 const { width, height } = Dimensions.get("window");
 
 export default StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "#D2D2D2",
+        backgroundColor: colors.background,
     },
 
     firstContainer: {
         flexDirection: "row",
         alignItems: "center",
         justifyContent: "space-between",
-        backgroundColor: "#307C31",
+        backgroundColor: colors.verdePrincipal,
         height: "16%",
         paddingHorizontal: 20,
         paddingTop: 16,
@@ -26,19 +27,12 @@ export default StyleSheet.create({
 
     secondContainer: {
         flex: 1,
-        backgroundColor: "#fff"
-    },
-
-    title: {
-        fontFamily: "Alata-Regular",
-        fontWeight: "bold",
-        fontSize: 24,
-        color: "#FFF",
+        backgroundColor: colors.background
     },
 
     addButton: {
         flexDirection: "row",
-        backgroundColor: "#FEAB13",
+        backgroundColor: colors.amarelo,
         alignItems: "center",
         justifyContent: "space-between",
         alignSelf: 'center',
@@ -48,17 +42,23 @@ export default StyleSheet.create({
         marginBottom: height * 0.04,
         width: width * 0.9,
         paddingHorizontal: width * 0.04,
-
     },
 
     addButtonText: {
-        color: "#fff",
+        color: colors.background,
         justifyContent: "space-between"
     },
 
+    title: {
+        fontFamily: "Alata-Regular",
+        fontWeight: "bold",
+        fontSize: 24,
+        color: colors.background,
+    },
+    
     listItemContainer: {
         alignSelf: "center",
-        backgroundColor: "#307C31",
+        backgroundColor: colors.verdePrincipal,
         alignItems: "center",
         justifyContent: "center",
         borderRadius: width * 0.02,
@@ -70,12 +70,8 @@ export default StyleSheet.create({
         paddingHorizontal: width * 0.04,
     },
 
-    listItemText: {
-        color: "#fff"
-    },
-
     listTextItem: {
-        color: "#fff"
+        color: colors.background
     },
 
     containerImages: {
@@ -92,13 +88,14 @@ export default StyleSheet.create({
 
  // modal
     modalContainer: {
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#fff',
+        flex: 1,
+        backgroundColor: colors.backgroundModal,
+        justifyContent: "center",
+        alignItems: "center"
     },
 
     modalContent: {
-        backgroundColor: '#fff',
+        backgroundColor: colors.background,
         width: width * 0.8,
         padding: 20,
         borderWidth: 0.2,
@@ -119,39 +116,38 @@ export default StyleSheet.create({
     modalButtons: {
         flexDirection: 'row',
         justifyContent: 'flex-end',
-       
-
     },
+
     modalButton: {
         fontSize: 16,
-        color: '#307C31',
+        color: colors.verdePrincipal,
     },
 
     cancelButton: {
-        color: "#307C31",
+        color: colors.verdePrincipal,
         borderWidth: 1,
         padding: 8,
-        borderColor: "#307C31",
+        borderColor: colors.verdePrincipal,
         borderRadius: 8,
         marginRight: 8,
-        width: "40%",
+        width: width * 0.3,
         justifyContent: "center",
         alignItems: "center"
     },
 
     excluirButton: {
-        backgroundColor: "#DF1642",
+        backgroundColor: colors.vermelho,
         borderWidth: 1,
         padding: 8,
-        borderColor: "#DF1642",
+        borderColor: colors.vermelho,
         borderRadius: 8,
-        width: "40%",
+        width: width * 0.3,
         justifyContent: "center",
         alignItems: "center"
     },
 
     modalButtonDelete: {
-        color: "#fff",
+        color: colors.background,
     }
 
 

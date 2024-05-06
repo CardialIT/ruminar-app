@@ -1,11 +1,12 @@
 import { StyleSheet, Dimensions } from "react-native";
+import { colors } from "../../colors.js";
 
 const { width, height } = Dimensions.get("window");
 
 export default StyleSheet.create({ 
     container: {
         flex: 1,
-        backgroundColor: "#fff"
+        backgroundColor: colors.background
     },
 
     scrollView: {
@@ -18,11 +19,12 @@ export default StyleSheet.create({
     },
 
     // FIRST CONTAINER
+
     firstContainer: {
         flexDirection: "row",
         alignItems: "center",
         justifyContent: "space-between",
-        backgroundColor: "#307C31",
+        backgroundColor: colors.verdePrincipal,
         height: "16%",
         paddingHorizontal: 20,
         paddingTop: 10,
@@ -33,7 +35,7 @@ export default StyleSheet.create({
         fontFamily: "Alata-Regular",
         fontWeight: "bold",
         fontSize: 24,
-        color: "#FFF",
+        color: colors.background,
     },
 
     containerItem: {
@@ -64,7 +66,7 @@ export default StyleSheet.create({
     },
 
     containerItemsC: {
-        backgroundColor: "#F7F8F9",
+        backgroundColor: colors.backgroundInput,
         borderLeftWidth: 0.2,
         borderRightWidth: 0.2,
         paddingLeft: width * 0.02,
@@ -93,7 +95,7 @@ export default StyleSheet.create({
     },
 
     percentage: {
-        color: "#307C31",
+        color: colors.verdePrincipal,
         marginRight: width * 0.02
     },
 
@@ -108,7 +110,7 @@ export default StyleSheet.create({
     }, 
 
     infoText: {
-        color: "gray",
+        color: colors.cinza,
         
     }
 

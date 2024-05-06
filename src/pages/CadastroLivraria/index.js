@@ -1,5 +1,11 @@
-import React from 'react';
-import { View, Text, TextInput, TouchableOpacity, Image, ScrollView } from 'react-native';
+import React, { useState } from 'react';
+import {
+  View,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  Image,
+} from 'react-native';
 import styles from '../CadastroLivraria/styles';
 import { useNavigation } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
@@ -10,13 +16,17 @@ export default function CadastroLivrariaScreen() {
 
   return (
     <View style={styles.container}>
+
       <View style={styles.firstContainer}>
+
         <TouchableOpacity onPress={() => navigation.navigate("HomeScreen")}>
           <Ionicons name="chevron-back-outline" size={24} color="white" />
         </TouchableOpacity>
+
         <Text style={styles.title}>
           Cadastro Livraria
         </Text>
+
         <TouchableOpacity onPress={() => navigation.navigate("DetalhesLivrariaScreen")}>
           <Image
             source={require('../../../assets/Fill.png')}
@@ -24,8 +34,11 @@ export default function CadastroLivrariaScreen() {
           />
         </TouchableOpacity>
       </View>
+
       <View style={styles.containerItem}>
+
         <Text style={styles.containerTitle}>Nome:</Text>
+
         <TextInput
           value={itemName}
           onChangeText={text => setItemName(text)}
@@ -33,8 +46,11 @@ export default function CadastroLivrariaScreen() {
           style={styles.containerInput}
         />
       </View>
+
       <View style={styles.containerItem}>
+
         <Text style={styles.containerTitle}>MS:</Text>
+
         <TextInput
           value={itemName}
           onChangeText={text => setItemName(text)}
@@ -42,8 +58,11 @@ export default function CadastroLivrariaScreen() {
           style={styles.containerInput}
         />
       </View>
+
       <View style={styles.containerItem}>
+
         <Text style={styles.containerTitle}>MS:</Text>
+
         <TextInput
           value={itemName}
           onChangeText={text => setItemName(text)}
@@ -51,8 +70,11 @@ export default function CadastroLivrariaScreen() {
           style={styles.containerInput}
         />
       </View>
+
       <View style={styles.containerItem}>
+
         <Text style={styles.containerTitle}>PB:</Text>
+
         <TextInput
           value={itemName}
           onChangeText={text => setItemName(text)}
@@ -60,8 +82,11 @@ export default function CadastroLivrariaScreen() {
           style={styles.containerInput}
         />
       </View>
+
       <View style={styles.containerItem}>
+
         <Text style={styles.containerTitle}>PDR:</Text>
+
         <TextInput
           value={itemName}
           onChangeText={text => setItemName(text)}
@@ -69,15 +94,16 @@ export default function CadastroLivrariaScreen() {
           style={styles.containerInput}
         />
       </View>
-    
-      
+
+
       <View style={styles.containerButton}>
-        <TouchableOpacity 
-        onPress={() => navigation.navigate("DetalhesLivrariaScreen")}
-        style={styles.createButton}>
-          <Text style={styles.textButton}>Criar Item</Text>
+        <TouchableOpacity
+          onPress={() => navigation.navigate("DetalhesLivrariaScreen")}
+          style={styles.createButton}>
+          <Text style={styles.textButton}>CRIAR ITEM</Text>
         </TouchableOpacity>
       </View>
     </View>
+    
   );
 }

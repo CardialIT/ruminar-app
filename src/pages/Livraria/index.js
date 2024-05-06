@@ -1,6 +1,13 @@
-import { View, Text, TouchableOpacity, Image, ScrollView, Modal } from 'react-native';
-import styles from '../Livraria/styles';
 import React, { useState } from 'react';
+import { 
+  View, 
+  Text, 
+  TouchableOpacity, 
+  Image, 
+  ScrollView, 
+  Modal 
+} from 'react-native';
+import styles from '../Livraria/styles';
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
@@ -43,21 +50,28 @@ export default function LivrariaScreen() {
   return (
     <GestureHandlerRootView style={styles.container}>
       <View style={styles.container}>
+
         <View style={styles.firstContainer}>
+         
           <TouchableOpacity onPress={() => navigation.navigate("HomeScreen")}>
             <Ionicons name="chevron-back-outline" size={24} color="white" />
           </TouchableOpacity>
+
           <Text style={styles.title}>
             Livraria
           </Text>
+          
           <TouchableOpacity>
             <Image
               source={require('../../../assets/Fill.png')}
               style={styles.containerItem}
             />
           </TouchableOpacity>
+
         </View>
+
         <View style={styles.secondContainer}>
+
           <TouchableOpacity
             style={styles.addButton}
             onPress={() => navigation.navigate("CadastroLivrariaScreen")}>
@@ -78,6 +92,7 @@ export default function LivrariaScreen() {
                   onDeletePress={handleDeleteItem}
                 />
               ))} */}
+              
               <TouchableOpacity
                 style={styles.listItemContainer}
                 onPress={() => navigation.navigate("DetalhesLivrariaScreen")}>
@@ -99,8 +114,11 @@ export default function LivrariaScreen() {
                 </View>
               </TouchableOpacity>
             </View>
+
             <View style={styles.listItemContainer}>
+
               <Text style={styles.listTextItem}>Sal</Text>
+
               <View style={styles.containerImages}>
                 <Image
                   source={require('../../assets/Edit.png')}
@@ -111,9 +129,11 @@ export default function LivrariaScreen() {
                   style={styles.containerItem}
                 />
               </View>
+
             </View>
 
             <View style={styles.listItemContainer}>
+
               <Text style={styles.listTextItem}>Silagem</Text>
 
               <View style={styles.containerImages}>
@@ -125,11 +145,15 @@ export default function LivrariaScreen() {
                   source={require('../../assets/Trash.png')}
                   style={styles.containerItem}
                 />
+
               </View>
 
             </View>
+
             <View style={styles.listItemContainer}>
+
               <Text style={styles.listTextItem}>Casca de Laranja</Text>
+              
               <View style={styles.containerImages}>
                 <Image
                   source={require('../../assets/Edit.png')}
@@ -141,8 +165,11 @@ export default function LivrariaScreen() {
                 />
               </View>
             </View>
+
             <View style={styles.listItemContainer}>
+
               <Text style={styles.listTextItem}>Fração Proteica</Text>
+
               <View style={styles.containerImages}>
                 <Image
                   source={require('../../assets/Edit.png')}
@@ -154,8 +181,11 @@ export default function LivrariaScreen() {
                 />
               </View>
             </View>
+
             <View style={styles.listItemContainer}>
+
               <Text style={styles.listTextItem}>Mineral</Text>
+
               <View style={styles.containerImages}>
                 <Image
                   source={require('../../assets/Edit.png')}
@@ -167,8 +197,11 @@ export default function LivrariaScreen() {
                 />
               </View>
             </View>
+
             <View style={styles.listItemContainer}>
+
               <Text style={styles.listTextItem}>Milho</Text>
+
               <View style={styles.containerImages}>
                 <Image
                   source={require('../../assets/Edit.png')}
@@ -180,29 +213,38 @@ export default function LivrariaScreen() {
                 />
               </View>
             </View>
+
           </ScrollView>
         </View>
       </View>
+
       <Modal
         animationType="slide"
         transparent={true}
         visible={isModalVisible}
         onRequestClose={toggleModal}>
+
         <View style={styles.modalContainer}>
           <View style={styles.modalContent}>
+
             <Text style={styles.modalTitle}>Excluir livraria</Text>
+
             <Text style={styles.modalText}>Você tem certeza que deseja excluir a livria "Pastagem"?</Text>
+
             <View style={styles.modalButtons}>
+
               <TouchableOpacity 
               style={styles.cancelButton}
               onPress={toggleModal}>
                 <Text style={styles.modalButton}>Cancelar</Text>
               </TouchableOpacity>
+
               <TouchableOpacity 
               style={styles.excluirButton}
               onPress={toggleModal}>
                 <Text style={styles.modalButtonDelete}>Excluir</Text>
               </TouchableOpacity>
+
             </View>
           </View>
         </View>

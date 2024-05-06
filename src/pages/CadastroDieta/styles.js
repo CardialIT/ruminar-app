@@ -5,6 +5,7 @@ const { width, height } = Dimensions.get("window");
 
 export default StyleSheet.create({
     container: {
+        flex: 1,
         backgroundColor: colors.background
     },
 
@@ -65,6 +66,6 @@ export default StyleSheet.create({
         color: colors.background,
         fontWeight: "bold",
         alignSelf: "center"
-
     }
+
 })

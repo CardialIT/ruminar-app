@@ -1,16 +1,19 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, Dimensions } from "react-native";
+import { colors } from "../../colors.js";
+
+const { width, height } = Dimensions.get("window");
 
 export default StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "#D2D2D2"
+        backgroundColor: colors.background
     },
 
     firstContainer: {
         flexDirection: "row",
         alignItems: "center",
         justifyContent: "flex-end",
-        backgroundColor: "#307C31",
+        backgroundColor: colors.verdePrincipal,
         height: "16%",
         paddingHorizontal: 20,
         paddingTop: 26,
@@ -18,8 +21,9 @@ export default StyleSheet.create({
     },
 
     containerItem: {
-        width: 28,
-        height: 28
+        justifyContent: "space-between",
+        padding: width * 0.02,
+        marginHorizontal: width * 0.012
     },
 
     secondContainer: {
@@ -34,14 +38,14 @@ export default StyleSheet.create({
         fontFamily: "Alata-Regular",
         fontWeight: "bold",
         fontSize: 24,
-        color: "#1E232C",
+        color: colors.text,
     },
 
     subtitle: {
         fontFamily: "Alata-Regular",
         fontWeight: "400",
         fontSize: 14,
-        color: "#8391A1"
+        color: colors.cinza,
     },
 
     images: {  
@@ -67,14 +71,14 @@ export default StyleSheet.create({
         fontFamily: "Alata-Regular",
         fontWeight: "bold",
         fontSize: 24,
-        color: "#FFFFFF",
+        color: colors.background
     },
 
     imageSubtitle: {
         fontFamily: "Alata-Regular",
         fontWeight: "400",
         fontSize: 12,
-        color: "#FAFAFA",
+        color: colors.background
     },
 
     overlay: {
