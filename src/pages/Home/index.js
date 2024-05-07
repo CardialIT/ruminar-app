@@ -1,24 +1,32 @@
-import {
-  View,
-  TouchableOpacity,
-  Image,
-  Text
-} from 'react-native';
-import React from 'react';
-import styles from '../Home/styles';
-import { useNavigation } from '@react-navigation/native';
+import { View, TouchableOpacity, Image, Text } from "react-native";
+import React from "react";
+import styles from "../Home/styles";
+import { useNavigation } from "@react-navigation/native";
+import { getLivraria } from "../../services/APIIntegration";
 
 export default function HomeScreen() {
   const Nome = "{Nome}";
 
   const navigation = useNavigation();
 
+  function btnGetLivraria() {
+    console.log("Chamando btnGetLivraria");
+    getLivraria()
+      .then((response) => {
+        console.log(response);
+        navigation.navigate("LivrariaScreen", { livrariaData: response });
+      })
+      .catch((error) => {
+        console.log("Erro ao mostrar Livraria", error);
+      });
+  }
+
   return (
     <View style={styles.container}>
       <View style={styles.firstContainer}>
         <TouchableOpacity>
           <Image
-            source={require('../../../assets/Fill.png')}
+            source={require("../../../assets/Fill.png")}
             style={styles.containerItem}
           />
         </TouchableOpacity>
@@ -29,11 +37,9 @@ export default function HomeScreen() {
         <Text style={styles.subtitle}>O que você gostaria de fazer hoje?</Text>
       </View>
 
-      <TouchableOpacity
-        style={styles.imageContainer}
-        onPress={() => navigation.navigate("DietasScreen")}>
+      <TouchableOpacity style={styles.imageContainer} onPress={btnGetLivraria}>
         <Image
-          source={require('../../../assets/Cows.png')}
+          source={require("../../../assets/Cows.png")}
           style={styles.image}
         />
         <View style={styles.overlay}>
@@ -41,12 +47,10 @@ export default function HomeScreen() {
           <Text style={styles.imageSubtitle}>Lorem ipsum dolor sit amet</Text>
         </View>
       </TouchableOpacity>
-      
-      <TouchableOpacity
-        style={styles.imageContainer}
-        onPress={() => navigation.navigate("LivrariaScreen")}>
+
+      <TouchableOpacity style={styles.imageContainer} onPress={btnGetLivraria}>
         <Image
-          source={require('../../../assets/Library.png')}
+          source={require("../../../assets/Library.png")}
           style={styles.image}
         />
         <View style={styles.overlay}>
@@ -55,7 +59,5 @@ export default function HomeScreen() {
         </View>
       </TouchableOpacity>
     </View>
-
-  )
+  );
 }
-
