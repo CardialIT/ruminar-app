@@ -4,67 +4,71 @@ import { colors } from "../../colors.js";
 const { width, height } = Dimensions.get("window");
 
 export default StyleSheet.create({
-    container: {
-        backgroundColor: colors.background
-    },
+  container: {
+    flex: 1,
+    backgroundColor: colors.background,
+  },
 
-    firstContainer: {
-        flexDirection: "row",
-        alignItems: "center",
-        justifyContent: "space-between",
-        backgroundColor: colors.verdePrincipal,
-        height: height * 0.16,
-        paddingHorizontal: 20,
-        paddingTop: 10,
-        marginBottom: height * 0.02
-    },
+  firstContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    backgroundColor: colors.verdePrincipal,
+    height: height * 0.16,
+    paddingHorizontal: 20,
+    paddingTop: 10,
+    marginBottom: height * 0.02,
+  },
 
-    title: {
-        fontFamily: "Alata-Regular",
-        fontWeight: "bold",
-        fontSize: 24,
-        color: colors.background
-    },
+  scrollView: {
+    flexGrow: 1,
+  },
 
-    containerItem: {
-        justifyContent: "center",
-        alignSelf: "center",
-        width: "90%",
-        padding: width * 0.02,
-    },
+  title: {
+    fontFamily: "Alata-Regular",
+    fontWeight: "bold",
+    fontSize: 24,
+    color: colors.background,
+  },
 
-    containerTitle: {
-        fontWeight: "bold",
-        fontSize: height * 0.02,
-        marginBottom: height * 0.006
-    },
+  containerItem: {
+    justifyContent: "center",
+    alignSelf: "center",
+    width: "90%",
+    padding: width * 0.02,
+  },
 
-    containerInput: {
-        borderWidth: 0.2,
-        height: "auto",
-        padding: width * 0.02,
-        borderRadius: 4,
-        backgroundColor: colors.backgroundInput
-    },
+  containerTitle: {
+    fontWeight: "bold",
+    fontSize: height * 0.02,
+    marginBottom: height * 0.006,
+  },
 
-    containerButton: {
-        marginTop: height * 0.02
-    },
+  containerInput: {
+    borderWidth: 0.2,
+    height: "auto",
+    padding: width * 0.02,
+    borderRadius: 4,
+    backgroundColor: colors.backgroundInput,
+  },
 
-    createButton: {
-        backgroundColor: colors.verdePrincipal,
-        width: width * 0.86,
-        height: height * 0.06,
-        borderRadius: width * 0.02,
-        padding: width * 0.02,
-        justifyContent: "center",
-        alignSelf: "center",
-    },
+  containerButton: {
+    marginTop: height * 0.02,
+  },
 
-    textButton: {
-        color: colors.background,
-        fontWeight: "bold",
-        alignSelf: "center"
+  createButton: {
+    backgroundColor: colors.verdePrincipal,
+    width: width * 0.86,
+    height: height * 0.06,
+    borderRadius: width * 0.02,
+    padding: width * 0.02,
+    justifyContent: "center",
+    alignSelf: "center",
+  },
 
-    }
-})
+  textButton: {
+    color: colors.background,
+    fontWeight: "bold",
+    alignSelf: "center",
+  },
+});
