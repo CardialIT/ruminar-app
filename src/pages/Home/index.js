@@ -2,7 +2,7 @@ import { View, TouchableOpacity, Image, Text } from "react-native";
 import React from "react";
 import styles from "../Home/styles";
 import { useNavigation } from "@react-navigation/native";
-// import { getLivraria } from "../../services/APIIntegration";
+import { getLivraria } from "../../services/api";
 
 export default function HomeScreen() {
   const Nome = "{Nome}";
@@ -37,7 +37,10 @@ export default function HomeScreen() {
         <Text style={styles.subtitle}>O que você gostaria de fazer hoje?</Text>
       </View>
 
-      <TouchableOpacity style={styles.imageContainer} onPress={() => navigation.navigate("DietasScreen")}>
+      <TouchableOpacity
+        style={styles.imageContainer}
+        onPress={() => navigation.navigate("DietasScreen")}
+      >
         <Image
           source={require("../../../assets/Cows.png")}
           style={styles.image}
@@ -48,7 +51,10 @@ export default function HomeScreen() {
         </View>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.imageContainer} onPress={() => navigation.navigate("LivrariaScreen")}>
+      <TouchableOpacity
+        style={styles.imageContainer}
+        onPress={() => navigation.navigate("LivrariaScreen")}
+      >
         <Image
           source={require("../../../assets/Library.png")}
           style={styles.image}

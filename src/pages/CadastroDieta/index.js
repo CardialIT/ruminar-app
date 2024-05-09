@@ -1,108 +1,97 @@
-import React from 'react';
-import {
-    View,
-    Text,
-    TextInput,
-    TouchableOpacity,
-    Image,
-} from 'react-native';
-import styles from '../CadastroDieta/styles';
-import { useNavigation } from '@react-navigation/native';
-import { Ionicons } from '@expo/vector-icons';
+import React from "react";
+import { View, Text, TextInput, TouchableOpacity, Image } from "react-native";
+import styles from "../CadastroDieta/styles";
+import { useNavigation } from "@react-navigation/native";
+import { Ionicons } from "@expo/vector-icons";
+import { postLivraria } from "../../services/api.js";
+import Toast from "react-native-toast-message";
 
 export default function CadastroDietaScreen() {
-    const navigation = useNavigation();
-    const [itemName, setItemName] = React.useState('');
+  const navigation = useNavigation();
+  const [itemName, setItemName] = React.useState("");
 
-    return (
-        <View style={styles.container}>
+  return (
+    <View style={styles.container}>
+      <View style={styles.firstContainer}>
+        <TouchableOpacity onPress={() => navigation.navigate("HomeScreen")}>
+          <Ionicons name="chevron-back-outline" size={24} color="white" />
+        </TouchableOpacity>
 
-            <View style={styles.firstContainer}>
+        <Text style={styles.title}>Nova Dieta</Text>
 
-                <TouchableOpacity onPress={() => navigation.navigate("HomeScreen")}>
-                    <Ionicons name="chevron-back-outline" size={24} color="white" />
-                </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => navigation.navigate("DetalhesLivrariaScreen")}
+        >
+          <Image
+            source={require("../../../assets/Fill.png")}
+            style={styles.containerItem}
+          />
+        </TouchableOpacity>
+      </View>
 
-                <Text style={styles.title}>
-                    Nova Dieta
-                </Text>
+      <View style={styles.containerItem}>
+        <Text style={styles.containerTitle}>Nome da dieta</Text>
 
-                <TouchableOpacity onPress={() => navigation.navigate("DetalhesLivrariaScreen")}>
-                    <Image
-                        source={require('../../../assets/Fill.png')}
-                        style={styles.containerItem}
-                    />
-                </TouchableOpacity>
-            </View>
+        <TextInput
+          value={itemName}
+          onChangeText={(text) => setItemName(text)}
+          placeholder="Título da livraria"
+          style={styles.containerInput}
+        />
+      </View>
 
-            <View style={styles.containerItem}>
+      <View style={styles.containerItem}>
+        <Text style={styles.containerTitle}>Peso médio (KG)</Text>
 
-                <Text style={styles.containerTitle}>Nome da dieta</Text>
+        <TextInput
+          value={itemName}
+          onChangeText={(text) => setItemName(text)}
+          placeholder="Digite o nome do item"
+          style={styles.containerInput}
+        />
+      </View>
 
-                <TextInput
-                    value={itemName}
-                    onChangeText={text => setItemName(text)}
-                    placeholder="Título da livraria"
-                    style={styles.containerInput}
-                />
-            </View>
+      <View style={styles.containerItem}>
+        <Text style={styles.containerTitle}>Produção estimada</Text>
 
-            <View style={styles.containerItem}>
+        <TextInput
+          value={itemName}
+          onChangeText={(text) => setItemName(text)}
+          placeholder="Título da livraria"
+          style={styles.containerInput}
+        />
+      </View>
 
-                <Text style={styles.containerTitle}>Peso médio (KG)</Text>
+      <View style={styles.containerItem}>
+        <Text style={styles.containerTitle}>Fill - Preenchimento Ruminal</Text>
 
-                <TextInput
-                    value={itemName}
-                    onChangeText={text => setItemName(text)}
-                    placeholder="Digite o nome do item"
-                    style={styles.containerInput}
-                />
-            </View>
+        <TextInput
+          value={itemName}
+          onChangeText={(text) => setItemName(text)}
+          placeholder="Digite o nome do item"
+          style={styles.containerInput}
+        />
+      </View>
 
-            <View style={styles.containerItem}>
+      <View style={styles.containerItem}>
+        <Text style={styles.containerTitle}>Preço do leite:</Text>
 
-                <Text style={styles.containerTitle}>Produção estimada</Text>
+        <TextInput
+          value={itemName}
+          onChangeText={(text) => setItemName(text)}
+          placeholder="Digite o nome do item"
+          style={styles.containerInput}
+        />
+      </View>
 
-                <TextInput
-                    value={itemName}
-                    onChangeText={text => setItemName(text)}
-                    placeholder="Título da livraria"
-                    style={styles.containerInput}
-                />
-            </View>
-
-            <View style={styles.containerItem}>
-
-                <Text style={styles.containerTitle}>Fill - Preenchimento Ruminal</Text>
-
-                <TextInput
-                    value={itemName}
-                    onChangeText={text => setItemName(text)}
-                    placeholder="Digite o nome do item"
-                    style={styles.containerInput}
-                />
-            </View>
-
-            <View style={styles.containerItem}>
-
-                <Text style={styles.containerTitle}>Preço do leite:</Text>
-
-                <TextInput
-                    value={itemName}
-                    onChangeText={text => setItemName(text)}
-                    placeholder="Digite o nome do item"
-                    style={styles.containerInput}
-                />
-            </View>
-
-            <View style={styles.containerButton}>
-                <TouchableOpacity
-                    onPress={() => navigation.navigate("")}
-                    style={styles.createButton}>
-                    <Text style={styles.textButton}>PRÓXIMO</Text>
-                </TouchableOpacity>
-            </View>
-
-        </View>
-    )
+      <View style={styles.containerButton}>
+        <TouchableOpacity
+          onPress={() => navigation.navigate("")}
+          style={styles.createButton}
+        >
+          <Text style={styles.textButton}>PRÓXIMO</Text>
+        </TouchableOpacity>
+      </View>
+    </View>
+  );
 }
