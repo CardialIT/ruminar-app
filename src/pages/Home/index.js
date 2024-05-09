@@ -2,24 +2,24 @@ import { View, TouchableOpacity, Image, Text } from "react-native";
 import React from "react";
 import styles from "../Home/styles";
 import { useNavigation } from "@react-navigation/native";
-import { getLivraria } from "../../services/APIIntegration";
+// import { getLivraria } from "../../services/APIIntegration";
 
 export default function HomeScreen() {
   const Nome = "{Nome}";
 
   const navigation = useNavigation();
 
-  function btnGetLivraria() {
-    console.log("Chamando btnGetLivraria");
-    getLivraria()
-      .then((response) => {
-        console.log(response);
-        navigation.navigate("LivrariaScreen", { livrariaData: response });
-      })
-      .catch((error) => {
-        console.log("Erro ao mostrar Livraria", error);
-      });
-  }
+  // function btnGetLivraria() {
+  //   console.log("Chamando btnGetLivraria");
+  //   getLivraria()
+  //     .then((response) => {
+  //       console.log(response);
+  //       navigation.navigate("LivrariaScreen", { livrariaData: response });
+  //     })
+  //     .catch((error) => {
+  //       console.log("Erro ao mostrar Livraria", error);
+  //     });
+  // }
 
   return (
     <View style={styles.container}>
@@ -37,7 +37,7 @@ export default function HomeScreen() {
         <Text style={styles.subtitle}>O que você gostaria de fazer hoje?</Text>
       </View>
 
-      <TouchableOpacity style={styles.imageContainer} onPress={btnGetLivraria}>
+      <TouchableOpacity style={styles.imageContainer} onPress={() => navigation.navigate("DietasScreen")}>
         <Image
           source={require("../../../assets/Cows.png")}
           style={styles.image}
@@ -48,7 +48,7 @@ export default function HomeScreen() {
         </View>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.imageContainer} onPress={btnGetLivraria}>
+      <TouchableOpacity style={styles.imageContainer} onPress={() => navigation.navigate("LivrariaScreen")}>
         <Image
           source={require("../../../assets/Library.png")}
           style={styles.image}

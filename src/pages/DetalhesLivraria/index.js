@@ -1,89 +1,90 @@
-import React from 'react';
-import { 
-    View, 
-    Text, 
-    Image, 
-    TouchableOpacity
+import React, { useState, useEffect } from 'react';
+import {
+    View,
+    Text,
+    Image,
+    TouchableOpacity,
+    FlatList
 } from 'react-native';
-import styles from '../DetalhesLivraria/styles';
 import { useNavigation } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
-
+import { getLivraria } from "../../services/api";
+import styles from '../DetalhesLivraria/styles';
 
 export default function DetalhesLivrariaScreen() {
     const navigation = useNavigation();
+    const [details, setDetails] = useState([]);
+
+    useEffect(() => {
+        async function fetchData() {
+            try {
+                const response = await getLivraria();
+                console.log("oi", response);
+    
+                if (response.data) {
+                    setDetails(response.data);
+                    console.log('Livraria', response.data);
+                }
+            } catch (error) {
+                console.error('Erro ao buscar os detalhes:', error);
+            }
+        }
+    
+        fetchData();
+    }, [details]);
+    
+
+    // const renderItem = ({ item }) => (
+    //     <View style={styles.thirdContainer}>
+    //         <Text style={styles.itemTitle}>{item.nome}</Text>
+    //         <Text style={styles.date}>MS: {item.ms}</Text>
+    //         <Text style={styles.status}>PB: {item.pb}</Text>
+    //     </View>
+
+    // );
+
     return (
         <View style={styles.container}>
             <View style={styles.firstContainer}>
-
                 <TouchableOpacity onPress={() => navigation.navigate("CadastroLivrariaScreen")}>
                     <Ionicons name="chevron-back-outline" size={24} color="white" />
                 </TouchableOpacity>
-                
+
                 <Text style={styles.title}>
-                    Livraria
+                    Detalhes Livraria
                 </Text>
 
                 <TouchableOpacity>
                     <Image
                         source={require('../../../assets/Fill.png')}
-                        style={styles.containerItem}
+                        style={styles.containerImage}
                     />
                 </TouchableOpacity>
             </View>
 
             <View style={styles.secondContainer}>
-
-                <View>
-                    <Text style={styles.containerTitle}>Pastagem</Text>
-                </View>
-
-                <View style={styles.containerItems1}>
-                    <Text style={styles.items}>MS - Nome sem Abreviar</Text>
-                    <Text style={styles.percentage}>1%</Text>
-                </View>
-
-                <View style={styles.containerItemsC}>
-                    <Text style={styles.items}>PB - Nome sem Abreviar</Text>
-                    <Text style={styles.percentage}>7%</Text>
-                </View>
-
-                <View style={styles.containerItems}>
-                    <Text style={styles.items}>PDR - Nome sem Abreviar</Text>
-                    <Text style={styles.percentage}>60%</Text>
-                </View>
-                
-                <View style={styles.containerItemsC}>
-                    <Text style={styles.items}>Amído</Text>
-                    <Text style={styles.percentage}>29%</Text>
-                </View>
-
-                <View style={styles.containerItems}>
-                    <Text style={styles.items}>NDT - Nome sem Abreviar</Text>
-                    <Text style={styles.percentage}>67%</Text>
-                </View>
-
-                <View style={styles.containerItemsC}>
-                    <Text style={styles.items}>FDN - Nome sem Abreviar</Text>
-                    <Text style={styles.percentage}>52%</Text>
-                </View>
-
-                <View style={styles.containerItems}>
-                    <Text style={styles.items}>FDN Efeito</Text>
-                    <Text style={styles.percentage}>49%</Text>
-                </View>
-
-                <View style={styles.containerItemsC}>
-                    <Text style={styles.items}>CNF - Nome se Abreviar</Text>
-                    <Text style={styles.percentage}>34%</Text>
-                </View>
-
-                <View style={styles.containerItems2}>
-                    <Text style={styles.items}>EE - Nome se Abreviar</Text>
-                    <Text style={styles.percentage}>1,42%</Text>
-                </View>
+                <FlatList
+                    data={details}
+                    keyExtractor={(item, index) => String(item.id)}
+                    renderItem={({ item, index }) => (
+                        <View style={styles.containerProps}>
+                            <Text style={styles.itemTitle}>{item.nome}</Text>
+                            <Text style={styles.itens}>{item.ms}</Text>
+                            <Text style={styles.itens}>{item.pb}</Text>
+                            <Text style={styles.itens}>{item.pndr}</Text>
+                            <Text style={styles.itens}>{item.pdr}</Text>
+                            <Text style={styles.itens}>{item.proteina_soluvel}</Text>
+                            <Text style={styles.itens}>{item.fdn_efetivo}</Text>
+                            <Text style={styles.itens}>{item.ndt}</Text>
+                            <Text style={styles.itens}>{item.fdn}</Text>
+                            <Text style={styles.itens}>{item.cnf}</Text>
+                            <Text style={styles.itens}>{item.amido}</Text>
+                            <Text style={styles.itens}>{item.ee}</Text>
+                        </View>
+                    )}
+                />
             </View>
-            
+
             <View style={styles.containerInfo}>
                 <Image
                     source={require('../../assets/Notification.png')}

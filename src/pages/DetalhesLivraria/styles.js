@@ -3,19 +3,10 @@ import { colors } from "../../colors.js";
 
 const { width, height } = Dimensions.get("window");
 
-export default StyleSheet.create({ 
+export default StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: colors.background
-    },
-
-    scrollView: {
-        flex: 1
-    },
-
-    secondContainer: {
-        paddingTop: height * 0.04,
-        paddingHorizontal: width * 0.06,
+        backgroundColor: colors.amarelo
     },
 
     // FIRST CONTAINER
@@ -25,79 +16,67 @@ export default StyleSheet.create({
         alignItems: "center",
         justifyContent: "space-between",
         backgroundColor: colors.verdePrincipal,
-        height: "16%",
+        height: height * 0.16,
         paddingHorizontal: 20,
         paddingTop: 10,
-        paddingBottom: 10
     },
 
     title: {
         fontFamily: "Alata-Regular",
         fontWeight: "bold",
         fontSize: 24,
-        color: colors.background,
+        color: colors.background
     },
 
-    containerItem: {
+    containerImage: {
         justifyContent: "center",
         alignSelf: "center",
         width: "90%",
-        padding: width * 0.02,
+        padding: width * 0.03,
     },
 
-    ////////////
+    // SECOND CONTAINER
 
-    containerTitle: {
-        fontSize: 24,
-        fontWeight: "bold",
-        justifyContent: "flex-start",
+    secondContainer: {
+        flex: 1,
+        marginTop: 16,
+        padding: width * 0.2,
+        justifyContent: "center",
         alignItems: "center",
-        marginBottom: height * 0.01
+        backgroundColor: "pink"
     },
 
-    containerItems1: {
-        borderTopWidth: 0.2,
-        borderLeftWidth: 0.2,
-        borderRightWidth: 0.2,
-        paddingLeft: width * 0.02,
-        paddingVertical: width * 0.02,
-        flexDirection: "row",
-        justifyContent: "space-between"
+    containerProps: {
+        // backgroundColor: "green",
+        // flexDirection: "column",
+        // paddingHorizontal: width * 0.04,
+        backgroundColor: 'yellow',
+        padding: width * 0.4,
+        marginVertical: 8,
+        marginHorizontal: 16,
+        borderRadius: 8,
+        borderWidth: 2,
+        borderColor: 'black',
     },
 
-    containerItemsC: {
-        backgroundColor: colors.backgroundInput,
-        borderLeftWidth: 0.2,
-        borderRightWidth: 0.2,
-        paddingLeft: width * 0.02,
-        paddingVertical: width * 0.02,
-        flexDirection: "row",
-        justifyContent: "space-between"
+    itemTitle: {
+        backgroundColor: "blue",
+        width: width * 0.8,
+        height: height * 0.08,
+        color: "blue",
+        fontWeight: "bold",
+        fontSize: 16
     },
 
-    containerItems: {
-        borderLeftWidth: 0.2,
-        borderRightWidth: 0.2,
-        paddingLeft: width * 0.02,
-        paddingVertical: width * 0.02,
-        flexDirection: "row",
-        justifyContent: "space-between"
+    itens: {
+        backgroundColor: "pink",
+        width: width * 0.4,
+        height: height * 0.08,
+        color: "white",
+        fontSize: 12
     },
 
-    containerItems2: {
-        borderBottomWidth: 0.2,
-        borderLeftWidth: 0.2,
-        borderRightWidth: 0.2,
-        paddingLeft: width * 0.02,
-        paddingVertical: width * 0.02,
-        flexDirection: "row",
-        justifyContent: "space-between"
-    },
-
-    percentage: {
-        color: colors.verdePrincipal,
-        marginRight: width * 0.02
-    },
+    /// ÚLTIMO CONTAINER
 
     containerInfo: {
         flexDirection: "row",
@@ -107,11 +86,11 @@ export default StyleSheet.create({
 
     image: {
         marginRight: width * 0.02
-    }, 
+    },
 
     infoText: {
         color: colors.cinza,
-        
-    }
 
-})
+    },
+
+});
