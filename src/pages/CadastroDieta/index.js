@@ -1,14 +1,50 @@
-import React from "react";
-import { View, Text, TextInput, TouchableOpacity, Image } from "react-native";
+import React, { useState } from "react";
+import {
+  View,
+  ScrollView,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  Image,
+} from "react-native";
 import styles from "../CadastroDieta/styles";
 import { useNavigation } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
-import { postLivraria } from "../../services/api.js";
+import { postDieta } from "../../services/api.js";
 import Toast from "react-native-toast-message";
 
 export default function CadastroDietaScreen() {
+  const [cadastroStatus, setCadastroStatus] = useState(null);
   const navigation = useNavigation();
-  const [itemName, setItemName] = React.useState("");
+  const [modalVisible, setModalVisible] = useState(false);
+
+  const [dieta, setDieta] = useState({
+    nome_da_dieta: "",
+    peso_medio: "",
+    producao_estimada: "",
+    del: "",
+    fill_preenchimento_ruminal: "",
+  });
+
+  const handleInputChange = (fieldName) => (value) => {
+    setDieta({ ...dieta, [fieldName]: value });
+    console.log(fieldName + ": " + value);
+  };
+
+  const postCadastroDieta = async () => {
+    try {
+      await postDieta(dieta);
+      setCadastroStatus("success");
+      console.log("Cadastro realizado com sucesso");
+      Toast.show({
+        type: "success",
+        text1: "Cadastro realizado com sucesso",
+      });
+    } catch (error) {
+      setCadastroStatus("failed");
+      console.error("Erro ao cadastrar dieta:", error);
+    }
+  };
 
   return (
     <View style={styles.container}>
@@ -29,69 +65,31 @@ export default function CadastroDietaScreen() {
         </TouchableOpacity>
       </View>
 
-      <View style={styles.containerItem}>
-        <Text style={styles.containerTitle}>Nome da dieta</Text>
+      <ScrollView style={styles.containerList}>
+        {Object.entries(dieta).map(([fieldName, value]) => (
+          <View key={fieldName} style={styles.containerItem}>
+            <Text style={styles.containerTitle}>
+              {fieldName.toUpperCase()}:
+            </Text>
+            <TextInput
+              value={value}
+              onChangeText={handleInputChange(fieldName)}
+              placeholder={`Digite o ${fieldName}`}
+              style={styles.containerInput}
+            />
+          </View>
+        ))}
 
-        <TextInput
-          value={itemName}
-          onChangeText={(text) => setItemName(text)}
-          placeholder="Título da livraria"
-          style={styles.containerInput}
-        />
-      </View>
-
-      <View style={styles.containerItem}>
-        <Text style={styles.containerTitle}>Peso médio (KG)</Text>
-
-        <TextInput
-          value={itemName}
-          onChangeText={(text) => setItemName(text)}
-          placeholder="Digite o nome do item"
-          style={styles.containerInput}
-        />
-      </View>
-
-      <View style={styles.containerItem}>
-        <Text style={styles.containerTitle}>Produção estimada</Text>
-
-        <TextInput
-          value={itemName}
-          onChangeText={(text) => setItemName(text)}
-          placeholder="Título da livraria"
-          style={styles.containerInput}
-        />
-      </View>
-
-      <View style={styles.containerItem}>
-        <Text style={styles.containerTitle}>Fill - Preenchimento Ruminal</Text>
-
-        <TextInput
-          value={itemName}
-          onChangeText={(text) => setItemName(text)}
-          placeholder="Digite o nome do item"
-          style={styles.containerInput}
-        />
-      </View>
-
-      <View style={styles.containerItem}>
-        <Text style={styles.containerTitle}>Preço do leite:</Text>
-
-        <TextInput
-          value={itemName}
-          onChangeText={(text) => setItemName(text)}
-          placeholder="Digite o nome do item"
-          style={styles.containerInput}
-        />
-      </View>
-
-      <View style={styles.containerButton}>
-        <TouchableOpacity
-          onPress={() => navigation.navigate("")}
-          style={styles.createButton}
-        >
-          <Text style={styles.textButton}>PRÓXIMO</Text>
-        </TouchableOpacity>
-      </View>
+        <View style={styles.containerButton}>
+          <TouchableOpacity
+            onPress={postCadastroDieta}
+            style={styles.createButton}
+          >
+            <Text style={styles.textButton}>PRÓXIMO</Text>
+          </TouchableOpacity>
+        </View>
+      </ScrollView>
+      <Toast ref={(ref) => Toast.setRef(ref)} />
     </View>
   );
 }

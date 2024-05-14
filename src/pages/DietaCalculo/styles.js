@@ -10,15 +10,26 @@ export default StyleSheet.create({
   },
 
   firstContainer: {
-    flex: 1,
+    width: "100%",
+    height: 100,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
     backgroundColor: colors.verdePrincipal,
-    height: height * 1,
     paddingHorizontal: 20,
     paddingTop: 10,
-    marginBottom: height * 0.01,
+    marginBottom: height * 0.02,
+  },
+
+  headerContainer: {
+    width: "100%",
+    height: 100,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    paddingHorizontal: 20,
+    paddingTop: 10,
+    marginBottom: height * 0.02,
   },
 
   title: {
@@ -26,6 +37,13 @@ export default StyleSheet.create({
     fontWeight: "bold",
     fontSize: 24,
     color: colors.background,
+  },
+
+  titleHead: {
+    fontFamily: "Alata-Regular",
+    fontWeight: "bold",
+    fontSize: 25,
+    color: "#000000",
   },
 
   containerItem: {
@@ -46,6 +64,16 @@ export default StyleSheet.create({
     height: "auto",
     padding: width * 0.02,
     borderRadius: 4,
+    backgroundColor: colors.backgroundInput,
+  },
+
+  containerInputIMSFDN: {
+    fontWeight: "900",
+    borderWidth: 0.2,
+    height: "auto",
+    padding: width * 0.02,
+    borderRadius: 4,
+    color: "#000",
     backgroundColor: colors.backgroundInput,
   },
 

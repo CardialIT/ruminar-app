@@ -2,20 +2,20 @@ import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { Ionicons } from '@expo/vector-icons';
-import 'react-native-gesture-handler';
+import { Ionicons } from "@expo/vector-icons";
+import "react-native-gesture-handler";
 
 import RegisterScreen from "./pages/Register/index";
 import LoginScreen from "./pages/Login";
 import HomeScreen from "./pages/Home";
 import LivrariaScreen from "./pages/Livraria";
 import DietasScreen from "./pages/Dietas";
+import DietasCalculo from "./pages/DietaCalculo";
 import Profile from "./pages/Profile";
 
 import CadastroLivrariaScreen from "./pages/CadastroLivraria";
 import DetalhesLivrariaScreen from "./pages/DetalhesLivraria";
-import CadastroDietaScreen from "./pages/CadastroDieta"
-
+import CadastroDietaScreen from "./pages/CadastroDieta";
 
 // const Stack = createNativeStackNavigator();
 
@@ -34,33 +34,27 @@ function HomeStackScreen() {
   return (
     <HomeStack.Navigator
       screenOptions={{
-        headerShown: false
-      }}>
-      <HomeStack.Screen
-        name="Home"
-        component={HomeScreen}
-      />
-
+        headerShown: false,
+      }}
+    >
+      <HomeStack.Screen name="Home" component={HomeScreen} />
     </HomeStack.Navigator>
-  )
+  );
 }
 
 const DietasStack = createNativeStackNavigator();
 
 function DietasStackScreen() {
   return (
-    <DietasStack.Navigator
-      screenOptions={{ headerShown: false }}>
-      <DietasStack.Screen
-        name="Diets"
-        component={DietasScreen}
-      />
+    <DietasStack.Navigator screenOptions={{ headerShown: false }}>
+      <DietasStack.Screen name="Diets" component={DietasScreen} />
       <DietasStack.Screen
         name="CadastroDietaScreen"
         component={CadastroDietaScreen}
       />
+      <DietasStack.Screen name="DietasCalculo" component={DietasCalculo} />
     </DietasStack.Navigator>
-  )
+  );
 }
 
 const LibraryStack = createNativeStackNavigator();
@@ -70,11 +64,9 @@ function LibraryStackScreen() {
     <LibraryStack.Navigator
       screenOptions={{
         headerShown: false,
-      }}>
-      <LibraryStack.Screen
-        name="LivrariaDietas"
-        component={LivrariaScreen}
-      />
+      }}
+    >
+      <LibraryStack.Screen name="LivrariaDietas" component={LivrariaScreen} />
       <LibraryStack.Screen
         name="CadastroLivrariaScreen"
         component={CadastroLivrariaScreen}
@@ -84,7 +76,7 @@ function LibraryStackScreen() {
         component={DetalhesLivrariaScreen}
       />
     </LibraryStack.Navigator>
-  )
+  );
 }
 
 const ProfileStack = createNativeStackNavigator();
@@ -93,17 +85,13 @@ function ProfileStackScreen() {
   return (
     <ProfileStack.Navigator
       screenOptions={{
-        headerShown: false
-      }}>
-      <ProfileStack.Screen
-        name="Perfil"
-        component={Profile}
-      />
+        headerShown: false,
+      }}
+    >
+      <ProfileStack.Screen name="Perfil" component={Profile} />
     </ProfileStack.Navigator>
-  )
+  );
 }
-
-
 
 const Tab = createBottomTabNavigator();
 
@@ -129,10 +117,17 @@ function BottomTabsScreen() {
             default:
               break;
           }
-          return <Ionicons name={iconName} size={22} color={"#307C31"} style={{ flex: 1, marginTop: 12 }} />;
+          return (
+            <Ionicons
+              name={iconName}
+              size={22}
+              color={"#307C31"}
+              style={{ flex: 1, marginTop: 12 }}
+            />
+          );
         },
-        tabBarActiveTintColor: '#307C31',
-        tabBarInactiveTintColor: '#307C31',
+        tabBarActiveTintColor: "#307C31",
+        tabBarInactiveTintColor: "#307C31",
         tabBarLabel: " ",
       })}
     >
@@ -140,28 +135,19 @@ function BottomTabsScreen() {
         screenOptions={{
           headerShown: false,
           headerStyle: {
-            backgroundColor: 'transparent',
+            backgroundColor: "transparent",
             elevation: 0,
             shadowOpacity: 0,
-          }
+          },
         }}
         name="HomeScreen"
         component={HomeStackScreen}
       />
-      <Tab.Screen
-        name="DietasScreen"
-        component={DietasStackScreen}
-      />
-      <Tab.Screen
-        name="LivrariaScreen"
-        component={LibraryStackScreen}
-      />
-      <Tab.Screen
-        name="ProfileScreen"
-        component={ProfileStackScreen}
-      />
+      <Tab.Screen name="DietasScreen" component={DietasStackScreen} />
+      <Tab.Screen name="LivrariaScreen" component={LibraryStackScreen} />
+      <Tab.Screen name="ProfileScreen" component={ProfileStackScreen} />
     </Tab.Navigator>
-  )
+  );
 }
 
 export default function Routes() {
@@ -169,6 +155,5 @@ export default function Routes() {
     <NavigationContainer>
       <BottomTabsScreen />
     </NavigationContainer>
-  )
+  );
 }
-

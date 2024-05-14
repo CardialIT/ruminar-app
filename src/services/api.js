@@ -11,3 +11,8 @@ export async function postLivraria(data) {
   const response = await api.post("/livraria", data);
   return response.data;
 }
+
+export async function postDieta(data) {
+  const response = await api.post("/dieta", data);
+  return response.data;
+}

@@ -69,7 +69,12 @@ export default function LivrariaScreen() {
               data={livrarias}
               keyExtractor={(item) => String(item.id)}
               renderItem={({ item }) => (
-                <View style={styles.listItemContainer}>
+                <TouchableOpacity
+                  style={styles.listItemContainer}
+                  onPress={() =>
+                    navigation.navigate("DetalhesLivrariaScreen", { item })
+                  }
+                >
                   <Text style={styles.listTextItem}>{item.nome}</Text>
                   <View style={styles.containerImages}>
                     <Image
@@ -81,7 +86,7 @@ export default function LivrariaScreen() {
                       style={styles.containerItem}
                     />
                   </View>
-                </View>
+                </TouchableOpacity>
               )}
             />
           </View>
