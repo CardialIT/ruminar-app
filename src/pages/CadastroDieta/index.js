@@ -13,6 +13,14 @@ import { Ionicons } from "@expo/vector-icons";
 import { postDieta } from "../../services/api.js";
 import Toast from "react-native-toast-message";
 
+const fieldNamesMap = {
+  nome_da_dieta: "Nome da Dieta",
+  peso_medio: "Peso Médio (KG)",
+  producao_estimada: "Produção Estimada",
+  del: "Dias de Lactação (Del)",
+  fill_preenchimento_ruminal: "Fill - Preenchimento Ruminal",
+};
+
 export default function CadastroDietaScreen() {
   const [cadastroStatus, setCadastroStatus] = useState(null);
   const navigation = useNavigation();
@@ -26,13 +34,32 @@ export default function CadastroDietaScreen() {
     fill_preenchimento_ruminal: "",
   });
 
+  const [ims, setIMS] = useState(null);
+  const [fdn, setFDN] = useState(null);
+
   const handleInputChange = (fieldName) => (value) => {
     setDieta({ ...dieta, [fieldName]: value });
     console.log(fieldName + ": " + value);
   };
 
+  const calcularIMS_FDN = () => {
+    const { peso_medio, producao_estimada, del, fill_preenchimento_ruminal } =
+      dieta;
+    const peso = parseFloat(peso_medio.replace(",", "."));
+    const producao = parseFloat(producao_estimada.replace(",", "."));
+    const dell = parseInt(del);
+    const fill = parseFloat(fill_preenchimento_ruminal.replace(",", "."));
+
+    const ims = peso * 0.02 + producao / 3;
+    const fdn = peso * fill;
+
+    setIMS(ims.toFixed(2));
+    setFDN(fdn.toFixed(2));
+  };
+
   const postCadastroDieta = async () => {
     try {
+      calcularIMS_FDN();
       await postDieta(dieta);
       setCadastroStatus("success");
       console.log("Cadastro realizado com sucesso");
@@ -69,16 +96,23 @@ export default function CadastroDietaScreen() {
         {Object.entries(dieta).map(([fieldName, value]) => (
           <View key={fieldName} style={styles.containerItem}>
             <Text style={styles.containerTitle}>
-              {fieldName.toUpperCase()}:
+              {fieldNamesMap[fieldName]}:
             </Text>
             <TextInput
               value={value}
               onChangeText={handleInputChange(fieldName)}
-              placeholder={`Digite o ${fieldName}`}
+              placeholder={`Digite o ${fieldNamesMap[fieldName]}`}
               style={styles.containerInput}
             />
           </View>
         ))}
+
+        <View style={styles.containerResult}>
+          <View style={styles.containerItem}>
+            <Text style={styles.containerTitle}>IMS: {ims} kg</Text>
+            <Text style={styles.containerTitle}>FDN: {fdn} kg</Text>
+          </View>
+        </View>
 
         <View style={styles.containerButton}>
           <TouchableOpacity

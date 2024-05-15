@@ -28,6 +28,10 @@ export default StyleSheet.create({
     color: colors.background,
   },
 
+  containerList: {
+    backgroundColor: colors.background,
+  },
+
   containerItem: {
     justifyContent: "center",
     alignSelf: "center",
@@ -41,12 +45,30 @@ export default StyleSheet.create({
     marginBottom: height * 0.006,
   },
 
+  textResult: {
+    fontSize: height * 0.02,
+    marginBottom: height * 0.006,
+    backgroundColor: "#000",
+  },
+
   containerInput: {
     borderWidth: 0.2,
     height: "auto",
     padding: width * 0.02,
     borderRadius: 4,
     backgroundColor: colors.backgroundInput,
+  },
+
+  containerResult: {
+    borderWidth: 0.2,
+    height: "auto",
+    padding: width * 0.02,
+    marginTop: height * 0.02,
+    borderRadius: 5,
+    backgroundColor: colors.backgroundInput,
+    width: "50%",
+    justifyContent: "center",
+    alignSelf: "center",
   },
 
   containerButton: {
