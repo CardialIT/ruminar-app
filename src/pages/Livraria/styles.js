@@ -72,6 +72,7 @@ export default StyleSheet.create({
 
   listTextItem: {
     color: colors.background,
+    textTransform: "uppercase"
   },
 
   containerImages: {

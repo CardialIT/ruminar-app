@@ -28,15 +28,6 @@ export default function DetalhesLivrariaScreen({ route }) {
     fetchData();
   }, [details]);
 
-  // const renderItem = ({ item }) => (
-  //     <View style={styles.thirdContainer}>
-  //         <Text style={styles.itemTitle}>{item.nome}</Text>
-  //         <Text style={styles.date}>MS: {item.ms}</Text>
-  //         <Text style={styles.status}>PB: {item.pb}</Text>
-  //     </View>
-
-  // );
-
   return (
     <View style={styles.container}>
       <View style={styles.firstContainer}>
@@ -55,20 +46,66 @@ export default function DetalhesLivrariaScreen({ route }) {
       </View>
 
       <View style={styles.secondContainer}>
+
         <View style={styles.containerProps}>
-          <Text style={styles.itemTitle}>{item.nome}</Text>
-          <Text style={styles.itens}>MS: {item.ms}</Text>
-          <Text style={styles.itens}>PB: {item.pb}</Text>
-          <Text style={styles.itens}>PDR: {item.pdr}</Text>
-          <Text style={styles.itens}>
-            Proteína Solúvel: {item.proteina_soluvel}
-          </Text>
-          <Text style={styles.itens}>FDN Efetivo: {item.fdn_efetivo}</Text>
-          <Text style={styles.itens}>NDT: {item.ndt}</Text>
-          <Text style={styles.itens}>FDN: {item.fdn}</Text>
-          <Text style={styles.itens}>CNF: {item.cnf}</Text>
-          <Text style={styles.itens}>Amido: {item.amido}</Text>
-          <Text style={styles.itens}>EE: {item.ee}</Text>
+
+          <View style={styles.containerPropsTitle}>
+            <Text style={styles.itemTitle}>{item.nome}</Text>
+          </View>
+
+          <View style={styles.containerPropsItens}>
+            <View style={styles.itensPercentageC}>
+              <Text style={styles.itens}>MS:</Text>
+              <Text style={styles.percetange}>{item.ms}%</Text>
+            </View>
+
+            <View style={styles.itensPercentage}>
+              <Text style={styles.itens}>PB:</Text>
+              <Text style={styles.percetange}>{item.pb}%</Text>
+            </View>
+
+            <View style={styles.itensPercentageC}>
+              <Text style={styles.itens}>PDR:</Text>
+              <Text style={styles.percetange}>{item.pdr}%</Text>
+            </View>
+
+            <View style={styles.itensPercentage}>
+              <Text style={styles.itens}>Proteína Solúvel:</Text>
+              <Text style={styles.percetange}>{item.proteina_soluvel}%</Text>
+            </View>
+
+            <View style={styles.itensPercentageC}>
+              <Text style={styles.itens}>FDN Efetivo:</Text>
+              <Text style={styles.percetange}>{item.fdn_efetivo}%</Text>
+            </View>
+
+            <View style={styles.itensPercentage}>
+              <Text style={styles.itens}>NDT:</Text>
+              <Text style={styles.percetange}>{item.ndt}%</Text>
+            </View>
+
+            <View style={styles.itensPercentageC}>
+              <Text style={styles.itens}>FDN:</Text>
+              <Text style={styles.percetange}>{item.fdn}%</Text>
+            </View>
+
+            <View style={styles.itensPercentage}>
+              <Text style={styles.itens}>CNF:</Text>
+              <Text style={styles.percetange}>{item.cnf}%</Text>
+            </View>
+
+            <View style={styles.itensPercentageC}>
+              <Text style={styles.itens}>Amido:</Text>
+              <Text style={styles.percetange}>{item.amido}%</Text>
+            </View>
+
+            <View style={styles.itensPercentage}>
+              <Text style={styles.itens}>EE:</Text>
+              <Text style={styles.percetange}>{item.ee}%</Text>
+            </View>
+
+          </View>
+
         </View>
       </View>
 
