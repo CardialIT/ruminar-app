@@ -66,7 +66,7 @@ export default function DietasScreen() {
 
           <TouchableOpacity
             style={styles.listItemContainer}
-            onPress={() => navigation.navigate("")}
+            onPress={() => navigation.navigate("DetalhesDietaScreen")}
           >
             <Text style={styles.listTextItem}>Dieta Verão</Text>
 
