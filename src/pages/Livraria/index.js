@@ -64,32 +64,30 @@ export default function LivrariaScreen() {
             <Ionicons name="add-outline" size={24} color="white" />
           </TouchableOpacity>
 
-          <View style={styles.listContainer}>
-            <FlatList
-              data={livrarias}
-              keyExtractor={(item) => String(item.id)}
-              renderItem={({ item }) => (
-                <TouchableOpacity
-                  style={styles.listItemContainer}
-                  onPress={() =>
-                    navigation.navigate("DetalhesLivrariaScreen", { item })
-                  }
-                >
-                  <Text style={styles.listTextItem}>{item.nome}</Text>
-                  <View style={styles.containerImages}>
-                    <Image
-                      source={require("../../assets/Edit.png")}
-                      style={styles.containerItem}
-                    />
-                    <Image
-                      source={require("../../assets/Trash.png")}
-                      style={styles.containerItem}
-                    />
-                  </View>
-                </TouchableOpacity>
-              )}
-            />
-          </View>
+          <FlatList
+            data={livrarias}
+            keyExtractor={(item) => String(item.id)}
+            renderItem={({ item }) => (
+              <TouchableOpacity
+                style={styles.listItemContainer}
+                onPress={() =>
+                  navigation.navigate("DetalhesLivrariaScreen", { item })
+                }
+              >
+                <Text style={styles.listTextItem}>{item.nome}</Text>
+                <View style={styles.containerImages}>
+                  <Image
+                    source={require("../../assets/Edit.png")}
+                    style={styles.containerItem}
+                  />
+                  <Image
+                    source={require("../../assets/Trash.png")}
+                    style={styles.containerItem}
+                  />
+                </View>
+              </TouchableOpacity>
+            )}
+          />
         </View>
       </View>
 

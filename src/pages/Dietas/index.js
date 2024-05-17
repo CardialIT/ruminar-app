@@ -171,7 +171,7 @@ export default function DietasScreen() {
               </TouchableOpacity>
             </View>
           </TouchableOpacity>
-
+          {/* 
           <View style={styles.secondContainer}>
             <TouchableOpacity
               style={styles.addButton}
@@ -180,7 +180,7 @@ export default function DietasScreen() {
               <Text style={styles.addButtonText}>CALCULAR DIETA</Text>
               <Ionicons name="add-outline" size={24} color="white" />
             </TouchableOpacity>
-          </View>
+          </View> */}
         </View>
       </ScrollView>
     </GestureHandlerRootView>

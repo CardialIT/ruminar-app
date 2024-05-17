@@ -57,6 +57,7 @@ export default StyleSheet.create({
   },
 
   listItemContainer: {
+    flex: 1,
     alignSelf: "center",
     backgroundColor: colors.verdePrincipal,
     alignItems: "center",
@@ -72,7 +73,7 @@ export default StyleSheet.create({
 
   listTextItem: {
     color: colors.background,
-    textTransform: "uppercase"
+    textTransform: "uppercase",
   },
 
   containerImages: {

@@ -66,7 +66,6 @@ export default StyleSheet.create({
     width: width * 1,
     height: height * 0.04,
     marginBottom: height * 0.02,
-   
   },
 
   itemTitle: {
@@ -76,14 +75,14 @@ export default StyleSheet.create({
     textTransform: "uppercase",
     marginLeft: 10,
   },
-  
+
   itensPercentage: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
     backgroundColor: colors.cinzaBackground,
     paddingHorizontal: width * 0.02,
-    paddingVertical: height * 0.004
+    paddingVertical: height * 0.004,
   },
 
   itensPercentageC: {
@@ -93,7 +92,7 @@ export default StyleSheet.create({
     paddingHorizontal: width * 0.02,
     paddingVertical: height * 0.004,
   },
-  
+
   itens: {
     width: width * 0.8,
     height: height * 0.04,
@@ -104,7 +103,6 @@ export default StyleSheet.create({
   percetange: {
     color: colors.verdePrincipal,
   },
-
 
   /// ÚLTIMO CONTAINER
 
