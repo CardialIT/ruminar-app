@@ -5,7 +5,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { getLivraria } from "../../services/api";
 import styles from "../DetalhesLivraria/styles";
 
-export default function DetalhesDietaScreen({ route }) {
+export default function DetalhesLivrariaScreen({ route }) {
   const navigation = useNavigation();
   const [details, setDetails] = useState([]);
   const { item } = route.params;
@@ -35,7 +35,7 @@ export default function DetalhesDietaScreen({ route }) {
           <Ionicons name="chevron-back-outline" size={24} color="white" />
         </TouchableOpacity>
 
-        <Text style={styles.title}>Detalhes Dieta</Text>
+        <Text style={styles.title}>Detalhes Livraria</Text>
 
         <TouchableOpacity>
           <Image

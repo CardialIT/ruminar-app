@@ -57,7 +57,7 @@ export default function CadastroDieta2Screen() {
                     </View>
 
 
-
+                    {/* INICIA EM BRANCO */}
                     <Text style={styles.inputFieldText}>FENO BOM</Text>
                   
                     <View style={styles.inputField}>
@@ -68,7 +68,8 @@ export default function CadastroDieta2Screen() {
                             onChangeText={(text) => setInput({ ...input, Silagem: text })}
                         />
                     </View>
-
+                    {/* INICIA EM BRANCO */}
+                    
                     <View style={styles.containerAddItem}>
                         <TouchableOpacity
                             style={styles.addButton}

@@ -62,10 +62,12 @@ function DietasStackScreen() {
         name="DietasCalculo"
         component={DietasCalculo}
       />
+      
       {/* <DietasStack.Screen
         name="DetalhesDietaScreen"
         component={DetalhesDietaScreen}
       /> */}
+
       <DietasStack.Screen
         screenOptions={{ headerShown: false }}
         name="ListagemLivrariaScreen"
