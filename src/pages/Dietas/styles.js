@@ -156,6 +156,32 @@ export default StyleSheet.create({
 
     modalButtonDelete: {
         color: colors.background,
+    },
+
+    containerAddItem: {
+        justifyContent: "space-between",
+        alignItems: "center",
+        borderColor: colors.verdePrincipal
+    },
+
+    createButton: {
+        flexDirection: "row",
+        backgroundColor: colors.background,
+        alignItems: "center",
+        justifyContent: "space-around",
+        borderRadius: width * 0.01,
+        height: height * 0.06,
+        marginTop: height * 0.04,
+        marginBottom: height * 0.04,
+        width: width * 0.9,
+        paddingHorizontal: width * 0.2,
+        borderColor: colors.verdePrincipal,
+        borderWidth: 1
+    },
+
+    createButtonText: {
+        color: colors.verdePrincipal,
+        fontWeight: "bold"
     }
 
 
