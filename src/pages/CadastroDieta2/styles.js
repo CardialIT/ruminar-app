@@ -35,13 +35,139 @@ export default StyleSheet.create({
     },
 
     secondContainer: {
-        padding: width * 0.04
+        flex: 1,
+        paddingVertical: width * 0.02,
     },
 
+    
+    
     listagemTitle: {
         fontWeight: "bold",
         fontSize: 24,
         marginBottom: height * 0.02,
+        paddingHorizontal: width * 0.05
+    },
+    
+    containerResult: {
+        marginTop: height * 0.02,
+        backgroundColor: colors.backgroundInput,
+        width: "100%",
+    },
+    
+    containerItem: {
+        justifyContent: "center",
+        alignSelf: "center",
+        width: "90%",
+        borderWidth: 0.2,
+        borderRadius: 5,
+    },
+    
+    containerTitle: {
+        fontWeight: "bold",
+        fontSize: height * 0.02,
+        marginBottom: height * 0.006,
+        paddingHorizontal: width * 0.02,
+        paddingVertical: height * 0.02
+    },
+    
+    separator: {
+        borderBottomWidth: 0.2,
+        borderColor: colors.cinza,
+        width: '100%',
+    },
+    
+    // ScrollView
+    containerList: {
+        flex: 1,
+        backgroundColor: colors.background,
+        height: "100%"
+    },
+
+    inputFieldText: {
+        color: colors.text,
+        fontWeight: "bold",
+        fontSize: 16,
+        alignSelf: "flex-start",
+        marginLeft: width * 0.05,
+        marginTop: height * 0.02
+    },
+
+    inputField: {
+        flexDirection: "column",
+        width: "90%",
+        backgroundColor: "#E8ECF4",
+        borderRadius: width * 0.02,
+        height: 40,
+        alignItems: "center",
+        marginTop: height * 0.02,
+        marginHorizontal: width * 0.05,
+        borderColor: colors.cinza,
+        borderWidth: 0.6
+    },
+
+    input: {
+        width: "85%",
+        height: 40,
+        padding: 8,
+        fontSize: 14,
+    },
+
+    // ADICIONAR LIVRARIA BUTTON
+
+    containerAddItem: {
+        justifyContent: "center",
+        alignItems: "center",
+        marginTop: height * 0.03
+    },
+
+    addButton: {
+        flexDirection: "row",
+        backgroundColor: colors.background,
+        width: width * 0.86,
+        height: height * 0.06,
+        borderRadius: width * 0.02,
+
+        justifyContent: "center",
+        alignItems: "center",
+        alignSelf: "center",
+
+        borderColor: colors.verdePrincipal,
+        borderWidth: 1
+    },
+
+    viewTextButton: {
+        backgroundColor: colors.verdePrincipal
+    },
+
+    createButtonText: {
+        color: colors.verdePrincipal,
+        padding: width * 0.02,
+        justifyContent: "center",
+        alignItems: "center",
+        fontWeight: "bold",
+        marginRight: 5,
+    },
+
+    // BOTÃO "PRÓXIMO"
+    containerButton: {
+        marginTop: height * 0.02,
+        marginBottom: height * 0.02,
+    },
+
+    createButton: {
+        backgroundColor: colors.verdePrincipal,
+        width: width * 0.86,
+        height: height * 0.06,
+        borderRadius: width * 0.02,
+        padding: width * 0.02,
+        justifyContent: "center",
+        alignSelf: "center",
+    },
+
+    textButton: {
+        color: colors.background,
+        fontWeight: "bold",
+        alignSelf: "center",
     },
 
 })

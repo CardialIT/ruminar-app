@@ -61,7 +61,7 @@ export default function ListagemLivrariaScreen() {
                         <TouchableOpacity
                             style={styles.listItemContainer}
                             onPress={() =>
-                                navigation.navigate("DetalhesLivrariaScreen", { item })
+                                navigation.navigate("CadastroDieta2Screen", { item })
                             }
                         >
                             <Text style={styles.listTextItem}>{item.nome}</Text>

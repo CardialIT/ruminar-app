@@ -114,17 +114,7 @@ export default function CadastroDietaScreen() {
           </View>
         </View>
 
-        <View style={styles.containerAddItem}>
-          <TouchableOpacity
-            style={styles.addButton}
-            onPress={() => navigation.navigate("ListagemLivrariaScreen")}
-          >
-
-            <Text style={styles.createButtonText}>ADICIONAR LIVRARIA</Text>
-            <Ionicons name="add-outline" size={24} color="#307C31" />
-          </TouchableOpacity>
-        </View>
-
+      
         <View style={styles.containerButton}>
           <TouchableOpacity
             onPress={() =>
@@ -137,7 +127,7 @@ export default function CadastroDietaScreen() {
 
         </View>
       </ScrollView>
-      <Toast ref={(ref) => Toast.setRef(ref)} />
+      {/* <Toast ref={(ref) => Toast.setRef(ref)} /> */}
     </View>
   );
 }

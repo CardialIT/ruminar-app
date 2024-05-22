@@ -75,11 +75,13 @@ export default StyleSheet.create({
     alignSelf: "center",
   },
 
+  
+  // BOTÃO PRÓXIMO
   containerButton: {
     marginTop: height * 0.02,
     marginBottom: height * 0.02,
   },
-
+  
   createButton: {
     backgroundColor: colors.verdePrincipal,
     width: width * 0.86,
@@ -101,7 +103,7 @@ export default StyleSheet.create({
   containerAddItem: {
     justifyContent: "center",
     alignItems: "center",
-    marginTop: height * 0.02
+    marginTop: height * 0.03
   },
 
   addButton: {
