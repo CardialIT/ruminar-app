@@ -1,3 +1,5 @@
+//desable-prettier
+//desable-eslint
 import React, { useState } from "react";
 import {
   View,
@@ -41,6 +43,7 @@ export default function CadastroDietaScreen() {
     setDieta({ ...dieta, [fieldName]: value });
     console.log(fieldName + ": " + value);
   };
+  
 
   const calcularIMS_FDN = () => {
     const { peso_medio, producao_estimada, del, fill_preenchimento_ruminal } =
@@ -50,13 +53,13 @@ export default function CadastroDietaScreen() {
     const dell = parseInt(del);
     const fill = parseFloat(fill_preenchimento_ruminal.replace(",", "."));
 
-    const ims = peso * 0.02 + producao / 3;
+    const ims = (peso * 0.02) + (producao / 3);
     const fdn = peso * fill;
 
     setIMS(ims.toFixed(2));
     setFDN(fdn.toFixed(2));
   };
-
+ 
   const postCadastroDieta = async () => {
     try {
       calcularIMS_FDN();
@@ -72,7 +75,7 @@ export default function CadastroDietaScreen() {
       console.error("Erro ao cadastrar dieta:", error);
     }
   };
-
+  
   return (
     <View style={styles.container}>
       <View style={styles.firstContainer}>

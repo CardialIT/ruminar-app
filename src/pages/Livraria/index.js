@@ -35,7 +35,7 @@ export default function LivrariaScreen() {
 
   useEffect(() => {
     fetchLivrarias();
-  }, []);
+  }, [livrarias]);
 
   return (
     <GestureHandlerRootView style={styles.container}>
