@@ -41,7 +41,7 @@ export default function LivrariaScreen() {
     <GestureHandlerRootView style={styles.container}>
       <View style={styles.container}>
         <View style={styles.firstContainer}>
-          <TouchableOpacity onPress={() => navigation.navigate("LivrariaScreen")}>
+          <TouchableOpacity onPress={() => navigation.navigate("HomeScreen")}>
             <Ionicons name="chevron-back-outline" size={24} color="white" />
           </TouchableOpacity>
 

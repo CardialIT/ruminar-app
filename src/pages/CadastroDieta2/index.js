@@ -11,18 +11,26 @@ import styles from "../CadastroDieta2/styles";
 import { useNavigation } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
 import { postDieta } from "../../services/api.js";
+import Toast from "react-native-toast-message";
+import { useContextProvider } from "../../context/AuthContext.js";
 
 export default function CadastroDieta2Screen() {
+    const{dieta, updateDieta, ims, fdn} = useContextProvider();
     const navigation = useNavigation();
+    const [selectedLivrarias, setSelectedLivrarias] = useState([]);
 
-    const [ims, setIMS] = useState(null);
-    const [fdn, setFDN] = useState(null);
 
-    const [input, setInput] = useState({
-        Silagem: "",
-        Pastagem: "",
-        Feno: "",
-    });
+    const handleSelectLivraria = (item) => {
+        if (selectedLivrarias.length < 3) {
+          setSelectedLivrarias([...selectedLivrarias, item]);
+        } else {
+            Toast.show({
+                type: "error",
+                text1: "Limite de 3 livrarias atingido",
+            });
+        }
+      };
+   
     return (
         <View style={styles.container}>
 
@@ -34,13 +42,8 @@ export default function CadastroDieta2Screen() {
 
                 <Text style={styles.title}>Nova Dieta</Text>
 
-                <TouchableOpacity
-                    onPress={() => navigation.navigate("DetalhesLivrariaScreen")}
-                >
-                    <Image
-                        source={require("../../../assets/Fill.png")}
-                        style={styles.containerItem}
-                    />
+                <TouchableOpacity onPress={() => navigation.navigate("DetalhesLivrariaScreen")}>
+                    <Image source={require("../../../assets/Fill.png")} style={styles.containerItem}/>
                 </TouchableOpacity>
             </View>
 
@@ -54,21 +57,21 @@ export default function CadastroDieta2Screen() {
                             <View style={styles.separator}></View>
                             <Text style={styles.containerTitle}>FDN: {fdn} kg</Text>
                         </View>
-                    </View>
-
-
+                    </View>             
+                   
                     {/* INICIA EM BRANCO */}
-                    <Text style={styles.inputFieldText}>FENO BOM</Text>
-                  
-                    <View style={styles.inputField}>
-                        <TextInput
-                            style={styles.input}
-                            placeholder="KG / MS"
-                            value={input.email}
-                            onChangeText={(text) => setInput({ ...input, Silagem: text })}
-                        />
-                    </View>
-                    {/* INICIA EM BRANCO */}
+                    {dieta.selectedLivraria && (
+                        <View style={styles.listagemTitle}>
+                            <Text style={styles.containerTitle}>Livraria Selecionada:</Text>
+                            <Text style={styles.containerTitle}>{dieta.selectedLivraria.nome}</Text>
+                            <TextInput
+                                style={styles.inputField}
+                                placeholder="KG / MS"
+                                onChangeText={handleSelectLivraria}                                
+                                />
+                        </View>
+                    )}
+                    
                     
                     <View style={styles.containerAddItem}>
                         <TouchableOpacity
