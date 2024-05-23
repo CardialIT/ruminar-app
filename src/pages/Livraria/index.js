@@ -78,11 +78,11 @@ export default function LivrariaScreen() {
                 <View style={styles.containerImages}>
                   <Image
                     source={require("../../assets/Edit.png")}
-                    style={styles.containerItem}
+                    style={styles.containerInputItem}
                   />
                   <Image
                     source={require("../../assets/Trash.png")}
-                    style={styles.containerItem}
+                    style={styles.containerInputItem}
                   />
                 </View>
               </TouchableOpacity>

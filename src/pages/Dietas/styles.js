@@ -21,10 +21,9 @@ export default StyleSheet.create({
     },
 
     containerItem: {
-        justifyContent: "space-between",
-        padding: width * 0.02,
-        marginHorizontal: width * 0.012
-    },
+        width: 28,
+        height: 28,
+      },
 
     title: {
         fontFamily: "Alata-Regular",

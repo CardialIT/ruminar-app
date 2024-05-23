@@ -13,51 +13,58 @@ import styles from "../CadastroDieta/styles";
 import { useNavigation } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
 import { postDieta } from "../../services/api.js";
-import Toast from "react-native-toast-message";
+//import Toast from "react-native-toast-message";
+import { useContextProvider } from "../../context/AuthContext.js";
 
-const fieldNamesMap = {
-  nome_da_dieta: "Nome da Dieta",
-  peso_medio: "Peso Médio (KG)",
-  producao_estimada: "Produção Estimada",
-  del: "Dias de Lactação (Del)",
-  fill_preenchimento_ruminal: "Fill - Preenchimento Ruminal",
-};
 
 export default function CadastroDietaScreen() {
+  const [nomeDaDieta, setNomeDaDieta] = useState("");
+  const [pesoMedio, setPesoMedio] = useState("");
+  const [producaoEstimada, setProducaoEstimada] = useState("");
+  const [del, setDel] = useState( "" );
+  const [fillPreenchimentoRuminal, setFillPreenchimentoRuminal] = useState( "");
+
+
+  const { dieta, updateDieta, setFdn, setIms, ims, fdn } = useContextProvider();
   const [cadastroStatus, setCadastroStatus] = useState(null);
   const navigation = useNavigation();
-  const [modalVisible, setModalVisible] = useState(false);
-
-  const [dieta, setDieta] = useState({
-    nome_da_dieta: "",
-    peso_medio: "",
-    producao_estimada: "",
-    del: "",
-    fill_preenchimento_ruminal: "",
-  });
-
-  const [ims, setIMS] = useState(null);
-  const [fdn, setFDN] = useState(null);
-
-  const handleInputChange = (fieldName) => (value) => {
-    setDieta({ ...dieta, [fieldName]: value });
-    console.log(fieldName + ": " + value);
+ 
+  const onChangeNomeDaDieta = (nomeDaDieta) => {
+    setNomeDaDieta(nomeDaDieta);
+    console.log(nomeDaDieta);
   };
-  
+  const onChangePesoMedio = (pesoMedio) => {
+    setPesoMedio(pesoMedio);
+    console.log(pesoMedio);
+  }
+  const onChangeProducaoEstimada = (producaoEstimada) => {
+    setProducaoEstimada(producaoEstimada);
+    console.log(producaoEstimada);
+  }
+  const onChangeDel = (del) => {
+    setDel(del);
+    console.log(del);
+  }
+  const onChangeFillPreenchimentoRuminal = (fillPreenchimentoRuminal) => {
+    setFillPreenchimentoRuminal(fillPreenchimentoRuminal);
+    console.log(fillPreenchimentoRuminal);
+  }
+
 
   const calcularIMS_FDN = () => {
-    const { peso_medio, producao_estimada, del, fill_preenchimento_ruminal } =
-      dieta;
-    const peso = parseFloat(peso_medio.replace(",", "."));
-    const producao = parseFloat(producao_estimada.replace(",", "."));
-    const dell = parseInt(del);
-    const fill = parseFloat(fill_preenchimento_ruminal.replace(",", "."));
+    const peso = parseFloat(pesoMedio.replace(",", "."));
+    const producao = parseFloat(producaoEstimada.replace(",", "."));
+    const dell = parseInt(del.replace(",", "."));
+    const fill = parseFloat(fillPreenchimentoRuminal.replace(",", "."));
 
     const ims = (peso * 0.02) + (producao / 3);
     const fdn = peso * fill;
 
-    setIMS(ims.toFixed(2));
-    setFDN(fdn.toFixed(2));
+    setFdn(fdn);
+    setIms(ims);
+
+     updateDieta("ims", ims.toFixed(2));
+     updateDieta("fdn", fdn.toFixed(2));
   };
  
   const postCadastroDieta = async () => {
@@ -82,36 +89,65 @@ export default function CadastroDietaScreen() {
         <TouchableOpacity onPress={() => navigation.navigate("HomeScreen")}>
           <Ionicons name="chevron-back-outline" size={24} color="white" />
         </TouchableOpacity>
-
         <Text style={styles.title}>Nova Dieta</Text>
-
-        <TouchableOpacity
-          onPress={() => navigation.navigate("DetalhesLivrariaScreen")}
-        >
-          <Image
-            source={require("../../../assets/Fill.png")}
-            style={styles.containerItem}
-          />
+        <TouchableOpacity onPress={() => navigation.navigate("DetalhesLivrariaScreen")}>
+          <Image source={require("../../../assets/Fill.png")} style={styles.containerItem} />
         </TouchableOpacity>
       </View>
 
       <ScrollView style={styles.containerList}>
-        {Object.entries(dieta).map(([fieldName, value]) => (
-          <View key={fieldName} style={styles.containerItem}>
+        
+          <View style={styles.containerViewItem}>
             <Text style={styles.containerTitle}>
-              {fieldNamesMap[fieldName]}:
+             Nome da Dieta:
             </Text>
             <TextInput
-              value={value}
-              onChangeText={handleInputChange(fieldName)}
-              placeholder={`Digite o ${fieldNamesMap[fieldName]}`}
+             
+              onChangeText={onChangeNomeDaDieta}
+              placeholder={`Digite o nome da dieta:`}
+              style={styles.containerInput}
+            />
+            <Text style={styles.containerTitle}>
+            Peso Médio (KG):
+            </Text>
+            <TextInput
+              
+              onChangeText={onChangePesoMedio}
+              
+              placeholder={`Digite o peso médio (KG):`}
+              style={styles.containerInput}
+            />
+            <Text style={styles.containerTitle}>
+            Produção Estimada:
+            </Text>
+            <TextInput
+             
+              onChangeText={onChangeProducaoEstimada}
+              
+              placeholder={`Digite a produção estimada:`}
+              style={styles.containerInput}
+            />
+            <Text style={styles.containerTitle}>
+            Dias de Lactação (Del):
+            </Text>
+            <TextInput                       
+              onChangeText={onChangeDel}
+              placeholder={`Digite os dias de lactação (Del):`}
+              style={styles.containerInput}
+            />
+            <Text style={styles.containerTitle}>
+            Fill - Preenchimento Ruminal:
+            </Text>
+            <TextInput                          
+              onChangeText={onChangeFillPreenchimentoRuminal}
+              placeholder={`Digite o fill - preenchimento ruminal:`}
               style={styles.containerInput}
             />
           </View>
-        ))}
+    
 
         <View style={styles.containerResult}>
-          <View style={styles.containerItem}>
+          <View style={styles.containerResultItems}>
             <Text style={styles.containerTitle}>IMS: {ims} kg</Text>
             <Text style={styles.containerTitle}>FDN: {fdn} kg</Text>
           </View>
@@ -129,10 +165,13 @@ export default function CadastroDietaScreen() {
         </View>
 
         <View style={styles.containerButton}>
-          <TouchableOpacity
-            onPress={() =>
-              navigation.navigate("CadastroDieta2Screen")
-            }
+          
+
+          <TouchableOpacity          
+            onPress={() => {
+              calcularIMS_FDN();
+              navigation.navigate("CadastroDieta2Screen");
+            }}
             style={styles.createButton}
           >
             <Text style={styles.textButton}>PRÓXIMO</Text>
@@ -140,7 +179,7 @@ export default function CadastroDietaScreen() {
 
         </View>
       </ScrollView>
-      <Toast ref={(ref) => Toast.setRef(ref)} />
+      {/* <Toast ref={(ref) => Toast.setRef(ref)} /> */}
     </View>
   );
 }

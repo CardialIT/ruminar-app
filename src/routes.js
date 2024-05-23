@@ -16,7 +16,7 @@ import Profile from "./pages/Profile";
 import CadastroLivrariaScreen from "./pages/CadastroLivraria";
 import DetalhesLivrariaScreen from "./pages/DetalhesLivraria";
 import CadastroDietaScreen from "./pages/CadastroDieta";
-import DetalhesDietaScreen from "./pages/DetalhesDieta";
+// import DetalhesDietaScreen from "./pages/DetalhesDieta";
 import ListagemLivrariaScreen from "./pages/ListagemLivraria";
 import CadastroDieta2Screen from "./pages/CadastroDieta2";
 
@@ -35,11 +35,7 @@ const HomeStack = createNativeStackNavigator();
 
 function HomeStackScreen() {
   return (
-    <HomeStack.Navigator
-      screenOptions={{
-        headerShown: false,
-      }}
-    >
+    <HomeStack.Navigator screenOptions={{ headerShown: false }}>
       <HomeStack.Screen name="Home" component={HomeScreen} />
     </HomeStack.Navigator>
   );
@@ -50,30 +46,11 @@ const DietasStack = createNativeStackNavigator();
 function DietasStackScreen() {
   return (
     <DietasStack.Navigator screenOptions={{ headerShown: false }}>
-      <DietasStack.Screen
-        name="Diets"
-        component={DietasScreen}
-      />
-      <DietasStack.Screen
-        name="CadastroDietaScreen"
-        component={CadastroDietaScreen}
-      />
-      <DietasStack.Screen
-        name="DietasCalculo"
-        component={DietasCalculo}
-      />
-      <DietasStack.Screen
-        name="DetalhesDietaScreen"
-        component={DetalhesDietaScreen}
-      />
-      <DietasStack.Screen
-        name="ListagemLivrariaScreen"
-        component={ListagemLivrariaScreen}
-      />
-      <DietasStack.Screen
-        name="CadastroDieta2Screen"
-        component={CadastroDieta2Screen}
-      />
+      <DietasStack.Screen name="Diets" component={DietasScreen} />
+      <DietasStack.Screen name="CadastroDietaScreen" component={CadastroDietaScreen} />
+      <DietasStack.Screen name="DietasCalculo" component={DietasCalculo} />
+      <DietasStack.Screen name="ListagemLivrariaScreen" component={ListagemLivrariaScreen} />
+      <DietasStack.Screen name="CadastroDieta2Screen" component={CadastroDieta2Screen} />
     </DietasStack.Navigator>
   );
 }
@@ -82,20 +59,10 @@ const LibraryStack = createNativeStackNavigator();
 
 function LibraryStackScreen() {
   return (
-    <LibraryStack.Navigator
-      screenOptions={{
-        headerShown: false,
-      }}
-    >
-      <LibraryStack.Screen name="LivrariaDietas" component={LivrariaScreen} />
-      <LibraryStack.Screen
-        name="CadastroLivrariaScreen"
-        component={CadastroLivrariaScreen}
-      />
-      <LibraryStack.Screen
-        name="DetalhesLivrariaScreen"
-        component={DetalhesLivrariaScreen}
-      />
+    <LibraryStack.Navigator screenOptions={{headerShown: false}}>
+      <LibraryStack.Screen name="LivrariaScreen" component={LivrariaScreen} />
+      <LibraryStack.Screen name="CadastroLivrariaScreen" component={CadastroLivrariaScreen} />
+      <LibraryStack.Screen name="DetalhesLivrariaScreen" component={DetalhesLivrariaScreen} />
     </LibraryStack.Navigator>
   );
 }
@@ -106,7 +73,7 @@ function ProfileStackScreen() {
   return (
     <ProfileStack.Navigator
       screenOptions={{
-        headerShown: false,
+        headerShown: false
       }}
     >
       <ProfileStack.Screen name="Perfil" component={Profile} />
@@ -152,21 +119,10 @@ function BottomTabsScreen() {
         tabBarLabel: " ",
       })}
     >
-      <Tab.Screen
-        screenOptions={{
-          headerShown: false,
-          headerStyle: {
-            backgroundColor: "transparent",
-            elevation: 0,
-            shadowOpacity: 0,
-          },
-        }}
-        name="HomeScreen"
-        component={HomeStackScreen}
-      />
-      <Tab.Screen name="DietasScreen" component={DietasStackScreen} />
-      <Tab.Screen name="LivrariaScreen" component={LibraryStackScreen} />
-      <Tab.Screen name="ProfileScreen" component={ProfileStackScreen} />
+      <Tab.Screen name="HomeScreen" component={HomeStackScreen} options={{ headerShown: false }} />
+      <Tab.Screen name="DietasScreen" component={DietasStackScreen} options={{ headerShown: false }} />
+      <Tab.Screen name="LivrariaScreen" component={LibraryStackScreen} options={{ headerShown: false }} />
+      <Tab.Screen name="ProfileScreen" component={ProfileStackScreen} options={{ headerShown: false }} />
     </Tab.Navigator>
   );
 }

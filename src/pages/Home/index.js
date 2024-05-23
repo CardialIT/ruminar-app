@@ -33,7 +33,7 @@ export default function HomeScreen() {
       </View>
 
       <View style={styles.secondContainer}>
-        <Text style={styles.title}>Bem-vindo {Nome}</Text>
+        <Text style={styles.title}>Bem-vindo </Text>
         <Text style={styles.subtitle}>O que você gostaria de fazer hoje?</Text>
       </View>
 

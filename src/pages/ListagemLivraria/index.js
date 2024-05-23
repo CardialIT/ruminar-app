@@ -13,24 +13,45 @@ import { useNavigation } from "@react-navigation/native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { getLivraria } from "../../services/api.js";
 import styles from "../ListagemLivraria/styles";
+import { useContextProvider } from "../../context/AuthContext.js";
 
 export default function ListagemLivrariaScreen() {
     const navigation = useNavigation();
     const [livrarias, setLivrarias] = useState([]);
+    const {updateDieta} = useContextProvider();
 
-    async function fetchLivrarias() {
-        try {
-          const livrariasData = await getLivraria();
-          console.log("Dados recebidos:", livrariasData);
-          setLivrarias(livrariasData);
-        } catch (error) {
-          console.error("Erro ao buscar livrarias:", error);
+    useEffect(() => {
+        async function fetchLivrarias() {
+          try {
+            const livrariasData = await getLivraria();
+            console.log("Dados recebidos:", livrariasData);
+            setLivrarias(livrariasData);
+          } catch (error) {
+            console.error("Erro ao buscar livrarias:", error);
+          }
         }
-      }
-    
-      useEffect(() => {
         fetchLivrarias();
       }, []);
+
+      const handleSelectLivraria = (item) => {
+        updateDieta("selectedLivraria", item);
+        navigation.navigate("CadastroDieta2Screen", { selectedLivraria: item });
+      };
+    
+
+    // async function fetchLivrarias() {
+    //     try {
+    //       const livrariasData = await getLivraria();
+    //       console.log("Dados recebidos:", livrariasData);
+    //       setLivrarias(livrariasData);
+    //     } catch (error) {
+    //       console.error("Erro ao buscar livrarias:", error);
+    //     }
+    //   }
+    
+    //   useEffect(() => {
+    //     fetchLivrarias();
+    //   }, []);
 
     return (
         <View style={styles.container}>
@@ -61,9 +82,9 @@ export default function ListagemLivrariaScreen() {
                         <TouchableOpacity
                             style={styles.listItemContainer}
                             onPress={() =>
-                                navigation.navigate("DetalhesLivrariaScreen", { item })
+                                handleSelectLivraria(item)
                             }
-                        >
+>
                             <Text style={styles.listTextItem}>{item.nome}</Text>
                         </TouchableOpacity>
                     )}
