@@ -183,6 +183,7 @@ export default function DietasScreen() {
           </View> */}
         </View>
       </ScrollView>
+      
     </GestureHandlerRootView>
   );
 }

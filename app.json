@@ -18,6 +18,9 @@
       "supportsTablet": true
     },
     "android": {
+      "package": "com.yourname.myapp",
+      "versionCode": 1,
+      "permissions": [],
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
@@ -25,6 +28,11 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "61650b03-5454-420b-8d85-607663130c82"
+      }
     }
   }
 }

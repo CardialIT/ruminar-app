@@ -117,13 +117,27 @@ export default function CadastroDietaScreen() {
           </View>
         </View>
 
+        <View style={styles.containerAddItem}>
+          <TouchableOpacity
+            style={styles.addButton}
+            onPress={() => navigation.navigate("ListagemLivrariaScreen")}
+          >
+
+            <Text style={styles.createButtonText}>ADICIONAR LIVRARIA</Text>
+            <Ionicons name="add-outline" size={24} color="#307C31" />
+          </TouchableOpacity>
+        </View>
+
         <View style={styles.containerButton}>
           <TouchableOpacity
-            onPress={postCadastroDieta}
+            onPress={() =>
+              navigation.navigate("CadastroDieta2Screen")
+            }
             style={styles.createButton}
           >
             <Text style={styles.textButton}>PRÓXIMO</Text>
           </TouchableOpacity>
+
         </View>
       </ScrollView>
       <Toast ref={(ref) => Toast.setRef(ref)} />
