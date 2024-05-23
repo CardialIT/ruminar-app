@@ -29,7 +29,6 @@ export default function DietasScreen() {
             name="chevron-back-outline"
             size={24}
             color="white"
-            style={{ alignItems: "center", justifyContent: "center" }}
           />
         </TouchableOpacity>
 

@@ -20,6 +20,13 @@ export default StyleSheet.create({
     paddingBottom: 10,
   },
 
+  title: {
+    fontFamily: "Alata-Regular",
+    fontWeight: "bold",
+    fontSize: 24,
+    color: colors.background,
+  },
+
   containerItem: {
     width: 28,
     height: 28,
@@ -49,12 +56,7 @@ export default StyleSheet.create({
     justifyContent: "space-between",
   },
 
-  title: {
-    fontFamily: "Alata-Regular",
-    fontWeight: "bold",
-    fontSize: 24,
-    color: colors.background,
-  },
+  
 
   listItemContainer: {
     flex: 1,
@@ -82,7 +84,7 @@ export default StyleSheet.create({
     width: "auto",
   },
 
-  containerItem: {
+  containerInputItem: {
     justifyContent: "space-between",
     padding: width * 0.02,
     marginHorizontal: width * 0.012,

@@ -75,7 +75,9 @@ export default function CadastroDietaScreen() {
 
   return (
     <View style={styles.container}>
+
       <View style={styles.firstContainer}>
+        
         <TouchableOpacity onPress={() => navigation.navigate("HomeScreen")}>
           <Ionicons name="chevron-back-outline" size={24} color="white" />
         </TouchableOpacity>
@@ -94,7 +96,7 @@ export default function CadastroDietaScreen() {
 
       <ScrollView style={styles.containerList}>
         {Object.entries(dieta).map(([fieldName, value]) => (
-          <View key={fieldName} style={styles.containerItem}>
+          <View key={fieldName} style={styles.containerViewItem}>
             <Text style={styles.containerTitle}>
               {fieldNamesMap[fieldName]}:
             </Text>
@@ -108,7 +110,7 @@ export default function CadastroDietaScreen() {
         ))}
 
         <View style={styles.containerResult}>
-          <View style={styles.containerItem}>
+          <View style={styles.containerResultItems}>
             <Text style={styles.containerTitle}>IMS: {ims} kg</Text>
             <Text style={styles.containerTitle}>FDN: {fdn} kg</Text>
           </View>

@@ -28,7 +28,7 @@ export default function CadastroDieta2Screen() {
 
             <View style={styles.firstContainer}>
 
-                <TouchableOpacity onPress={() => navigation.navigate("HomeScreen")}>
+                <TouchableOpacity onPress={() => navigation.navigate("CadastroDietaScreen")}>
                     <Ionicons name="chevron-back-outline" size={24} color="white" />
                 </TouchableOpacity>
 
@@ -49,7 +49,7 @@ export default function CadastroDieta2Screen() {
                 <ScrollView style={styles.containerList}>
 
                     <View style={styles.containerResult}>
-                        <View style={styles.containerItem}>
+                        <View style={styles.containerResultItem}>
                             <Text style={styles.containerTitle}>IMS: {ims} kg</Text>
                             <View style={styles.separator}></View>
                             <Text style={styles.containerTitle}>FDN: {fdn} kg</Text>

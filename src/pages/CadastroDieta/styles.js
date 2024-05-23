@@ -14,14 +14,10 @@ export default StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between",
     backgroundColor: colors.verdePrincipal,
-    height: height * 0.16,
+    height: "16%",
     paddingHorizontal: 20,
-    paddingTop: 10,
-    marginBottom: height * 0.02,
-  },
-
-  scrollView: {
-    flexGrow: 1,
+    paddingTop: 16,
+    paddingBottom: 10,
   },
 
   title: {
@@ -32,16 +28,27 @@ export default StyleSheet.create({
   },
 
   containerItem: {
+    justifyContent: "space-between",
+    padding: width * 0.02,
+    marginHorizontal: width * 0.012
+  },
+
+  scrollView: {
+    flexGrow: 1,
+  },
+
+  containerViewItem: {
     justifyContent: "center",
     alignSelf: "center",
     width: "90%",
     padding: width * 0.02,
   },
-  
+
   containerList: {
+    marginTop: height * 0.02,
     backgroundColor: colors.background,
   },
-  
+
 
   containerTitle: {
     fontWeight: "bold",
@@ -75,13 +82,17 @@ export default StyleSheet.create({
     alignSelf: "center",
   },
 
-  
+  containerResultItems: {
+    
+  },
+
+
   // BOTÃO PRÓXIMO
   containerButton: {
     marginTop: height * 0.02,
     marginBottom: height * 0.02,
   },
-  
+
   createButton: {
     backgroundColor: colors.verdePrincipal,
     width: width * 0.86,
@@ -114,7 +125,7 @@ export default StyleSheet.create({
     borderRadius: width * 0.02,
 
     justifyContent: "center",
-    alignItems: "center", 
+    alignItems: "center",
     alignSelf: "center",
 
     borderColor: colors.verdePrincipal,

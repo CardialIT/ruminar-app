@@ -1,5 +1,6 @@
 import { StyleSheet, Dimensions } from "react-native";
 import { colors } from "../../colors.js";
+import { ScrollView } from "react-native-gesture-handler";
 
 const { width, height } = Dimensions.get("window");
 
@@ -14,10 +15,10 @@ export default StyleSheet.create({
         alignItems: "center",
         justifyContent: "space-between",
         backgroundColor: colors.verdePrincipal,
-        height: height * 0.16,
+        height: "16%",
         paddingHorizontal: 20,
-        paddingTop: 10,
-        marginBottom: height * 0.02,
+        paddingTop: 16,
+        paddingBottom: 10,
     },
 
     title: {
@@ -28,40 +29,47 @@ export default StyleSheet.create({
     },
 
     containerItem: {
-        justifyContent: "center",
-        alignSelf: "center",
-        width: "90%",
+        justifyContent: "space-between",
         padding: width * 0.02,
+        marginHorizontal: width * 0.012
     },
+
+    // SECOND CONTAINER 
 
     secondContainer: {
         flex: 1,
         paddingVertical: width * 0.02,
     },
 
-    
-    
     listagemTitle: {
         fontWeight: "bold",
         fontSize: 24,
         marginBottom: height * 0.02,
         paddingHorizontal: width * 0.05
     },
-    
+
+     // ScrollView
+
+     containerList: {
+        flex: 1,
+        backgroundColor: colors.background,
+        height: "100%"
+    },
+
     containerResult: {
         marginTop: height * 0.02,
         backgroundColor: colors.backgroundInput,
         width: "100%",
     },
-    
-    containerItem: {
+
+    containerResultItem: {
         justifyContent: "center",
         alignSelf: "center",
         width: "90%",
         borderWidth: 0.2,
         borderRadius: 5,
     },
-    
+
     containerTitle: {
         fontWeight: "bold",
         fontSize: height * 0.02,
@@ -69,19 +77,15 @@ export default StyleSheet.create({
         paddingHorizontal: width * 0.02,
         paddingVertical: height * 0.02
     },
-    
+
     separator: {
         borderBottomWidth: 0.2,
         borderColor: colors.cinza,
         width: '100%',
     },
     
-    // ScrollView
-    containerList: {
-        flex: 1,
-        backgroundColor: colors.background,
-        height: "100%"
-    },
+
+    // INPUT FIELD
 
     inputFieldText: {
         color: colors.text,

@@ -20,6 +20,8 @@ export default StyleSheet.create({
         paddingBottom: 10
     },
 
+   
+
     containerItem: {
         justifyContent: "space-between",
         padding: width * 0.02,
@@ -40,6 +42,7 @@ export default StyleSheet.create({
         fontSize: 24,
         color: colors.text,
     },
+  
 
     subtitle: {
         fontFamily: "Alata-Regular",
