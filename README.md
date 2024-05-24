@@ -1,5 +1,9 @@
 # Comandos Expo
 
+## Primeiro comando para rodar o app
+
+npm start
+
 ### Para rodar/inicializar o aplicativo:
 
 npx expo start
