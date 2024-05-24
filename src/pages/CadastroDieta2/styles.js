@@ -93,13 +93,15 @@ export default StyleSheet.create({
         flex: 1,
         paddingHorizontal: width * 0.01,
         paddingTop: height * 0.02,
-        marginHorizontal: width * 0.04
+        marginHorizontal: width * 0.04,
+    
     },
 
     listagemItemTitle: {
         fontWeight: "bold",
         fontSize: 16,
         marginBottom: height * 0.02,
+        textTransform: "uppercase"
     },
 
     inputField: {
