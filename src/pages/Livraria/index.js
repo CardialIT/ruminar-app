@@ -4,7 +4,6 @@ import {
   Text,
   TouchableOpacity,
   Image,
-  ScrollView,
   FlatList,
   Modal,
 } from "react-native";
@@ -18,6 +17,7 @@ export default function LivrariaScreen() {
   const navigation = useNavigation();
   const [isModalVisible, setModalVisible] = useState(false);
   const [livrarias, setLivrarias] = useState([]);
+  const [livrariaToDelete, setLivrariaToDelete] = useState(null);
 
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
@@ -35,7 +35,20 @@ export default function LivrariaScreen() {
 
   useEffect(() => {
     fetchLivrarias();
-  }, [livrarias]);
+  }, []);
+
+  const handleDeletePress = (livraria) => {
+    setLivrariaToDelete(livraria);
+    toggleModal();
+  };
+
+  const confirmDelete = () => {
+    // Lógica para excluir a livraria
+    console.log("Excluindo livraria:", livrariaToDelete);
+    // Atualizar o estado para remover a livraria excluída
+    setLivrarias(livrarias.filter(l => l.id !== livrariaToDelete.id));
+    toggleModal();
+  };
 
   return (
     <GestureHandlerRootView style={styles.container}>
@@ -80,10 +93,12 @@ export default function LivrariaScreen() {
                     source={require("../../assets/Edit.png")}
                     style={styles.containerInputItem}
                   />
-                  <Image
-                    source={require("../../assets/Trash.png")}
-                    style={styles.containerInputItem}
-                  />
+                  <TouchableOpacity onPress={() => handleDeletePress(item)}>
+                    <Image
+                      source={require("../../assets/Trash.png")}
+                      style={styles.containerInputItem}
+                    />
+                  </TouchableOpacity>
                 </View>
               </TouchableOpacity>
             )}
@@ -102,7 +117,7 @@ export default function LivrariaScreen() {
             <Text style={styles.modalTitle}>Excluir livraria</Text>
 
             <Text style={styles.modalText}>
-              Você tem certeza que deseja excluir a livria "Pastagem"?
+              Você tem certeza que deseja excluir a livraria "{livrariaToDelete?.nome}"?
             </Text>
 
             <View style={styles.modalButtons}>
@@ -115,7 +130,7 @@ export default function LivrariaScreen() {
 
               <TouchableOpacity
                 style={styles.excluirButton}
-                onPress={toggleModal}
+                onPress={confirmDelete}
               >
                 <Text style={styles.modalButtonDelete}>Excluir</Text>
               </TouchableOpacity>
