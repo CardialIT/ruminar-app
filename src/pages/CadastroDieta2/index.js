@@ -15,22 +15,36 @@ import Toast from "react-native-toast-message";
 import { useContextProvider } from "../../context/AuthContext.js";
 
 export default function CadastroDieta2Screen() {
-    const{dieta, updateDieta, ims, fdn} = useContextProvider();
+    const { dieta, updateDieta, ims, fdn } = useContextProvider();
     const navigation = useNavigation();
-    const [selectedLivrarias, setSelectedLivrarias] = useState([]);
+    // const [selectedLivrarias, setSelectedLivrarias] = useState([]);
 
 
     const handleSelectLivraria = (item) => {
-        if (selectedLivrarias.length < 3) {
-          setSelectedLivrarias([...selectedLivrarias, item]);
-        } else {
-            Toast.show({
-                type: "error",
-                text1: "Limite de 3 livrarias atingido",
-            });
-        }
-      };
-   
+        const updatedLivrarias = [...dieta.selectedLivrarias, item];
+        updateDieta("selectedLivrarias", updatedLivrarias);
+        navigation.navigate("CadastroDieta2Screen");
+    };
+
+    const renderSelectedLivrarias = () => {
+        return dieta.selectedLivrarias.map((livraria, index) => (
+            <View key={index} style={styles.containerItemTitle}>
+                <Text style={styles.listagemItemTitle}>{livraria.nome}</Text>
+                <TextInput
+                    style={styles.inputField}
+                    placeholder="KG / MS"
+                    onChangeText={(text) => handleInputChange(text, index)}
+                />
+            </View>
+        ));
+    };
+
+    const handleInputChange = (text, index) => {
+        const updatedLivrarias = [...dieta.selectedLivrarias];
+        updatedLivrarias[index].kgMs = text;
+        updateDieta("selectedLivrarias", updatedLivrarias);
+    };
+
     return (
         <View style={styles.container}>
 
@@ -43,12 +57,13 @@ export default function CadastroDieta2Screen() {
                 <Text style={styles.title}>Nova Dieta</Text>
 
                 <TouchableOpacity onPress={() => navigation.navigate("DetalhesLivrariaScreen")}>
-                    <Image source={require("../../../assets/Fill.png")} style={styles.containerItem}/>
+                    <Image source={require("../../../assets/Fill.png")} style={styles.containerItem} />
                 </TouchableOpacity>
             </View>
 
             <View style={styles.secondContainer}>
                 <Text style={styles.listagemTitle}>Prencha os dados de FDN</Text>
+
                 <ScrollView style={styles.containerList}>
 
                     <View style={styles.containerResult}>
@@ -57,22 +72,25 @@ export default function CadastroDieta2Screen() {
                             <View style={styles.separator}></View>
                             <Text style={styles.containerTitle}>FDN: {fdn.toFixed(2)} kg</Text>
                         </View>
-                    </View>             
-                   
-                    {/* INICIA EM BRANCO */}
+                    </View>
+
+                    {/* ITENS */}
+
                     {dieta.selectedLivraria && (
-                        <View style={styles.listagemTitle}>
-                            <Text style={styles.containerTitle}>Livraria Selecionada:</Text>
-                            <Text style={styles.containerTitle}>{dieta.selectedLivraria.nome}</Text>
+                        <View style={styles.containerItemTitle}>
+                            {/* <Text style={styles.containerTitle}>Livraria Selecionada:</Text> */}
+                            <Text style={styles.listagemItemTitle}>{dieta.selectedLivraria.nome}</Text>
                             <TextInput
                                 style={styles.inputField}
                                 placeholder="KG / MS"
-                                onChangeText={handleSelectLivraria}                                
-                                />
+                                onChangeText={handleSelectLivraria}
+                            />
                         </View>
                     )}
-                    
-                    
+
+                    {renderSelectedLivrarias()}
+
+
                     <View style={styles.containerAddItem}>
                         <TouchableOpacity
                             style={styles.addButton}
@@ -86,7 +104,7 @@ export default function CadastroDieta2Screen() {
                     <View style={styles.containerButton}>
                         <TouchableOpacity
                             onPress={() =>
-                                navigation.navigate("CadastroDieta2Screen")
+                                navigation.navigate("CadastroDieta3Screen")
                             }
                             style={styles.createButton}
                         >

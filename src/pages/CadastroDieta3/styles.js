@@ -1,16 +1,16 @@
 import { StyleSheet, Dimensions } from "react-native";
 import { colors } from "../../colors.js";
-import { ScrollView } from "react-native-gesture-handler";
 
 const { width, height } = Dimensions.get("window");
 
 export default StyleSheet.create({
+
     container: {
         flex: 1,
         backgroundColor: colors.background,
     },
-
-    // FIRST CONTAINER 
+    
+    
 
     firstContainer: {
         flexDirection: "row",
@@ -36,9 +36,9 @@ export default StyleSheet.create({
         marginHorizontal: width * 0.012
     },
 
-    // SECOND CONTAINER 
+     // SECOND CONTAINER 
 
-    secondContainer: {
+     secondContainer: {
         flex: 1,
         paddingVertical: width * 0.02,
     },
@@ -50,7 +50,7 @@ export default StyleSheet.create({
         paddingHorizontal: width * 0.05
     },
 
-    // ScrollView
+    //SCROLL VIEW
 
     containerList: {
         flex: 1,
@@ -58,50 +58,20 @@ export default StyleSheet.create({
         height: "100%"
     },
 
-    containerResult: {
-        marginTop: height * 0.02,
-        backgroundColor: colors.backgroundInput,
-        width: "100%",
-    },
-
-    containerResultItem: {
-        justifyContent: "center",
-        alignSelf: "center",
-        width: "90%",
-        borderWidth: 0.2,
-        borderRadius: 5,
-    },
-
-    containerTitle: {
-        fontWeight: "bold",
-        fontSize: height * 0.02,
-        marginBottom: height * 0.006,
-        paddingHorizontal: width * 0.02,
-        paddingVertical: height * 0.02
-    },
-
-    separator: {
-        borderBottomWidth: 0.2,
-        borderColor: colors.cinza,
-        width: '100%',
-    },
-
-
+    
     // INPUT FIELD
     
     containerItemTitle: {
         flex: 1,
         paddingHorizontal: width * 0.01,
         paddingTop: height * 0.02,
-        marginHorizontal: width * 0.04,
-    
+        marginHorizontal: width * 0.04
     },
 
     listagemItemTitle: {
         fontWeight: "bold",
         fontSize: 16,
         marginBottom: height * 0.02,
-        textTransform: "uppercase"
     },
 
     inputField: {
@@ -114,6 +84,7 @@ export default StyleSheet.create({
         borderRadius: width * 0.02,
         borderColor: colors.cinza,
         borderWidth: 0.6,
+        backgroundColor: colors.cinzaBackground
     },
 
     input: {
@@ -121,46 +92,10 @@ export default StyleSheet.create({
         height: 40,
         padding: 8,
         fontSize: 14,
+        
     },
 
-    // ADICIONAR LIVRARIA BUTTON
-
-    containerAddItem: {
-        justifyContent: "center",
-        alignItems: "center",
-        marginTop: height * 0.03,
-        marginHorizontal: width * 0.05,
-
-    },
-
-    addButton: {
-        flexDirection: "row",
-        backgroundColor: colors.background,
-        width: "100%",
-        height: height * 0.06,
-        borderRadius: width * 0.02,
-
-        justifyContent: "center",
-        alignItems: "center",
-
-        borderColor: colors.verdePrincipal,
-        borderWidth: 1
-    },
-
-    viewTextButton: {
-        backgroundColor: colors.verdePrincipal
-    },
-
-    createButtonText: {
-        color: colors.verdePrincipal,
-        padding: width * 0.02,
-        justifyContent: "center",
-        alignItems: "center",
-        fontWeight: "bold",
-        marginRight: 5,
-    },
-
-    // BOTÃO "PRÓXIMO"
+    // BOTÃO "VER RESUMO"
     
     containerButton: {
         justifyContent: "center",

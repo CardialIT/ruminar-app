@@ -18,7 +18,7 @@ import { useContextProvider } from "../../context/AuthContext.js";
 export default function ListagemLivrariaScreen() {
     const navigation = useNavigation();
     const [livrarias, setLivrarias] = useState([]);
-    const {updateDieta} = useContextProvider();
+    const { updateDieta, dieta } = useContextProvider();
 
     useEffect(() => {
         async function fetchLivrarias() {
@@ -32,11 +32,13 @@ export default function ListagemLivrariaScreen() {
         }
         fetchLivrarias();
       }, []);
+      
 
       const handleSelectLivraria = (item) => {
-        updateDieta("selectedLivraria", item);
-        navigation.navigate("CadastroDieta2Screen", { selectedLivraria: item });
-      };
+        const updatedLivrarias = [...dieta.selectedLivrarias, item];
+        updateDieta("selectedLivrarias", updatedLivrarias);
+        navigation.navigate("CadastroDieta2Screen");
+    };
     
 
     // async function fetchLivrarias() {
@@ -81,9 +83,7 @@ export default function ListagemLivrariaScreen() {
                     renderItem={({ item }) => (
                         <TouchableOpacity
                             style={styles.listItemContainer}
-                            onPress={() =>
-                                handleSelectLivraria(item)
-                            }
+                            onPress={() => handleSelectLivraria(item)}
 >
                             <Text style={styles.listTextItem}>{item.nome}</Text>
                         </TouchableOpacity>

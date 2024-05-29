@@ -1,8 +1,22 @@
 import React, { createContext, useContext, useState } from "react";
+import Toast from "react-native-toast-message";
 
 const AuthContext = createContext();
 
 export function ContextProvider({ children }) {
+  const [livrariasSelecionadas, setLivrariasSelecionadas] = useState([0]);
+
+  const handleAddLivraria = (livrariaSelecionada) => {
+    if (livrariasSelecionadas.length < 3) {
+      setLivrariasSelecionadas([...livrariasSelecionadas, livrariaSelecionada]);
+    } else {
+      Toast.show({
+        type: "error",
+        text1: "Limite de 3 livrarias atingido",
+      });
+    }
+  };
+  
   const [dieta, setDieta] = useState({
     nome_da_dieta: "",
     peso_medio: "",
@@ -11,6 +25,7 @@ export function ContextProvider({ children }) {
     fill_preenchimento_ruminal: "",
     ims: 0,
     fdn: 0,
+    selectedLivrarias: [], // tentativa
   });
 
   const [nomeDieta, setNomeDieta] = useState("");
@@ -63,6 +78,8 @@ export function ContextProvider({ children }) {
         setIms,
         fdn,
         setFdn,
+        livrariasSelecionadas,
+        handleAddLivraria
       }}
     >
       {children}

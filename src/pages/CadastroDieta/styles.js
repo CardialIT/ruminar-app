@@ -14,11 +14,11 @@ export default StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between",
     backgroundColor: colors.verdePrincipal,
-    height: "16%",
+    height: "20%",
     paddingHorizontal: 20,
-    paddingTop: 16,
-    paddingBottom: 10,
-  },
+    paddingTop: 40,
+    paddingBottom: 10
+},
 
   title: {
     fontFamily: "Alata-Regular",
@@ -45,7 +45,7 @@ export default StyleSheet.create({
   },
 
   containerList: {
-    marginTop: height * 0.02,
+    marginTop: height * 0.04,
     backgroundColor: colors.background,
   },
 

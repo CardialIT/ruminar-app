@@ -18,9 +18,10 @@ export default StyleSheet.create({
         alignItems: "center",
         justifyContent: "space-between",
         backgroundColor: colors.verdePrincipal,
-        height: height * 0.16,
+        height: "20%",
         paddingHorizontal: 20,
-        paddingTop: 10,
+        paddingTop: 40,
+        paddingBottom: 10
     },
 
     title: {
@@ -41,7 +42,6 @@ export default StyleSheet.create({
 
     secondContainer: {
         flex: 1,
-        marginTop: height * 0.02,
         padding: width * 0.06,
         alignItems: "center",
     },
@@ -50,6 +50,7 @@ export default StyleSheet.create({
         fontWeight: "bold",
         fontSize: 16,
         marginBottom: height * 0.02,
+        
     },
 
     listagemText: {

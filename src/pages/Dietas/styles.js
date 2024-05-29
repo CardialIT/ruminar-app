@@ -14,9 +14,9 @@ export default StyleSheet.create({
         alignItems: "center",
         justifyContent: "space-between",
         backgroundColor: colors.verdePrincipal,
-        height: "16%",
+        height: "20%",
         paddingHorizontal: 20,
-        paddingTop: 16,
+        paddingTop: 40,
         paddingBottom: 10
     },
 

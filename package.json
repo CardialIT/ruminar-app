@@ -11,6 +11,7 @@
   "dependencies": {
     "@expo-google-fonts/alata": "^0.2.3",
     "@expo/config-plugins": "~7.2.2",
+    "@expo/metro-config": "^0.10.7",
     "@expo/prebuild-config": "~6.2.4",
     "@expo/vector-icons": "^13.0.0",
     "@expo/webpack-config": "^19.0.0",
@@ -24,7 +25,8 @@
     "expo": "^49.0.6",
     "expo-app-loading": "^2.1.1",
     "expo-font": "~11.4.0",
-    "expo-splash-screen": "~0.20.5",
+    "expo-modules-autolinking": "~1.5.0",
+    "expo-splash-screen": "^0.20.5",
     "expo-status-bar": "~1.6.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
@@ -40,8 +42,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
-    "eslint": "^8.57.0",
-    "expo-cli": "^6.3.10"
+    "eslint": "^8.57.0"
   },
   "private": true
 }

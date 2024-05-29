@@ -14,11 +14,11 @@ export default StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between",
     backgroundColor: colors.verdePrincipal,
-    height: height * 0.16,
+    height: "20%",
     paddingHorizontal: 20,
-    paddingTop: 10,
-    marginBottom: height * 0.02,
-  },
+    paddingTop: 40,
+    paddingBottom: 10
+},
 
   scrollView: {
     flexGrow: 1,

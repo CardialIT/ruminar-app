@@ -8,18 +8,17 @@ export default StyleSheet.create({
         flex: 1,
         backgroundColor: colors.background
     },
-
+  
     firstContainer: {
         flexDirection: "row",
         alignItems: "center",
         justifyContent: "flex-end",
         backgroundColor: colors.verdePrincipal,
-        height: "16%",
+        height: "20%",
         paddingHorizontal: 20,
-        paddingTop: 26,
+        paddingTop: 40,
         paddingBottom: 10
     },
-
    
 
     containerItem: {
