@@ -43,9 +43,7 @@ export default function LivrariaScreen() {
   };
 
   const confirmDelete = () => {
-    // Lógica para excluir a livraria
     console.log("Excluindo livraria:", livrariaToDelete);
-    // Atualizar o estado para remover a livraria excluída
     setLivrarias(livrarias.filter(l => l.id !== livrariaToDelete.id));
     toggleModal();
   };
@@ -88,6 +86,7 @@ export default function LivrariaScreen() {
                 }
               >
                 <Text style={styles.listTextItem}>{item.nome}</Text>
+
                 <View style={styles.containerImages}>
                   <Image
                     source={require("../../assets/Edit.png")}
@@ -100,6 +99,7 @@ export default function LivrariaScreen() {
                     />
                   </TouchableOpacity>
                 </View>
+                
               </TouchableOpacity>
             )}
           />
