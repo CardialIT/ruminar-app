@@ -53,9 +53,9 @@ export default function CadastroDieta2Screen() {
 
                     <View style={styles.containerResult}>
                         <View style={styles.containerResultItem}>
-                            <Text style={styles.containerTitle}>IMS: {ims} kg</Text>
+                            <Text style={styles.containerTitle}>IMS: {ims.toFixed(2)} kg</Text>
                             <View style={styles.separator}></View>
-                            <Text style={styles.containerTitle}>FDN: {fdn} kg</Text>
+                            <Text style={styles.containerTitle}>FDN: {fdn.toFixed(2)} kg</Text>
                         </View>
                     </View>             
                    
