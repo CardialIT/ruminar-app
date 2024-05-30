@@ -9,15 +9,17 @@ import {
 } from "react-native";
 import styles from "../Livraria/styles";
 import { Ionicons } from "@expo/vector-icons";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation,  useIsFocused } from "@react-navigation/native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
-import { getLivraria } from "../../services/api.js";
+import { getLivraria, deleteLivraria } from "../../services/api.js";
 
 export default function LivrariaScreen() {
   const navigation = useNavigation();
   const [isModalVisible, setModalVisible] = useState(false);
   const [livrarias, setLivrarias] = useState([]);
   const [livrariaToDelete, setLivrariaToDelete] = useState(null);
+  const isFocused = useIsFocused();
+  const [livrariaAdicionada, setLivrariaAdicionada] = useState(false);
 
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
@@ -35,17 +37,22 @@ export default function LivrariaScreen() {
 
   useEffect(() => {
     fetchLivrarias();
-  }, []);
+  }, [livrariaAdicionada, isFocused]);
 
   const handleDeletePress = (livraria) => {
     setLivrariaToDelete(livraria);
     toggleModal();
   };
 
-  const confirmDelete = () => {
-    console.log("Excluindo livraria:", livrariaToDelete);
-    setLivrarias(livrarias.filter(l => l.id !== livrariaToDelete.id));
-    toggleModal();
+  const confirmDelete = async () => {
+    try {
+      console.log("Excluindo livraria:", livrariaToDelete);
+      await deleteLivraria(livrariaToDelete.id);
+      setLivrarias(livrarias.filter(l => l.id !== livrariaToDelete.id));
+      toggleModal();
+    } catch (error) {
+      console.error("Erro ao excluir livraria:", error);
+    }
   };
 
   return (
@@ -69,12 +76,17 @@ export default function LivrariaScreen() {
         <View style={styles.secondContainer}>
           <TouchableOpacity
             style={styles.addButton}
-            onPress={() => navigation.navigate("CadastroLivrariaScreen")}
+            onPress={() => {
+              setLivrariaAdicionada(false);
+              navigation.navigate("CadastroLivrariaScreen", {
+                onGoBack: () => setLivrariaAdicionada(true),
+              })}}
           >
             <Text style={styles.addButtonText}>Adicionar Livraria</Text>
             <Ionicons name="add-outline" size={24} color="white" />
           </TouchableOpacity>
 
+         
           <FlatList
             data={livrarias}
             keyExtractor={(item) => String(item.id)}
