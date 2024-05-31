@@ -62,7 +62,7 @@ const LibraryStack = createNativeStackNavigator();
 function LibraryStackScreen() {
   return (
     <LibraryStack.Navigator screenOptions={{headerShown: false}}>
-      <LibraryStack.Screen name="Livraria" component={LivrariaScreen} />
+      <LibraryStack.Screen name="LivrariaScreen" component={LivrariaScreen} />
       <LibraryStack.Screen name="CadastroLivrariaScreen" component={CadastroLivrariaScreen} />
       <LibraryStack.Screen name="DetalhesLivrariaScreen" component={DetalhesLivrariaScreen} />
     </LibraryStack.Navigator>
