@@ -8,6 +8,8 @@ import {
   TextInput,
   TouchableOpacity,
   Image,
+  Modal,
+  StatusBar
 } from "react-native";
 import styles from "../CadastroDieta/styles";
 import { useNavigation } from "@react-navigation/native";
@@ -23,6 +25,11 @@ export default function CadastroDietaScreen() {
   const [producaoEstimada, setProducaoEstimada] = useState("");
   const [del, setDel] = useState("");
   const [fillPreenchimentoRuminal, setFillPreenchimentoRuminal] = useState("");
+  const [isModalVisible, setModalVisible] = useState(false);
+
+  const toggleModal = () => {
+    setModalVisible(!isModalVisible);
+  };
 
 
   const { dieta, updateDieta, setFdn, setIms, ims, fdn } = useContextProvider();
@@ -98,35 +105,34 @@ export default function CadastroDietaScreen() {
       <ScrollView style={styles.containerList}>
 
         <View style={styles.containerViewItem}>
+
           <Text style={styles.containerTitle}>
             Nome da Dieta:
           </Text>
           <TextInput
-
             onChangeText={onChangeNomeDaDieta}
             placeholder={`Digite o nome da dieta:`}
             style={styles.containerInput}
           />
+
           <Text style={styles.containerTitle}>
             Peso Médio (KG):
           </Text>
           <TextInput
-
             onChangeText={onChangePesoMedio}
-
             placeholder={`Digite o peso médio (KG):`}
             style={styles.containerInput}
           />
+
           <Text style={styles.containerTitle}>
             Produção Estimada:
           </Text>
           <TextInput
-
             onChangeText={onChangeProducaoEstimada}
-
             placeholder={`Digite a produção estimada:`}
             style={styles.containerInput}
           />
+
           <Text style={styles.containerTitle}>
             Dias de Lactação (Del):
           </Text>
@@ -135,6 +141,24 @@ export default function CadastroDietaScreen() {
             placeholder={`Digite os dias de lactação (Del):`}
             style={styles.containerInput}
           />
+
+          {/* NOTIFICATION */}
+          <TouchableOpacity
+            style={styles.containerItemNotification}
+            onPress={toggleModal}>
+
+            <View style={styles.containerImageNotification}>
+              <Image source={require("../../assets/Notification.png")} style={styles.notificationIcon} />
+            </View>
+
+            <View style={styles.containerTextNotification}>
+              <Text style={styles.notificationText}>Caso você tenha dúvidas sobre o preenchimento do Fill <Text style={styles.underlinedText}>clique aqui</Text>
+              </Text>
+            </View>
+
+          </TouchableOpacity>
+
+
           <Text style={styles.containerTitle}>
             Fill - Preenchimento Ruminal:
           </Text>
@@ -143,6 +167,7 @@ export default function CadastroDietaScreen() {
             placeholder={`Digite o fill - preenchimento ruminal:`}
             style={styles.containerInput}
           />
+
         </View>
 
 
@@ -168,6 +193,47 @@ export default function CadastroDietaScreen() {
         </View>
       </ScrollView>
       {/* <Toast ref={(ref) => Toast.setRef(ref)} /> */}
+
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={isModalVisible}
+        onRequestClose={toggleModal}
+      >
+        <View style={styles.modalContainer}>
+          <View style={styles.modalContent}>
+
+            <Text style={styles.modalTitle}>Regras parar checar o Fill</Text>
+
+            <View style={styles.modalItemContainer}>
+              <Text>{'\u2022'}</Text>
+              <Text style={styles.modalText}>Se o Del é de 0 a 60 dias Então o Fill que usuário deve preencher é de 0,8 a 1,05</Text>
+            </View>
+
+            <View style={styles.modalItemContainer}>
+              <Text>{'\u2022'}</Text>
+              <Text style={styles.modalText}>Se o Del é de 60 a 150 dias Então o Fill que usuário deve preencher é de 1,05 a 1,15</Text>
+            </View>
+
+            <View style={styles.modalItemContainer}>
+              <Text>{'\u2022'}</Text>
+              <Text style={styles.modalText}>Se o Del é de acima de 150 dias Então o Fill que usuário deve preencher é de 1,15 a 1,2</Text>
+            </View>
+
+            <View style={styles.modalButtons}>
+              <TouchableOpacity
+                style={styles.cancelButton}
+                onPress={toggleModal}
+              >
+                <Text style={styles.modalButton}>Fechar</Text>
+              </TouchableOpacity>
+
+
+            </View>
+          </View>
+        </View>
+      </Modal>
+
     </View>
   );
 }
