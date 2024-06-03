@@ -193,7 +193,10 @@ export default function CadastroDietaScreen() {
         </View>
       </ScrollView>
       {/* <Toast ref={(ref) => Toast.setRef(ref)} /> */}
+      
 
+      {/* MODAL */}
+      
       <Modal
         animationType="slide"
         transparent={true}
