@@ -8,6 +8,8 @@ import {
   TextInput,
   TouchableOpacity,
   Image,
+  Modal,
+  StatusBar
 } from "react-native";
 import styles from "../CadastroDieta/styles";
 import { useNavigation } from "@react-navigation/native";
@@ -21,14 +23,19 @@ export default function CadastroDietaScreen() {
   const [nomeDaDieta, setNomeDaDieta] = useState("");
   const [pesoMedio, setPesoMedio] = useState("");
   const [producaoEstimada, setProducaoEstimada] = useState("");
-  const [del, setDel] = useState( "" );
-  const [fillPreenchimentoRuminal, setFillPreenchimentoRuminal] = useState( "");
+  const [del, setDel] = useState("");
+  const [fillPreenchimentoRuminal, setFillPreenchimentoRuminal] = useState("");
+  const [isModalVisible, setModalVisible] = useState(false);
+
+  const toggleModal = () => {
+    setModalVisible(!isModalVisible);
+  };
 
 
   const { dieta, updateDieta, setFdn, setIms, ims, fdn } = useContextProvider();
   const [cadastroStatus, setCadastroStatus] = useState(null);
   const navigation = useNavigation();
- 
+
   const onChangeNomeDaDieta = (nomeDaDieta) => {
     setNomeDaDieta(nomeDaDieta);
     console.log(nomeDaDieta);
@@ -63,10 +70,10 @@ export default function CadastroDietaScreen() {
     setFdn(fdn);
     setIms(ims);
 
-     updateDieta("ims", ims.toFixed(2));
-     updateDieta("fdn", fdn.toFixed(2));
+    updateDieta("ims", ims.toFixed(2));
+    updateDieta("fdn", fdn.toFixed(2));
   };
- 
+
   const postCadastroDieta = async () => {
     try {
       calcularIMS_FDN();
@@ -82,7 +89,7 @@ export default function CadastroDietaScreen() {
       console.error("Erro ao cadastrar dieta:", error);
     }
   };
-  
+
   return (
     <View style={styles.container}>
       <View style={styles.firstContainer}>
@@ -96,78 +103,84 @@ export default function CadastroDietaScreen() {
       </View>
 
       <ScrollView style={styles.containerList}>
-        
-          <View style={styles.containerViewItem}>
-            <Text style={styles.containerTitle}>
-             Nome da Dieta:
-            </Text>
-            <TextInput
-             
-              onChangeText={onChangeNomeDaDieta}
-              placeholder={`Digite o nome da dieta:`}
-              style={styles.containerInput}
-            />
-            <Text style={styles.containerTitle}>
+
+        <View style={styles.containerViewItem}>
+
+          <Text style={styles.containerTitle}>
+            Nome da Dieta:
+          </Text>
+          <TextInput
+            onChangeText={onChangeNomeDaDieta}
+            placeholder={`Digite o nome da dieta:`}
+            style={styles.containerInput}
+          />
+
+          <Text style={styles.containerTitle}>
             Peso Médio (KG):
-            </Text>
-            <TextInput
-              
-              onChangeText={onChangePesoMedio}
-              
-              placeholder={`Digite o peso médio (KG):`}
-              style={styles.containerInput}
-            />
-            <Text style={styles.containerTitle}>
+          </Text>
+          <TextInput
+            onChangeText={onChangePesoMedio}
+            placeholder={`Digite o peso médio (KG):`}
+            style={styles.containerInput}
+          />
+
+          <Text style={styles.containerTitle}>
             Produção Estimada:
-            </Text>
-            <TextInput
-             
-              onChangeText={onChangeProducaoEstimada}
-              
-              placeholder={`Digite a produção estimada:`}
-              style={styles.containerInput}
-            />
-            <Text style={styles.containerTitle}>
+          </Text>
+          <TextInput
+            onChangeText={onChangeProducaoEstimada}
+            placeholder={`Digite a produção estimada:`}
+            style={styles.containerInput}
+          />
+
+          <Text style={styles.containerTitle}>
             Dias de Lactação (Del):
-            </Text>
-            <TextInput                       
-              onChangeText={onChangeDel}
-              placeholder={`Digite os dias de lactação (Del):`}
-              style={styles.containerInput}
-            />
-            <Text style={styles.containerTitle}>
+          </Text>
+          <TextInput
+            onChangeText={onChangeDel}
+            placeholder={`Digite os dias de lactação (Del):`}
+            style={styles.containerInput}
+          />
+
+          {/* NOTIFICATION */}
+          <TouchableOpacity
+            style={styles.containerItemNotification}
+            onPress={toggleModal}>
+
+            <View style={styles.containerImageNotification}>
+              <Image source={require("../../assets/Notification.png")} style={styles.notificationIcon} />
+            </View>
+
+            <View style={styles.containerTextNotification}>
+              <Text style={styles.notificationText}>Caso você tenha dúvidas sobre o preenchimento do Fill <Text style={styles.underlinedText}>clique aqui</Text>
+              </Text>
+            </View>
+
+          </TouchableOpacity>
+
+
+          <Text style={styles.containerTitle}>
             Fill - Preenchimento Ruminal:
-            </Text>
-            <TextInput                          
-              onChangeText={onChangeFillPreenchimentoRuminal}
-              placeholder={`Digite o fill - preenchimento ruminal:`}
-              style={styles.containerInput}
-            />
-          </View>
-    
+          </Text>
+          <TextInput
+            onChangeText={onChangeFillPreenchimentoRuminal}
+            placeholder={`Digite o fill - preenchimento ruminal:`}
+            style={styles.containerInput}
+          />
+
+        </View>
+
 
         <View style={styles.containerResult}>
           <View style={styles.containerResultItems}>
-            <Text style={styles.containerTitle}>IMS: {ims} kg</Text>
-            <Text style={styles.containerTitle}>FDN: {fdn} kg</Text>
+            <Text style={styles.containerTitle}>IMS: {ims.toFixed(2)} kg</Text>
+            <Text style={styles.containerTitle}>FDN: {fdn.toFixed(2)} kg</Text>
           </View>
         </View>
 
-        <View style={styles.containerAddItem}>
-          <TouchableOpacity
-            style={styles.addButton}
-            onPress={() => navigation.navigate("ListagemLivrariaScreen")}
-          >
-
-            <Text style={styles.createButtonText}>ADICIONAR LIVRARIA</Text>
-            <Ionicons name="add-outline" size={24} color="#307C31" />
-          </TouchableOpacity>
-        </View>
-
         <View style={styles.containerButton}>
-          
 
-          <TouchableOpacity          
+          <TouchableOpacity
             onPress={() => {
               calcularIMS_FDN();
               navigation.navigate("CadastroDieta2Screen");
@@ -180,6 +193,50 @@ export default function CadastroDietaScreen() {
         </View>
       </ScrollView>
       {/* <Toast ref={(ref) => Toast.setRef(ref)} /> */}
+      
+
+      {/* MODAL */}
+      
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={isModalVisible}
+        onRequestClose={toggleModal}
+      >
+        <View style={styles.modalContainer}>
+          <View style={styles.modalContent}>
+
+            <Text style={styles.modalTitle}>Regras parar checar o Fill</Text>
+
+            <View style={styles.modalItemContainer}>
+              <Text>{'\u2022'}</Text>
+              <Text style={styles.modalText}>Se o Del é de 0 a 60 dias Então o Fill que usuário deve preencher é de 0,8 a 1,05</Text>
+            </View>
+
+            <View style={styles.modalItemContainer}>
+              <Text>{'\u2022'}</Text>
+              <Text style={styles.modalText}>Se o Del é de 60 a 150 dias Então o Fill que usuário deve preencher é de 1,05 a 1,15</Text>
+            </View>
+
+            <View style={styles.modalItemContainer}>
+              <Text>{'\u2022'}</Text>
+              <Text style={styles.modalText}>Se o Del é de acima de 150 dias Então o Fill que usuário deve preencher é de 1,15 a 1,2</Text>
+            </View>
+
+            <View style={styles.modalButtons}>
+              <TouchableOpacity
+                style={styles.cancelButton}
+                onPress={toggleModal}
+              >
+                <Text style={styles.modalButton}>Fechar</Text>
+              </TouchableOpacity>
+
+
+            </View>
+          </View>
+        </View>
+      </Modal>
+
     </View>
   );
 }

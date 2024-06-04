@@ -18,7 +18,7 @@ export default StyleSheet.create({
     paddingHorizontal: 20,
     paddingTop: 40,
     paddingBottom: 10
-},
+  },
 
   title: {
     fontFamily: "Alata-Regular",
@@ -66,6 +66,7 @@ export default StyleSheet.create({
     borderWidth: 0.2,
     height: "auto",
     padding: width * 0.02,
+    marginBottom: height * 0.02,
     borderRadius: 4,
     backgroundColor: colors.backgroundInput,
   },
@@ -82,8 +83,41 @@ export default StyleSheet.create({
     alignSelf: "center",
   },
 
-  containerResultItems: {
-    
+  // NOTIFICATION
+
+  containerItemNotification: {
+    flexDirection: "row",
+    borderWidth: 0.2,
+    borderRadius: 4,
+    backgroundColor: colors.amareloBackground,
+    padding: 6,
+    alignItems: "center",
+    marginBottom: height * 0.02
+  },
+
+  containerImageNotification: {
+    justifyContent: "center",
+    width: "10%"
+  },
+
+  notificationIcon: {
+    width: width * 0.06,
+    height: height * 0.03,
+    marginRight: width * 0.02,
+  },
+
+  containerTextNotification: {
+    flex: 1,
+  },
+
+  notificationText: {
+    flexWrap: "wrap",
+    width: "100%"
+  },
+
+  underlinedText: {
+    textDecorationLine: 'underline',
+    fontWeight: "bold"
   },
 
 
@@ -143,6 +177,80 @@ export default StyleSheet.create({
     alignItems: "center",
     fontWeight: "bold",
     marginRight: 5,
+  },
+
+  // MODAL
+
+  modalContainer: {
+    flex: 1,
+    backgroundColor: colors.backgroundModal,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+
+  modalContent: {
+    backgroundColor: colors.background,
+    width: width * 0.8,
+    padding: 20,
+    borderWidth: 0.2,
+    borderRadius: 10,
+  },
+
+  modalTitle: {
+    fontWeight: "bold",
+    fontSize: 20,
+    marginBottom: 10,
+  },
+
+  modalItemContainer: {
+    flexDirection: "row",
+  },
+
+  modalText: {
+    fontSize: 18,
+    marginBottom: 20,
+    marginLeft: width * 0.02,
+    fontSize: 14,
+    flex: 1,
+    flexWrap: "wrap"
+  },
+
+  modalButtons: {
+    flexDirection: "row",
+    justifyContent: "flex-end",
+  },
+
+  modalButton: {
+    fontSize: 16,
+    fontWeight: "bold",
+    color: colors.verdePrincipal,
+  },
+
+  cancelButton: {
+    color: colors.verdePrincipal,
+    borderWidth: 1,
+    padding: 8,
+    borderColor: colors.verdePrincipal,
+    borderRadius: 8,
+    marginRight: 8,
+    width: width * 0.3,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+
+  excluirButton: {
+    backgroundColor: colors.vermelho,
+    borderWidth: 1,
+    padding: 8,
+    borderColor: colors.vermelho,
+    borderRadius: 8,
+    width: width * 0.3,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+
+  modalButtonDelete: {
+    color: colors.background,
   },
 
 });
