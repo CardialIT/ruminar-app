@@ -75,8 +75,8 @@ export function ContextProvider({ children }) {
 
   const calcularFDNTotal = () => {
     const total = dieta.selectedLivrarias.reduce((acc, livraria) => acc + (livraria.FDNAlimento || 0), 0);
-    updateDieta("fdnTotal", total);
-  };
+    updateDieta("fdnTotal", total.toFixed(2));
+  };
 
   const calcularMilhoEstimado = (amidoEstimado) => {
     let totalAmidoExistente = 0;
@@ -86,12 +86,12 @@ export function ContextProvider({ children }) {
       totalAmidoExistente += kgMs * (teorAmido / 100);
     });
 
-    const amidoTotalNecessario = ims * (amidoEstimado / 100);
+    const amidoTotalNecessario = ims * amidoEstimado;
     const amidoFaltando = amidoTotalNecessario - totalAmidoExistente;
     const milhoEstimado = amidoFaltando / 0.72;
 
     setMilhoEstimado(milhoEstimado.toFixed(2));
-  };
+  };
 
   const calcularMateriaSecaExistente = () => {
     const kgMsTotal = dieta.selectedLivrarias.reduce((acc, livraria) => acc + parseFloat(livraria.kgMs), 0);
