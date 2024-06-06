@@ -66,7 +66,7 @@ export default function CadastroDieta3Screen() {
                         <Text style={styles.listagemItemTitle}>Amido estimado</Text>
                         <TextInput
                             style={styles.inputField}
-                            placeholder="KG / MS"
+                            placeholder="em %"
                             value={amidoEstimado}
                             onChangeText={setAmidoEstimado}
                         // onChangeText={handleSelectLivraria}

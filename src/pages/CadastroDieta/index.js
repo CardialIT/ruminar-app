@@ -125,7 +125,7 @@ export default function CadastroDietaScreen() {
           />
 
           <Text style={styles.containerTitle}>
-            Produção Estimada:
+            Produção Estimada L/dia:
           </Text>
           <TextInput
             onChangeText={onChangeProducaoEstimada}
