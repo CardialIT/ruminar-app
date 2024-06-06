@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
     View,
     ScrollView,
@@ -15,18 +15,19 @@ import Toast from "react-native-toast-message";
 import { useContextProvider } from "../../context/AuthContext.js";
 
 export default function CadastroDieta2Screen() {
-    const { dieta, updateDieta, ims, fdn } = useContextProvider();
+    const { dieta, updateDieta, ims, fdn, calcularFDNAlimentos, calcularFDNTotal  } = useContextProvider();
     const navigation = useNavigation();
     // const [selectedLivrarias, setSelectedLivrarias] = useState([]);
 
-
     const handleSelectLivraria = (item) => {
         const updatedLivrarias = [...dieta.selectedLivrarias, item];
+
         updateDieta("selectedLivrarias", updatedLivrarias);
         navigation.navigate("CadastroDieta2Screen");
     };
 
     const renderSelectedLivrarias = () => {
+        console.log("Elementos selecionados"+ JSON.stringify(dieta.selectedLivrarias))
         return dieta.selectedLivrarias.map((livraria, index) => (
             <View key={index} style={styles.containerItemTitle}>
                 <Text style={styles.listagemItemTitle}>{livraria.nome}</Text>
@@ -44,7 +45,18 @@ export default function CadastroDieta2Screen() {
         updatedLivrarias[index].kgMs = text;
         updateDieta("selectedLivrarias", updatedLivrarias);
     };
+  
+    const handleProximo = () => {
+        calcularFDNAlimentos();
+        calcularFDNTotal();
+        navigation.navigate("CadastroDieta3Screen");
+    };
 
+    useEffect(() => {
+        calcularFDNTotal();
+      }, [dieta.selectedLivrarias]);
+    
+    
     return (
         <View style={styles.container}>
 
@@ -57,12 +69,12 @@ export default function CadastroDieta2Screen() {
                 <Text style={styles.title}>Nova Dieta</Text>
 
                 <TouchableOpacity onPress={() => navigation.navigate("DetalhesLivrariaScreen")}>
-                    <Image source={require("../../../assets/Fill.png")} style={styles.containerItem} />
+                 
                 </TouchableOpacity>
             </View>
 
             <View style={styles.secondContainer}>
-                <Text style={styles.listagemTitle}>Prencha os dados de FDN</Text>
+                <Text style={styles.listagemTitle}>Preencha os dados de FDN</Text>
 
                 <ScrollView style={styles.containerList}>
 
@@ -104,7 +116,8 @@ export default function CadastroDieta2Screen() {
                     <View style={styles.containerButton}>
                         <TouchableOpacity
                             onPress={() =>
-                                navigation.navigate("CadastroDieta3Screen")
+                                // navigation.navigate("CadastroDieta3Screen")
+                                handleProximo()
                             }
                             style={styles.createButton}
                         >

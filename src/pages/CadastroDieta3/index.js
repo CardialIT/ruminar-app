@@ -7,7 +7,7 @@ import {
     TouchableOpacity,
     Image,
     Modal
-} from "react-native";
+} from "react-native"; 
 import styles from "../CadastroDieta3/styles";
 import { useNavigation } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
@@ -17,7 +17,8 @@ import { useContextProvider } from "../../context/AuthContext.js";
 
 export default function CadastroDieta3Screen() {
     const navigation = useNavigation();
-    const { dieta } = useContextProvider();
+    const { dieta, calcularMilhoEstimado } = useContextProvider();
+    const [amidoEstimado, setAmidoEstimado] = useState("");
     const [selectedLivrarias, setSelectedLivrarias] = useState([]);
     const [isModalVisible, setModalVisible] = useState(false);
 
@@ -25,6 +26,18 @@ export default function CadastroDieta3Screen() {
         setModalVisible(!isModalVisible);
     };
 
+    const handleCalcularMilho = () => {
+        const amido = parseFloat(amidoEstimado);
+        if (!isNaN(amido)) {
+          calcularMilhoEstimado(amido);
+           navigation.navigate("DetalhesDieta");
+        } else {
+          Toast.show({
+            type: "error",
+            text1: "Valor de amido inválido",
+          });
+        }
+      };
 
     return (
         <View style={styles.container}>
@@ -38,13 +51,13 @@ export default function CadastroDieta3Screen() {
                 <Text style={styles.title}>Nova Dieta</Text>
 
                 <TouchableOpacity onPress={() => navigation.navigate("DetalhesLivrariaScreen")}>
-                    <Image source={require("../../../assets/Fill.png")} style={styles.containerItem} />
+                 
                 </TouchableOpacity>
 
             </View>
 
             <View style={styles.secondContainer}>
-                <Text style={styles.listagemTitle}>Prencha as informações relacionadas ao amido</Text>
+                <Text style={styles.listagemTitle}>Preencha as informações relacionadas ao amido</Text>
 
                 <ScrollView style={styles.containerList}>
 
@@ -54,6 +67,8 @@ export default function CadastroDieta3Screen() {
                         <TextInput
                             style={styles.inputField}
                             placeholder="KG / MS"
+                            value={amidoEstimado}
+                            onChangeText={setAmidoEstimado}
                         // onChangeText={handleSelectLivraria}
                         />
                     </View>
@@ -69,7 +84,7 @@ export default function CadastroDieta3Screen() {
                         </View>
 
                         <View style={styles.containerTextNotification}>
-                            <Text style={styles.notificationText}>Caso você tenha dúvidas sobre o preenchimento do Fill <Text style={styles.underlinedText}>clique aqui</Text>
+                            <Text style={styles.notificationText}>Caso você tenha dúvidas sobre o preenchimento do Amido estimado <Text style={styles.underlinedText}>clique aqui</Text>
                             </Text>
                         </View>
 
@@ -77,9 +92,7 @@ export default function CadastroDieta3Screen() {
 
                     <View style={styles.containerButton}>
                         <TouchableOpacity
-                            onPress={() =>
-                                navigation.navigate("CadastroDieta3Screen")
-                            }
+                            onPress={handleCalcularMilho}
                             style={styles.createButton}
                         >
                             <Text style={styles.textButton}>VER RESUMO</Text>

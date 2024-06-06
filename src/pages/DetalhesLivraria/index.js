@@ -38,10 +38,7 @@ export default function DetalhesLivrariaScreen({ route }) {
         <Text style={styles.title}>Detalhes Livraria</Text>
 
         <TouchableOpacity>
-          <Image
-            source={require("../../../assets/Fill.png")}
-            style={styles.containerImage}
-          />
+        
         </TouchableOpacity>
       </View>
 

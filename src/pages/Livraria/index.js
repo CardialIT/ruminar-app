@@ -12,6 +12,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { useNavigation,  useIsFocused } from "@react-navigation/native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { getLivraria, deleteLivraria } from "../../services/api.js";
+import { Feather } from "@expo/vector-icons";
 
 export default function LivrariaScreen() {
   const navigation = useNavigation();
@@ -66,10 +67,7 @@ export default function LivrariaScreen() {
           <Text style={styles.title}>Livraria</Text>
 
           <TouchableOpacity>
-            <Image
-              source={require("../../../assets/Fill.png")}
-              style={styles.containerItem}
-            />
+          
           </TouchableOpacity>
         </View>
 
@@ -100,15 +98,14 @@ export default function LivrariaScreen() {
                 <Text style={styles.listTextItem}>{item.nome}</Text>
 
                 <View style={styles.containerImages}>
-                  <Image
-                    source={require("../../assets/Edit.png")}
-                    style={styles.containerInputItem}
-                  />
+                 
                   <TouchableOpacity onPress={() => handleDeletePress(item)}>
-                    <Image
-                      source={require("../../assets/Trash.png")}
-                      style={styles.containerInputItem}
-                    />
+                  <Feather
+            name="trash-2"
+            size={20}
+            color="#FF0000"
+          
+          /> 
                   </TouchableOpacity>
                 </View>
                 

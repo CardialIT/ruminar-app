@@ -98,7 +98,7 @@ export default function CadastroDietaScreen() {
         </TouchableOpacity>
         <Text style={styles.title}>Nova Dieta</Text>
         <TouchableOpacity onPress={() => navigation.navigate("DetalhesLivrariaScreen")}>
-          <Image source={require("../../../assets/Fill.png")} style={styles.containerItem} />
+       
         </TouchableOpacity>
       </View>
 

@@ -65,10 +65,10 @@ export default function ListagemLivrariaScreen() {
                 <Text style={styles.title}>Livraria</Text>
 
                 <TouchableOpacity>
-                    <Image
+                    {/* <Image
                         source={require("../../../assets/Fill.png")}
                         style={styles.containerImage}
-                    />
+                    /> */}
                 </TouchableOpacity>
             </View>
 
