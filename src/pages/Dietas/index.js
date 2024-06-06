@@ -35,10 +35,10 @@ export default function DietasScreen() {
         <Text style={styles.title}>Dietas</Text>
 
         <TouchableOpacity>
-          <Image
+          {/* <Image
             source={require("../../../assets/Fill.png")}
             style={styles.containerItem}
-          />
+          /> */}
         </TouchableOpacity>
       </View>
 

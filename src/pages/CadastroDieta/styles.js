@@ -21,7 +21,7 @@ export default StyleSheet.create({
   },
 
   title: {
-    fontFamily: "Alata-Regular",
+  
     fontWeight: "bold",
     fontSize: 24,
     color: colors.background,

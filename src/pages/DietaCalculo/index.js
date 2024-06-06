@@ -22,10 +22,10 @@ export default function DietasCalculo() {
         <TouchableOpacity
           onPress={() => navigation.navigate("DetalhesLivrariaScreen")}
         >
-          <Image
+          {/* <Image
             source={require("../../../assets/Fill.png")}
             style={styles.containerItem}
-          />
+          /> */}
         </TouchableOpacity>
       </View>
 

@@ -42,6 +42,7 @@ export default StyleSheet.create({
     flex: 1,
     marginTop: height * 0.02,
     padding: width * 0.06,
+
     alignItems: "center",
   },
 
@@ -49,7 +50,7 @@ export default StyleSheet.create({
     paddingHorizontal: width * 0.02,
     justifyContent: "center",
     alignItems: "center",
-    justifyContent: "space-between",
+    justifyContent: "space-between"
   },
 
   containerPropsItens: {

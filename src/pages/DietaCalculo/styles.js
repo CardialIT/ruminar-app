@@ -33,14 +33,14 @@ export default StyleSheet.create({
   },
 
   title: {
-    fontFamily: "Alata-Regular",
+
     fontWeight: "bold",
     fontSize: 24,
     color: colors.background,
   },
 
   titleHead: {
-    fontFamily: "Alata-Regular",
+
     fontWeight: "bold",
     fontSize: 25,
     color: "#000000",

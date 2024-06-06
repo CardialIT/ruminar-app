@@ -1,10 +1,13 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useState, useEffect } from "react";
 import Toast from "react-native-toast-message";
 
 const AuthContext = createContext();
 
 export function ContextProvider({ children }) {
-  const [livrariasSelecionadas, setLivrariasSelecionadas] = useState([0]);
+  const [livrariasSelecionadas, setLivrariasSelecionadas] = useState([]);
+  const [milhoEstimado, setMilhoEstimado] = useState(0);
+  const [materiaSecaExistente, setMateriaSecaExistente] = useState(0);
+  const [fracaoProteica, setFracaoProteica] = useState(0);
 
   const handleAddLivraria = (livrariaSelecionada) => {
     if (livrariasSelecionadas.length < 3) {
@@ -16,7 +19,7 @@ export function ContextProvider({ children }) {
       });
     }
   };
-  
+
   const [dieta, setDieta] = useState({
     nome_da_dieta: "",
     peso_medio: "",
@@ -25,7 +28,10 @@ export function ContextProvider({ children }) {
     fill_preenchimento_ruminal: "",
     ims: 0,
     fdn: 0,
-    selectedLivrarias: [], // tentativa
+    selectedLivrarias: [],
+    fdnTotal: 0,
+    amidoEstimado: 0,
+    milhoEstimado: 0,
   });
 
   const [nomeDieta, setNomeDieta] = useState("");
@@ -44,8 +50,7 @@ export function ContextProvider({ children }) {
   };
 
   const calcularIMS_FDN = () => {
-    const { peso_medio, producao_estimada, del, fill_preenchimento_ruminal } =
-      dieta;
+    const { peso_medio, producao_estimada, del, fill_preenchimento_ruminal } = dieta;
     const peso = parseFloat(peso_medio.replace(",", "."));
     const producao = parseFloat(producao_estimada.replace(",", "."));
     const dell = parseInt(del);
@@ -58,12 +63,68 @@ export function ContextProvider({ children }) {
     updateDieta("fdn", fdn.toFixed(2));
   };
 
+  const calcularFDNAlimentos = () => {
+    const updatedLivrarias = dieta.selectedLivrarias.map(livraria => {
+      const kgMs = parseFloat(livraria.kgMs);
+      const teorFDN = parseFloat(livraria.fdn);
+      const FDNAlimento = kgMs * (teorFDN / 100);
+      return { ...livraria, FDNAlimento };
+    });
+    updateDieta("selectedLivrarias", updatedLivrarias);
+  };
+
+  const calcularFDNTotal = () => {
+    const total = dieta.selectedLivrarias.reduce((acc, livraria) => acc + (livraria.FDNAlimento || 0), 0);
+    updateDieta("fdnTotal", total);
+  };
+
+  const calcularMilhoEstimado = (amidoEstimado) => {
+    let totalAmidoExistente = 0;
+    dieta.selectedLivrarias.forEach(livraria => {
+      const kgMs = parseFloat(livraria.kgMs);
+      const teorAmido = parseFloat(livraria.amido);
+      totalAmidoExistente += kgMs * (teorAmido / 100);
+    });
+
+    const amidoTotalNecessario = ims * (amidoEstimado / 100);
+    const amidoFaltando = amidoTotalNecessario - totalAmidoExistente;
+    const milhoEstimado = amidoFaltando / 0.72;
+
+    setMilhoEstimado(milhoEstimado.toFixed(2));
+  };
+
+  const calcularMateriaSecaExistente = () => {
+    const kgMsTotal = dieta.selectedLivrarias.reduce((acc, livraria) => acc + parseFloat(livraria.kgMs), 0);
+    const totalMateriaSecaExistente = kgMsTotal + parseFloat(milhoEstimado);
+    setMateriaSecaExistente(totalMateriaSecaExistente.toFixed(2));
+  };
+
+  const calcularFracaoProteica = () => {
+    const totalFracaoProteica = (parseFloat(ims) - parseFloat(materiaSecaExistente)) / 2;
+    setFracaoProteica(totalFracaoProteica.toFixed(2));
+  };
+
+  useEffect(() => {
+    calcularFDNTotal();
+  }, [dieta.selectedLivrarias]);
+
+  useEffect(() => {
+    calcularMateriaSecaExistente();
+  }, [dieta.selectedLivrarias, milhoEstimado]);
+
+  useEffect(() => {
+    calcularFracaoProteica();
+  }, [ims, materiaSecaExistente]);
+
   return (
     <AuthContext.Provider
       value={{
         dieta,
         updateDieta,
         calcularIMS_FDN,
+        calcularFDNAlimentos,
+        calcularFDNTotal,
+        calcularMilhoEstimado,
         nomeDieta,
         setNomeDieta,
         pesoMedio,
@@ -79,7 +140,10 @@ export function ContextProvider({ children }) {
         fdn,
         setFdn,
         livrariasSelecionadas,
-        handleAddLivraria
+        handleAddLivraria,
+        milhoEstimado,
+        materiaSecaExistente,
+        fracaoProteica
       }}
     >
       {children}

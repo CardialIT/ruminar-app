@@ -25,10 +25,10 @@ export default function HomeScreen() {
     <View style={styles.container}>
       <View style={styles.firstContainer}>
         <TouchableOpacity>
-          <Image
+          {/* <Image
             source={require("../../../assets/Fill.png")}
             style={styles.containerItem}
-          />
+          /> */}
         </TouchableOpacity>
       </View>
 
@@ -47,7 +47,7 @@ export default function HomeScreen() {
         />
         <View style={styles.overlay}>
           <Text style={styles.imageTitle}>Dietas</Text>
-          <Text style={styles.imageSubtitle}>Lorem ipsum dolor sit amet</Text>
+          <Text style={styles.imageSubtitle}>Crie a dieta ideal</Text>
         </View>
       </TouchableOpacity>
 
@@ -61,7 +61,7 @@ export default function HomeScreen() {
         />
         <View style={styles.overlay}>
           <Text style={styles.imageTitle}>Livraria</Text>
-          <Text style={styles.imageSubtitle}>Lorem ipsum dolor sit amet</Text>
+          <Text style={styles.imageSubtitle}>Adicione alimentos importantes</Text>
         </View>
       </TouchableOpacity>
     </View>

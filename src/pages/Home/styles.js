@@ -36,7 +36,7 @@ export default StyleSheet.create({
     },
 
     title: {
-        fontFamily: "Alata-Regular",
+   
         fontWeight: "bold",
         fontSize: 24,
         color: colors.text,
@@ -44,7 +44,7 @@ export default StyleSheet.create({
   
 
     subtitle: {
-        fontFamily: "Alata-Regular",
+
         fontWeight: "400",
         fontSize: 14,
         color: colors.cinza,
@@ -70,14 +70,14 @@ export default StyleSheet.create({
     },
 
     imageTitle: {
-        fontFamily: "Alata-Regular",
+
         fontWeight: "bold",
         fontSize: 24,
         color: colors.background
     },
 
     imageSubtitle: {
-        fontFamily: "Alata-Regular",
+
         fontWeight: "400",
         fontSize: 12,
         color: colors.background
