@@ -17,7 +17,7 @@ import { useContextProvider } from "../../context/AuthContext.js";
 
 export default function CadastroDieta3Screen() {
     const navigation = useNavigation();
-    const { dieta, calcularMilhoEstimado } = useContextProvider();
+    const { dieta, calcularMilhoEstimado, calcularMineral} = useContextProvider();
     const [amidoEstimado, setAmidoEstimado] = useState("");
     const [selectedLivrarias, setSelectedLivrarias] = useState([]);
     const [isModalVisible, setModalVisible] = useState(false);
@@ -30,7 +30,8 @@ export default function CadastroDieta3Screen() {
         const amido = parseFloat(amidoEstimado);
         if (!isNaN(amido)) {
           calcularMilhoEstimado(amido);
-           navigation.navigate("DetalhesDieta");
+          calcularMineral(); 
+          navigation.navigate("DetalhesDieta");
         } else {
           Toast.show({
             type: "error",

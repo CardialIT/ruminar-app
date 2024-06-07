@@ -7,8 +7,18 @@ import { useContextProvider } from "../../context/AuthContext.js";
 
 export default function DetalhesDieta({ route }) {
   const navigation = useNavigation();
-  const { dieta, milhoEstimado, materiaSecaExistente, fracaoProteica, calcularMineral } = useContextProvider();
+  const { dieta, milhoEstimado, materiaSecaExistente, fracaoProteica, mineral } = useContextProvider();
   const { fdnTotal } = dieta;
+
+  const renderSelectedLivrarias = () => {
+   
+    return dieta.selectedLivrarias.map((livraria, index) => (
+      <View key={livraria.id} style={styles.itensPercentageC}>
+        <Text style={styles.itens}>{livraria.nome}: {livraria.kgMs}</Text>
+        <Text style={styles.percetange}>em MS</Text>
+    </View>
+    ));
+  };
 
   return (
     <View style={styles.container}>
@@ -30,6 +40,8 @@ export default function DetalhesDieta({ route }) {
       <View style={styles.secondContainer}>
         <View style={styles.containerProps}>
           <View style={styles.containerPropsItens}>
+          {renderSelectedLivrarias()}
+
             <View style={styles.itensPercentageC}>
               <Text style={styles.itens}>FDN Total: {fdnTotal.toFixed(2)}</Text>
               <Text style={styles.percetange}> em MS</Text>
@@ -51,10 +63,10 @@ export default function DetalhesDieta({ route }) {
             </View>
 
             <View style={styles.itensPercentageC}>
-              <Text style={styles.itens}>Mineral: {calcularMineral}</Text>
+              <Text style={styles.itens}>Mineral: {mineral}</Text>
               <Text style={styles.percetange}> em KG</Text>
             </View>
-
+         
           </View>
         </View>
       </View>

@@ -72,6 +72,7 @@ export default function CadastroDietaScreen() {
     setFdn(fdn);
     setIms(ims);
 
+    updateDieta("producao_estimada", producao.toFixed(2));
     updateDieta("ims", ims.toFixed(2));
     updateDieta("fdn", fdn.toFixed(2)) / 100;
     

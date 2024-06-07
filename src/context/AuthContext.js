@@ -23,10 +23,10 @@ export function ContextProvider({ children }) {
 
   const [dieta, setDieta] = useState({
     nome_da_dieta: "",
-    peso_medio: "",
-    producao_estimada: "",
-    del: "",
-    fill_preenchimento_ruminal: "",
+    peso_medio: 0,
+    producao_estimada: 0,
+    del: 0,
+    fill_preenchimento_ruminal: 0,
     ims: 0,
     fdn: 0,
     selectedLivrarias: [],
@@ -42,6 +42,7 @@ export function ContextProvider({ children }) {
   const [fillPreenchimentoRuminal, setFillPreenchimentoRuminal] = useState(0);
   const [ims, setIms] = useState(0);
   const [fdn, setFdn] = useState(0);
+
 
 
   const updateDieta = (field, value) => {
@@ -95,7 +96,13 @@ export function ContextProvider({ children }) {
   };
 
 
-
+  const calcularMineral = () => {
+    const { producao_estimada } = dieta;
+    console.log("producao estimada"+producao_estimada)
+    const mineralCalculado = producao_estimada * 0.14;
+    setMineral(mineralCalculado.toFixed(2));
+    console.log("mineral" + mineral)
+  };
 
 
   useEffect(() => {
@@ -137,7 +144,8 @@ export function ContextProvider({ children }) {
         milhoEstimado,
         materiaSecaExistente,
         fracaoProteica,
-        
+        mineral,
+        calcularMineral
       }}
     >
       {children}
