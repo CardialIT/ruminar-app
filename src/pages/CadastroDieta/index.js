@@ -74,7 +74,17 @@ export default function CadastroDietaScreen() {
 
     updateDieta("ims", ims.toFixed(2));
     updateDieta("fdn", fdn.toFixed(2)) / 100;
+    
   };
+
+  const calcularMineral = () => {
+    const producaoMineral = parseFloat(producaoEstimada.replace(",", "."))
+    const mineral = producaoMineral * 0.14;
+
+    setMineral(mineral.toFixed(2));
+    console.log("mineral" + mineral);
+    console.log("producaoEstimada" + producao);
+  }
 
   const postCadastroDieta = async () => {
     try {

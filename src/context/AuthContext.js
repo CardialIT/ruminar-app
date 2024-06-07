@@ -8,6 +8,7 @@ export function ContextProvider({ children }) {
   const [milhoEstimado, setMilhoEstimado] = useState(0);
   const [materiaSecaExistente, setMateriaSecaExistente] = useState(0);
   const [fracaoProteica, setFracaoProteica] = useState(0);
+  const [mineral, setMineral] = useState(0);
 
   const handleAddLivraria = (livrariaSelecionada) => {
     if (livrariasSelecionadas.length < 3) {
@@ -41,6 +42,7 @@ export function ContextProvider({ children }) {
   const [fillPreenchimentoRuminal, setFillPreenchimentoRuminal] = useState(0);
   const [ims, setIms] = useState(0);
   const [fdn, setFdn] = useState(0);
+
 
   const updateDieta = (field, value) => {
     setDieta((prevDieta) => ({
@@ -92,6 +94,10 @@ export function ContextProvider({ children }) {
     setFracaoProteica(totalFracaoProteica.toFixed(2));
   };
 
+
+
+
+
   useEffect(() => {
     calcularFDNTotal();
   }, [dieta.selectedLivrarias]);
@@ -130,7 +136,7 @@ export function ContextProvider({ children }) {
         handleAddLivraria,
         milhoEstimado,
         materiaSecaExistente,
-        fracaoProteica
+        fracaoProteica,        
       }}
     >
       {children}
