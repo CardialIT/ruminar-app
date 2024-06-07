@@ -49,20 +49,6 @@ export function ContextProvider({ children }) {
     }));
   };
 
-  const calcularIMS_FDN = () => {
-    const { peso_medio, producao_estimada, del, fill_preenchimento_ruminal } = dieta;
-    const peso = parseFloat(peso_medio.replace(",", "."));
-    const producao = parseFloat(producao_estimada.replace(",", "."));
-    const dell = parseInt(del);
-    const fill = parseFloat(fill_preenchimento_ruminal.replace(",", "."));
-
-    const ims = (peso * 0.02) + (producao / 3);
-    const fdn = peso * fill;
-
-    updateDieta("ims", ims.toFixed(2));
-    updateDieta("fdn", fdn.toFixed(2));
-  };
-
   const calcularFDNAlimentos = () => {
     const updatedLivrarias = dieta.selectedLivrarias.map(livraria => {
       const kgMs = parseFloat(livraria.kgMs);
@@ -82,7 +68,9 @@ export function ContextProvider({ children }) {
     let totalAmidoExistente = 0;
     dieta.selectedLivrarias.forEach(livraria => {
       const kgMs = parseFloat(livraria.kgMs);
+      console.log("kgMs" + kgMs);
       const teorAmido = parseFloat(livraria.amido);
+      console.log("teorAmido" + teorAmido);
       totalAmidoExistente += kgMs * (teorAmido / 100);
     });
 
@@ -121,7 +109,6 @@ export function ContextProvider({ children }) {
       value={{
         dieta,
         updateDieta,
-        calcularIMS_FDN,
         calcularFDNAlimentos,
         calcularFDNTotal,
         calcularMilhoEstimado,

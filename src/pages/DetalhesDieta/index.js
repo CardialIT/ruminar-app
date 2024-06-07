@@ -31,7 +31,7 @@ export default function DetalhesDieta({ route }) {
         <View style={styles.containerProps}>
           <View style={styles.containerPropsItens}>
             <View style={styles.itensPercentageC}>
-              <Text style={styles.itens}>FDN Total: {fdnTotal}</Text>
+              <Text style={styles.itens}>FDN Total: {fdnTotal.toFixed(2)}</Text>
               <Text style={styles.percetange}> em MS</Text>
             </View>
 

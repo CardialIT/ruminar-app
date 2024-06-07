@@ -26,6 +26,7 @@ export default function CadastroDietaScreen() {
   const [del, setDel] = useState("");
   const [fillPreenchimentoRuminal, setFillPreenchimentoRuminal] = useState("");
   const [isModalVisible, setModalVisible] = useState(false);
+  // const { calcularIMS_FDN } = useContextProvider();
 
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
@@ -63,15 +64,16 @@ export default function CadastroDietaScreen() {
     const producao = parseFloat(producaoEstimada.replace(",", "."));
     const dell = parseInt(del.replace(",", "."));
     const fill = parseFloat(fillPreenchimentoRuminal.replace(",", "."));
-
+    const fill_porcento = fill / 100;
+    
     const ims = (peso * 0.02) + (producao / 3);
-    const fdn = peso * fill;
+    const fdn = peso * fill_porcento;
 
     setFdn(fdn);
     setIms(ims);
 
     updateDieta("ims", ims.toFixed(2));
-    updateDieta("fdn", fdn.toFixed(2));
+    updateDieta("fdn", fdn.toFixed(2)) / 100;
   };
 
   const postCadastroDieta = async () => {
@@ -141,6 +143,7 @@ export default function CadastroDietaScreen() {
             placeholder={`Digite os dias de lactação (Del):`}
             style={styles.containerInput}
           />
+          
 
           {/* NOTIFICATION */}
           <TouchableOpacity
@@ -167,6 +170,7 @@ export default function CadastroDietaScreen() {
             placeholder={`Digite o fill - preenchimento ruminal:`}
             style={styles.containerInput}
           />
+          
 
         </View>
 
