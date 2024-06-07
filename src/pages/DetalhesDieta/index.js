@@ -50,7 +50,7 @@ export default function DetalhesDieta({ route }) {
               <Text style={styles.percetange}> em MS</Text>
             </View>
 
-            <View style={styles.itensPercentage}>
+            <View style={styles.itensPercentageC}>
               <Text style={styles.itens}>Mineral: {calcularMineral}</Text>
               <Text style={styles.percetange}> em KG</Text>
             </View>
