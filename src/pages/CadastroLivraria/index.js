@@ -12,11 +12,14 @@ import { useNavigation } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
 import { postLivraria } from "../../services/api.js";
 import Toast from "react-native-toast-message";
+import Loading from "../../components/LoadingElement/index.js";
+import { useContextProvider } from "../../context/AuthContext.js";
 
 export default function CadastroLivrariaScreen() {
   const [cadastroStatus, setCadastroStatus] = useState(null);
   const navigation = useNavigation();
   const [modalVisible, setModalVisible] = useState(false);
+  const {loading, setLoading } = useContextProvider();
 
   const [livro, setLivro] = useState({
     nome: "",
@@ -39,6 +42,7 @@ export default function CadastroLivrariaScreen() {
   };
 
   const postCadastroLivraria = async () => {
+    setLoading(true);
     try {
       await postLivraria(livro);
       setCadastroStatus("success");
@@ -50,7 +54,19 @@ export default function CadastroLivrariaScreen() {
     } catch (error) {
       setCadastroStatus("failed");
       console.error("Erro ao cadastrar livro:", error);
+      Toast.show({
+        type: "error",
+        text1: "Erro ao cadastrar livro",
+      });
+    } finally {
+      setLoading(false); 
     }
+  };
+  
+
+  const getKeyboardType = (fieldName) => {
+    const numericFields = ["ms", "pb", "pndr", "pdr", "proteina_soluvel", "fdn_efetivo", "ndt", "fdn", "cnf", "amido", "ee"];
+    return numericFields.includes(fieldName) ? "numeric" : "default";
   };
 
   return (
@@ -83,6 +99,7 @@ export default function CadastroLivrariaScreen() {
               onChangeText={handleInputChange(fieldName)}
               placeholder={`Digite o ${fieldName}`}
               style={styles.containerInput}
+              keyboardType={getKeyboardType(fieldName)}
             />
           </View>
         ))}
@@ -97,6 +114,7 @@ export default function CadastroLivrariaScreen() {
         </View>
       </ScrollView>
       <Toast ref={(ref) => Toast.setRef(ref)} />
+      {loading && <Loading />}
     </View>
   );
 }

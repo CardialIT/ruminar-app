@@ -8,16 +8,18 @@ import {
     Image,
     Modal
 } from "react-native"; 
+import Toast from "react-native-toast-message";
 import styles from "../CadastroDieta3/styles";
 import { useNavigation } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
 import { postDieta } from "../../services/api.js";
 import { useContextProvider } from "../../context/AuthContext.js";
+import Loading from "../../components/LoadingElement/index.js";
 
 
 export default function CadastroDieta3Screen() {
     const navigation = useNavigation();
-    const { dieta, calcularMilhoEstimado, calcularMineral} = useContextProvider();
+    const { dieta, calcularMilhoEstimado, calcularMineral, loading, setLoading } = useContextProvider();
     const [amidoEstimado, setAmidoEstimado] = useState("");
     const [selectedLivrarias, setSelectedLivrarias] = useState([]);
     const [isModalVisible, setModalVisible] = useState(false);
@@ -27,16 +29,26 @@ export default function CadastroDieta3Screen() {
     };
 
     const handleCalcularMilho = () => {
-        const amido = parseFloat(amidoEstimado);
+         const amido = parseFloat(amidoEstimado);
         if (!isNaN(amido)) {
-          calcularMilhoEstimado(amido);
-          calcularMineral(); 
-          navigation.navigate("DetalhesDieta");
+            setLoading(true);
+            try {
+                calcularMilhoEstimado(amido);
+                calcularMineral();
+                navigation.navigate("DetalhesDieta");
+            } catch (error) {
+                Toast.show({
+                    type: "error",
+                    text1: "Erro ao calcular milho",
+                });
+            } finally {
+                setLoading(false);
+            }
         } else {
-          Toast.show({
-            type: "error",
-            text1: "Valor de amido inválido",
-          });
+            Toast.show({
+                type: "error",
+                text1: "Valor de amido inválido",
+            });
         }
       };
 
@@ -70,6 +82,7 @@ export default function CadastroDieta3Screen() {
                             placeholder="em %"
                             value={amidoEstimado}
                             onChangeText={setAmidoEstimado}
+                            keyboardType="numeric"
                         // onChangeText={handleSelectLivraria}
                         />
                     </View>
@@ -134,6 +147,7 @@ export default function CadastroDieta3Screen() {
                 </Modal>
 
             </View>
+            {loading && <Loading />}
         </View>
     )
 }

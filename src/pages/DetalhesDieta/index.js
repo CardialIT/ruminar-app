@@ -4,10 +4,11 @@ import { useNavigation } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
 import styles from "../DetalhesLivraria/styles";
 import { useContextProvider } from "../../context/AuthContext.js";
+import Loading from "../../components/LoadingElement/index.js";
 
 export default function DetalhesDieta({ route }) {
   const navigation = useNavigation();
-  const { dieta, milhoEstimado, materiaSecaExistente, fracaoProteica, mineral, materiaSecaFaltando } = useContextProvider();
+  const { dieta, milhoEstimado, materiaSecaExistente, fracaoProteica, mineral, materiaSecaFaltando, loading, setLoading } = useContextProvider();
   const { fdnTotal } = dieta;
 
   const renderSelectedLivrarias = () => {
@@ -75,6 +76,7 @@ export default function DetalhesDieta({ route }) {
           </View>
         </View>
       </View>
+      {loading && <Loading />}
     </View>
   );
 }

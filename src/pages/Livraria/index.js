@@ -13,6 +13,8 @@ import { useNavigation,  useIsFocused } from "@react-navigation/native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { getLivraria, deleteLivraria } from "../../services/api.js";
 import { Feather } from "@expo/vector-icons";
+import Loading from "../../components/LoadingElement/index.js";
+import { useContextProvider } from "../../context/AuthContext.js";
 
 export default function LivrariaScreen() {
   const navigation = useNavigation();
@@ -21,18 +23,22 @@ export default function LivrariaScreen() {
   const [livrariaToDelete, setLivrariaToDelete] = useState(null);
   const isFocused = useIsFocused();
   const [livrariaAdicionada, setLivrariaAdicionada] = useState(false);
+  const {loading, setLoading } = useContextProvider();
 
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
   };
 
   async function fetchLivrarias() {
+    setLoading(true);
     try {
       const livrariasData = await getLivraria();
       console.log("Dados recebidos:", livrariasData);
       setLivrarias(livrariasData);
     } catch (error) {
       console.error("Erro ao buscar livrarias:", error);
+    } finally {
+      setLoading(false);
     }
   }
 
@@ -46,6 +52,7 @@ export default function LivrariaScreen() {
   };
 
   const confirmDelete = async () => {
+    setLoading(true);
     try {
       console.log("Excluindo livraria:", livrariaToDelete);
       await deleteLivraria(livrariaToDelete.id);
@@ -53,6 +60,8 @@ export default function LivrariaScreen() {
       toggleModal();
     } catch (error) {
       console.error("Erro ao excluir livraria:", error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -147,6 +156,7 @@ export default function LivrariaScreen() {
           </View>
         </View>
       </Modal>
+      {loading && <Loading />}
     </GestureHandlerRootView>
   );
 }
