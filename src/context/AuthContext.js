@@ -9,6 +9,7 @@ export function ContextProvider({ children }) {
   const [materiaSecaExistente, setMateriaSecaExistente] = useState(0);
   const [fracaoProteica, setFracaoProteica] = useState(0);
   const [mineral, setMineral] = useState(0);
+  const [loading, setLoading] = useState(false);
 
   const handleAddLivraria = (livrariaSelecionada) => {
     if (livrariasSelecionadas.length < 3) {
@@ -145,7 +146,9 @@ export function ContextProvider({ children }) {
         materiaSecaExistente,
         fracaoProteica,
         mineral,
-        calcularMineral
+        calcularMineral,
+        loading,
+        setLoading,
       }}
     >
       {children}

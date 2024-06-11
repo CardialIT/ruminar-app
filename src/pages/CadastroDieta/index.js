@@ -17,6 +17,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { postDieta } from "../../services/api.js";
 //import Toast from "react-native-toast-message";
 import { useContextProvider } from "../../context/AuthContext.js";
+import Loading from "../../components/LoadingElement/index.js";
 
 
 export default function CadastroDietaScreen() {
@@ -33,7 +34,7 @@ export default function CadastroDietaScreen() {
   };
 
 
-  const { dieta, updateDieta, setFdn, setIms, ims, fdn } = useContextProvider();
+  const { dieta, updateDieta, setFdn, setIms, ims, fdn, loading, setLoading } = useContextProvider();
   const [cadastroStatus, setCadastroStatus] = useState(null);
   const navigation = useNavigation();
 
@@ -88,6 +89,7 @@ export default function CadastroDietaScreen() {
   }
 
   const postCadastroDieta = async () => {
+    setLoading(true);
     try {
       calcularIMS_FDN();
       await postDieta(dieta);
@@ -100,6 +102,8 @@ export default function CadastroDietaScreen() {
     } catch (error) {
       setCadastroStatus("failed");
       console.error("Erro ao cadastrar dieta:", error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -126,6 +130,7 @@ export default function CadastroDietaScreen() {
             onChangeText={onChangeNomeDaDieta}
             placeholder={`Digite o nome da dieta:`}
             style={styles.containerInput}
+            keyboardType="default"
           />
 
           <Text style={styles.containerTitle}>
@@ -135,6 +140,7 @@ export default function CadastroDietaScreen() {
             onChangeText={onChangePesoMedio}
             placeholder={`Digite o peso médio (KG):`}
             style={styles.containerInput}
+            keyboardType="numeric"
           />
 
           <Text style={styles.containerTitle}>
@@ -144,6 +150,7 @@ export default function CadastroDietaScreen() {
             onChangeText={onChangeProducaoEstimada}
             placeholder={`Digite a produção estimada:`}
             style={styles.containerInput}
+            keyboardType="numeric"
           />
 
           <Text style={styles.containerTitle}>
@@ -153,6 +160,7 @@ export default function CadastroDietaScreen() {
             onChangeText={onChangeDel}
             placeholder={`Digite os dias de lactação (Del):`}
             style={styles.containerInput}
+            keyboardType="numeric"
           />
           
 
@@ -180,6 +188,7 @@ export default function CadastroDietaScreen() {
             onChangeText={onChangeFillPreenchimentoRuminal}
             placeholder={`Digite o fill - preenchimento ruminal:`}
             style={styles.containerInput}
+            keyboardType="numeric"
           />
           
 
@@ -209,7 +218,7 @@ export default function CadastroDietaScreen() {
       </ScrollView>
       {/* <Toast ref={(ref) => Toast.setRef(ref)} /> */}
       
-
+      {loading && <Loading />}
       {/* MODAL */}
       
       <Modal
@@ -251,7 +260,7 @@ export default function CadastroDietaScreen() {
           </View>
         </View>
       </Modal>
-
+      {loading && <Loading />}
     </View>
   );
 }

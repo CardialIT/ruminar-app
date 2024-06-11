@@ -14,20 +14,24 @@ import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { getLivraria } from "../../services/api.js";
 import styles from "../ListagemLivraria/styles";
 import { useContextProvider } from "../../context/AuthContext.js";
+import Loading from "../../components/LoadingElement/index.js";
 
 export default function ListagemLivrariaScreen() {
     const navigation = useNavigation();
     const [livrarias, setLivrarias] = useState([]);
-    const { updateDieta, dieta } = useContextProvider();
+    const { updateDieta, dieta, loading, setLoading } = useContextProvider();
 
     useEffect(() => {
         async function fetchLivrarias() {
+          setLoading(true);
           try {
             const livrariasData = await getLivraria();
             console.log("Dados recebidos:", livrariasData);
             setLivrarias(livrariasData);
           } catch (error) {
             console.error("Erro ao buscar livrarias:", error);
+          } finally {
+            setLoading(false);
           }
         }
         fetchLivrarias();
@@ -90,6 +94,7 @@ export default function ListagemLivrariaScreen() {
                     )}
                 />
             </View>
+            {loading && <Loading />}
         </View>
     )
 }

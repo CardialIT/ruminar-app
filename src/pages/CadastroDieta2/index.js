@@ -13,9 +13,10 @@ import { Ionicons } from "@expo/vector-icons";
 import { postDieta } from "../../services/api.js";
 import Toast from "react-native-toast-message";
 import { useContextProvider } from "../../context/AuthContext.js";
+import Loading from "../../components/LoadingElement/index.js";
 
 export default function CadastroDieta2Screen() {
-    const { dieta, updateDieta, ims, fdn, calcularFDNAlimentos, calcularFDNTotal  } = useContextProvider();
+    const { dieta, updateDieta, ims, fdn, calcularFDNAlimentos, calcularFDNTotal, loading, setLoading  } = useContextProvider();
     const navigation = useNavigation();
     // const [selectedLivrarias, setSelectedLivrarias] = useState([]);
 
@@ -35,6 +36,7 @@ export default function CadastroDieta2Screen() {
                     style={styles.inputField}
                     placeholder="KG / MS"
                     onChangeText={(text) => handleInputChange(text, index)}
+                    keyboardType="numeric"
                 />
             </View>
         ));
@@ -47,9 +49,14 @@ export default function CadastroDieta2Screen() {
     };
   
     const handleProximo = () => {
-        calcularFDNAlimentos();
-        calcularFDNTotal();
-        navigation.navigate("CadastroDieta3Screen");
+        setLoading(true);
+        try {
+            calcularFDNAlimentos();
+            calcularFDNTotal();
+            navigation.navigate("CadastroDieta3Screen");
+        } finally {
+            setLoading(false);
+        }
     };
 
     useEffect(() => {
@@ -123,12 +130,10 @@ export default function CadastroDieta2Screen() {
                         >
                             <Text style={styles.textButton}>PRÓXIMO</Text>
                         </TouchableOpacity>
-
                     </View>
-
                 </ScrollView>
-
             </View>
+            {loading && <Loading />}
         </View >
     )
 }
