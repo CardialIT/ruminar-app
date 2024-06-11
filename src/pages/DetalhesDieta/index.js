@@ -42,10 +42,10 @@ export default function DetalhesDieta({ route }) {
           <View style={styles.containerPropsItens}>
           {renderSelectedLivrarias()}
 
-            <View style={styles.itensPercentageC}>
+            {/* <View style={styles.itensPercentageC}>
               <Text style={styles.itens}>FDN Total: {fdnTotal.toFixed(2)}</Text>
               <Text style={styles.percetange}> em MS</Text>
-            </View>
+            </View> */}
 
             <View style={styles.itensPercentage}>
               <Text style={styles.itens}>Milho Estimado: {milhoEstimado}</Text>

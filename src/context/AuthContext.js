@@ -87,7 +87,7 @@ export function ContextProvider({ children }) {
 
   const calcularMateriaSecaExistente = () => {
     const kgMsTotal = dieta.selectedLivrarias.reduce((acc, livraria) => acc + parseFloat(livraria.kgMs), 0);
-    const totalMateriaSecaExistente = kgMsTotal + parseFloat(milhoEstimado) + parseFloat(mineral);
+    const totalMateriaSecaExistente = kgMsTotal + parseFloat(milhoEstimado) + parseFloat(mineral) + parseFloat(fracaoProteica);
     setMateriaSecaExistente(totalMateriaSecaExistente.toFixed(2));
   };
 
@@ -118,7 +118,7 @@ export function ContextProvider({ children }) {
 
   useEffect(() => {
     calcularMateriaSecaExistente();
-  }, [dieta.selectedLivrarias, milhoEstimado]);
+  }, [dieta.selectedLivrarias, milhoEstimado, fracaoProteica, mineral]);
 
   useEffect(() => {
     calcularFracaoProteica();
