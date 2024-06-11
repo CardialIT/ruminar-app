@@ -160,7 +160,7 @@ export function ContextProvider({ children }) {
         fracaoProteica,
         mineral,
         calcularMineral,
-        materiaSecaFaltando,,
+        materiaSecaFaltando,
         loading,
         setLoading,
       }}
