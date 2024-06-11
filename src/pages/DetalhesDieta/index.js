@@ -7,7 +7,7 @@ import { useContextProvider } from "../../context/AuthContext.js";
 
 export default function DetalhesDieta({ route }) {
   const navigation = useNavigation();
-  const { dieta, milhoEstimado, materiaSecaExistente, fracaoProteica, mineral } = useContextProvider();
+  const { dieta, milhoEstimado, materiaSecaExistente, fracaoProteica, mineral, materiaSecaFaltando } = useContextProvider();
   const { fdnTotal } = dieta;
 
   const renderSelectedLivrarias = () => {
@@ -64,6 +64,11 @@ export default function DetalhesDieta({ route }) {
 
             <View style={styles.itensPercentageC}>
               <Text style={styles.itens}>Mineral: {mineral}</Text>
+              <Text style={styles.percetange}> em KG</Text>
+            </View>
+
+            <View style={styles.itensPercentageC}>
+              <Text style={styles.itens}>Materia Seca Faltando: {materiaSecaFaltando}</Text>
               <Text style={styles.percetange}> em KG</Text>
             </View>
          

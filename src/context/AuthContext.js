@@ -9,6 +9,7 @@ export function ContextProvider({ children }) {
   const [materiaSecaExistente, setMateriaSecaExistente] = useState(0);
   const [fracaoProteica, setFracaoProteica] = useState(0);
   const [mineral, setMineral] = useState(0);
+  const [materiaSecaFaltando, setMateriaSecaFaltando] = useState(0);
 
   const handleAddLivraria = (livrariaSelecionada) => {
     if (livrariasSelecionadas.length < 3) {
@@ -86,7 +87,7 @@ export function ContextProvider({ children }) {
 
   const calcularMateriaSecaExistente = () => {
     const kgMsTotal = dieta.selectedLivrarias.reduce((acc, livraria) => acc + parseFloat(livraria.kgMs), 0);
-    const totalMateriaSecaExistente = kgMsTotal + parseFloat(milhoEstimado);
+    const totalMateriaSecaExistente = kgMsTotal + parseFloat(milhoEstimado) + parseFloat(mineral);
     setMateriaSecaExistente(totalMateriaSecaExistente.toFixed(2));
   };
 
@@ -99,10 +100,16 @@ export function ContextProvider({ children }) {
   const calcularMineral = () => {
     const { producao_estimada } = dieta;
     console.log("producao estimada"+producao_estimada)
-    const mineralCalculado = producao_estimada * 0.14;
+    const mineralCalculado = producao_estimada * 0.014;
     setMineral(mineralCalculado.toFixed(2));
     console.log("mineral" + mineral)
   };
+
+  const calcularMateriaSecaFaltando = () => {
+    const materiaSecaFaltando = parseFloat(ims) - parseFloat(materiaSecaExistente);
+    setMateriaSecaFaltando(materiaSecaFaltando.toFixed(2));
+  };
+  
 
 
   useEffect(() => {
@@ -117,6 +124,11 @@ export function ContextProvider({ children }) {
     calcularFracaoProteica();
   }, [ims, materiaSecaExistente]);
 
+  useEffect(() => {
+    calcularMateriaSecaFaltando();
+  }, [ims, materiaSecaExistente]);
+  
+
   return (
     <AuthContext.Provider
       value={{
@@ -125,6 +137,7 @@ export function ContextProvider({ children }) {
         calcularFDNAlimentos,
         calcularFDNTotal,
         calcularMilhoEstimado,
+        calcularMateriaSecaFaltando,
         nomeDieta,
         setNomeDieta,
         pesoMedio,
@@ -145,7 +158,8 @@ export function ContextProvider({ children }) {
         materiaSecaExistente,
         fracaoProteica,
         mineral,
-        calcularMineral
+        calcularMineral,
+        materiaSecaFaltando,
       }}
     >
       {children}
