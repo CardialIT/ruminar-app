@@ -18,7 +18,7 @@ import Loading from "../../components/LoadingElement/index.js";
 export default function CadastroDieta2Screen() {
     const { dieta, updateDieta, ims, fdn, calcularFDNAlimentos, calcularFDNTotal, loading, setLoading  } = useContextProvider();
     const navigation = useNavigation();
-    // const [selectedLivrarias, setSelectedLivrarias] = useState([]);
+    const [selectedLivrarias, setSelectedLivrarias] = useState([]);
 
     const handleSelectLivraria = (item) => {
         const updatedLivrarias = [...dieta.selectedLivrarias, item];
@@ -28,7 +28,7 @@ export default function CadastroDieta2Screen() {
     };
 
     const renderSelectedLivrarias = () => {
-        console.log("Elementos selecionados"+ JSON.stringify(dieta.selectedLivrarias))
+        //console.log("Elementos selecionados"+ JSON.stringify(dieta.selectedLivrarias))
         return dieta.selectedLivrarias.map((livraria, index) => (
             <View key={index} style={styles.containerItemTitle}>
                 <Text style={styles.listagemItemTitle}>{livraria.nome}</Text>
@@ -61,7 +61,7 @@ export default function CadastroDieta2Screen() {
 
     useEffect(() => {
         calcularFDNTotal();
-      }, [dieta.selectedLivrarias]);
+    }, [dieta.selectedLivrarias]);
     
     
     return (

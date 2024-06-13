@@ -37,6 +37,10 @@ export default function CadastroLivrariaScreen() {
   });
 
   const handleInputChange = (fieldName) => (value) => {
+    const numericFields = ["ms", "pb", "pndr", "pdr", "proteina_soluvel", "fdn_efetivo", "ndt", "fdn", "cnf", "amido", "ee"];
+    if (numericFields.includes(fieldName)) {
+      value = value.replace(/,/g, '.');
+    }
     setLivro({ ...livro, [fieldName]: value });
     console.log(fieldName + ": " + value);
   };
