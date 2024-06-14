@@ -117,17 +117,9 @@ export function ContextProvider({ children }) {
     calcularFDNTotal();
   }, [dieta.selectedLivrarias]);
 
-  useEffect(() => {
-    calcularMateriaSecaExistente();
-  }, [dieta.selectedLivrarias, milhoEstimado, fracaoProteica, mineral]);
 
-  useEffect(() => {
-    calcularFracaoProteica();
-  }, [ims, materiaSecaExistente]);
 
-  useEffect(() => {
-    calcularMateriaSecaFaltando();
-  }, [ims, materiaSecaExistente]);
+ 
   
 
   return (
@@ -137,6 +129,8 @@ export function ContextProvider({ children }) {
         updateDieta,
         calcularFDNAlimentos,
         calcularFDNTotal,
+        calcularMateriaSecaExistente,
+        calcularFracaoProteica,
         calcularMilhoEstimado,
         calcularMateriaSecaFaltando,
         nomeDieta,

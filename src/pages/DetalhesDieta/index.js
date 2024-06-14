@@ -53,9 +53,10 @@ export default function DetalhesDieta({ route }) {
               <Text style={styles.percetange}> em MS</Text>
             </View>
 
+           
             <View style={styles.itensPercentageC}>
-              <Text style={styles.itens}>Matéria Seca Existente: {materiaSecaExistente}</Text>
-              <Text style={styles.percetange}> em MS</Text>
+              <Text style={styles.itens}>Mineral: {mineral}</Text>
+              <Text style={styles.percetange}> em KG</Text>
             </View>
 
             <View style={styles.itensPercentage}>
@@ -63,9 +64,10 @@ export default function DetalhesDieta({ route }) {
               <Text style={styles.percetange}> em MS</Text>
             </View>
 
+        
             <View style={styles.itensPercentageC}>
-              <Text style={styles.itens}>Mineral: {mineral}</Text>
-              <Text style={styles.percetange}> em KG</Text>
+              <Text style={styles.itens}>Matéria Seca Existente: {materiaSecaExistente}</Text>
+              <Text style={styles.percetange}> em MS</Text>
             </View>
 
             <View style={styles.itensPercentageC}>
