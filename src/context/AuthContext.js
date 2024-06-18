@@ -114,6 +114,66 @@ export function ContextProvider({ children }) {
     setMineral(mineralCalculado.toFixed(2));
   };
 
+  const calcularMOAlimentos = () => {
+    const updatedLivrarias = dieta.selectedLivrarias.map(livraria => {
+      const kgMs = parseFloat(livraria.kgMs);
+      const teorMS = parseFloat(livraria.ms);
+      const materiaOrganica = kgMs / teorMS ;
+      const materiaOrganicaFormatada = materiaOrganica.toFixed(2)
+      return { ...livraria, materiaOrganicaFormatada };
+    });
+    updateDieta("selectedLivrarias", updatedLivrarias);
+  };
+
+  const calcularPBAlimentos = () => {
+    let totalPB = 0;
+    const updatedLivrarias = dieta.selectedLivrarias.map(livraria => {
+      const kgMs = parseFloat(livraria.kgMs);
+      const teorPB = parseFloat(livraria.pb);
+      const proteinaBruta = kgMs * teorPB;
+      totalPB += proteinaBruta;
+      const pbFormatado = proteinaBruta.toFixed(2);
+      console.log("PB por alimentos " + pbFormatado)
+      return { ...livraria, pbFormatado };
+    });
+    updateDieta("selectedLivrarias", updatedLivrarias);
+    return totalPB;
+  };
+
+  
+  const calcularPBMilho = () => {
+    const updatedLivrarias = dieta.selectedLivrarias.map(livraria => {
+      const kgMs = parseFloat(livraria.kgMs);
+   
+      const proteinaBrutaMilho = kgMs * 0.09 ;
+      const pbFormatadoMilho = proteinaBrutaMilho.toFixed(2)
+      console.log("PB AQUI Milho " + pbFormatadoMilho);
+      return { ...livraria, pbFormatadoMilho };
+    });
+    updateDieta("selectedLivrarias", updatedLivrarias);
+  };
+
+  const calcularPBFracaoProteica = () => {
+    const updatedLivrarias = dieta.selectedLivrarias.map(livraria => {
+      const kgMs = parseFloat(livraria.kgMs);
+   
+      const proteinaBrutaFP = kgMs * 0.52 ;
+      const pbFormatadoFP = proteinaBrutaFP.toFixed(2)
+      console.log("PB AQUI FP " + pbFormatadoFP);
+      return { ...livraria, pbFormatadoFP };
+    });
+    updateDieta("selectedLivrarias", updatedLivrarias);
+  };
+
+
+  const calcularPBTotal = (PBAlimentos, materiaSecaExistente) => {
+    const divisaoCalculoPBTotal = PBAlimentos / materiaSecaExistente
+    const calculoPBTotal = divisaoCalculoPBTotal * 100
+
+    console.log("CALCULO PB TOTAL " + calculoPBTotal.toFixed(2))
+   
+  };
+
 
 
   useEffect(() => {
@@ -128,10 +188,15 @@ export function ContextProvider({ children }) {
         calcularFDNAlimentos,
         calcularFDNTotal,
         calcularMateriaSecaExistente,
+        calcularMOAlimentos,
         calcularFracaoProteica,
         calcularMilhoEstimado,
         calcularMateriaSecaFaltando,
         calcularAmidoTotalNecessario,
+        calcularPBAlimentos,
+        calcularPBMilho,
+        calcularPBFracaoProteica,
+        calcularPBTotal,
         nomeDieta,
         setNomeDieta,
         pesoMedio,

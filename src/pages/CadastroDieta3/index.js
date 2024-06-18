@@ -17,7 +17,10 @@ import Loading from "../../components/LoadingElement/index.js";
 
 export default function CadastroDieta3Screen() {
     const navigation = useNavigation();
-    const { calcularMilhoEstimado, calcularMineral, calcularMateriaSecaExistente, calcularFracaoProteica, calcularMateriaSecaFaltando, loading, setLoading, calcularAmidoTotalNecessario } = useContextProvider();
+    const { calcularMilhoEstimado, calcularMineral, calcularMateriaSecaExistente, 
+        calcularFracaoProteica, calcularMateriaSecaFaltando, loading, setLoading, 
+        calcularAmidoTotalNecessario, calcularMOAlimentos, calcularPBAlimentos,
+        calcularPBMilho, calcularPBFracaoProteica, calcularPBTotal } = useContextProvider();
     const [amidoEstimado, setAmidoEstimado] = useState("");
     const [isModalVisible, setModalVisible] = useState(false);
 
@@ -36,7 +39,12 @@ export default function CadastroDieta3Screen() {
             calcularFracaoProteica(materiaSecaExistente);
             calcularMateriaSecaFaltando(materiaSecaExistente);
             calcularMineral();
-            
+            //Mudar de tela
+            calcularMOAlimentos();
+            const pbAlimentos = calcularPBAlimentos();
+            calcularPBMilho();
+            calcularPBFracaoProteica();
+            calcularPBTotal(pbAlimentos, materiaSecaExistente)
             navigation.navigate("DetalhesDieta");
             } catch (error) {
                 Toast.show({
