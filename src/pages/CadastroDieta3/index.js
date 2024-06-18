@@ -42,9 +42,9 @@ export default function CadastroDieta3Screen() {
             //Mudar de tela
             calcularMOAlimentos();
             const pbAlimentos = calcularPBAlimentos();
-            calcularPBMilho();
-            calcularPBFracaoProteica();
-            calcularPBTotal(pbAlimentos, materiaSecaExistente)
+            const calcularPBMilho = calcularPBMilho(pbAlimentos);
+            const calcularPBFracaoProteica = calcularPBFracaoProteica(calcularPBMilho);
+            const calcularPBTotal = calcularPBTotal(pbAlimentos, materiaSecaExistente, calcularPBFracaoProteica);
             navigation.navigate("DetalhesDieta");
             } catch (error) {
                 Toast.show({
