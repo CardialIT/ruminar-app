@@ -12,34 +12,32 @@ import Toast from "react-native-toast-message";
 import styles from "../CadastroDieta3/styles";
 import { useNavigation } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
-import { postDieta } from "../../services/api.js";
 import { useContextProvider } from "../../context/AuthContext.js";
 import Loading from "../../components/LoadingElement/index.js";
 
-
 export default function CadastroDieta3Screen() {
     const navigation = useNavigation();
-    const { dieta, calcularMilhoEstimado, calcularMineral,   calcularMateriaSecaExistente, calcularFracaoProteica,calcularMateriaSecaFaltando, loading, setLoading } = useContextProvider();
+    const { calcularMilhoEstimado, calcularMineral, calcularMateriaSecaExistente, calcularFracaoProteica, calcularMateriaSecaFaltando, loading, setLoading, calcularAmidoTotalNecessario } = useContextProvider();
     const [amidoEstimado, setAmidoEstimado] = useState("");
-    const [selectedLivrarias, setSelectedLivrarias] = useState([]);
     const [isModalVisible, setModalVisible] = useState(false);
 
     const toggleModal = () => {
         setModalVisible(!isModalVisible);
     };
 
-    const handleCalcularMilho = () => {
-         const amido = parseFloat(amidoEstimado);
+    const handleCalcularTudo = () => {
+        const amido = parseFloat(amidoEstimado);
         if (!isNaN(amido)) {
-            setLoading(true);
-            try {
-                calcularMilhoEstimado(amido);
-                calcularMineral();
-                calcularMateriaSecaExistente();
-                calcularFracaoProteica();
-                calcularMateriaSecaFaltando();
-
-                navigation.navigate("DetalhesDieta");
+          setLoading(true);
+          try {
+            const amidoNecessario = calcularAmidoTotalNecessario(amido);
+            const milhoEstimado = calcularMilhoEstimado(amidoNecessario);
+            const materiaSecaExistente = calcularMateriaSecaExistente(milhoEstimado);
+            calcularFracaoProteica(materiaSecaExistente);
+            calcularMateriaSecaFaltando(materiaSecaExistente);
+            calcularMineral();
+            
+            navigation.navigate("DetalhesDieta");
             } catch (error) {
                 Toast.show({
                     type: "error",
@@ -54,8 +52,7 @@ export default function CadastroDieta3Screen() {
                 text1: "Valor de amido inválido",
             });
         }
-      };
-
+    };
     return (
         <View style={styles.container}>
 
@@ -110,7 +107,7 @@ export default function CadastroDieta3Screen() {
 
                     <View style={styles.containerButton}>
                         <TouchableOpacity
-                            onPress={handleCalcularMilho}
+                            onPress={handleCalcularTudo}
                             style={styles.createButton}
                         >
                             <Text style={styles.textButton}>VER RESUMO</Text>

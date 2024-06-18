@@ -45,8 +45,6 @@ export function ContextProvider({ children }) {
   const [ims, setIms] = useState(0);
   const [fdn, setFdn] = useState(0);
 
-
-
   const updateDieta = (field, value) => {
     setDieta((prevDieta) => ({
       ...prevDieta,
@@ -69,58 +67,58 @@ export function ContextProvider({ children }) {
     updateDieta("fdnTotal", total);
   };
 
-  const calcularMilhoEstimado = (amidoEstimado) => {
+  const calcularAmidoExistente = () => {
     let totalAmidoExistente = 0;
     dieta.selectedLivrarias.forEach(livraria => {
       const kgMs = parseFloat(livraria.kgMs);
-      console.log("kgMs" + kgMs);
       const teorAmido = parseFloat(livraria.amido);
-      console.log("teorAmido" + teorAmido);
       totalAmidoExistente += kgMs * (teorAmido / 100);
     });
+    return totalAmidoExistente;
+  };
 
-    const amidoTotalNecessario = ims * (amidoEstimado / 100);
-    const amidoFaltando = amidoTotalNecessario - totalAmidoExistente;
+  const calcularAmidoTotalNecessario = (amido) => {
+    return ims * (amido / 100); 
+  };
+
+  const calcularMilhoEstimado = (amidoTotalNecessario) => {
+    const amidoExistente = calcularAmidoExistente();
+    const amidoFaltando = amidoTotalNecessario - amidoExistente;
     const milhoEstimado = amidoFaltando / 0.72;
-
     setMilhoEstimado(milhoEstimado.toFixed(2));
+    return milhoEstimado;
   };
 
-  const calcularMateriaSecaExistente = () => {
+  const calcularMateriaSecaExistente = (milhoEstimado) => {
     const kgMsTotal = dieta.selectedLivrarias.reduce((acc, livraria) => acc + parseFloat(livraria.kgMs), 0);
-    const totalMateriaSecaExistente = kgMsTotal + parseFloat(milhoEstimado) + parseFloat(mineral) + parseFloat(fracaoProteica);
+    const totalMateriaSecaExistente = kgMsTotal + parseFloat(milhoEstimado);
     setMateriaSecaExistente(totalMateriaSecaExistente.toFixed(2));
+    return totalMateriaSecaExistente.toFixed(2);
   };
-
-  const calcularFracaoProteica = () => {
+  
+  const calcularFracaoProteica = (materiaSecaExistente) => {
     const totalFracaoProteica = (parseFloat(ims) - parseFloat(materiaSecaExistente)) / 2;
     setFracaoProteica(totalFracaoProteica.toFixed(2));
+    return totalFracaoProteica.toFixed(2)
   };
-
+  
+  const calcularMateriaSecaFaltando = (materiaSecaExistente) => {
+    const materiaSecaFaltando = ims - materiaSecaExistente;
+    setMateriaSecaFaltando(materiaSecaFaltando.toFixed(2));
+    return materiaSecaFaltando.toFixed(2);
+  };
 
   const calcularMineral = () => {
     const { producao_estimada } = dieta;
-    console.log("producao estimada"+producao_estimada)
     const mineralCalculado = producao_estimada * 0.014;
     setMineral(mineralCalculado.toFixed(2));
-    console.log("mineral" + mineral)
   };
 
-  const calcularMateriaSecaFaltando = () => {
-    const materiaSecaFaltando = parseFloat(ims) - parseFloat(materiaSecaExistente);
-    setMateriaSecaFaltando(materiaSecaFaltando.toFixed(2));
-  };
-  
 
 
   useEffect(() => {
     calcularFDNTotal();
   }, [dieta.selectedLivrarias]);
-
-
-
- 
-  
 
   return (
     <AuthContext.Provider
@@ -133,6 +131,7 @@ export function ContextProvider({ children }) {
         calcularFracaoProteica,
         calcularMilhoEstimado,
         calcularMateriaSecaFaltando,
+        calcularAmidoTotalNecessario,
         nomeDieta,
         setNomeDieta,
         pesoMedio,
