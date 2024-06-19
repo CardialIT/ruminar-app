@@ -78,7 +78,7 @@ export function ContextProvider({ children }) {
   };
 
   const calcularAmidoTotalNecessario = (amido) => {
-    return ims * (amido / 100); 
+    return ims * (amido / 100);
   };
 
   const calcularMilhoEstimado = (amidoTotalNecessario) => {
@@ -95,13 +95,13 @@ export function ContextProvider({ children }) {
     setMateriaSecaExistente(totalMateriaSecaExistente.toFixed(2));
     return totalMateriaSecaExistente.toFixed(2);
   };
-  
+
   const calcularFracaoProteica = (materiaSecaExistente) => {
     const totalFracaoProteica = (parseFloat(ims) - parseFloat(materiaSecaExistente)) / 2;
     setFracaoProteica(totalFracaoProteica.toFixed(2));
     return totalFracaoProteica.toFixed(2)
   };
-  
+
   const calcularMateriaSecaFaltando = (materiaSecaExistente) => {
     const materiaSecaFaltando = ims - materiaSecaExistente;
     setMateriaSecaFaltando(materiaSecaFaltando.toFixed(2));
@@ -114,12 +114,12 @@ export function ContextProvider({ children }) {
     setMineral(mineralCalculado.toFixed(2));
   };
 
-  const calcularMOAlimentos = () => {
+ const calcularMOAlimentos = () => {
     const updatedLivrarias = dieta.selectedLivrarias.map(livraria => {
       const kgMs = parseFloat(livraria.kgMs);
       const teorMS = parseFloat(livraria.ms);
-      const materiaOrganica = kgMs / teorMS ;
-      const materiaOrganicaFormatada = materiaOrganica.toFixed(2)
+      const materiaOrganica = kgMs / teorMS;
+      const materiaOrganicaFormatada = materiaOrganica.toFixed(2);
       return { ...livraria, materiaOrganicaFormatada };
     });
     updateDieta("selectedLivrarias", updatedLivrarias);
@@ -130,23 +130,21 @@ export function ContextProvider({ children }) {
     const updatedLivrarias = dieta.selectedLivrarias.map(livraria => {
       const kgMs = parseFloat(livraria.kgMs);
       const teorPB = parseFloat(livraria.pb);
-      const proteinaBruta = kgMs * teorPB;
+      const proteinaBruta = kgMs * teorPB / 100;
       totalPB += proteinaBruta;
-      const pbFormatado = proteinaBruta.toFixed(2);
-      console.log("PB por alimentos " + pbFormatado)
+      const pbFormatado = parseFloat(proteinaBruta.toFixed(2));
+      console.log("PB por alimentos " + pbFormatado);
       return { ...livraria, pbFormatado };
     });
     updateDieta("selectedLivrarias", updatedLivrarias);
     return totalPB;
   };
 
-  
   const calcularPBMilho = () => {
     const updatedLivrarias = dieta.selectedLivrarias.map(livraria => {
       const kgMs = parseFloat(livraria.kgMs);
-   
-      const proteinaBrutaMilho = kgMs * 0.09 ;
-      const pbFormatadoMilho = proteinaBrutaMilho.toFixed(2)
+      const proteinaBrutaMilho = kgMs * 0.09;
+      const pbFormatadoMilho = parseFloat(proteinaBrutaMilho.toFixed(2));
       console.log("PB AQUI Milho " + pbFormatadoMilho);
       return { ...livraria, pbFormatadoMilho };
     });
@@ -156,25 +154,28 @@ export function ContextProvider({ children }) {
   const calcularPBFracaoProteica = () => {
     const updatedLivrarias = dieta.selectedLivrarias.map(livraria => {
       const kgMs = parseFloat(livraria.kgMs);
-   
-      const proteinaBrutaFP = kgMs * 0.52 ;
-      const pbFormatadoFP = proteinaBrutaFP.toFixed(2)
+      const proteinaBrutaFP = kgMs * 0.52;
+      const pbFormatadoFP = parseFloat(proteinaBrutaFP.toFixed(2));
       console.log("PB AQUI FP " + pbFormatadoFP);
       return { ...livraria, pbFormatadoFP };
     });
     updateDieta("selectedLivrarias", updatedLivrarias);
   };
+  
+  const calcularPBTotal = (pbAlimentos, pbMilho, pbFracaoProteica, materiaSecaExistente) => {
+    const somaCalculoPBAlimentos = pbAlimentos + pbMilho + pbFracaoProteica;
+    console.log("soma PB aqui " + somaCalculoPBAlimentos)
 
+    const divisaoCalculoPBTotal = somaCalculoPBAlimentos / materiaSecaExistente;
+    console.log("divisão PB aqui " + divisaoCalculoPBTotal)
 
-  const calcularPBTotal = (PBAlimentos, materiaSecaExistente) => {
-    const divisaoCalculoPBTotal = PBAlimentos / materiaSecaExistente
-    const calculoPBTotal = divisaoCalculoPBTotal * 100
+    const calculoPBTotal = divisaoCalculoPBTotal * 100;
 
-    console.log("CALCULO PB TOTAL " + calculoPBTotal.toFixed(2))
-   
+    const pbFormatadoTotal = parseFloat(calculoPBTotal.toFixed(2))
+
+    console.log("CALCULO PB TOTAL " + pbFormatadoTotal.toFixed(2))
+    return pbFormatadoTotal;
   };
-
-
 
   useEffect(() => {
     calcularFDNTotal();

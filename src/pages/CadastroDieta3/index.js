@@ -21,6 +21,8 @@ export default function CadastroDieta3Screen() {
         calcularFracaoProteica, calcularMateriaSecaFaltando, loading, setLoading, 
         calcularAmidoTotalNecessario, calcularMOAlimentos, calcularPBAlimentos,
         calcularPBMilho, calcularPBFracaoProteica, calcularPBTotal } = useContextProvider();
+
+        
     const [amidoEstimado, setAmidoEstimado] = useState("");
     const [isModalVisible, setModalVisible] = useState(false);
 
@@ -28,24 +30,26 @@ export default function CadastroDieta3Screen() {
         setModalVisible(!isModalVisible);
     };
 
-    const handleCalcularTudo = () => {
+    const handleCalcularTudo = async () => {
         const amido = parseFloat(amidoEstimado);
         if (!isNaN(amido)) {
-          setLoading(true);
-          try {
-            const amidoNecessario = calcularAmidoTotalNecessario(amido);
-            const milhoEstimado = calcularMilhoEstimado(amidoNecessario);
-            const materiaSecaExistente = calcularMateriaSecaExistente(milhoEstimado);
-            calcularFracaoProteica(materiaSecaExistente);
-            calcularMateriaSecaFaltando(materiaSecaExistente);
-            calcularMineral();
-            //Mudar de tela
-            calcularMOAlimentos();
-            const pbAlimentos = calcularPBAlimentos();
-            calcularPBMilho();
-            calcularPBFracaoProteica();
-            calcularPBTotal(pbAlimentos, materiaSecaExistente)
-            navigation.navigate("DetalhesDieta");
+            setLoading(true);
+            try {
+                const amidoNecessario = calcularAmidoTotalNecessario(amido);
+                const milhoEstimado = calcularMilhoEstimado(amidoNecessario);
+                const materiaSecaExistente = calcularMateriaSecaExistente(milhoEstimado);
+                const fracaoProteica = calcularFracaoProteica(materiaSecaExistente);
+                calcularMateriaSecaFaltando(materiaSecaExistente);
+                calcularMineral();
+                calcularMOAlimentos();
+
+                const pbAlimentos = calcularPBAlimentos();
+                const pbMilho = calcularPBMilho();
+                const pbFracaoProteica = calcularPBFracaoProteica();
+
+                calcularPBTotal(pbAlimentos, pbMilho, pbFracaoProteica, materiaSecaExistente);
+
+                navigation.navigate("DetalhesDieta");
             } catch (error) {
                 Toast.show({
                     type: "error",

@@ -21,6 +21,8 @@ import ListagemLivrariaScreen from "./pages/ListagemLivraria";
 import CadastroDieta2Screen from "./pages/CadastroDieta2";
 import CadastroDieta3Screen from "./pages/CadastroDieta3";
 import DetalhesDieta from "./pages/DetalhesDieta"
+import CadastroDieta4Screen from "./pages/CadastroDieta4";
+import ResultadoDieta from "./pages/ResultadoDieta";
 
 // const Stack = createNativeStackNavigator();
 
@@ -55,6 +57,8 @@ function DietasStackScreen() {
       <DietasStack.Screen name="CadastroDieta2Screen" component={CadastroDieta2Screen} />
       <DietasStack.Screen name="CadastroDieta3Screen" component={CadastroDieta3Screen} />
       <DietasStack.Screen name="DetalhesDieta" component={DetalhesDieta} />
+      <DietasStack.Screen name="CadastroDieta4Screen" component={CadastroDieta4Screen} />
+      <DietasStack.Screen name="ResultadoDieta" component={ResultadoDieta} />
     </DietasStack.Navigator>
   );
 }
