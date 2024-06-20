@@ -8,7 +8,7 @@ import {
   Image,
 } from "react-native";
 import styles from "../CadastroDieta4/styles";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useRoute } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
 import { postDieta } from "../../services/api.js";
 import Toast from "react-native-toast-message";
@@ -29,25 +29,61 @@ export default function CadastroDieta4Screen() {
     materiaOrganicaFormatada
   } = useContextProvider();
   const navigation = useNavigation();
-  const [selectedLivrarias, setSelectedLivrarias] = useState([]);
+  const route = useRoute();
 
+
+  useEffect(() => {
+    const calcularMOInicial = () => {
+      const updatedLivrarias = dieta.selectedLivrarias.map(livraria => {
+        const kgMs = parseFloat(livraria.kgMs || 0);
+        const teorMS = parseFloat(livraria.ms || 1);
+        const materiaOrganica = kgMs / teorMS;
+        const materiaOrganicaFormatada = materiaOrganica.toFixed(2);
+        return { ...livraria, materiaOrganicaFormatada };
+      });
+      updateDieta("selectedLivrarias", updatedLivrarias);
+    };
+
+    calcularMOInicial();
+  }, []);
+
+//   useEffect(() => {
+//     if (route.params?.selectedLivraria) {
+//         const newLivraria = {
+//             ...route.params.selectedLivraria,
+//             kgMs: "",
+//             materiaOrganicaFormatada: "0.00"
+//         };
+//         const updatedLivrarias = [...dieta.selectedLivrarias, newLivraria];
+//         updateDieta("selectedLivrarias", updatedLivrarias);
+//     }
+// }, [route.params?.selectedLivraria]);
+
+  // const handleInputChange = (text, index) => {
+  //   const updatedLivrarias = [...dieta.selectedLivrarias];
+  //   updatedLivrarias[index].kgMs = text;
+  //   updateDieta("selectedLivrarias", updatedLivrarias);
+
+  //   // Recalcular MO após a atualização do valor
+  //   updatedLivrarias[index].materiaOrganicaFormatada = materiaOrganicaFormatada;
+  //   calcularMOAlimentos();
+  //   updateDieta("selectedLivrarias", updatedLivrarias);
+  // };
 
   const handleInputChange = (text, index) => {
     const updatedLivrarias = [...dieta.selectedLivrarias];
     updatedLivrarias[index].kgMs = text;
-  
-    console.log("Valor do texto:", text);
-    console.log("Valor de ms:", updatedLivrarias[index].ms);
-  
-    const materiaOrganica = parseFloat(text) / parseFloat(updatedLivrarias[index].ms);
-    const materiaOrganicaFormatada = materiaOrganica.toFixed(2);
-    
-    console.log("Matéria Orgânica:", materiaOrganica);
-    console.log("Matéria Orgânica Formatada:", materiaOrganicaFormatada);
-  
-    updatedLivrarias[index].materiaOrganicaFormatada = materiaOrganicaFormatada;
     updateDieta("selectedLivrarias", updatedLivrarias);
-  };
+
+    const kgMs = parseFloat(text || 0);
+    const teorMS = parseFloat(updatedLivrarias[index].ms || 1); // Evitar divisão por zero
+    const materiaOrganica = kgMs / teorMS;
+    const materiaOrganicaFormatada = materiaOrganica.toFixed(2);
+
+    updatedLivrarias[index].materiaOrganicaFormatada = materiaOrganicaFormatada;
+
+    updateDieta("selectedLivrarias", updatedLivrarias);
+};
   
 
   const renderSelectedLivrarias = () => {
@@ -55,14 +91,14 @@ export default function CadastroDieta4Screen() {
         <View key={index} style={styles.containerItemTitle}>
             <Text style={styles.listagemItemTitle}>{livraria.nome}</Text>
             <TextInput
-                style={styles.inputField}
-                placeholder="em MO"
-                value={livraria.kgMs || ''}
-                onChangeText={(text) => handleInputChange(text, index)}
-                keyboardType="numeric"
-            />
+                    style={styles.inputField}
+                    placeholder="em MO"
+                    value={livraria.kgMs || ''}
+                    onChangeText={(text) => handleInputChange(text, index)}
+                    keyboardType="numeric"
+                />
             <Text style={styles.listagemItemSubtitle}>
-                Matéria Orgânica: {livraria.materiaOrganicaFormatada || '0.00'}
+                {livraria.materiaOrganicaFormatada || '0.00'} em MO
             </Text>
         </View>
     ));

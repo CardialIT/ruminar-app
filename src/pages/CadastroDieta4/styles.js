@@ -105,6 +105,12 @@ export default StyleSheet.create({
         textTransform: "uppercase"
     },
 
+    listagemItemSubtitle: {
+        fontSize: 15,
+        fontWeight: "400",
+        paddingHorizontal: width * 0.02
+    },
+
     inputField: {
         flexDirection: "column",
         justifyContent: "center",
@@ -112,6 +118,7 @@ export default StyleSheet.create({
         width: "100%",
         height: 40,
         paddingHorizontal: width * 0.02,
+        marginBottom: height * 0.01,
         borderRadius: width * 0.02,
         borderColor: colors.cinza,
         borderWidth: 0.6,
