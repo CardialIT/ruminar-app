@@ -78,7 +78,7 @@ export function ContextProvider({ children }) {
   };
 
   const calcularAmidoTotalNecessario = (amido) => {
-    return ims * (amido / 100);
+    return ims * (amido / 100); 
   };
 
   const calcularMilhoEstimado = (amidoTotalNecessario) => {
@@ -86,7 +86,7 @@ export function ContextProvider({ children }) {
     const amidoFaltando = amidoTotalNecessario - amidoExistente;
     const milhoEstimado = amidoFaltando / 0.72;
     setMilhoEstimado(milhoEstimado.toFixed(2));
-    return milhoEstimado;
+    return milhoEstimado.toFixed(2);
   };
 
   const calcularMateriaSecaExistente = (milhoEstimado) => {
@@ -95,94 +95,116 @@ export function ContextProvider({ children }) {
     setMateriaSecaExistente(totalMateriaSecaExistente.toFixed(2));
     return totalMateriaSecaExistente.toFixed(2);
   };
-
+  
   const calcularFracaoProteica = (materiaSecaExistente) => {
     const totalFracaoProteica = (parseFloat(ims) - parseFloat(materiaSecaExistente)) / 2;
     setFracaoProteica(totalFracaoProteica.toFixed(2));
     return totalFracaoProteica.toFixed(2)
   };
 
-  const calcularMateriaSecaFaltando = (materiaSecaExistente) => {
-    const materiaSecaFaltando = ims - materiaSecaExistente;
+  const calcularMineral = () => {
+    const mineralCalculado = dieta.producao_estimada * 0.014;
+    setMineral(mineralCalculado.toFixed(2));
+    return mineralCalculado.toFixed(2);
+  };
+
+  const calcularMateriaSecaExistente2 = (milhoEstimado, fracaoProteica, mineral) => {
+    const kgMsTotal = dieta.selectedLivrarias.reduce((acc, livraria) => acc + parseFloat(livraria.kgMs), 0);
+    const totalMateriaSecaExistente = kgMsTotal + parseFloat(milhoEstimado) + parseFloat(fracaoProteica) + parseFloat(mineral);
+    setMateriaSecaExistente(totalMateriaSecaExistente.toFixed(2));
+    return totalMateriaSecaExistente.toFixed(2);
+  };
+
+  const calcularMateriaSecaFaltando = (materiaSecaExistente2) => {
+    const materiaSecaExistenteNum2 = parseFloat(materiaSecaExistente2);
+    const materiaSecaFaltando = ims - materiaSecaExistenteNum2;
     setMateriaSecaFaltando(materiaSecaFaltando.toFixed(2));
     return materiaSecaFaltando.toFixed(2);
   };
 
-  const calcularMineral = () => {
-    const { producao_estimada } = dieta;
-    const mineralCalculado = producao_estimada * 0.014;
-    setMineral(mineralCalculado.toFixed(2));
-  };
 
-  const calcularMOAlimentos = () => {
+  const calcularMOTotalAlimentos = () => {
     const updatedLivrarias = dieta.selectedLivrarias.map(livraria => {
       const kgMs = parseFloat(livraria.kgMs);
       const teorMS = parseFloat(livraria.ms);
-      const materiaOrganica = kgMs / teorMS;
+      console.log("Kilos que o produtor digitou " + kgMs)
+      console.log("teor de materia seca " + teorMS)
+      const divisao =  kgMs / teorMS;
+      const materiaOrganica = divisao * 100 ;
       const materiaOrganicaFormatada = materiaOrganica.toFixed(2)
+      console.log("MO por alimentos " + materiaOrganicaFormatada)
       return { ...livraria, materiaOrganicaFormatada };
     });
     updateDieta("selectedLivrarias", updatedLivrarias);
   };
+
+  const calcularMOIndividualAlimentos = () => {
+    dieta.selectedLivrarias.forEach(livraria => {
+        const kgMs = parseFloat(livraria.kgMs);
+        const teorMS = parseFloat(livraria.ms);
+        
+        if (!isNaN(kgMs) && !isNaN(teorMS) && teorMS !== 0) {
+            const divisao = kgMs / (teorMS / 100);  
+            const materiaOrganica = divisao;
+            const materiaOrganicaFormatada = materiaOrganica.toFixed(2);
+            
+            console.log(`MO para ${livraria.nome}: ${materiaOrganicaFormatada}`);
+        } else {
+            console.log(`Dados inválidos para ${livraria.nome}`);
+        }
+    });
+};
 
   const calcularPBAlimentos = () => {
     let totalPB = 0;
     const updatedLivrarias = dieta.selectedLivrarias.map(livraria => {
       const kgMs = parseFloat(livraria.kgMs);
       const teorPB = parseFloat(livraria.pb);
-      const proteinaBruta = kgMs * (teorPB / 100);
+      const conta = kgMs * teorPB;
+      const proteinaBruta = conta / 100;
       totalPB += proteinaBruta;
-      const pbFormatado = proteinaBruta.toFixed(3);
+      const pbFormatado = proteinaBruta.toFixed(2);
       console.log("PB por alimentos " + pbFormatado)
       return { ...livraria, pbFormatado };
-
-    }); console.log("totalPB aqui " + totalPB);
+    });
     updateDieta("selectedLivrarias", updatedLivrarias);
     return totalPB;
   };
 
-
-  const calcularPBMilho = () => {
-    let totalPBMilho = 0;
+  const calcularPBMilho = (milhoEstimado) => {
     const updatedLivrarias = dieta.selectedLivrarias.map(livraria => {
-      const kgMs = parseFloat(livraria.kgMs);
-      const proteinaBrutaMilho = kgMs * 0.09;
-      totalPBMilho += proteinaBrutaMilho; 
+      console.log("MILHO ESTIMADO AQUI" + milhoEstimado)
+      const milho = parseFloat(milhoEstimado);
+      const conta = milho * 0.09;
+      const proteinaBrutaMilho = conta / 100 ;
       const pbFormatadoMilho = proteinaBrutaMilho.toFixed(2)
       console.log("PB AQUI Milho " + pbFormatadoMilho);
       return { ...livraria, pbFormatadoMilho };
     });
     updateDieta("selectedLivrarias", updatedLivrarias);
-    return totalPBMilho;
   };
 
-  const calcularPBFracaoProteica = () => {
-    let totalPBFracaoProteica = 0;
+
+  const calcularPBFracaoProteica = (fracaoProteica) => {
     const updatedLivrarias = dieta.selectedLivrarias.map(livraria => {
-      const kgMs = parseFloat(livraria.kgMs);
-      const proteinaBrutaFP = kgMs * 0.52;
-      pbFracaoProteica += proteinaBrutaFP;
+      console.log("FRACAO PROTEICA" + fracaoProteica)
+      const conta =  fracaoProteica * 0.52
+      const proteinaBrutaFP = conta / 100;
       const pbFormatadoFP = proteinaBrutaFP.toFixed(2)
       console.log("PB AQUI FP " + pbFormatadoFP);
       return { ...livraria, pbFormatadoFP };
     });
     updateDieta("selectedLivrarias", updatedLivrarias);
-    return totalPBFracaoProteica;
   };
 
 
-  const calcularPBTotal = (totalPB, totalPBMilho,  totalPBFracaoProteica, materiaSecaExistente) => {
+  const calcularPBTotal = (PBAlimentos, materiaSecaExistente) => {
     
-    const somaTotalPBTotal = (totalPB + totalPBMilho + totalPBFracaoProteica);
-    console.log("somaTotalPBTotal " + somaTotalPBTotal)
-    const divisaoCalculoPBTotal = somaTotalPBTotal / materiaSecaExistente
-    console.log("divisãoPB " + divisaoCalculoPBTotal.toFixed(2))
+    const divisaoCalculoPBTotal = PBAlimentos / materiaSecaExistente
     const calculoPBTotal = divisaoCalculoPBTotal * 100
-    calculoPBTotalAjustado = calculoPBTotal.toFixed(2);
 
-    console.log("CALCULO PB TOTAL " + calculoPBTotalAjustado.toFixed(2))
-    return { ...livraria, calculoPBTotal };
-
+    console.log("CALCULO PB TOTAL " + calculoPBTotal.toFixed(2))
+   
   };
 
 
@@ -199,7 +221,7 @@ export function ContextProvider({ children }) {
         calcularFDNAlimentos,
         calcularFDNTotal,
         calcularMateriaSecaExistente,
-        calcularMOAlimentos,
+        calcularMOTotalAlimentos,
         calcularFracaoProteica,
         calcularMilhoEstimado,
         calcularMateriaSecaFaltando,
@@ -207,6 +229,8 @@ export function ContextProvider({ children }) {
         calcularPBAlimentos,
         calcularPBMilho,
         calcularPBFracaoProteica,
+        calcularMateriaSecaExistente2,
+        calcularMOIndividualAlimentos,
         calcularPBTotal,
         nomeDieta,
         setNomeDieta,

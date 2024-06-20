@@ -17,10 +17,24 @@ import Loading from "../../components/LoadingElement/index.js";
 
 export default function CadastroDieta3Screen() {
     const navigation = useNavigation();
-    const { calcularMilhoEstimado, calcularMineral, calcularMateriaSecaExistente, 
-        calcularFracaoProteica, calcularMateriaSecaFaltando, loading, setLoading, 
-        calcularAmidoTotalNecessario, calcularMOAlimentos, calcularPBAlimentos,
-        calcularPBMilho, calcularPBFracaoProteica, calcularPBTotal } = useContextProvider();
+    const {
+        calcularMilhoEstimado, 
+        calcularMineral, 
+        calcularMateriaSecaExistente, 
+        calcularFracaoProteica, 
+        calcularMateriaSecaFaltando, 
+        loading, 
+        setLoading, 
+        calcularAmidoTotalNecessario, 
+        calcularMOTotalAlimentos, 
+        calcularPBAlimentos,
+        calcularPBMilho, 
+        calcularPBFracaoProteica, 
+        calcularPBTotal, 
+        calcularMateriaSecaExistente2, 
+        calcularMOIndividualAlimentos, 
+    } = useContextProvider();
+
     const [amidoEstimado, setAmidoEstimado] = useState("");
     const [isModalVisible, setModalVisible] = useState(false);
 
@@ -31,20 +45,24 @@ export default function CadastroDieta3Screen() {
     const handleCalcularTudo = () => {
         const amido = parseFloat(amidoEstimado);
         if (!isNaN(amido)) {
-          setLoading(true);
-          try {
-            const amidoNecessario = calcularAmidoTotalNecessario(amido);
-            const milhoEstimado = calcularMilhoEstimado(amidoNecessario);
-            const materiaSecaExistente = calcularMateriaSecaExistente(milhoEstimado);
-            calcularFracaoProteica(materiaSecaExistente);
-            calcularMateriaSecaFaltando(materiaSecaExistente);
-            calcularMineral();
+            setLoading(true);
+            try {
+                const amidoNecessario = calcularAmidoTotalNecessario(amido);
+                const milhoEstimado = calcularMilhoEstimado(amidoNecessario);
+                const materiaSecaExistente = calcularMateriaSecaExistente(milhoEstimado);
+                const fracaoProteica = calcularFracaoProteica(materiaSecaExistente);
+                const mineral = calcularMineral();
+                const materiaSecaExistente2 = calcularMateriaSecaExistente2(milhoEstimado, fracaoProteica, mineral);
+                calcularMateriaSecaFaltando(materiaSecaExistente2);
+
+            
             //Mudar de tela
-            calcularMOAlimentos();
+            calcularMOTotalAlimentos();
+            calcularMOIndividualAlimentos();
             const pbAlimentos = calcularPBAlimentos();
-            const calcularPBMilho = calcularPBMilho(pbAlimentos);
-            const calcularPBFracaoProteica = calcularPBFracaoProteica(calcularPBMilho);
-            const calcularPBTotal = calcularPBTotal(pbAlimentos, materiaSecaExistente, calcularPBFracaoProteica);
+            calcularPBMilho(milhoEstimado);
+            calcularPBFracaoProteica(fracaoProteica);
+            calcularPBTotal(pbAlimentos, materiaSecaExistente)
             navigation.navigate("DetalhesDieta");
             } catch (error) {
                 Toast.show({
