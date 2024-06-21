@@ -11,6 +11,7 @@ export function ContextProvider({ children }) {
   const [mineral, setMineral] = useState(0);
   const [materiaSecaFaltando, setMateriaSecaFaltando] = useState(0);
   const [loading, setLoading] = useState(false);
+  
 
   const handleAddLivraria = (livrariaSelecionada) => {
     if (livrariasSelecionadas.length < 3) {
@@ -122,32 +123,15 @@ export function ContextProvider({ children }) {
     return materiaSecaFaltando.toFixed(2);
   };
 
- 
-  const calcularMOTotalAlimentos = () => {
-    const updatedLivrarias = dieta.selectedLivrarias.map(livraria => {
-      const kgMs = parseFloat(livraria.kgMs);
-      const teorMS = parseFloat(livraria.ms);
-      console.log("Kilos que o produtor digitou " + kgMs)
-      console.log("teor de materia seca " + teorMS)
-      const divisao =  kgMs / teorMS;
-      const materiaOrganica = divisao * 100 ;
-      const materiaOrganicaFormatada = materiaOrganica.toFixed(2)
-      console.log("MO por alimentos " + materiaOrganicaFormatada)
-      return { ...livraria, materiaOrganicaFormatada };
-    });
-    updateDieta("selectedLivrarias", updatedLivrarias);
-  };
-
   const calcularMOIndividualAlimentos = () => {
     const updatedLivrarias = dieta.selectedLivrarias.map(livraria => {
       const kgMs = parseFloat(livraria.kgMs);
       const teorMS = parseFloat(livraria.ms);
   
       if (!isNaN(kgMs) && !isNaN(teorMS) && teorMS !== 0) {
-        const divisao = kgMs / (teorMS / 100);
-        const materiaOrganica = divisao;
+        const materiaOrganica = kgMs * (teorMS / 100);
         const materiaOrganicaFormatada = materiaOrganica.toFixed(2);
-        
+  
         console.log(`MO para ${livraria.nome}: ${materiaOrganicaFormatada}`);
         return { ...livraria, materiaOrganicaFormatada };
       } else {
@@ -158,6 +142,8 @@ export function ContextProvider({ children }) {
   
     updateDieta("selectedLivrarias", updatedLivrarias);
   };
+  
+
 
   const calcularPBAlimentos = () => {
     let totalPB = 0;
@@ -225,7 +211,7 @@ export function ContextProvider({ children }) {
         calcularFDNAlimentos,
         calcularFDNTotal,
         calcularMateriaSecaExistente,
-        calcularMOTotalAlimentos,
+        
         calcularFracaoProteica,
         calcularMilhoEstimado,
         calcularMateriaSecaFaltando,

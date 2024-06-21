@@ -26,7 +26,7 @@ export default function CadastroResumo3Screen() {
         loading, 
         setLoading, 
         calcularAmidoTotalNecessario, 
-        calcularMOTotalAlimentos, 
+     
         calcularPBAlimentos,
         calcularPBMilho, 
         calcularPBFracaoProteica, 
@@ -54,10 +54,8 @@ export default function CadastroResumo3Screen() {
                 const mineral = calcularMineral();
                 const materiaSecaExistente2 = calcularMateriaSecaExistente2(milhoEstimado, fracaoProteica, mineral);
             calcularMateriaSecaFaltando(materiaSecaExistente2);
-
-            
             //Mudar de tela
-            calcularMOTotalAlimentos();
+           
             calcularMOIndividualAlimentos();
             const pbAlimentos = calcularPBAlimentos();
             calcularPBMilho(milhoEstimado);
@@ -94,7 +92,7 @@ export default function CadastroResumo3Screen() {
                  
                 </TouchableOpacity>
 
-            </View>
+            </View> 
 
             <View style={styles.secondContainer}>
                 <Text style={styles.listagemTitle}>Preencha as informações relacionadas ao amido</Text>
