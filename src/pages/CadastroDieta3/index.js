@@ -31,8 +31,24 @@ export default function CadastroResumo3Screen() {
         calcularPBMilho, 
         calcularPBFracaoProteica, 
         calcularPBTotal, 
+        calcularPNDRAlimentos,
+        calcularPNDRMilho,
+        calcularPNDRFracaoProteica,
+        calcularPNDRTotal,
+        calcularPDRAlimentos,
+        calcularPDRMilho,
+        calcularPDRFracaoProteica,
+        calcularPDRTotal,
+        calcularProteinaSoluvelAlimentos,
+        calcularProteinaSoluvelMilho,
+        calcularProteinaSoluvelFracaoProteica,
+        calcularProteinaSoluvelTotal,
+        calcularFDNEfetivoAlimentos,
+        calcularFDNEfetivoMilho,
+        calcularFDNEfetivoFracaoProteica,
+        calcularFDNEfetivoTotal,
         calcularMateriaSecaExistente2, 
-        calcularMOIndividualAlimentos, 
+        calcularMOIndividualAlimentos,      
     } = useContextProvider();
 
     const [amidoEstimado, setAmidoEstimado] = useState("");
@@ -61,6 +77,27 @@ export default function CadastroResumo3Screen() {
             calcularPBMilho(milhoEstimado);
             calcularPBFracaoProteica(fracaoProteica);
             calcularPBTotal(pbAlimentos, materiaSecaExistente)
+
+            const pndrAlimentos = calcularPNDRAlimentos();
+            calcularPNDRMilho(milhoEstimado);
+            calcularPNDRFracaoProteica(fracaoProteica);
+            calcularPNDRTotal(pndrAlimentos, materiaSecaExistente)
+
+            const pdrAlimentos = calcularPDRAlimentos();
+            calcularPDRMilho(milhoEstimado);
+            calcularPDRFracaoProteica(fracaoProteica);
+            calcularPDRTotal(pdrAlimentos, materiaSecaExistente)
+
+            const proteinaSoluvelAlimentos = calcularProteinaSoluvelAlimentos();
+            calcularProteinaSoluvelMilho(milhoEstimado);
+            calcularProteinaSoluvelFracaoProteica(fracaoProteica);
+            calcularProteinaSoluvelTotal(proteinaSoluvelAlimentos, materiaSecaExistente)
+
+            const fdnEfetivoAlimentos = calcularFDNEfetivoAlimentos();
+            calcularFDNEfetivoMilho(milhoEstimado);
+            calcularFDNEfetivoFracaoProteica(fracaoProteica);
+            calcularFDNEfetivoTotal(fdnEfetivoAlimentos, materiaSecaExistente)
+            
             navigation.navigate("CadastroDieta4Screen");
             } catch (error) {
                 Toast.show({

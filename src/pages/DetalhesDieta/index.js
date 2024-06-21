@@ -12,9 +12,14 @@ export default function DetalhesDieta({ route }) {
     dieta,
     milhoEstimado,
     materiaSecaExistente,
-    fracaoProteica, mineral,
+    fracaoProteica, 
+    mineral,
     materiaSecaFaltando,
-  
+    pbTotal,
+    pndrTotal,
+    pdrTotal,
+    proteinaSoluvelTotal,
+    fdnEfetivoTotal,   
     loading,
     
     setLoading } = useContextProvider();
@@ -24,8 +29,8 @@ export default function DetalhesDieta({ route }) {
 
     return dieta.selectedLivrarias.map((livraria, index) => (
       <View key={livraria.id} style={styles.itensPercentageC}>
-        <Text style={styles.itens}>{livraria.nome}: {livraria.kgMs}</Text>
-        <Text style={styles.percetange}>em MS</Text>
+         <Text style={styles.itens}>{livraria.nome}: {livraria.kgMs}</Text>
+         <Text style={styles.percetange}>em MS</Text>
       </View>
     ));
   };
@@ -59,55 +64,31 @@ export default function DetalhesDieta({ route }) {
             </View> */}
 
             <View style={styles.itensPercentage}>
-              <Text style={styles.itens}>PB: {milhoEstimado}</Text>
-              <Text style={styles.percetange}>%</Text>
+              <Text style={styles.itens}>PB: </Text>
+              <Text style={styles.percetange}>{pbTotal} %</Text>
             </View>
 
             <View style={styles.itensPercentageC}>
-              <Text style={styles.itens}>PNDR: {materiaSecaExistente}</Text>
-              <Text style={styles.percetange}>%</Text>
+              <Text style={styles.itens}>PNDR: </Text>
+              <Text style={styles.percetange}>{pndrTotal} %</Text>
             </View>
 
             <View style={styles.itensPercentage}>
-              <Text style={styles.itens}>PDR: {fracaoProteica}</Text>
-              <Text style={styles.percetange}>%</Text>
-            </View>
+              <Text style={styles.itens}>PDR: </Text>
+              <Text style={styles.percetange}>{pdrTotal} %</Text>
+            </View>  
 
             <View style={styles.itensPercentageC}>
-              <Text style={styles.itens}>PROTEÍNA SOLÚVEL: {materiaSecaFaltando}</Text>
-              <Text style={styles.percetange}>%</Text>
+              <Text style={styles.itens}>Proteína Solúvel: </Text>
+              <Text style={styles.percetange}>{proteinaSoluvelTotal} %</Text>
             </View>
 
             <View style={styles.itensPercentage}>
-              <Text style={styles.itens}>FDN Efetivo: {mineral}</Text>
-              <Text style={styles.percetange}>%</Text>
-            </View>
-
-            <View style={styles.itensPercentageC}>
-              <Text style={styles.itens}>NDT: {materiaSecaFaltando}</Text>
-              <Text style={styles.percetange}>%</Text>
-            </View>
-
-            <View style={styles.itensPercentage}>
-              <Text style={styles.itens}>FDN: {mineral}</Text>
-              <Text style={styles.percetange}>%</Text>
-            </View>
-
-            <View style={styles.itensPercentageC}>
-              <Text style={styles.itens}>CNF: {mineral}</Text>
-              <Text style={styles.percetange}>%</Text>
-            </View>
-
-            <View style={styles.itensPercentage}>
-              <Text style={styles.itens}>AMIDO: {mineral}</Text>
-              <Text style={styles.percetange}>%</Text>
-            </View>
-
-            <View style={styles.itensPercentageC}>
-              <Text style={styles.itens}>EE: {mineral}</Text>
-              <Text style={styles.percetange}>%</Text>
-            </View>
-
+              <Text style={styles.itens}>FDN Efetivo: </Text>
+              <Text style={styles.percetange}>{fdnEfetivoTotal} %</Text>
+            </View>  
+      
+        
           </View>
         </View>
       </View>

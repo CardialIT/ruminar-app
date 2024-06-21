@@ -11,6 +11,13 @@ export function ContextProvider({ children }) {
   const [mineral, setMineral] = useState(0);
   const [materiaSecaFaltando, setMateriaSecaFaltando] = useState(0);
   const [loading, setLoading] = useState(false);
+
+  const [pbTotal, setPBTotal] = useState(0);
+  const [pndrTotal, setPNDRTotal] = useState(0);
+  const [pdrTotal, setPDRTotal] = useState(0);
+  const [proteinaSoluvelTotal, setProteinaSoluvelTotal] = useState(0);
+  const [fdnEfetivoTotal, setFdnEfetivoTotal] = useState(0);
+
   
 
   const handleAddLivraria = (livrariaSelecionada) => {
@@ -140,6 +147,8 @@ export function ContextProvider({ children }) {
     updateDieta("selectedLivrarias", updatedLivrarias);
   };
   
+//==> PB <==
+
   const calcularPBAlimentos = () => {
     let totalPB = 0;
     const updatedLivrarias = dieta.selectedLivrarias.map(livraria => {
@@ -191,9 +200,235 @@ export function ContextProvider({ children }) {
     const pbFormatadoTotal = parseFloat(calculoPBTotal.toFixed(2))
 
     console.log("CALCULO PB TOTAL " + pbFormatadoTotal.toFixed(2))
+
+    setPBTotal(pbFormatadoTotal);
     return pbFormatadoTotal;
   };
 
+//==> PNDR <==
+  const calcularPNDRAlimentos = () => {
+    let totalPNDR = 0;
+    const updatedLivrarias = dieta.selectedLivrarias.map(livraria => {
+      const kgMs = parseFloat(livraria.kgMs);
+      const teorPNDR = parseFloat(livraria.pndr);
+      const conta = kgMs * teorPNDR;
+      const proteinaBruta = conta / 100;
+      totalPNDR += proteinaBruta;
+      const pndrFormatado = parseFloat(proteinaBruta.toFixed(2));
+      console.log("PNDR por alimentos " + pndrFormatado);
+      return { ...livraria, pndrFormatado };
+    });
+    updateDieta("selectedLivrarias", updatedLivrarias);
+    return totalPNDR;
+  };
+
+  const calcularPNDRMilho = (milhoEstimado) => {
+    const updatedLivrarias = dieta.selectedLivrarias.map(livraria => {
+      console.log("MILHO ESTIMADO AQUI" + milhoEstimado)
+      const milho = parseFloat(milhoEstimado);
+      const conta = milho * 0.09;
+      const proteinaBrutaMilho = conta / 100 ;
+      const pndrFormatadoMilho = proteinaBrutaMilho.toFixed(2)
+      console.log("PNDR AQUI Milho " + pndrFormatadoMilho);
+      return { ...livraria, pndrFormatadoMilho };
+    });
+    updateDieta("selectedLivrarias", updatedLivrarias);
+  };
+
+  const calcularPNDRFracaoProteica = (fracaoProteica) => {
+    const updatedLivrarias = dieta.selectedLivrarias.map(livraria => {
+      console.log("FRACAO PROTEICA" + fracaoProteica)
+      const conta =  fracaoProteica * 0.52
+      const proteinaBrutaFP = conta / 100;
+      const pndrFormatadoFP = proteinaBrutaFP.toFixed(2)
+      console.log("PNDR AQUI FP " + pndrFormatadoFP);
+      return { ...livraria, pndrFormatadoFP };
+    });
+    updateDieta("selectedLivrarias", updatedLivrarias);
+  };
+
+  const calcularPNDRTotal = (PNDRAlimentos, materiaSecaExistente) => {
+
+    const divisaoCalculoPNDRTotal = PNDRAlimentos / materiaSecaExistente
+    const calculoPNDRTotal = divisaoCalculoPNDRTotal * 100
+
+    const pndrFormatadoTotal = parseFloat(calculoPNDRTotal.toFixed(2))
+
+    console.log("CALCULO PNDRTOTAL " + pndrFormatadoTotal.toFixed(2))
+
+    setPNDRTotal(pndrFormatadoTotal);
+    return pndrFormatadoTotal;
+  };
+
+  //==> PDR <==
+
+  const calcularPDRAlimentos = () => {
+    let totalPDR = 0;
+    const updatedLivrarias = dieta.selectedLivrarias.map(livraria => {
+      const kgMs = parseFloat(livraria.kgMs);
+      const teorPDR = parseFloat(livraria.pdr);
+      const conta = kgMs * teorPDR;
+      const proteinaBruta = conta / 100;
+      totalPDR += proteinaBruta;
+      const pdrFormatado = parseFloat(proteinaBruta.toFixed(2));
+      console.log("PDR por alimentos " + pdrFormatado);
+      return { ...livraria, pdrFormatado };
+    });
+    updateDieta("selectedLivrarias", updatedLivrarias);
+    return totalPDR;
+  }
+
+  const calcularPDRMilho = (milhoEstimado) => {
+    const updatedLivrarias = dieta.selectedLivrarias.map(livraria => {
+      console.log("MILHO ESTIMADO AQUI" + milhoEstimado)
+      const milho = parseFloat(milhoEstimado);
+      const conta = milho * 0.09;
+      const proteinaBrutaMilho = conta / 100 ;
+      const pdrFormatadoMilho = proteinaBrutaMilho.toFixed(2)
+      console.log("PDR AQUI Milho " + pdrFormatadoMilho);
+      return { ...livraria, pdrFormatadoMilho };
+    });
+    updateDieta("selectedLivrarias", updatedLivrarias);
+  }
+
+  const calcularPDRFracaoProteica = (fracaoProteica) => {
+    const updatedLivrarias = dieta.selectedLivrarias.map(livraria => {
+      console.log("FRACAO PROTEICA" + fracaoProteica)
+      const conta =  fracaoProteica * 0.52
+      const proteinaBrutaFP = conta / 100;
+      const pdrFormatadoFP = proteinaBrutaFP.toFixed(2)
+      console.log("PDR AQUI FP " + pdrFormatadoFP);
+      return { ...livraria, pdrFormatadoFP };
+    });
+    updateDieta("selectedLivrarias", updatedLivrarias);
+  }
+
+  const calcularPDRTotal = (PDRAlimentos, materiaSecaExistente) => {
+      
+      const divisaoCalculoPDRTotal = PDRAlimentos / materiaSecaExistente
+      const calculoPDRTotal = divisaoCalculoPDRTotal * 100
+  
+      const pdrFormatadoTotal = parseFloat(calculoPDRTotal.toFixed(2))
+  
+      console.log("CALCULO PDRTOTAL " + pdrFormatadoTotal.toFixed(2))
+  
+      setPDRTotal(pdrFormatadoTotal);
+      return pdrFormatadoTotal;
+    };
+
+    //==> Proteina Soluvel <==
+
+    const calcularProteinaSoluvelAlimentos = () => {
+      let totalProteinaSoluvel = 0;
+      const updatedLivrarias = dieta.selectedLivrarias.map(livraria => {
+        const kgMs = parseFloat(livraria.kgMs);
+        const teorProteinaSoluvel = parseFloat(livraria.proteina_soluvel);
+        const conta = kgMs * teorProteinaSoluvel;
+        const proteinaBruta = conta / 100;
+        totalProteinaSoluvel += proteinaBruta;
+        const proteinaSoluvelFormatado = parseFloat(proteinaBruta.toFixed(2));
+        console.log("Proteina Soluvel por alimentos " + proteinaSoluvelFormatado);
+        return { ...livraria, proteinaSoluvelFormatado };
+      });
+      updateDieta("selectedLivrarias", updatedLivrarias);
+      return totalProteinaSoluvel;
+    }
+
+    const calcularProteinaSoluvelMilho = (milhoEstimado) => {
+      const updatedLivrarias = dieta.selectedLivrarias.map(livraria => {
+        console.log("MILHO ESTIMADO AQUI" + milhoEstimado)
+        const milho = parseFloat(milhoEstimado);
+        const conta = milho * 0.09;
+        const proteinaBrutaMilho = conta / 100 ;
+        const proteinaSoluvelMilho = proteinaBrutaMilho.toFixed(2)
+        console.log("Proteina Soluvel AQUI Milho " + proteinaSoluvelMilho);
+        return { ...livraria, proteinaSoluvelMilho };
+      });
+      updateDieta("selectedLivrarias", updatedLivrarias);
+    }
+
+    const calcularProteinaSoluvelFracaoProteica = (fracaoProteica) => {
+      const updatedLivrarias = dieta.selectedLivrarias.map(livraria => {
+        console.log("FRACAO PROTEICA" + fracaoProteica)
+        const conta =  fracaoProteica * 0.52
+        const proteinaBrutaFP = conta / 100;
+        const proteinaSoluvelFP = proteinaBrutaFP.toFixed(2)
+        console.log("Proteina Soluvel AQUI FP " + proteinaSoluvelFP);
+        return { ...livraria, proteinaSoluvelFP };
+      });
+      updateDieta("selectedLivrarias", updatedLivrarias);
+    }
+
+    const calcularProteinaSoluvelTotal = (ProteinaSoluvelAlimentos, materiaSecaExistente) => {
+          
+          const divisaoCalculoProteinaSoluvelTotal = ProteinaSoluvelAlimentos / materiaSecaExistente
+          const calculoProteinaSoluvelTotal = divisaoCalculoProteinaSoluvelTotal * 100
+      
+          const proteinaSoluvelFormatadoTotal = parseFloat(calculoProteinaSoluvelTotal.toFixed(2))
+      
+          console.log("CALCULO Proteina Soluvel TOTAL " + proteinaSoluvelFormatadoTotal.toFixed(2))
+      
+          setProteinaSoluvelTotal(proteinaSoluvelFormatadoTotal);
+          return proteinaSoluvelFormatadoTotal;
+        };
+   
+  //==> FDN Efetivo <==      
+
+  const calcularFDNEfetivoAlimentos = () => {
+    let totalFDNEfetivo = 0;
+    const updatedLivrarias = dieta.selectedLivrarias.map(livraria => {
+      const kgMs = parseFloat(livraria.kgMs);
+      const teorFDNEfetivo = parseFloat(livraria.fdn_efetivo);
+      const conta = kgMs * teorFDNEfetivo;
+      const FDNBruto = conta / 100;
+      totalFDNEfetivo += FDNBruto;
+      const fdnEfetivoFormatado = parseFloat(FDNBruto.toFixed(2));
+      console.log("FDN Efetivo por alimentos " + fdnEfetivoFormatado);
+      return { ...livraria, fdnEfetivoFormatado };
+    });
+    updateDieta("selectedLivrarias", updatedLivrarias);
+    return totalFDNEfetivo;
+  }
+
+  const calcularFDNEfetivoMilho = (milhoEstimado) => {
+    const updatedLivrarias = dieta.selectedLivrarias.map(livraria => {
+      console.log("MILHO ESTIMADO AQUI" + milhoEstimado)
+      const milho = parseFloat(milhoEstimado);
+      const conta = milho * 0.09;
+      const FDNBrutoMilho = conta / 100 ;
+      const fdnEfetivoMilho = FDNBrutoMilho.toFixed(2)
+      console.log("FDN Efetivo AQUI Milho " + fdnEfetivoMilho);
+      return { ...livraria, fdnEfetivoMilho };
+    });
+    updateDieta("selectedLivrarias", updatedLivrarias);
+  }
+
+  const calcularFDNEfetivoFracaoProteica = (fracaoProteica) => {
+    const updatedLivrarias = dieta.selectedLivrarias.map(livraria => {
+      console.log("FRACAO PROTEICA" + fracaoProteica)
+      const conta =  fracaoProteica * 0.52
+      const FDNBrutoFP = conta / 100;
+      const fdnEfetivoFP = FDNBrutoFP.toFixed(2)
+      console.log("FDN Efetivo AQUI FP " + fdnEfetivoFP);
+      return { ...livraria, fdnEfetivoFP };
+    });
+    updateDieta("selectedLivrarias", updatedLivrarias);
+  }
+
+  const calcularFDNEfetivoTotal = (FDNEfetivoAlimentos, materiaSecaExistente) => {
+          
+          const divisaoCalculoFDNEfetivoTotal = FDNEfetivoAlimentos / materiaSecaExistente
+          const calculoFDNEfetivoTotal = divisaoCalculoFDNEfetivoTotal * 100
+      
+          const fdnEfetivoFormatadoTotal = parseFloat(calculoFDNEfetivoTotal.toFixed(2))
+      
+          console.log("CALCULO FDN Efetivo TOTAL " + fdnEfetivoFormatadoTotal.toFixed(2))
+      
+          setFdnEfetivoTotal(fdnEfetivoFormatadoTotal);
+          return fdnEfetivoFormatadoTotal;
+        };
+
+  
   useEffect(() => {
     calcularFDNTotal();
   }, [dieta.selectedLivrarias]);
@@ -217,6 +452,22 @@ export function ContextProvider({ children }) {
         calcularMateriaSecaExistente2,
         calcularMOIndividualAlimentos,
         calcularPBTotal,
+        calcularPNDRAlimentos,
+        calcularPNDRMilho,
+        calcularPNDRFracaoProteica,
+        calcularPNDRTotal,
+        calcularPDRAlimentos,
+        calcularPDRMilho,
+        calcularPDRFracaoProteica,
+        calcularPDRTotal,
+        calcularProteinaSoluvelAlimentos,
+        calcularProteinaSoluvelMilho,
+        calcularProteinaSoluvelFracaoProteica,
+        calcularProteinaSoluvelTotal,
+        calcularFDNEfetivoAlimentos,
+        calcularFDNEfetivoMilho,
+        calcularFDNEfetivoFracaoProteica,
+        calcularFDNEfetivoTotal,
         nomeDieta,
         setNomeDieta,
         pesoMedio,
@@ -241,6 +492,11 @@ export function ContextProvider({ children }) {
         materiaSecaFaltando,
         loading,
         setLoading,
+        pbTotal,
+        pndrTotal,
+        pdrTotal,
+        proteinaSoluvelTotal,
+        fdnEfetivoTotal,    
       }}
     >
       {children}
