@@ -128,23 +128,18 @@ export function ContextProvider({ children }) {
       const kgMs = parseFloat(livraria.kgMs);
       const teorMS = parseFloat(livraria.ms);
   
-      if (!isNaN(kgMs) && !isNaN(teorMS) && teorMS !== 0) {
+     
         const materiaOrganica = kgMs * (teorMS / 100);
         const materiaOrganicaFormatada = materiaOrganica.toFixed(2);
   
         console.log(`MO para ${livraria.nome}: ${materiaOrganicaFormatada}`);
         return { ...livraria, materiaOrganicaFormatada };
-      } else {
-        console.log(`Dados inválidos para ${livraria.nome}`);
-        return { ...livraria, materiaOrganicaFormatada: '0.00' };
-      }
+     
     });
   
     updateDieta("selectedLivrarias", updatedLivrarias);
   };
   
-
-
   const calcularPBAlimentos = () => {
     let totalPB = 0;
     const updatedLivrarias = dieta.selectedLivrarias.map(livraria => {
