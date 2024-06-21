@@ -39,7 +39,7 @@ export default function HomeScreen() {
 
       <TouchableOpacity
         style={styles.imageContainer}
-        onPress={() => navigation.navigate("Resumo")}
+        onPress={() => navigation.navigate("ResumoScreen")}
       >
         <Image
           source={require("../../../assets/Cows.png")}

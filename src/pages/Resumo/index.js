@@ -5,7 +5,6 @@ import {
   TouchableOpacity,
   Image,
   ScrollView,
-  Modal,
 } from "react-native";
 import styles from "../Dietas/styles";
 import { Ionicons } from "@expo/vector-icons";

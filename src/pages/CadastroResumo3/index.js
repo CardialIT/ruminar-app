@@ -53,18 +53,39 @@ export default function CadastroResumo3Screen() {
                 const fracaoProteica = calcularFracaoProteica(materiaSecaExistente);
                 const mineral = calcularMineral();
                 const materiaSecaExistente2 = calcularMateriaSecaExistente2(milhoEstimado, fracaoProteica, mineral);
-            calcularMateriaSecaFaltando(materiaSecaExistente2);
+                const materiaSecaFaltando = calcularMateriaSecaFaltando(materiaSecaExistente2);
+                
+                console.log("amidoNecessario:", amidoNecessario);
+                console.log("milhoEstimado:", milhoEstimado);
+                console.log("materiaSecaExistente:", materiaSecaExistente);
+                console.log("fracaoProteica:", fracaoProteica);
+                console.log("mineral:", mineral);
+                console.log("materiaSecaExistente2:", materiaSecaExistente2);
+                console.log("materiaSecaFaltando:", materiaSecaFaltando);
 
-            
-            //Mudar de tela
-            calcularMOTotalAlimentos();
-            calcularMOIndividualAlimentos();
-            const pbAlimentos = calcularPBAlimentos();
-            calcularPBMilho(milhoEstimado);
-            calcularPBFracaoProteica(fracaoProteica);
-            calcularPBTotal(pbAlimentos, materiaSecaExistente)
-            navigation.navigate("DetalhesResumo");
+                const moTotalAlimentos = calcularMOTotalAlimentos();
+                const moIndividualAlimentos = calcularMOIndividualAlimentos();
+                const pbAlimentos = calcularPBAlimentos();
+                const pbMilho = calcularPBMilho(milhoEstimado);
+                const pbFracaoProteica = calcularPBFracaoProteica(fracaoProteica);
+                const pbTotal = calcularPBTotal(pbAlimentos, materiaSecaExistente);
+
+                console.log("moTotalAlimentos:", moTotalAlimentos);
+                console.log("moIndividualAlimentos:", moIndividualAlimentos);
+                console.log("pbAlimentos:", pbAlimentos);
+                console.log("pbMilho:", pbMilho);
+                console.log("pbFracaoProteica:", pbFracaoProteica);
+                console.log("pbTotal:", pbTotal);
+
+                navigation.navigate("DetalhesResumoScreen", {
+                    milhoEstimado,
+                    materiaSecaExistente,
+                    fracaoProteica,
+                    mineral,
+                    materiaSecaFaltando,
+                });
             } catch (error) {
+                console.error("Erro ao calcular:", error);
                 Toast.show({
                     type: "error",
                     text1: "Erro ao calcular milho",
@@ -79,29 +100,21 @@ export default function CadastroResumo3Screen() {
             });
         }
     };
+
     return (
         <View style={styles.container}>
-
             <View style={styles.firstContainer}>
-
                 <TouchableOpacity onPress={() => navigation.navigate("CadastroResumo2Screen")}>
                     <Ionicons name="chevron-back-outline" size={24} color="white" />
                 </TouchableOpacity>
-
                 <Text style={styles.title}>Novo resumo</Text>
-
                 <TouchableOpacity onPress={() => navigation.navigate("DetalhesLivrariaScreen")}>
-                 
                 </TouchableOpacity>
-
             </View>
 
             <View style={styles.secondContainer}>
                 <Text style={styles.listagemTitle}>Preencha as informações relacionadas ao amido</Text>
-
                 <ScrollView style={styles.containerList}>
-
-
                     <View style={styles.containerItemTitle}>
                         <Text style={styles.listagemItemTitle}>Amido estimado</Text>
                         <TextInput
@@ -110,25 +123,19 @@ export default function CadastroResumo3Screen() {
                             value={amidoEstimado}
                             onChangeText={setAmidoEstimado}
                             keyboardType="numeric"
-                        // onChangeText={handleSelectLivraria}
                         />
                     </View>
 
-
-                    {/* NOTIFICATION */}
                     <TouchableOpacity
                         style={styles.containerItemNotification}
                         onPress={toggleModal}>
-
                         <View style={styles.containerImageNotification}>
                             <Image source={require("../../assets/Notification.png")} style={styles.notificationIcon} />
                         </View>
-
                         <View style={styles.containerTextNotification}>
                             <Text style={styles.notificationText}>Caso você tenha dúvidas sobre o preenchimento do Amido estimado <Text style={styles.underlinedText}>clique aqui</Text>
                             </Text>
                         </View>
-
                     </TouchableOpacity>
 
                     <View style={styles.containerButton}>
@@ -138,10 +145,7 @@ export default function CadastroResumo3Screen() {
                         >
                             <Text style={styles.textButton}>VER RESUMO</Text>
                         </TouchableOpacity>
-
                     </View>
-
-
                 </ScrollView>
 
                 <Modal
@@ -152,13 +156,10 @@ export default function CadastroResumo3Screen() {
                 >
                     <View style={styles.modalContainer}>
                         <View style={styles.modalContent}>
-
                             <Text style={styles.modalTitle}>Regras parar checar o Fill</Text>
-
                             <View style={styles.modalItemContainer}>
                                 <Text style={styles.modalText}>Atenção: O amido estimado vai variar de acordo com a qualidade da fibra disponível, indo de 20 a 30% na dieta total. Valores acima de 30% são indicados para animais de alta produção, porém pode oferecer risco de acidose.</Text>
                             </View>
-
                             <View style={styles.modalButtons}>
                                 <TouchableOpacity
                                     style={styles.cancelButton}
@@ -166,15 +167,12 @@ export default function CadastroResumo3Screen() {
                                 >
                                     <Text style={styles.modalButton}>Fechar</Text>
                                 </TouchableOpacity>
-
-
                             </View>
                         </View>
                     </View>
                 </Modal>
-
             </View>
             {loading && <Loading />}
         </View>
-    )
+    );
 }
