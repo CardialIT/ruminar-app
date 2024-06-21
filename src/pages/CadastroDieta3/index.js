@@ -31,8 +31,33 @@ export default function CadastroResumo3Screen() {
         calcularPBMilho, 
         calcularPBFracaoProteica, 
         calcularPBTotal, 
+        calcularPNDRAlimentos,
+        calcularPNDRMilho,
+        calcularPNDRFracaoProteica,
+        calcularPNDRTotal,
+        calcularNDTAlimentos,
+        calcularNDTMilho,
+        calcularNDTFracaoProteica,
+        calcularNDTTotal,
+        calcularItemFDNAlimentos,
+        calcularItemFDNMilho,
+        calcularItemFDNFracaoProteica,
+        calcularItemFDNTotal,
+        calcularCNFAlimentos,
+        calcularCNFMilho,
+        calcularCNFFracaoProteica,
+        calcularCNFTotal,
+        calcularAMIDOAlimentos,
+        calcularAMIDOMilho,
+        calcularAMIDOFracaoProteica,
+        calcularAMIDOTotal,
+        calcularEEAlimentos,
+        calcularEEMilho,
+        calcularEEFracaoProteica,
+        calcularEETotal,
+
         calcularMateriaSecaExistente2, 
-        calcularMOIndividualAlimentos, 
+        calcularMOIndividualAlimentos,      
     } = useContextProvider();
 
     const [amidoEstimado, setAmidoEstimado] = useState("");
@@ -54,6 +79,7 @@ export default function CadastroResumo3Screen() {
                 const mineral = calcularMineral();
                 const materiaSecaExistente2 = calcularMateriaSecaExistente2(milhoEstimado, fracaoProteica, mineral);
             calcularMateriaSecaFaltando(materiaSecaExistente2);
+
             //Mudar de tela
            
             calcularMOIndividualAlimentos();
@@ -61,6 +87,37 @@ export default function CadastroResumo3Screen() {
             calcularPBMilho(milhoEstimado);
             calcularPBFracaoProteica(fracaoProteica);
             calcularPBTotal(pbAlimentos, materiaSecaExistente)
+
+            const pndrAlimentos = calcularPNDRAlimentos();
+            calcularPNDRMilho(milhoEstimado);
+            calcularPNDRFracaoProteica(fracaoProteica);
+            calcularPNDRTotal(pndrAlimentos, materiaSecaExistente);
+
+            const ndtAlimentos = calcularNDTAlimentos();
+            calcularNDTMilho(milhoEstimado);
+            calcularNDTFracaoProteica(fracaoProteica);
+            calcularNDTTotal(ndtAlimentos, materiaSecaExistente);
+
+            const itemFDNAlimentos = calcularItemFDNAlimentos();
+            calcularItemFDNMilho(milhoEstimado);
+            calcularItemFDNFracaoProteica(fracaoProteica);
+            calcularItemFDNTotal(itemFDNAlimentos, materiaSecaExistente);
+
+            const cnfAlimentos = calcularCNFAlimentos();
+            calcularCNFMilho(milhoEstimado);
+            calcularCNFFracaoProteica(fracaoProteica);
+            calcularCNFTotal(cnfAlimentos, materiaSecaExistente);
+
+            const amidoAlimentos = calcularAMIDOAlimentos();
+            calcularAMIDOMilho(milhoEstimado);
+            calcularAMIDOFracaoProteica(fracaoProteica);
+            calcularAMIDOTotal(amidoAlimentos, materiaSecaExistente);
+
+            const eeAlimentos = calcularEEAlimentos();
+            calcularEEMilho(milhoEstimado);
+            calcularEEFracaoProteica(fracaoProteica);
+            calcularEETotal(eeAlimentos, materiaSecaExistente);
+
             navigation.navigate("CadastroDieta4Screen");
             } catch (error) {
                 Toast.show({
