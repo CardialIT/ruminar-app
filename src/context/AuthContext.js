@@ -78,7 +78,7 @@ export function ContextProvider({ children }) {
   };
 
   const calcularAmidoTotalNecessario = (amido) => {
-    return ims * (amido / 100); 
+    return ims * (amido / 100);
   };
 
   const calcularMilhoEstimado = (amidoTotalNecessario) => {
@@ -95,7 +95,7 @@ export function ContextProvider({ children }) {
     setMateriaSecaExistente(totalMateriaSecaExistente.toFixed(2));
     return totalMateriaSecaExistente.toFixed(2);
   };
-  
+
   const calcularFracaoProteica = (materiaSecaExistente) => {
     const totalFracaoProteica = (parseFloat(ims) - parseFloat(materiaSecaExistente)) / 2;
     setFracaoProteica(totalFracaoProteica.toFixed(2));
@@ -122,7 +122,7 @@ export function ContextProvider({ children }) {
     return materiaSecaFaltando.toFixed(2);
   };
 
-
+ 
   const calcularMOTotalAlimentos = () => {
     const updatedLivrarias = dieta.selectedLivrarias.map(livraria => {
       const kgMs = parseFloat(livraria.kgMs);
@@ -139,21 +139,25 @@ export function ContextProvider({ children }) {
   };
 
   const calcularMOIndividualAlimentos = () => {
-    dieta.selectedLivrarias.forEach(livraria => {
-        const kgMs = parseFloat(livraria.kgMs);
-        const teorMS = parseFloat(livraria.ms);
+    const updatedLivrarias = dieta.selectedLivrarias.map(livraria => {
+      const kgMs = parseFloat(livraria.kgMs);
+      const teorMS = parseFloat(livraria.ms);
+  
+      if (!isNaN(kgMs) && !isNaN(teorMS) && teorMS !== 0) {
+        const divisao = kgMs / (teorMS / 100);
+        const materiaOrganica = divisao;
+        const materiaOrganicaFormatada = materiaOrganica.toFixed(2);
         
-        if (!isNaN(kgMs) && !isNaN(teorMS) && teorMS !== 0) {
-            const divisao = kgMs / (teorMS / 100);  
-            const materiaOrganica = divisao;
-            const materiaOrganicaFormatada = materiaOrganica.toFixed(2);
-            
-            console.log(`MO para ${livraria.nome}: ${materiaOrganicaFormatada}`);
-        } else {
-            console.log(`Dados inválidos para ${livraria.nome}`);
-        }
+        console.log(`MO para ${livraria.nome}: ${materiaOrganicaFormatada}`);
+        return { ...livraria, materiaOrganicaFormatada };
+      } else {
+        console.log(`Dados inválidos para ${livraria.nome}`);
+        return { ...livraria, materiaOrganicaFormatada: '0.00' };
+      }
     });
-};
+  
+    updateDieta("selectedLivrarias", updatedLivrarias);
+  };
 
   const calcularPBAlimentos = () => {
     let totalPB = 0;
@@ -163,8 +167,8 @@ export function ContextProvider({ children }) {
       const conta = kgMs * teorPB;
       const proteinaBruta = conta / 100;
       totalPB += proteinaBruta;
-      const pbFormatado = proteinaBruta.toFixed(2);
-      console.log("PB por alimentos " + pbFormatado)
+      const pbFormatado = parseFloat(proteinaBruta.toFixed(2));
+      console.log("PB por alimentos " + pbFormatado);
       return { ...livraria, pbFormatado };
     });
     updateDieta("selectedLivrarias", updatedLivrarias);
@@ -203,11 +207,11 @@ export function ContextProvider({ children }) {
     const divisaoCalculoPBTotal = PBAlimentos / materiaSecaExistente
     const calculoPBTotal = divisaoCalculoPBTotal * 100
 
-    console.log("CALCULO PB TOTAL " + calculoPBTotal.toFixed(2))
-   
+    const pbFormatadoTotal = parseFloat(calculoPBTotal.toFixed(2))
+
+    console.log("CALCULO PB TOTAL " + pbFormatadoTotal.toFixed(2))
+    return pbFormatadoTotal;
   };
-
-
 
   useEffect(() => {
     calcularFDNTotal();

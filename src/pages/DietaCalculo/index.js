@@ -17,7 +17,7 @@ export default function DietasCalculo() {
           <Ionicons name="chevron-back-outline" size={24} color="white" />
         </TouchableOpacity>
 
-        <Text style={styles.title}>Nova Dieta</Text>
+        <Text style={styles.title}>Novo Dieta</Text>
 
         <TouchableOpacity
           onPress={() => navigation.navigate("DetalhesLivrariaScreen")}

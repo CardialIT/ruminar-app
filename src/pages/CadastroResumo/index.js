@@ -20,7 +20,7 @@ import { useContextProvider } from "../../context/AuthContext.js";
 import Loading from "../../components/LoadingElement/index.js";
 
 
-export default function CadastroDietaScreen() {
+export default function CadastroResumoScreen() {
   const [nomeDaDieta, setNomeDaDieta] = useState("");
   const [pesoMedio, setPesoMedio] = useState("");
   const [producaoEstimada, setProducaoEstimada] = useState("");
@@ -113,7 +113,7 @@ export default function CadastroDietaScreen() {
         <TouchableOpacity onPress={() => navigation.navigate("HomeScreen")}>
           <Ionicons name="chevron-back-outline" size={24} color="white" />
         </TouchableOpacity>
-        <Text style={styles.title}>Nova Dieta</Text>
+        <Text style={styles.title}>Novo resumo</Text>
         <TouchableOpacity onPress={() => navigation.navigate("DetalhesLivrariaScreen")}>
        
         </TouchableOpacity>
@@ -124,11 +124,11 @@ export default function CadastroDietaScreen() {
         <View style={styles.containerViewItem}>
 
           <Text style={styles.containerTitle}>
-            Nome da dieta:
+            Nome do resumo:
           </Text>
           <TextInput
             onChangeText={onChangeNomeDaDieta}
-            placeholder={`Digite o nome da dieta:`}
+            placeholder={`Digite o nome da resumo:`}
             style={styles.containerInput}
             keyboardType="default"
           />
@@ -207,7 +207,7 @@ export default function CadastroDietaScreen() {
           <TouchableOpacity
             onPress={() => {
               calcularIMS_FDN();
-              navigation.navigate("CadastroDieta2Screen");
+              navigation.navigate("CadastroResumo2Screen");
             }}
             style={styles.createButton}
           >

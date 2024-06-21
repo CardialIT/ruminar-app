@@ -62,6 +62,10 @@ export default function DetalhesLivrariaScreen({ route }) {
             </View>
 
             <View style={styles.itensPercentageC}>
+              <Text style={styles.itens}>PNDR:</Text>
+              <Text style={styles.percetange}>{item.pndr}%</Text>
+            </View>
+            <View style={styles.itensPercentageC}>
               <Text style={styles.itens}>PDR:</Text>
               <Text style={styles.percetange}>{item.pdr}%</Text>
             </View>

@@ -15,7 +15,7 @@ import Toast from "react-native-toast-message";
 import { useContextProvider } from "../../context/AuthContext.js";
 import Loading from "../../components/LoadingElement/index.js";
 
-export default function CadastroDieta2Screen() {
+export default function CadastroResumo2Screen() {
     const { dieta, updateDieta, ims, fdn, calcularFDNAlimentos, calcularFDNTotal, loading, setLoading  } = useContextProvider();
     const navigation = useNavigation();
     const [selectedLivrarias, setSelectedLivrarias] = useState([]);
@@ -24,7 +24,7 @@ export default function CadastroDieta2Screen() {
         const updatedLivrarias = [...dieta.selectedLivrarias, item];
 
         updateDieta("selectedLivrarias", updatedLivrarias);
-        navigation.navigate("CadastroDieta2Screen");
+        navigation.navigate("CadastroResumo2Screen");
     };
 
     const renderSelectedLivrarias = () => {
@@ -53,7 +53,7 @@ export default function CadastroDieta2Screen() {
         try {
             calcularFDNAlimentos();
             calcularFDNTotal();
-            navigation.navigate("CadastroDieta3Screen");
+            navigation.navigate("CadastroResumo3Screen");
         } finally {
             setLoading(false);
         }
@@ -69,11 +69,11 @@ export default function CadastroDieta2Screen() {
 
             <View style={styles.firstContainer}>
 
-                <TouchableOpacity onPress={() => navigation.navigate("CadastroDietaScreen")}>
+                <TouchableOpacity onPress={() => navigation.navigate("CadastroResumoScreen")}>
                     <Ionicons name="chevron-back-outline" size={24} color="white" />
                 </TouchableOpacity>
 
-                <Text style={styles.title}>Nova Dieta</Text> 
+                <Text style={styles.title}>Novo Resumo</Text> 
 
                 <TouchableOpacity onPress={() => navigation.navigate("DetalhesLivrariaScreen")}>
                  

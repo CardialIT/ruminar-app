@@ -10,17 +10,27 @@ import LoginScreen from "./pages/Login";
 import HomeScreen from "./pages/Home";
 import LivrariaScreen from "./pages/Livraria";
 import DietasScreen from "./pages/Dietas";
+import ResumoScreen from "./pages/Resumo";
 import DietasCalculo from "./pages/DietaCalculo";
 import Profile from "./pages/Profile";
 
 import CadastroLivrariaScreen from "./pages/CadastroLivraria";
 import DetalhesLivrariaScreen from "./pages/DetalhesLivraria";
-import CadastroDietaScreen from "./pages/CadastroDieta";
+
 // import DetalhesDietaScreen from "./pages/DetalhesDieta";
 import ListagemLivrariaScreen from "./pages/ListagemLivraria";
+import CadastroResumoScreen from "./pages/CadastroResumo";
+import CadastroResumo2Screen from "./pages/CadastroResumo2";
+import CadastroResumo3Screen from "./pages/CadastroResumo3";
+import CadastroDietaScreen from "./pages/CadastroDieta";
 import CadastroDieta2Screen from "./pages/CadastroDieta2";
 import CadastroDieta3Screen from "./pages/CadastroDieta3";
+import CadastroDieta4Screen from "./pages/CadastroDieta4";
+
 import DetalhesDieta from "./pages/DetalhesDieta"
+import DetalhesResumo from "./pages/DetalhesResumo"
+
+import ResultadoDieta from "./pages/ResultadoDieta";
 
 // const Stack = createNativeStackNavigator();
 
@@ -49,12 +59,19 @@ function DietasStackScreen() {
   return (
     <DietasStack.Navigator screenOptions={{ headerShown: false }}>
       <DietasStack.Screen name="Diets" component={DietasScreen} />
-      <DietasStack.Screen name="CadastroDietaScreen" component={CadastroDietaScreen} />
+      <DietasStack.Screen name="Resumo" component={ResumoScreen} />
       <DietasStack.Screen name="DietasCalculo" component={DietasCalculo} />
       <DietasStack.Screen name="ListagemLivrariaScreen" component={ListagemLivrariaScreen} />
+      <DietasStack.Screen name="CadastroResumoScreen" component={CadastroResumoScreen} />
+      <DietasStack.Screen name="CadastroResumo2Screen" component={CadastroResumo2Screen} />
+      <DietasStack.Screen name="CadastroResumo3Screen" component={CadastroResumo3Screen} />
+      <DietasStack.Screen name="DetalhesResumo" component={DetalhesResumo} />
+      <DietasStack.Screen name="CadastroDietaScreen" component={CadastroDietaScreen} />
       <DietasStack.Screen name="CadastroDieta2Screen" component={CadastroDieta2Screen} />
       <DietasStack.Screen name="CadastroDieta3Screen" component={CadastroDieta3Screen} />
+      <DietasStack.Screen name="CadastroDieta4Screen" component={CadastroDieta4Screen} />
       <DietasStack.Screen name="DetalhesDieta" component={DetalhesDieta} />
+      <DietasStack.Screen name="ResultadoDieta" component={ResultadoDieta} />
     </DietasStack.Navigator>
   );
 }

@@ -2,11 +2,11 @@ import React from "react";
 import { View, Text, Image, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
-import styles from "../DetalhesLivraria/styles.js";
+import styles from "../ResultadoDieta/styles";
 import { useContextProvider } from "../../context/AuthContext.js";
 import Loading from "../../components/LoadingElement/index.js";
 
-export default function DetalhesDieta({ route }) {
+export default function ResultadoDieta({ route }) {
   const navigation = useNavigation();
   const {
     dieta,
@@ -14,9 +14,9 @@ export default function DetalhesDieta({ route }) {
     materiaSecaExistente,
     fracaoProteica, mineral,
     materiaSecaFaltando,
-  
+    calcularFDNAlimentos,
+    calcularFDNTotal,
     loading,
-    
     setLoading } = useContextProvider();
   const { fdnTotal } = dieta;
 
@@ -30,6 +30,16 @@ export default function DetalhesDieta({ route }) {
     ));
   };
 
+  const handleProximo = () => {
+    setLoading(true);
+    try {
+      calcularFDNAlimentos();
+      calcularFDNTotal();
+      navigation.navigate("CadastroDieta4Screen");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <View style={styles.container}>
@@ -38,7 +48,7 @@ export default function DetalhesDieta({ route }) {
           <Ionicons name="chevron-back-outline" size={24} color="white" />
         </TouchableOpacity>
 
-        <Text style={styles.title}>Parâmetros da dieta</Text>
+        <Text style={styles.title}>Resumo do planejamento</Text>
 
         <TouchableOpacity>
           {/* <Image
@@ -59,53 +69,40 @@ export default function DetalhesDieta({ route }) {
             </View> */}
 
             <View style={styles.itensPercentage}>
-              <Text style={styles.itens}>PB: {milhoEstimado}</Text>
-              <Text style={styles.percetange}>%</Text>
+              <Text style={styles.itens}>Milho Estimado: {milhoEstimado}</Text>
+              <Text style={styles.percetange}> em MS</Text>
             </View>
 
             <View style={styles.itensPercentageC}>
-              <Text style={styles.itens}>PNDR: {materiaSecaExistente}</Text>
-              <Text style={styles.percetange}>%</Text>
+              <Text style={styles.itens}>Matéria Seca Existente: {materiaSecaExistente}</Text>
+              <Text style={styles.percetange}> em MS</Text>
             </View>
 
             <View style={styles.itensPercentage}>
-              <Text style={styles.itens}>PDR: {fracaoProteica}</Text>
-              <Text style={styles.percetange}>%</Text>
+              <Text style={styles.itens}>Fração Proteica Necessária: {fracaoProteica}</Text>
+              <Text style={styles.percetange}> em MS</Text>
             </View>
 
             <View style={styles.itensPercentageC}>
-              <Text style={styles.itens}>PROTEÍNA SOLÚVEL: {materiaSecaFaltando}</Text>
-              <Text style={styles.percetange}>%</Text>
-            </View>
-
-            <View style={styles.itensPercentage}>
-              <Text style={styles.itens}>FDN Efetivo: {mineral}</Text>
-              <Text style={styles.percetange}>%</Text>
+              <Text style={styles.itens}>Materia Seca Faltando: {materiaSecaFaltando}</Text>
+              <Text style={styles.percetange}> em KG</Text>
             </View>
 
             <View style={styles.itensPercentageC}>
-              <Text style={styles.itens}>NDT: {materiaSecaFaltando}</Text>
-              <Text style={styles.percetange}>%</Text>
+              <Text style={styles.itens}>Mineral: {mineral}</Text>
+              <Text style={styles.percetange}> em KG</Text>
             </View>
 
-            <View style={styles.itensPercentage}>
-              <Text style={styles.itens}>FDN: {mineral}</Text>
-              <Text style={styles.percetange}>%</Text>
-            </View>
-
-            <View style={styles.itensPercentageC}>
-              <Text style={styles.itens}>CNF: {mineral}</Text>
-              <Text style={styles.percetange}>%</Text>
-            </View>
-
-            <View style={styles.itensPercentage}>
-              <Text style={styles.itens}>AMIDO: {mineral}</Text>
-              <Text style={styles.percetange}>%</Text>
-            </View>
-
-            <View style={styles.itensPercentageC}>
-              <Text style={styles.itens}>EE: {mineral}</Text>
-              <Text style={styles.percetange}>%</Text>
+            <View style={styles.containerButton}>
+              <TouchableOpacity
+                onPress={() =>
+                  // navigation.navigate("CadastroResumo3Screen")
+                  handleProximo()
+                }
+                style={styles.createButton}
+              >
+                <Text style={styles.textButton}>PRÓXIMO</Text>
+              </TouchableOpacity>
             </View>
 
           </View>

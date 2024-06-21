@@ -63,7 +63,7 @@ export default function CadastroResumo3Screen() {
             calcularPBMilho(milhoEstimado);
             calcularPBFracaoProteica(fracaoProteica);
             calcularPBTotal(pbAlimentos, materiaSecaExistente)
-            navigation.navigate("CadastroDieta4Screen");
+            navigation.navigate("DetalhesResumo");
             } catch (error) {
                 Toast.show({
                     type: "error",
@@ -84,11 +84,11 @@ export default function CadastroResumo3Screen() {
 
             <View style={styles.firstContainer}>
 
-                <TouchableOpacity onPress={() => navigation.navigate("CadastroDieta2Screen")}>
+                <TouchableOpacity onPress={() => navigation.navigate("CadastroResumo2Screen")}>
                     <Ionicons name="chevron-back-outline" size={24} color="white" />
                 </TouchableOpacity>
 
-                <Text style={styles.title}>Nova Dieta</Text>
+                <Text style={styles.title}>Novo resumo</Text>
 
                 <TouchableOpacity onPress={() => navigation.navigate("DetalhesLivrariaScreen")}>
                  
@@ -136,7 +136,7 @@ export default function CadastroResumo3Screen() {
                             onPress={handleCalcularTudo}
                             style={styles.createButton}
                         >
-                            <Text style={styles.textButton}>PRÓXIMO</Text>
+                            <Text style={styles.textButton}>VER RESUMO</Text>
                         </TouchableOpacity>
 
                     </View>

@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import {
-  View,
-  Text,
-  TouchableOpacity,
-  Image,
-  ScrollView,
-  FlatList,
-  Modal,
+    View,
+    Text,
+    TouchableOpacity,
+    Image,
+    ScrollView,
+    FlatList,
+    Modal,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
@@ -23,41 +23,27 @@ export default function ListagemLivrariaScreen() {
 
     useEffect(() => {
         async function fetchLivrarias() {
-          setLoading(true);
-          try {
-            const livrariasData = await getLivraria();
-            console.log("Dados recebidos:", livrariasData);
-            setLivrarias(livrariasData);
-          } catch (error) {
-            console.error("Erro ao buscar livrarias:", error);
-          } finally {
-            setLoading(false);
-          }
+            setLoading(true);
+            try {
+                const livrariasData = await getLivraria();
+                console.log("Dados recebidos:", livrariasData);
+                setLivrarias(livrariasData);
+            } catch (error) {
+                console.error("Erro ao buscar livrarias:", error);
+            } finally {
+                setLoading(false);
+            }
         }
         fetchLivrarias();
-      }, []);
-      
+    }, []);
 
-      const handleSelectLivraria = (item) => {
+
+    const handleSelectLivraria = (item) => {
         const updatedLivrarias = [...dieta.selectedLivrarias, item];
         updateDieta("selectedLivrarias", updatedLivrarias);
-        navigation.navigate("CadastroDieta2Screen");
+        navigation.goBack();
     };
-    
 
-    // async function fetchLivrarias() {
-    //     try {
-    //       const livrariasData = await getLivraria();
-    //       console.log("Dados recebidos:", livrariasData);
-    //       setLivrarias(livrariasData);
-    //     } catch (error) {
-    //       console.error("Erro ao buscar livrarias:", error);
-    //     }
-    //   }
-    
-    //   useEffect(() => {
-    //     fetchLivrarias();
-    //   }, []);
 
     return (
         <View style={styles.container}>
@@ -80,7 +66,7 @@ export default function ListagemLivrariaScreen() {
                 <Text style={styles.listagemTitle}>
                     Selecione uma livraria para adicionar na sua nova dieta
                 </Text>
-                
+
                 <FlatList
                     data={livrarias}
                     keyExtractor={(item) => String(item.id)}
@@ -88,7 +74,7 @@ export default function ListagemLivrariaScreen() {
                         <TouchableOpacity
                             style={styles.listItemContainer}
                             onPress={() => handleSelectLivraria(item)}
->
+                        >
                             <Text style={styles.listTextItem}>{item.nome}</Text>
                         </TouchableOpacity>
                     )}

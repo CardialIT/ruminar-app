@@ -39,14 +39,14 @@ export default function HomeScreen() {
 
       <TouchableOpacity
         style={styles.imageContainer}
-        onPress={() => navigation.navigate("DietasScreen")}
+        onPress={() => navigation.navigate("Resumo")}
       >
         <Image
           source={require("../../../assets/Cows.png")}
           style={styles.image}
         />
         <View style={styles.overlay}>
-          <Text style={styles.imageTitle}>Dietas</Text>
+          <Text style={styles.imageTitle}>Resumos</Text>
           <Text style={styles.imageSubtitle}>Crie a dieta ideal</Text>
         </View>
       </TouchableOpacity>
@@ -64,6 +64,22 @@ export default function HomeScreen() {
           <Text style={styles.imageSubtitle}>Adicione alimentos importantes</Text>
         </View>
       </TouchableOpacity>
+
+
+      <TouchableOpacity
+        style={styles.imageContainer}
+        onPress={() => navigation.navigate("DietasScreen")}
+      >
+        <Image
+          source={require("../../../assets/Library.png")}
+          style={styles.image}
+        />
+        <View style={styles.overlay}>
+          <Text style={styles.imageTitle}>Dietas</Text>
+          <Text style={styles.imageSubtitle}>Adicione alimentos importantes</Text>
+        </View>
+      </TouchableOpacity>
+      
     </View>
   );
 }

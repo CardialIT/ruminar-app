@@ -15,7 +15,7 @@ import Toast from "react-native-toast-message";
 import { useContextProvider } from "../../context/AuthContext.js";
 import Loading from "../../components/LoadingElement/index.js";
 
-export default function CadastroDieta2Screen() {
+export default function CadastroDieta4Screen() {
     const { dieta, updateDieta, ims, fdn, calcularFDNAlimentos, calcularFDNTotal, loading, setLoading  } = useContextProvider();
     const navigation = useNavigation();
     const [selectedLivrarias, setSelectedLivrarias] = useState([]);
@@ -32,20 +32,9 @@ export default function CadastroDieta2Screen() {
         return dieta.selectedLivrarias.map((livraria, index) => (
             <View key={index} style={styles.containerItemTitle}>
                 <Text style={styles.listagemItemTitle}>{livraria.nome}</Text>
-                <TextInput
-                    style={styles.inputField}
-                    placeholder="KG / MS"
-                    onChangeText={(text) => handleInputChange(text, index)}
-                    keyboardType="numeric"
-                />
+                <Text>em MO</Text>
             </View>
         ));
-    };
-
-    const handleInputChange = (text, index) => {
-        const updatedLivrarias = [...dieta.selectedLivrarias];
-        updatedLivrarias[index].kgMs = text;
-        updateDieta("selectedLivrarias", updatedLivrarias);
     };
   
     const handleProximo = () => {
@@ -53,7 +42,7 @@ export default function CadastroDieta2Screen() {
         try {
             calcularFDNAlimentos();
             calcularFDNTotal();
-            navigation.navigate("CadastroDieta3Screen");
+            navigation.navigate("DetalhesDieta");
         } finally {
             setLoading(false);
         }
@@ -69,11 +58,11 @@ export default function CadastroDieta2Screen() {
 
             <View style={styles.firstContainer}>
 
-                <TouchableOpacity onPress={() => navigation.navigate("CadastroDietaScreen")}>
+                <TouchableOpacity onPress={() => navigation.navigate("CadastroDieta3Screen")}>
                     <Ionicons name="chevron-back-outline" size={24} color="white" />
                 </TouchableOpacity>
 
-                <Text style={styles.title}>Nova Dieta</Text> 
+                <Text style={styles.title}>Valores em Matéria Orgânica</Text> 
 
                 <TouchableOpacity onPress={() => navigation.navigate("DetalhesLivrariaScreen")}>
                  
@@ -85,15 +74,8 @@ export default function CadastroDieta2Screen() {
 
                 <ScrollView style={styles.containerList}>
 
-                    <View style={styles.containerResult}>
-                        <View style={styles.containerResultItem}>
-                            <Text style={styles.containerTitle}>IMS: {ims.toFixed(2)} kg</Text>
-                            <View style={styles.separator}></View>
-                            <Text style={styles.containerTitle}>FDN: {fdn.toFixed(2)} kg</Text>
-                        </View>
-                    </View>
+                 
 
-                    {/* ITENS */}
 
                     {dieta.selectedLivraria && (
                         <View style={styles.containerItemTitle}>
@@ -110,15 +92,7 @@ export default function CadastroDieta2Screen() {
                     {renderSelectedLivrarias()}
 
 
-                    <View style={styles.containerAddItem}>
-                        <TouchableOpacity
-                            style={styles.addButton}
-                            onPress={() => navigation.navigate("ListagemLivrariaScreen")}
-                        >
-                            <Text style={styles.createButtonText}>ADICIONAR LIVRARIA</Text>
-                            <Ionicons name="add-outline" size={24} color="#307C31" />
-                        </TouchableOpacity>
-                    </View>
+                
 
                     <View style={styles.containerButton}>
                         <TouchableOpacity
@@ -128,7 +102,7 @@ export default function CadastroDieta2Screen() {
                             }
                             style={styles.createButton}
                         >
-                            <Text style={styles.textButton}>PRÓXIMO</Text>
+                            <Text style={styles.textButton}>VER PARÂMETROS</Text>
                         </TouchableOpacity>
                     </View>
                 </ScrollView>
