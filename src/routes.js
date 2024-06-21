@@ -28,7 +28,7 @@ import CadastroDieta3Screen from "./pages/CadastroDieta3";
 import CadastroDieta4Screen from "./pages/CadastroDieta4";
 
 import DetalhesDieta from "./pages/DetalhesDieta"
-import DetalhesResumoScreen from "./pages/DetalhesResumo"
+import DetalhesResumo from "./pages/DetalhesResumo"
 
 import ResultadoDieta from "./pages/ResultadoDieta";
 
@@ -53,12 +53,29 @@ function HomeStackScreen() {
   );
 }
 
+const ResumoStack = createNativeStackNavigator();
+
+function ResumoStackScreen() {
+  return (
+    <ResumoStack.Navigator screenOptions={{ headerShown: false }}>
+      <ResumoStack.Screen name="Resumo" component={ResumoScreen} />
+      <ResumoStack.Screen name="ListagemLivrariaScreen" component={ListagemLivrariaScreen} />
+      <ResumoStack.Screen name="CadastroResumoScreen" component={CadastroResumoScreen} />
+      <ResumoStack.Screen name="CadastroResumo2Screen" component={CadastroResumo2Screen} />
+      <ResumoStack.Screen name="CadastroResumo3Screen" component={CadastroResumo3Screen} />
+      <ResumoStack.Screen name="DetalhesResumo" component={DetalhesResumo} />
+ 
+    </ResumoStack.Navigator>
+  );
+}
+
 const DietasStack = createNativeStackNavigator();
 
 function DietasStackScreen() {
   return (
     <DietasStack.Navigator screenOptions={{ headerShown: false }}>
       <DietasStack.Screen name="Diets" component={DietasScreen} />
+      <DietasStack.Screen name="ListagemLivrariaScreen" component={ListagemLivrariaScreen} />
       <DietasStack.Screen name="CadastroDietaScreen" component={CadastroDietaScreen} />
       <DietasStack.Screen name="CadastroDieta2Screen" component={CadastroDieta2Screen} />
       <DietasStack.Screen name="CadastroDieta3Screen" component={CadastroDieta3Screen} />
@@ -69,27 +86,11 @@ function DietasStackScreen() {
   );
 }
 
-const ResumoStack = createNativeStackNavigator();
-
-function ResumoStackScreen() {
-  return (
-    <ResumoStack.Navigator screenOptions={{ headerShown: false }} >
-      <ResumoStack.Screen name="ResumoScreen" component={ResumoScreen} />
-      <ResumoStack.Screen name="DietasCalculo" component={DietasCalculo} />
-      <ResumoStack.Screen name="ListagemLivrariaScreen" component={ListagemLivrariaScreen} />
-      <ResumoStack.Screen name="CadastroResumoScreen" component={CadastroResumoScreen} />
-      <ResumoStack.Screen name="CadastroResumo2Screen" component={CadastroResumo2Screen} />
-      <ResumoStack.Screen name="CadastroResumo3Screen" component={CadastroResumo3Screen} />
-      <ResumoStack.Screen name="DetalhesResumoScreen" component={DetalhesResumoScreen} />
-    </ResumoStack.Navigator>
-  );
-}
-
 const LibraryStack = createNativeStackNavigator();
 
 function LibraryStackScreen() {
   return (
-    <LibraryStack.Navigator screenOptions={{ headerShown: false }}>
+    <LibraryStack.Navigator screenOptions={{headerShown: false}}>
       <LibraryStack.Screen name="LivrariaScreen" component={LivrariaScreen} />
       <LibraryStack.Screen name="CadastroLivrariaScreen" component={CadastroLivrariaScreen} />
       <LibraryStack.Screen name="DetalhesLivrariaScreen" component={DetalhesLivrariaScreen} />
@@ -123,9 +124,6 @@ function BottomTabsScreen() {
             case "HomeScreen":
               iconName = focused ? "home" : "home-outline";
               break;
-            case "ResumoScreen":
-              iconName = focused ? "bar-chart" : "bar-chart-outline";
-              break;
             case "DietasScreen":
               iconName = focused ? "fast-food" : "fast-food-outline";
               break;
@@ -153,10 +151,10 @@ function BottomTabsScreen() {
       })}
     >
       <Tab.Screen name="HomeScreen" component={HomeStackScreen} options={{ headerShown: false }} />
-      <Tab.Screen name="ResumoScreen" component={ResumoStackScreen} options={{ headerShown: false }} />
       <Tab.Screen name="DietasScreen" component={DietasStackScreen} options={{ headerShown: false }} />
       <Tab.Screen name="LivrariaScreen" component={LibraryStackScreen} options={{ headerShown: false }} />
       <Tab.Screen name="ProfileScreen" component={ProfileStackScreen} options={{ headerShown: false }} />
+      <Tab.Screen name="ResumoScreen" component={ResumoStackScreen} options={{ headerShown: false }} />
     </Tab.Navigator>
   );
 }

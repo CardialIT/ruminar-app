@@ -5,6 +5,7 @@ import {
   TouchableOpacity,
   Image,
   ScrollView,
+  Modal,
 } from "react-native";
 import styles from "../Dietas/styles";
 import { Ionicons } from "@expo/vector-icons";
@@ -66,7 +67,7 @@ export default function ResumoScreen() {
             style={styles.listItemContainer}
             onPress={() => navigation.navigate("DetalhesDietaScreen")}
           >
-            <Text style={styles.listTextItem}>Dieta Verão</Text>
+            <Text style={styles.listTextItem}>Resumo Verão</Text>
 
             <View style={styles.containerImages}>
               <TouchableOpacity
@@ -96,7 +97,7 @@ export default function ResumoScreen() {
             style={styles.listItemContainer}
             onPress={() => navigation.navigate("DetalhesLivrariaScreen")}
           >
-            <Text style={styles.listTextItem}>Dieta Inverno</Text>
+            <Text style={styles.listTextItem}>Resumo Inverno</Text>
 
             <View style={styles.containerImages}>
               <TouchableOpacity
@@ -126,7 +127,7 @@ export default function ResumoScreen() {
             style={styles.listItemContainer}
             onPress={() => navigation.navigate("DetalhesLivrariaScreen")}
           >
-            <Text style={styles.listTextItem}>Dieta Outono</Text>
+            <Text style={styles.listTextItem}>Resumo Outono</Text>
 
             <View style={styles.containerImages}>
               <TouchableOpacity
@@ -155,7 +156,7 @@ export default function ResumoScreen() {
             style={styles.listItemContainer}
             onPress={() => navigation.navigate("DetalhesLivrariaScreen")}
           >
-            <Text style={styles.listTextItem}>Dieta Primavera</Text>
+            <Text style={styles.listTextItem}>Resumo Primavera</Text>
 
             <View style={styles.containerImages}>
               <TouchableOpacity

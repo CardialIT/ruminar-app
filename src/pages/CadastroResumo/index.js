@@ -110,7 +110,7 @@ export default function CadastroResumoScreen() {
   return (
     <View style={styles.container}>
       <View style={styles.firstContainer}>
-        <TouchableOpacity onPress={() => navigation.navigate("HomeScreen")}>
+        <TouchableOpacity onPress={() => navigation.navigate("Resumo")}>
           <Ionicons name="chevron-back-outline" size={24} color="white" />
         </TouchableOpacity>
         <Text style={styles.title}>Novo resumo</Text>

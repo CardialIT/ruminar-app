@@ -53,7 +53,7 @@ export default function CadastroDieta4Screen() {
         </TouchableOpacity>
       </View>
       <View style={styles.secondContainer}>
-        <Text style={styles.listagemTitle}>Preencha os dados de FDN</Text>
+       
         <ScrollView style={styles.containerList}>
           {renderSelectedLivrarias()}
           <View style={styles.containerButton}>
