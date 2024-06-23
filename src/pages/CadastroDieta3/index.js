@@ -91,10 +91,9 @@ export default function CadastroResumo3Screen() {
                 const mineral = calcularMineral();
                 const materiaSecaExistente2 = calcularMateriaSecaExistente2(milhoEstimado, fracaoProteica, mineral);
             calcularMateriaSecaFaltando(materiaSecaExistente2);
-
-            //Mudar de tela
-           
+            
             calcularMOIndividualAlimentos();
+            
             const pbAlimentos = calcularPBAlimentos();
             calcularPBMilho(milhoEstimado);
             calcularPBFracaoProteica(fracaoProteica);

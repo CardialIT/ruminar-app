@@ -211,6 +211,62 @@ export function ContextProvider({ children }) {
 
   //==> PDR <==
 
+  const calcularPNDRAlimentos = () => {
+    let totalPNDR = 0;
+    const updatedLivrarias = dieta.selectedLivrarias.map(livraria => {
+      const kgMs = parseFloat(livraria.kgMs);
+      const teorPNDR = parseFloat(livraria.pndr);
+      const conta = kgMs * teorPNDR;
+      const proteinaBruta = conta / 100;
+      totalPNDR += proteinaBruta;
+      const pndrFormatado = parseFloat(proteinaBruta.toFixed(2));
+      console.log("PNDR por alimentos " + livraria.nome + pndrFormatado);
+      return { ...livraria, pndrFormatado };
+    });
+    updateDieta("selectedLivrarias", updatedLivrarias);
+    return totalPNDR;
+  };
+
+  const calcularPNDRMilho = (milhoEstimado) => {
+    const updatedLivrarias = dieta.selectedLivrarias.map(livraria => {
+      console.log("MILHO ESTIMADO AQUI" + milhoEstimado)
+      const milho = parseFloat(milhoEstimado);
+      const conta = milho * 0.09;
+      const contaFormatada = conta.toFixed(2)
+      const proteinaBrutaMilho = contaFormatada / 100 ;
+      const pndrFormatadoMilho = proteinaBrutaMilho.toFixed(2)
+      console.log("PNDR AQUI Milho " + pndrFormatadoMilho);
+      return { ...livraria, pndrFormatadoMilho };
+    });
+    updateDieta("selectedLivrarias", updatedLivrarias);
+  };
+
+  const calcularPNDRFracaoProteica = (fracaoProteica) => {
+    const updatedLivrarias = dieta.selectedLivrarias.map(livraria => {
+      console.log("FRACAO PROTEICA" + fracaoProteica)
+      const conta =  fracaoProteica * 0.52
+      const proteinaBrutaFP = conta / 100;
+      const pndrFormatadoFP = proteinaBrutaFP.toFixed(2)
+      console.log("PNDR AQUI FP " + pndrFormatadoFP);
+      return { ...livraria, pndrFormatadoFP };
+    });
+    updateDieta("selectedLivrarias", updatedLivrarias);
+  };
+
+  const calcularPNDRTotal = (PNDRAlimentos, materiaSecaExistente) => {
+
+    const divisaoCalculoPNDRTotal = PNDRAlimentos / materiaSecaExistente
+    const calculoPNDRTotal = divisaoCalculoPNDRTotal * 100
+
+    const pndrFormatadoTotal = parseFloat(calculoPNDRTotal.toFixed(2))
+
+    console.log("CALCULO PNDRTOTAL " + pndrFormatadoTotal.toFixed(2))
+
+    setPNDRTotal(pndrFormatadoTotal);
+    return pndrFormatadoTotal;
+  };
+
+
   const calcularPDRAlimentos = () => {
     let totalPDR = 0;
     const updatedLivrarias = dieta.selectedLivrarias.map(livraria => {
@@ -224,6 +280,7 @@ export function ContextProvider({ children }) {
       return { ...livraria, pdrFormatado };
     });
     updateDieta("selectedLivrarias", updatedLivrarias);
+
     return totalPDR;
   }
 
@@ -259,7 +316,7 @@ export function ContextProvider({ children }) {
   
       const pdrFormatadoTotal = parseFloat(calculoPDRTotal.toFixed(2))
   
-      console.log("CALCULO PDRTOTAL " + pdrFormatadoTotal.toFixed(2))
+      console.log("CALCULO PDR TOTAL " + pdrFormatadoTotal.toFixed(2))
   
       setPDRTotal(pdrFormatadoTotal);
       return pdrFormatadoTotal;
@@ -378,60 +435,7 @@ export function ContextProvider({ children }) {
         };
 
   
-  const calcularPNDRAlimentos = () => {
-    let totalPNDR = 0;
-    const updatedLivrarias = dieta.selectedLivrarias.map(livraria => {
-      const kgMs = parseFloat(livraria.kgMs);
-      const teorPNDR = parseFloat(livraria.pndr);
-      const conta = kgMs * teorPNDR;
-      const proteinaBruta = conta / 100;
-      totalPNDR += proteinaBruta;
-      const pndrFormatado = parseFloat(proteinaBruta.toFixed(2));
-      console.log("PNDR por alimentos " + pndrFormatado);
-      return { ...livraria, pndrFormatado };
-    });
-    updateDieta("selectedLivrarias", updatedLivrarias);
-    return totalPNDR;
-  };
-
-  const calcularPNDRMilho = (milhoEstimado) => {
-    const updatedLivrarias = dieta.selectedLivrarias.map(livraria => {
-      console.log("MILHO ESTIMADO AQUI" + milhoEstimado)
-      const milho = parseFloat(milhoEstimado);
-      const conta = milho * 0.09;
-      const proteinaBrutaMilho = conta / 100 ;
-      const pndrFormatadoMilho = proteinaBrutaMilho.toFixed(2)
-      console.log("PNDR AQUI Milho " + pndrFormatadoMilho);
-      return { ...livraria, pndrFormatadoMilho };
-    });
-    updateDieta("selectedLivrarias", updatedLivrarias);
-  };
-
-  const calcularPNDRFracaoProteica = (fracaoProteica) => {
-    const updatedLivrarias = dieta.selectedLivrarias.map(livraria => {
-      console.log("FRACAO PROTEICA" + fracaoProteica)
-      const conta =  fracaoProteica * 0.52
-      const proteinaBrutaFP = conta / 100;
-      const pndrFormatadoFP = proteinaBrutaFP.toFixed(2)
-      console.log("PNDR AQUI FP " + pndrFormatadoFP);
-      return { ...livraria, pndrFormatadoFP };
-    });
-    updateDieta("selectedLivrarias", updatedLivrarias);
-  };
-
-  const calcularPNDRTotal = (PNDRAlimentos, materiaSecaExistente) => {
-
-    const divisaoCalculoPNDRTotal = PNDRAlimentos / materiaSecaExistente
-    const calculoPNDRTotal = divisaoCalculoPNDRTotal * 100
-
-    const pndrFormatadoTotal = parseFloat(calculoPNDRTotal.toFixed(2))
-
-    console.log("CALCULO PNDRTOTAL " + pndrFormatadoTotal.toFixed(2))
-
-    setPNDRTotal(pndrFormatadoTotal);
-    return pndrFormatadoTotal;
-  };
-
+ 
   // ==> NDT <==
 
   const calcularNDTAlimentos = () => {

@@ -8,18 +8,13 @@ import { useContextProvider } from "../../context/AuthContext.js";
 import Loading from "../../components/LoadingElement/index.js";
 
 export default function CadastroDieta4Screen() {
-  const { dieta, updateDieta, calcularFDNAlimentos, calcularFDNTotal, calcularMOIndividualAlimentos, loading, setLoading } = useContextProvider();
+  const { dieta, loading, setLoading } = useContextProvider();
   const navigation = useNavigation();
   const [selectedLivrarias, setSelectedLivrarias] = useState([]);
 
-  const handleSelectLivraria = (item) => {
-    const updatedLivrarias = [...dieta.selectedLivrarias, item];
-    updateDieta("selectedLivrarias", updatedLivrarias);
-    navigation.navigate("CadastroDieta2Screen");
-  };
 
   const renderSelectedLivrarias = () => {
-    console.log("DIETAAA DO CRLHHH", JSON.stringify(dieta, null, 2));
+   
     return dieta.selectedLivrarias.map((livraria, index) => (
       <View key={index} style={styles.containerItemTitle}>
         <Text style={styles.listagemItemTitle}>{livraria.nome}</Text>
@@ -31,9 +26,7 @@ export default function CadastroDieta4Screen() {
   const handleProximo = () => {
     setLoading(true);
     try {
-      calcularFDNAlimentos();
-      calcularMOIndividualAlimentos();
-      calcularFDNTotal();
+
       navigation.navigate("DetalhesDieta");
     } finally {
       setLoading(false);
