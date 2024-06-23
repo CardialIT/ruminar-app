@@ -15,6 +15,9 @@ export default function DetalhesDieta({ route }) {
     fracaoProteica, 
     mineral,
     materiaSecaFaltando,
+    pdrTotal,
+    proteinaSoluvelTotal,
+    fdnEfetivoTotal,     
     pbTotal,
     pndrTotal,
     ndtTotal,
@@ -23,20 +26,18 @@ export default function DetalhesDieta({ route }) {
     amidoTotal,
     eeTotal,
     loading,
-    
-    setLoading } = useContextProvider();
+    setLoading 
+  } = useContextProvider();
   const { fdnTotal } = dieta;
 
   const renderSelectedLivrarias = () => {
-
     return dieta.selectedLivrarias.map((livraria, index) => (
       <View key={livraria.id} style={styles.itensPercentageC}>
-        <Text style={styles.itens}>{livraria.nome}: </Text>
-        <Text style={styles.percetange}>{livraria.kgMs} em MS</Text>
+         <Text style={styles.itens}>{livraria.nome}: </Text>
+         <Text style={styles.percetange}>{livraria.kgMs} em MS</Text>
       </View>
     ));
   };
-
 
   return (
     <View style={styles.container}>
@@ -76,13 +77,13 @@ export default function DetalhesDieta({ route }) {
             </View>
 
             <View style={styles.itensPercentage}>
-              <Text style={styles.itens}>PDR: {fracaoProteica}</Text>
-              <Text style={styles.percetange}>%</Text>
-            </View>
+              <Text style={styles.itens}>PDR: </Text>
+              <Text style={styles.percetange}>{pdrTotal} %</Text>
+            </View>  
 
             <View style={styles.itensPercentageC}>
-              <Text style={styles.itens}>PROTEÍNA SOLÚVEL: {materiaSecaFaltando}</Text>
-              <Text style={styles.percetange}>%</Text>
+              <Text style={styles.itens}>Proteína Solúvel: </Text>
+              <Text style={styles.percetange}>{proteinaSoluvelTotal} %</Text>
             </View>
 
             <View style={styles.itensPercentage}>
@@ -115,6 +116,10 @@ export default function DetalhesDieta({ route }) {
               <Text style={styles.percetange}>{eeTotal} %</Text>
             </View>
 
+            <View style={styles.itensPercentage}>
+              <Text style={styles.itens}>FDN Efetivo: </Text>
+              <Text style={styles.percetange}>{fdnEfetivoTotal} %</Text>
+            </View>  
           </View>
         </View>
       </View>
