@@ -68,8 +68,8 @@ export default StyleSheet.create({
     imageR: {
         width: "100%",
         height: "40%",
-        display: "block",
         borderRadius: 10,
+        
     },
    
     imageTitle: {

@@ -88,13 +88,12 @@ export default StyleSheet.create({
 
 
     // INPUT FIELD
-    
+
     containerItemTitle: {
         flex: 1,
         paddingHorizontal: width * 0.01,
         paddingTop: height * 0.02,
         marginHorizontal: width * 0.04,
-    
     },
 
     listagemItemTitle: {
@@ -104,23 +103,26 @@ export default StyleSheet.create({
         textTransform: "uppercase"
     },
 
+    inputContainer: {
+        position: 'relative',
+        width: '100%',
+    },
+
     inputField: {
-        flexDirection: "column",
-        justifyContent: "center",
-        alignSelf: "center",
-        width: "100%",
+        width: '100%',
         height: 40,
         paddingHorizontal: width * 0.02,
         borderRadius: width * 0.02,
         borderColor: colors.cinza,
         borderWidth: 0.6,
+        paddingRight: 40,
     },
 
-    input: {
-        width: "85%",
-        height: 40,
-        padding: 8,
-        fontSize: 14,
+    removeButton: {
+        position: 'absolute',
+        right: 10,
+        top: '50%',
+        transform: [{ translateY: -12 }],
     },
 
     // ADICIONAR LIVRARIA BUTTON
@@ -161,7 +163,7 @@ export default StyleSheet.create({
     },
 
     // BOTÃO "PRÓXIMO"
-    
+
     containerButton: {
         justifyContent: "center",
         alignItems: "center",

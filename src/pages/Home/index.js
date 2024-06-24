@@ -43,7 +43,7 @@ export default function HomeScreen() {
       >
         <Image
           source={require("../../../assets/Cows.png")}
-          style={styles.image}
+          style={styles.images}
         />
         <View style={styles.overlay}>
           <Text style={styles.imageTitle}>Resumos</Text>
@@ -57,7 +57,7 @@ export default function HomeScreen() {
       >
         <Image
           source={require("../../../assets/Library.png")}
-          style={styles.image}
+          style={styles.images}
         />
         <View style={styles.overlay}>
           <Text style={styles.imageTitle}>Livraria</Text>
