@@ -27,6 +27,11 @@ export default function CadastroDieta2Screen() {
         navigation.navigate("CadastroDieta2Screen");
     };
 
+    const handleRemoveLivraria = (index) => {
+        const updatedLivrarias = dieta.selectedLivrarias.filter((_, i) => i !== index);
+        updateDieta("selectedLivrarias", updatedLivrarias);
+    };
+
     const renderSelectedLivrarias = () => {
         //console.log("Elementos selecionados"+ JSON.stringify(dieta.selectedLivrarias))
         return dieta.selectedLivrarias.map((livraria, index) => (
@@ -38,6 +43,9 @@ export default function CadastroDieta2Screen() {
                     onChangeText={(text) => handleInputChange(text, index)}
                     keyboardType="numeric"
                 />
+                <TouchableOpacity onPress={() => handleRemoveLivraria(index)}>
+                    <Ionicons name="trash-outline" size={24} color="red" />
+                </TouchableOpacity>
             </View>
         ));
     };
@@ -92,6 +100,17 @@ export default function CadastroDieta2Screen() {
                             <Text style={styles.containerTitle}>FDN: {fdn.toFixed(2)} kg</Text>
                         </View>
                     </View>
+
+                    {dieta.selectedLivraria && (
+                        <View style={styles.containerItemTitle}>
+                            <Text style={styles.listagemItemTitle}>{dieta.selectedLivraria.nome}</Text>
+                            <TextInput
+                                style={styles.inputField}
+                                placeholder="KG / MS"
+                                onChangeText={handleSelectLivraria}
+                            />
+                        </View>
+                    )}  
 
                     {/* ITENS */}
 

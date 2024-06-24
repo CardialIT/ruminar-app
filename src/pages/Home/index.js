@@ -71,8 +71,8 @@ export default function HomeScreen() {
         onPress={() => navigation.navigate("DietasScreen")}
       >
         <Image
-          source={require("../../../assets/Library.png")}
-          style={styles.image}
+          source={require("../../../assets/IMG-backgroundDieta.jpg")}
+          style={styles.imageR}
         />
         <View style={styles.overlay}>
           <Text style={styles.imageTitle}>Dietas</Text>
