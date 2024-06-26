@@ -4,19 +4,17 @@ import { useNavigation } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
 import styles from "../DetalhesLivraria/styles.js";
 import { useContextProvider } from "../../context/AuthContext.js";
-import Loading from "../../components/LoadingElement/index.js"; 
+import Loading from "../../components/LoadingElement/index.js";
 import { postResumo } from "../../services/api.js";
 import Toast from "react-native-toast-message";
 
 export default function DetalhesResumo({ route }) {
   const navigation = useNavigation();
-  
-
   const {
     dieta,
     milhoEstimado,
     materiaSecaExistente,
-    fracaoProteica, 
+    fracaoProteica,
     mineral,
     materiaSecaFaltando,
     loading,
@@ -24,6 +22,7 @@ export default function DetalhesResumo({ route }) {
   } = useContextProvider();
 
   const { nome_da_dieta } = dieta;
+
   const [cadastroStatus, setCadastroStatus] = useState(null);
   const [resumo, setResumo] = useState({
     nome_resumo: "",
@@ -45,13 +44,30 @@ export default function DetalhesResumo({ route }) {
       fracao_proteica_necessaria: fracaoProteica,
       materia_seca_faltando: materiaSecaFaltando,
       mineral: mineral,
-      nome_resumo: nome_da_dieta
+      nome_resumo: dieta.nome_da_dieta
     }));
   }, [dieta, milhoEstimado, materiaSecaExistente, fracaoProteica, mineral, materiaSecaFaltando]);
 
+  // useEffect(() => {
+  //   console.log("-- Dieta recebida: useEffect ", dieta);
+  //   const selectedAlimentos = dieta.selectedLivrarias.map(livraria => livraria.nome);
+  //   const novoResumo = {
+  //     alimentos_select: selectedAlimentos,
+  //     milho_estimado: milhoEstimado,
+  //     materia_seca_existente: materiaSecaExistente,
+  //     fracao_proteica_necessaria: fracaoProteica,
+  //     materia_seca_faltando: materiaSecaFaltando,
+  //     mineral: mineral,
+  //     nome_resumo: nome_da_dieta,
+  //   };
+  //   console.log("Atualizando resumo: ", novoResumo);
+  //   setResumo(novoResumo);
+  // }, [dieta, milhoEstimado, materiaSecaExistente, fracaoProteica, mineral, materiaSecaFaltando, nome_da_dieta]);
+
   const postCadastroResumo = async () => {
     setLoading(true);
-console.log("DIETAAAAS" + dieta)
+    console.log("-- POST CADASTRO RESUMO" + dieta)
+    console.log("-- Resumo: ", resumo);
     try {
       await postResumo(resumo);
       setCadastroStatus("success");
@@ -60,8 +76,10 @@ console.log("DIETAAAAS" + dieta)
         type: "success",
         text1: "Cadastro realizado com sucesso",
       });
+
+      console.log("Navegando para ResumoScreen");
       navigation.navigate("ResumoScreen")
-      
+
     } catch (error) {
       setCadastroStatus("failed");
       console.error("Erro ao cadastrar resumo:", error);
@@ -70,7 +88,7 @@ console.log("DIETAAAAS" + dieta)
         text1: "Erro ao cadastrar resumo",
       });
     } finally {
-      setLoading(false); 
+      setLoading(false);
     }
   };
 
@@ -90,7 +108,7 @@ console.log("DIETAAAAS" + dieta)
           <Ionicons name="chevron-back-outline" size={24} color="white" />
         </TouchableOpacity>
         <Text style={styles.title}>Resumo do planejamento</Text>
-       
+
       </View>
       <View style={styles.secondContainer}>
         <View style={styles.containerProps}>
@@ -118,9 +136,9 @@ console.log("DIETAAAAS" + dieta)
             </View>
 
             <TouchableOpacity onPress={postCadastroResumo}>
-            <Text style={styles.itens}>Cadastrar</Text>
-          <Ionicons name="checkmark-circle-outline" size={24} color="white" />
-        </TouchableOpacity>
+              <Text style={styles.itens}>Cadastrar</Text>
+              <Ionicons name="checkmark-circle-outline" size={24} color="white" />
+            </TouchableOpacity>
 
           </View>
         </View>

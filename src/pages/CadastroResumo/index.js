@@ -79,33 +79,33 @@ export default function CadastroResumoScreen() {
     
   };
 
-  const calcularMineral = () => {
-    const producaoMineral = parseFloat(producaoEstimada.replace(",", "."))
-    const mineral = producaoMineral * 0.14;
+  // const calcularMineral = () => {
+  //   const producaoMineral = parseFloat(producaoEstimada.replace(",", "."))
+  //   const mineral = producaoMineral * 0.14;
 
-    setMineral(mineral.toFixed(2));
-    console.log("mineral" + mineral);
-    console.log("producaoEstimada" + producao);
-  }
+  //   setMineral(mineral.toFixed(2));
+  //   console.log("mineral" + mineral);
+  //   console.log("producaoEstimada" + producao);
+  // }
 
-  const postCadastroDieta = async () => {
-    setLoading(true);
-    try {
-      calcularIMS_FDN();
-      await postDieta(dieta);
-      setCadastroStatus("success");
-      console.log("Cadastro realizado com sucesso");
-      Toast.show({
-        type: "success",
-        text1: "Cadastro realizado com sucesso",
-      });
-    } catch (error) {
-      setCadastroStatus("failed");
-      console.error("Erro ao cadastrar dieta:", error);
-    } finally {
-      setLoading(false);
-    }
-  };
+  // const postCadastroDieta = async () => {
+  //   setLoading(true);
+  //   try {
+  //     calcularIMS_FDN();
+  //     await postDieta(dieta);
+  //     setCadastroStatus("success");
+  //     console.log("Cadastro realizado com sucesso");
+  //     Toast.show({
+  //       type: "success",
+  //       text1: "Cadastro realizado com sucesso",
+  //     });
+  //   } catch (error) {
+  //     setCadastroStatus("failed");
+  //     console.error("Erro ao cadastrar dieta:", error);
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
 
   return (
     <View style={styles.container}>
@@ -207,6 +207,7 @@ export default function CadastroResumoScreen() {
           <TouchableOpacity
             onPress={() => {
               calcularIMS_FDN();
+              updateDieta("nome_da_dieta", nomeDaDieta);
               navigation.navigate("CadastroResumo2Screen");
             }}
             style={styles.createButton}
