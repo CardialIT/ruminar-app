@@ -17,7 +17,17 @@ export async function deleteLivraria(id) {
   return response.data;
 }
 
+export async function getDieta() {
+  const response = await api.get("/dieta");
+  return response.data;
+}
+
 export async function postDieta(data) {
   const response = await api.post("/dieta", data);
+  return response.data;
+}
+
+export async function deleteDieta(id) {
+  const response = await api.delete(`/dieta/${id}`);
   return response.data;
 }
