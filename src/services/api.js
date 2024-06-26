@@ -31,3 +31,13 @@ export async function deleteDieta(id) {
   const response = await api.delete(`/dieta/${id}`);
   return response.data;
 }
+
+export async function getResumo() {
+  const response = await api.get("/resumo");
+  return response.data;
+}
+
+export async function postResumo(data) {
+  const response = await api.post("/resumo", data);
+  return response.data;
+}
