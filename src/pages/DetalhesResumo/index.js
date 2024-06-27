@@ -55,7 +55,7 @@ export default function DetalhesResumo({ route }) {
         type: "success",
         text1: "Cadastro realizado com sucesso",
       });
-      navigation.navigate("ResumoScreen"); 
+      navigation.navigate("ResumoScreen");
     } catch (error) {
       console.error("Erro ao cadastrar resumo:", error);
       Toast.show({
@@ -79,13 +79,18 @@ export default function DetalhesResumo({ route }) {
   return (
     <View style={styles.container}>
       <View style={styles.firstContainer}>
-        <TouchableOpacity onPress={() => navigation.goBack()}>
+        <TouchableOpacity
+          style={styles.backButton}
+          onPress={() => navigation.goBack()}>
           <Ionicons name="chevron-back-outline" size={24} color="white" />
         </TouchableOpacity>
         <Text style={styles.title}>Resumo do planejamento</Text>
       </View>
+
       <View style={styles.secondContainer}>
+
         <View style={styles.containerProps}>
+
           <View style={styles.containerPropsItens}>
             {renderSelectedLivrarias()}
             <View style={styles.itensPercentage}>
