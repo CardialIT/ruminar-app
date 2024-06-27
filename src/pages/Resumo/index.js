@@ -41,7 +41,7 @@ export default function ResumoScreen() {
   const renderResumoItem = ({ item }) => (
     <TouchableOpacity
       style={styles.listItemContainer}
-      onPress={() => navigation.navigate("DetalhesResumo", { item })}
+      onPress={() => navigation.navigate("DetalhesResumoScreen", { item })}
     >
       <Text style={styles.listTextItem}>{item.nome_resumo}</Text>
       <View style={styles.containerImages}>

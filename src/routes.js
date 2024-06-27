@@ -26,7 +26,7 @@ import CadastroDietaScreen from "./pages/CadastroDieta";
 import CadastroDieta2Screen from "./pages/CadastroDieta2";
 import CadastroDieta3Screen from "./pages/CadastroDieta3";
 import CadastroDieta4Screen from "./pages/CadastroDieta4";
-
+import DetalhesResumoScreen from "./pages/DetalhesResumoScreen";
 import DetalhesDieta from "./pages/DetalhesDieta"
 import DetalhesResumo from "./pages/DetalhesResumo"
 
@@ -64,6 +64,7 @@ function ResumoStackScreen() {
       <ResumoStack.Screen name="CadastroResumo2Screen" component={CadastroResumo2Screen} />
       <ResumoStack.Screen name="CadastroResumo3Screen" component={CadastroResumo3Screen} />
       <ResumoStack.Screen name="DetalhesResumo" component={DetalhesResumo} />
+      <ResumoStack.Screen name="DetalhesResumoScreen" component={DetalhesResumoScreen} />
  
     </ResumoStack.Navigator>
   );
