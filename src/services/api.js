@@ -41,3 +41,8 @@ export async function postResumo(data) {
   const response = await api.post("/resumo", data);
   return response.data;
 }
+
+export async function deleteResumo(id) {
+  const response = await api.post(`/resumo/${id}`);
+  return response.data;
+}

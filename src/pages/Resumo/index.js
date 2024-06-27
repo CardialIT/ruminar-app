@@ -4,7 +4,7 @@ import styles from "../Resumo/styles";
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation, useIsFocused } from "@react-navigation/native"; 
 import { GestureHandlerRootView, ScrollView } from "react-native-gesture-handler";
-import { getResumo } from "../../services/api.js";
+import { getResumo, deleteResumo } from "../../services/api.js";
 import Loading from "../../components/LoadingElement/index.js";
 import { useContextProvider } from "../../context/AuthContext.js";
 
@@ -76,6 +76,7 @@ export default function ResumoScreen() {
 
       <ScrollView>
         <FlatList
+          scrollEnabled={false}
           data={resumos}
           keyExtractor={(item) => String(item.id)}
           renderItem={renderResumoItem}
