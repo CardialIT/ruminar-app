@@ -23,9 +23,8 @@ export default function DetalhesResumo({ route }) {
 
   const { nome_da_dieta } = dieta;
 
-  const [cadastroStatus, setCadastroStatus] = useState(null);
   const [resumo, setResumo] = useState({
-    nome_resumo: "",
+    nome_resumo: nome_da_dieta,
     alimentos_select: [],
     milho_estimado: 0,
     materia_seca_existente: 0,
@@ -44,44 +43,20 @@ export default function DetalhesResumo({ route }) {
       fracao_proteica_necessaria: fracaoProteica,
       materia_seca_faltando: materiaSecaFaltando,
       mineral: mineral,
-      nome_resumo: dieta.nome_da_dieta
+      nome_resumo: nome_da_dieta
     }));
   }, [dieta, milhoEstimado, materiaSecaExistente, fracaoProteica, mineral, materiaSecaFaltando]);
 
-  // useEffect(() => {
-  //   console.log("-- Dieta recebida: useEffect ", dieta);
-  //   const selectedAlimentos = dieta.selectedLivrarias.map(livraria => livraria.nome);
-  //   const novoResumo = {
-  //     alimentos_select: selectedAlimentos,
-  //     milho_estimado: milhoEstimado,
-  //     materia_seca_existente: materiaSecaExistente,
-  //     fracao_proteica_necessaria: fracaoProteica,
-  //     materia_seca_faltando: materiaSecaFaltando,
-  //     mineral: mineral,
-  //     nome_resumo: nome_da_dieta,
-  //   };
-  //   console.log("Atualizando resumo: ", novoResumo);
-  //   setResumo(novoResumo);
-  // }, [dieta, milhoEstimado, materiaSecaExistente, fracaoProteica, mineral, materiaSecaFaltando, nome_da_dieta]);
-
   const postCadastroResumo = async () => {
     setLoading(true);
-    console.log("-- POST CADASTRO RESUMO" + dieta)
-    console.log("-- Resumo: ", resumo);
     try {
       await postResumo(resumo);
-      setCadastroStatus("success");
-      console.log("Cadastro realizado com sucesso");
       Toast.show({
         type: "success",
         text1: "Cadastro realizado com sucesso",
       });
-
-      console.log("Navegando para ResumoScreen");
-      navigation.navigate("ResumoScreen")
-
+      navigation.navigate("ResumoScreen"); 
     } catch (error) {
-      setCadastroStatus("failed");
       console.error("Erro ao cadastrar resumo:", error);
       Toast.show({
         type: "error",
@@ -108,7 +83,6 @@ export default function DetalhesResumo({ route }) {
           <Ionicons name="chevron-back-outline" size={24} color="white" />
         </TouchableOpacity>
         <Text style={styles.title}>Resumo do planejamento</Text>
-
       </View>
       <View style={styles.secondContainer}>
         <View style={styles.containerProps}>
@@ -130,21 +104,15 @@ export default function DetalhesResumo({ route }) {
               <Text style={styles.itens}>Materia Seca Faltando: {materiaSecaFaltando}</Text>
               <Text style={styles.percetange}> em KG</Text>
             </View>
-            <View style={styles.itensPercentageC}>
+            <View style={styles.itensPercentage}>
               <Text style={styles.itens}>Mineral: {mineral}</Text>
               <Text style={styles.percetange}> em KG</Text>
             </View>
-
-
           </View>
         </View>
-      </View>
-      <View style={styles.containerButton}>
-        <TouchableOpacity
-          onPress={postCadastroResumo}
-          style={styles.createButton}
-        >
-          <Text style={styles.textButton}>CADASTRAR</Text>
+        <TouchableOpacity style={styles.addButton} onPress={postCadastroResumo}>
+          <Text style={styles.addButtonText}>SALVAR RESUMO</Text>
+          <Ionicons name="save-outline" size={24} color="white" />
         </TouchableOpacity>
       </View>
       {loading && <Loading />}
