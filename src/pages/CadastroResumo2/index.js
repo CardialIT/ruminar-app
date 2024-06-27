@@ -16,7 +16,7 @@ import { useContextProvider } from "../../context/AuthContext.js";
 import Loading from "../../components/LoadingElement/index.js";
 
 export default function CadastroResumo2Screen() {
-    const { dieta, updateDieta, ims, fdn, calcularFDNAlimentos, calcularFDNTotal, loading, setLoading  } = useContextProvider();
+    const { dieta, updateDieta, ims, fdn, calcularFDNAlimentos, calcularFDNTotal, loading, setLoading } = useContextProvider();
     const navigation = useNavigation();
     const [selectedLivrarias, setSelectedLivrarias] = useState([]);
 
@@ -27,17 +27,31 @@ export default function CadastroResumo2Screen() {
         navigation.navigate("CadastroResumo2Screen");
     };
 
+    const handleRemoveLivraria = (index) => {
+        const updatedLivrarias = dieta.selectedLivrarias.filter((_, i) => i !== index);
+        updateDieta("selectedLivrarias", updatedLivrarias);
+    };
+
+
     const renderSelectedLivrarias = () => {
         //console.log("Elementos selecionados"+ JSON.stringify(dieta.selectedLivrarias))
         return dieta.selectedLivrarias.map((livraria, index) => (
             <View key={index} style={styles.containerItemTitle}>
                 <Text style={styles.listagemItemTitle}>{livraria.nome}</Text>
-                <TextInput
-                    style={styles.inputField}
-                    placeholder="KG / MS"
-                    onChangeText={(text) => handleInputChange(text, index)}
-                    keyboardType="numeric"
-                />
+                <View style={styles.inputContainer}>
+                    <TextInput
+                        style={styles.inputField}
+                        placeholder="KG / MS"
+                        onChangeText={(text) => handleInputChange(text, index)}
+                        keyboardType="numeric"
+                    />
+                    <TouchableOpacity
+                        style={styles.removeButton}
+                        onPress={() => handleRemoveLivraria(index)}>
+                        <Ionicons name="remove-outline" size={24} color="red" />
+                    </TouchableOpacity>
+
+                </View>
             </View>
         ));
     };
@@ -47,7 +61,7 @@ export default function CadastroResumo2Screen() {
         updatedLivrarias[index].kgMs = text;
         updateDieta("selectedLivrarias", updatedLivrarias);
     };
-  
+
     const handleProximo = () => {
         setLoading(true);
         try {
@@ -62,8 +76,8 @@ export default function CadastroResumo2Screen() {
     useEffect(() => {
         calcularFDNTotal();
     }, [dieta.selectedLivrarias]);
-    
-    
+
+
     return (
         <View style={styles.container}>
 
@@ -73,10 +87,10 @@ export default function CadastroResumo2Screen() {
                     <Ionicons name="chevron-back-outline" size={24} color="white" />
                 </TouchableOpacity>
 
-                <Text style={styles.title}>Novo Resumo</Text> 
+                <Text style={styles.title}>Novo Resumo</Text>
 
                 <TouchableOpacity onPress={() => navigation.navigate("DetalhesLivrariaScreen")}>
-                 
+
                 </TouchableOpacity>
             </View>
 

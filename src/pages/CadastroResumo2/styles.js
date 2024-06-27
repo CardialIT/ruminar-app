@@ -116,12 +116,13 @@ export default StyleSheet.create({
         borderWidth: 0.6,
     },
 
-    input: {
-        width: "85%",
-        height: 40,
-        padding: 8,
-        fontSize: 14,
+    removeButton: {
+        position: 'absolute',
+        right: 10,
+        top: '50%',
+        transform: [{ translateY: -12 }],
     },
+
 
     // ADICIONAR LIVRARIA BUTTON
 
