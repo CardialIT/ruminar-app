@@ -124,6 +124,9 @@ function BottomTabsScreen() {
             case "HomeScreen":
               iconName = focused ? "home" : "home-outline";
               break;
+            case "ResumoScreen":
+              iconName = focused ? "scale" : "scale-outline";
+              break;
             case "DietasScreen":
               iconName = focused ? "fast-food" : "fast-food-outline";
               break;
@@ -151,10 +154,10 @@ function BottomTabsScreen() {
       })}
     >
       <Tab.Screen name="HomeScreen" component={HomeStackScreen} options={{ headerShown: false }} />
+      <Tab.Screen name="ResumoScreen" component={ResumoStackScreen} options={{ headerShown: false }} />
       <Tab.Screen name="DietasScreen" component={DietasStackScreen} options={{ headerShown: false }} />
       <Tab.Screen name="LivrariaScreen" component={LibraryStackScreen} options={{ headerShown: false }} />
       <Tab.Screen name="ProfileScreen" component={ProfileStackScreen} options={{ headerShown: false }} />
-      <Tab.Screen name="ResumoScreen" component={ResumoStackScreen} options={{ headerShown: false }} />
     </Tab.Navigator>
   );
 }

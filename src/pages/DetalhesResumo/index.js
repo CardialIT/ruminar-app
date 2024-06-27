@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { View, Text, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
-import styles from "../DetalhesLivraria/styles.js";
+import styles from "../DetalhesResumo/styles.js";
 import { useContextProvider } from "../../context/AuthContext.js";
 import Loading from "../../components/LoadingElement/index.js";
 import { postResumo } from "../../services/api.js";
@@ -135,13 +135,17 @@ export default function DetalhesResumo({ route }) {
               <Text style={styles.percetange}> em KG</Text>
             </View>
 
-            <TouchableOpacity onPress={postCadastroResumo}>
-              <Text style={styles.itens}>Cadastrar</Text>
-              <Ionicons name="checkmark-circle-outline" size={24} color="white" />
-            </TouchableOpacity>
 
           </View>
         </View>
+      </View>
+      <View style={styles.containerButton}>
+        <TouchableOpacity
+          onPress={postCadastroResumo}
+          style={styles.createButton}
+        >
+          <Text style={styles.textButton}>CADASTRAR</Text>
+        </TouchableOpacity>
       </View>
       {loading && <Loading />}
     </View>

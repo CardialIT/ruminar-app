@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { View, Text, TouchableOpacity, FlatList, Modal } from "react-native";
-import styles from "../Dietas/styles";
+import styles from "../Resumo/styles";
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
@@ -38,7 +38,7 @@ export default function ResumoScreen() {
   const renderResumoItem = ({ item }) => (
     <TouchableOpacity
       style={styles.listItemContainer}
-      onPress={() => navigation.navigate("DetalhesResumoScreen", { item })}
+      onPress={() => navigation.navigate("DetalhesResumo", { item })}
     >
       <Text style={styles.listTextItem}>{item.nome_resumo}</Text>
       <View style={styles.containerImages}>
@@ -52,7 +52,9 @@ export default function ResumoScreen() {
   return (
     <GestureHandlerRootView style={styles.container}>
       <View style={styles.firstContainer}>
-        <TouchableOpacity onPress={() => navigation.navigate("HomeScreen")}>
+        <TouchableOpacity
+          style={styles.backButton}
+          onPress={() => navigation.navigate("HomeScreen")}>
           <Ionicons name="chevron-back-outline" size={24} color="white" />
         </TouchableOpacity>
         <Text style={styles.title}>Resumo</Text>

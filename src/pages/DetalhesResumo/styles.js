@@ -14,13 +14,13 @@ export default StyleSheet.create({
   firstContainer: {
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "space-between",
+    justifyContent: "center",
     backgroundColor: colors.verdePrincipal,
     height: "20%",
     paddingHorizontal: 20,
     paddingTop: 40,
     paddingBottom: 10
-},
+  },
 
   title: {
 
@@ -28,6 +28,13 @@ export default StyleSheet.create({
     fontSize: 24,
     color: colors.background,
   },
+
+  backButton: {
+    position: "absolute",
+    left: 20,
+    paddingTop: 40,
+    paddingBottom: 10
+},
 
   containerImage: {
     justifyContent: "center",
@@ -120,5 +127,27 @@ export default StyleSheet.create({
 
   infoText: {
     color: colors.cinza,
+  },
+
+  // BOTÃO PRÓXIMO
+  containerButton: {
+    marginTop: height * 0.02,
+    marginBottom: height * 0.02,
+  },
+
+  createButton: {
+    backgroundColor: colors.verdePrincipal,
+    width: width * 0.86,
+    height: height * 0.06,
+    borderRadius: width * 0.02,
+    padding: width * 0.02,
+    justifyContent: "center",
+    alignSelf: "center",
+  },
+
+  textButton: {
+    color: colors.background,
+    fontWeight: "bold",
+    alignSelf: "center",
   },
 });
