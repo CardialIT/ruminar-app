@@ -8,11 +8,12 @@ export default StyleSheet.create({
         flex: 1,
         backgroundColor: colors.background
     },
+    // FIRST CONTAINER
 
     firstContainer: {
         flexDirection: "row",
         alignItems: "center",
-        justifyContent: "space-between",
+        justifyContent: "center",
         backgroundColor: colors.verdePrincipal,
         height: "20%",
         paddingHorizontal: 20,
@@ -23,14 +24,23 @@ export default StyleSheet.create({
     containerItem: {
         width: 28,
         height: 28,
-      },
+    },
+
+    backButton: {
+        position: "absolute",
+        left: 20,
+        paddingTop: 40,
+        paddingBottom: 10
+    },
 
     title: {
-   
+
         fontWeight: "bold",
         fontSize: 24,
         color: colors.background,
     },
+
+    // SECOND CONTAINER
 
     secondContainer: {
         backgroundColor: colors.background
@@ -77,9 +87,9 @@ export default StyleSheet.create({
     containerList: {
         flex: 1,
         backgroundColor: colors.background,
-        
-    }, 
-    
+
+    },
+
     containerImages: {
         display: "flex",
         flexDirection: "row",

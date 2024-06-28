@@ -2,20 +2,20 @@ import React, { useState, useEffect } from "react";
 import { View, Text, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
-import styles from "../DetalhesLivraria/styles.js";
+import styles from "../DetalhesDieta/styles.js";
 import { useContextProvider } from "../../context/AuthContext.js";
 import Loading from "../../components/LoadingElement/index.js";
 import { postDieta } from "../../services/api.js";
 import Toast from "react-native-toast-message";
 
 export default function DetalhesDieta({ route }) {
-  
+
   const navigation = useNavigation();
   const {
     dieta,
     pdrTotal,
     proteinaSoluvelTotal,
-    fdnEfetivoTotal,     
+    fdnEfetivoTotal,
     pbTotal,
     pndrTotal,
     ndtTotal,
@@ -24,9 +24,9 @@ export default function DetalhesDieta({ route }) {
     amidoTotal,
     eeTotal,
     loading,
-    setLoading 
+    setLoading
   } = useContextProvider();
-  
+
   const { nome_da_dieta } = dieta;
 
   const [dietaBack, setDietaBack] = useState({
@@ -49,7 +49,7 @@ export default function DetalhesDieta({ route }) {
   });
 
   useEffect(() => {
-    
+
     setDietaBack(prevDieta => ({
       ...prevDieta,
       nome_da_dieta: nome_da_dieta,
@@ -65,7 +65,7 @@ export default function DetalhesDieta({ route }) {
       ee_dieta: eeTotal
     }));
   }, [dieta, pbTotal, pndrTotal, pdrTotal, proteinaSoluvelTotal, fdnEfetivoTotal,
-    ndtTotal,itemFDNTotal,cnfTotal,amidoTotal,eeTotal
+    ndtTotal, itemFDNTotal, cnfTotal, amidoTotal, eeTotal
   ]);
 
 
@@ -80,8 +80,8 @@ export default function DetalhesDieta({ route }) {
       });
       navigation.reset({
         index: 0,
-        routes: [{ name: "DietasScreen" }],
-      });
+        routes: [{ name: "DietasScreen" }],
+      });
     } catch (error) {
       console.error("Erro ao criar dieta:", error);
       Toast.show({
@@ -97,12 +97,12 @@ export default function DetalhesDieta({ route }) {
   const renderSelectedLivrarias = () => {
     return dieta.selectedLivrarias.map((livraria, index) => (
       <View key={livraria.id} style={styles.itensPercentageC}>
-         <Text style={styles.itens}>{livraria.nome}: </Text>
-         <Text style={styles.percetange}>{livraria.kgMs} em MS</Text>
+        <Text style={styles.itens}>{livraria.nome}: </Text>
+        <Text style={styles.percetange}>{livraria.kgMs} em MS</Text>
       </View>
     ));
   };
- 
+
   return (
     <View style={styles.container}>
       <View style={styles.firstContainer}>
@@ -134,7 +134,7 @@ export default function DetalhesDieta({ route }) {
             <View style={styles.itensPercentage}>
               <Text style={styles.itens}>PDR: </Text>
               <Text style={styles.percetange}>{pdrTotal} %</Text>
-            </View>  
+            </View>
 
             <View style={styles.itensPercentageC}>
               <Text style={styles.itens}>Proteína Solúvel: </Text>
@@ -171,13 +171,14 @@ export default function DetalhesDieta({ route }) {
               <Text style={styles.percetange}>{eeTotal} %</Text>
             </View>
 
-            <TouchableOpacity style={styles.button} onPress={handleCriarDieta}>
-        <Text style={styles.buttonText}>Criar Dieta</Text>
-        <Ionicons name="add-outline" size={24} color="white" />
-      </TouchableOpacity>
-  
           </View>
         </View>
+      </View>
+      
+      <View style={styles.containerButton}>
+        <TouchableOpacity style={styles.createButton} onPress={handleCriarDieta}>
+          <Text style={styles.textButton}>CRIAR DIETA</Text>
+        </TouchableOpacity>
       </View>
       {loading && <Loading />}
     </View>

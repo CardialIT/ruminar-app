@@ -9,6 +9,7 @@ export default StyleSheet.create({
         backgroundColor: colors.background
     },
 
+    // FIRST CONTAINER
 
     firstContainer: {
         flexDirection: "row",
@@ -39,9 +40,14 @@ export default StyleSheet.create({
         color: colors.background,
     },
 
+    // SECOND CONTAINER
     secondContainer: {
-        backgroundColor: colors.background
+        flex: 1,
+        marginTop: height * 0.02,
+        padding: width * 0.06,
+        alignItems: "center",
     },
+
 
     addButton: {
         flexDirection: "row",

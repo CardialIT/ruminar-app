@@ -27,8 +27,9 @@ import CadastroDieta2Screen from "./pages/CadastroDieta2";
 import CadastroDieta3Screen from "./pages/CadastroDieta3";
 import CadastroDieta4Screen from "./pages/CadastroDieta4";
 import DetalhesResumoScreen from "./pages/DetalhesResumoScreen";
-import DetalhesDieta from "./pages/DetalhesDieta"
-import DetalhesResumo from "./pages/DetalhesResumo"
+import DetalhesDieta from "./pages/DetalhesDieta";
+import DetalhesResumo from "./pages/DetalhesResumo";
+import DetalhesDietasScreen from "./pages/DetalhesDietasScreen";
 
 import ResultadoDieta from "./pages/ResultadoDieta";
 
@@ -82,6 +83,7 @@ function DietasStackScreen() {
       <DietasStack.Screen name="CadastroDieta3Screen" component={CadastroDieta3Screen} />
       <DietasStack.Screen name="CadastroDieta4Screen" component={CadastroDieta4Screen} />
       <DietasStack.Screen name="DetalhesDieta" component={DetalhesDieta} />
+      <DietasStack.Screen name="DetalhesDietasScreen" component={DetalhesDietasScreen} />
       <DietasStack.Screen name="ResultadoDieta" component={ResultadoDieta} />
     </DietasStack.Navigator>
   );
