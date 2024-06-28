@@ -20,7 +20,7 @@ export default StyleSheet.create({
     paddingHorizontal: 20,
     paddingTop: 40,
     paddingBottom: 10
-},
+  },
 
   title: {
 
@@ -60,24 +60,6 @@ export default StyleSheet.create({
     borderRadius: 2,
   },
 
-  containerPropsTitle: {
-    justifyContent: "center",
-    alignItems: "flex-start",
-    marginLeft: width * 0.08,
-    marginRight: width * 0.08,
-    width: width * 1,
-    height: height * 0.04,
-    marginBottom: height * 0.02,
-  },
-
-  itemTitle: {
-    color: colors.text,
-    fontWeight: "bold",
-    fontSize: 20,
-    textTransform: "uppercase",
-    marginLeft: 10,
-  },
-
   itensPercentage: {
     flexDirection: "row",
     justifyContent: "space-between",
@@ -93,6 +75,7 @@ export default StyleSheet.create({
     alignItems: "center",
     paddingHorizontal: width * 0.02,
     paddingVertical: height * 0.004,
+    width: width * 0.94
   },
 
   itens: {
@@ -103,7 +86,8 @@ export default StyleSheet.create({
   },
 
   percetange: {
-    color: colors.verdePrincipal,
+    alignContent: "flex-end",
+    color: colors.verdePrincipal
   },
 
   /// ÚLTIMO CONTAINER
@@ -120,5 +104,27 @@ export default StyleSheet.create({
 
   infoText: {
     color: colors.cinza,
+  },
+
+  // BOTÃO PRÓXIMO
+  containerButton: {
+    marginTop: height * 0.02,
+    marginBottom: height * 0.02,
+  },
+
+  createButton: {
+    backgroundColor: colors.verdePrincipal,
+    width: width * 0.86,
+    height: height * 0.06,
+    borderRadius: width * 0.02,
+    padding: width * 0.02,
+    justifyContent: "center",
+    alignSelf: "center",
+  },
+
+  textButton: {
+    color: colors.background,
+    fontWeight: "bold",
+    alignSelf: "center",
   },
 });

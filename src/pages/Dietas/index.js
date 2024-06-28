@@ -73,7 +73,7 @@ export default function DietasScreen() {
   const renderDietaItem = ({ item }) => (
     <TouchableOpacity
       style={styles.listItemContainer}
-      onPress={() => navigation.navigate("DetalhesDietaScreen", { item })}
+      onPress={() => navigation.navigate("DetalhesDietasScreen", { item })}
     >
       <Text style={styles.listTextItem}>{item.nome_da_dieta}</Text>
       <View style={styles.containerImages}>
@@ -87,7 +87,9 @@ export default function DietasScreen() {
   return (
     <GestureHandlerRootView style={styles.container}>
       <View style={styles.firstContainer}>
-        <TouchableOpacity onPress={() => navigation.navigate("HomeScreen")}>
+        <TouchableOpacity
+          style={styles.backButton}
+          onPress={() => navigation.navigate("HomeScreen")}>
           <Ionicons name="chevron-back-outline" size={24} color="white" />
         </TouchableOpacity>
         <Text style={styles.title}>Dietas</Text>
