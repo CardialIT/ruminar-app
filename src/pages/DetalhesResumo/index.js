@@ -110,10 +110,13 @@ export default function DetalhesResumo({ route }) {
             </View>
           </View>
         </View>
-        <TouchableOpacity style={styles.addButton} onPress={postCadastroResumo}>
-          <Text style={styles.addButtonText}>SALVAR RESUMO</Text>
-          <Ionicons name="save-outline" size={24} color="white" />
-        </TouchableOpacity>
+
+        <View style={styles.containerButton}>
+          <TouchableOpacity onPress={postCadastroResumo} style={styles.createButton}>
+            <Text style={styles.textButton}> SALVAR RESUMO </Text>       
+          </TouchableOpacity>
+        </View>
+
       </View>
       {loading && <Loading />}
     </View>

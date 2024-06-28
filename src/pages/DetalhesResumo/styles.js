@@ -150,4 +150,32 @@ export default StyleSheet.create({
     fontWeight: "bold",
     alignSelf: "center",
   },
+
+
+   // BOTÃO "VER RESUMO"
+
+   // BOTÃO PRÓXIMO
+  containerButton: {
+    marginTop: height * 0.02,
+    marginBottom: height * 0.02,
+  },
+
+  createButton: {
+    backgroundColor: colors.verdePrincipal,
+    width: width * 0.86,
+    height: height * 0.06,
+    borderRadius: width * 0.02,
+    padding: width * 0.02,
+    justifyContent: "center",
+    alignSelf: "center",
+  },
+
+  textButton: {
+    color: colors.background,
+    fontWeight: "bold",
+    alignSelf: "center",
+  },
+
+
+
 });
