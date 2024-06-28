@@ -103,12 +103,11 @@ export default StyleSheet.create({
     height: height * 0.04,
     color: colors.text,
     fontSize: 14,
-    
   },
 
   percetange: {
-    color: colors.verdePrincipal,
     alignContent: "flex-end",
+    color: colors.verdePrincipal
   },
 
   /// ÚLTIMO CONTAINER
