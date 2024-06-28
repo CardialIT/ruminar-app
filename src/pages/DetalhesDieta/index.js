@@ -1,12 +1,15 @@
-import React from "react";
-import { View, Text, Image, TouchableOpacity } from "react-native";
+import React, { useState, useEffect } from "react";
+import { View, Text, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
 import styles from "../DetalhesLivraria/styles.js";
 import { useContextProvider } from "../../context/AuthContext.js";
 import Loading from "../../components/LoadingElement/index.js";
+import { postDieta } from "../../services/api.js";
+import Toast from "react-native-toast-message";
 
 export default function DetalhesDieta({ route }) {
+  
   const navigation = useNavigation();
   const {
     dieta,
@@ -23,7 +26,73 @@ export default function DetalhesDieta({ route }) {
     loading,
     setLoading 
   } = useContextProvider();
-  const { fdnTotal } = dieta;
+  
+  const { nome_da_dieta } = dieta;
+
+  const [dietaBack, setDietaBack] = useState({
+    nome_da_dieta: " ",
+    peso_medio: 0,
+    producao_estimada: 0,
+    del: 0,
+    fill_preenchimento_ruminal: 0,
+    preco_do_leite: 0,
+    pb_dieta: 0,
+    pndr_dieta: 0,
+    pdr_dieta: 0,
+    proteina_soluvel_dieta: 0,
+    fdn_efetivo_dieta: 0,
+    ndt_dieta: 0,
+    fdn_dieta: 0,
+    cnf_dieta: 0,
+    amido_dieta: 0,
+    ee_dieta: 0
+  });
+
+  useEffect(() => {
+    
+    setDietaBack(prevDieta => ({
+      ...prevDieta,
+      nome_da_dieta: nome_da_dieta,
+      pb_dieta: pbTotal,
+      pndr_dieta: pndrTotal,
+      pdr_dieta: pdrTotal,
+      proteina_soluvel_dieta: proteinaSoluvelTotal,
+      fdn_efetivo_dieta: fdnEfetivoTotal,
+      ndt_dieta: ndtTotal,
+      fdn_dieta: itemFDNTotal,
+      cnf_dieta: cnfTotal,
+      amido_dieta: amidoTotal,
+      ee_dieta: eeTotal
+    }));
+  }, [dieta, pbTotal, pndrTotal, pdrTotal, proteinaSoluvelTotal, fdnEfetivoTotal,
+    ndtTotal,itemFDNTotal,cnfTotal,amidoTotal,eeTotal
+  ]);
+
+
+  const handleCriarDieta = async () => {
+    setLoading(true);
+
+    try {
+      await postDieta(dietaBack);
+      Toast.show({
+        type: "success",
+        text1: "Dieta criada com sucesso",
+      });
+      navigation.reset({
+        index: 0,
+        routes: [{ name: "DietaScreen" }],
+      });
+    } catch (error) {
+      console.error("Erro ao criar dieta:", error);
+      Toast.show({
+        type: "error",
+        text1: "Erro ao criar dieta",
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
+
 
   const renderSelectedLivrarias = () => {
     return dieta.selectedLivrarias.map((livraria, index) => (
@@ -33,7 +102,7 @@ export default function DetalhesDieta({ route }) {
       </View>
     ));
   };
-
+ 
   return (
     <View style={styles.container}>
       <View style={styles.firstContainer}>
@@ -101,6 +170,11 @@ export default function DetalhesDieta({ route }) {
               <Text style={styles.itens}>EE: </Text>
               <Text style={styles.percetange}>{eeTotal} %</Text>
             </View>
+
+            <TouchableOpacity style={styles.button} onPress={handleCriarDieta}>
+        <Text style={styles.buttonText}>Criar Dieta</Text>
+        <Ionicons name="add-outline" size={24} color="white" />
+      </TouchableOpacity>
   
           </View>
         </View>
