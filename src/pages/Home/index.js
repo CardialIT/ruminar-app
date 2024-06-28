@@ -39,6 +39,20 @@ export default function HomeScreen() {
 
       <TouchableOpacity
         style={styles.imageContainer}
+        onPress={() => navigation.navigate("LivrariaScreen")}
+      >
+        <Image
+          source={require("../../../assets/Library.png")}
+          style={styles.images}
+        />
+        <View style={styles.overlay}>
+          <Text style={styles.imageTitle}>Livraria</Text>
+          <Text style={styles.imageSubtitle}>Adicione alimentos importantes</Text>
+        </View>
+      </TouchableOpacity>
+
+      <TouchableOpacity
+        style={styles.imageContainer}
         onPress={() => navigation.navigate("ResumoScreen")}
       >
         <Image
@@ -53,25 +67,10 @@ export default function HomeScreen() {
 
       <TouchableOpacity
         style={styles.imageContainer}
-        onPress={() => navigation.navigate("LivrariaScreen")}
-      >
-        <Image
-          source={require("../../../assets/Library.png")}
-          style={styles.images}
-        />
-        <View style={styles.overlay}>
-          <Text style={styles.imageTitle}>Livraria</Text>
-          <Text style={styles.imageSubtitle}>Adicione alimentos importantes</Text>
-        </View>
-      </TouchableOpacity>
-
-
-      <TouchableOpacity
-        style={styles.imageContainer}
         onPress={() => navigation.navigate("DietasScreen")}
       >
         <Image
-          source={require("../../../assets/IMG-backgroundDieta.jpg")}
+          source={require("../../../assets/imgDietas.jpg")}
           style={styles.imageR}
         />
         <View style={styles.overlay}>
