@@ -57,8 +57,8 @@ export default function DetalhesResumo({ route }) {
       });
       navigation.reset({
         index: 0,
-        routes: [{ name: "ResumoScreen" }],
-      });
+        routes: [{ name: "ResumoScreen" }],
+      });
     } catch (error) {
       console.error("Erro ao cadastrar resumo:", error);
       Toast.show({
@@ -73,8 +73,8 @@ export default function DetalhesResumo({ route }) {
   const renderSelectedLivrarias = () => {
     return dieta.selectedLivrarias.map((livraria, index) => (
       <View key={livraria.id} style={styles.itensPercentageC}>
-        <Text style={styles.itens}>{livraria.nome}: {livraria.kgMs}</Text>
-        <Text style={styles.percetange}>em MS</Text>
+        <Text style={styles.itens}>{livraria.nome}: </Text>
+        <Text style={styles.percetange}>{livraria.kgMs} em MS</Text>
       </View>
     ));
   };
@@ -82,9 +82,9 @@ export default function DetalhesResumo({ route }) {
   return (
     <View style={styles.container}>
       <View style={styles.firstContainer}>
-        <TouchableOpacity 
-        style={styles.backButton}
-        onPress={() => navigation.goBack()}>
+        <TouchableOpacity
+          style={styles.backButton}
+          onPress={() => navigation.goBack()}>
           <Ionicons name="chevron-back-outline" size={24} color="white" />
         </TouchableOpacity>
         <Text style={styles.title}>Resumo do planejamento</Text>
@@ -95,36 +95,44 @@ export default function DetalhesResumo({ route }) {
         <View style={styles.containerProps}>
 
           <View style={styles.containerPropsItens}>
+
             {renderSelectedLivrarias()}
+
             <View style={styles.itensPercentage}>
-              <Text style={styles.itens}>Milho Estimado: {milhoEstimado}</Text>
-              <Text style={styles.percetange}> em MS</Text>
+              <Text style={styles.itens}>Milho Estimado: </Text>
+              <Text style={styles.percetange}>{milhoEstimado} em MS</Text>
             </View>
+
             <View style={styles.itensPercentageC}>
-              <Text style={styles.itens}>Matéria Seca Existente: {materiaSecaExistente}</Text>
-              <Text style={styles.percetange}> em MS</Text>
+              <Text style={styles.itens}>Matéria Seca Existente: </Text>
+              <Text style={styles.percetange}>{materiaSecaExistente} em MS</Text>
             </View>
+
             <View style={styles.itensPercentage}>
-              <Text style={styles.itens}>Fração Proteica Necessária: {fracaoProteica}</Text>
-              <Text style={styles.percetange}> em MS</Text>
+              <Text style={styles.itens}>Fração Proteica Necessária: </Text>
+              <Text style={styles.percetange}>{fracaoProteica} em MS</Text>
             </View>
+
             <View style={styles.itensPercentageC}>
-              <Text style={styles.itens}>Materia Seca Faltando: {materiaSecaFaltando}</Text>
-              <Text style={styles.percetange}> em KG</Text>
+              <Text style={styles.itens}>Materia Seca Faltando: </Text>
+              <Text style={styles.percetange}>{materiaSecaFaltando} em KG</Text>
             </View>
+
             <View style={styles.itensPercentage}>
-              <Text style={styles.itens}>Mineral: {mineral}</Text>
-              <Text style={styles.percetange}> em KG</Text>
+              <Text style={styles.itens}>Mineral: </Text>
+              <Text style={styles.percetange}>{mineral} em KG</Text>
             </View>
+
           </View>
         </View>
 
-        <View style={styles.containerButton}>
-          <TouchableOpacity onPress={postCadastroResumo} style={styles.createButton}>
-            <Text style={styles.textButton}> SALVAR RESUMO </Text>       
-          </TouchableOpacity>
-        </View>
 
+      </View>
+      
+      <View style={styles.containerButton}>
+        <TouchableOpacity onPress={postCadastroResumo} style={styles.createButton}>
+          <Text style={styles.textButton}> SALVAR RESUMO </Text>
+        </TouchableOpacity>
       </View>
       {loading && <Loading />}
     </View>
