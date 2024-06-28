@@ -14,13 +14,13 @@ export default StyleSheet.create({
   firstContainer: {
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "space-between",
     backgroundColor: colors.verdePrincipal,
     height: "20%",
     paddingHorizontal: 20,
     paddingTop: 40,
     paddingBottom: 10
-  },
+},
 
   title: {
 
@@ -28,13 +28,6 @@ export default StyleSheet.create({
     fontSize: 24,
     color: colors.background,
   },
-
-  backButton: {
-    position: "absolute",
-    left: 20,
-    paddingTop: 40,
-    paddingBottom: 10
-},
 
   containerImage: {
     justifyContent: "center",
