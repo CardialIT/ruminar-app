@@ -80,7 +80,7 @@ export default function DetalhesDieta({ route }) {
       });
       navigation.reset({
         index: 0,
-        routes: [{ name: "DietaScreen" }],
+        routes: [{ name: "DietasScreen" }],
       });
     } catch (error) {
       console.error("Erro ao criar dieta:", error);
