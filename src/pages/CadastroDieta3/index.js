@@ -15,7 +15,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { useContextProvider } from "../../context/AuthContext.js";
 import Loading from "../../components/LoadingElement/index.js";
 
-export default function CadastroResumo3Screen() {
+export default function CadastroDieta3Screen() {
     const navigation = useNavigation();
     const {
         calcularMilhoEstimado, 

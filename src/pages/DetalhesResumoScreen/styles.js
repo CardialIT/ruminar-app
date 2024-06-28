@@ -23,7 +23,6 @@ export default StyleSheet.create({
   },
 
   title: {
-
     fontWeight: "bold",
     fontSize: 24,
     color: colors.background,
@@ -34,7 +33,7 @@ export default StyleSheet.create({
     left: 20,
     paddingTop: 40,
     paddingBottom: 10
-},
+  },
 
   containerImage: {
     justifyContent: "center",
@@ -48,16 +47,15 @@ export default StyleSheet.create({
   secondContainer: {
     flex: 1,
     marginTop: height * 0.02,
-    padding: width * 0.06,
-
-    alignItems: "center",
+    paddingHorizontal: width * 0.1,
+    paddingVertial: width * 0.2,
+    alignContent: "center",
   },
 
   containerProps: {
-    paddingHorizontal: width * 0.02,
-    justifyContent: "center",
+    paddingHorizontal: width * 0.3,
     alignItems: "center",
-    justifyContent: "space-between"
+    justifyContent: "space-between",    
   },
 
   containerPropsItens: {
@@ -67,22 +65,18 @@ export default StyleSheet.create({
     borderRadius: 2,
   },
 
-  containerPropsTitle: {
-    justifyContent: "center",
-    alignItems: "flex-start",
-    marginLeft: width * 0.08,
-    marginRight: width * 0.08,
-    width: width * 1,
-    height: height * 0.04,
-    marginBottom: height * 0.02,
-  },
-
   itemTitle: {
     color: colors.text,
     fontWeight: "bold",
-    fontSize: 20,
+    fontSize: 16,
     textTransform: "uppercase",
-    marginLeft: 10,
+    justifyContent: "center",
+    alignItems: "flex-start",
+    marginLeft: width * 0.02,
+    marginRight: width * 0.08,
+    width: "auto",
+    height: height * 0.04,
+    marginBottom: height * 0.02,
   },
 
   itensPercentage: {
@@ -92,6 +86,7 @@ export default StyleSheet.create({
     backgroundColor: colors.cinzaBackground,
     paddingHorizontal: width * 0.02,
     paddingVertical: height * 0.004,
+
   },
 
   itensPercentageC: {
@@ -100,17 +95,20 @@ export default StyleSheet.create({
     alignItems: "center",
     paddingHorizontal: width * 0.02,
     paddingVertical: height * 0.004,
+    width: width * 0.94
   },
 
   itens: {
-    width: width * 0.8,
+    width: "60%",
     height: height * 0.04,
     color: colors.text,
     fontSize: 14,
+    
   },
 
   percetange: {
     color: colors.verdePrincipal,
+    alignContent: "flex-end",
   },
 
   /// ÚLTIMO CONTAINER

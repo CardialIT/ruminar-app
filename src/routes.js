@@ -126,10 +126,10 @@ function BottomTabsScreen() {
               iconName = focused ? "home" : "home-outline";
               break;
             case "ResumoScreen":
-              iconName = focused ? "scale" : "scale-outline";
+              iconName = focused ? "bar-chart" : "bar-chart-outline";
               break;
             case "DietasScreen":
-              iconName = focused ? "fast-food" : "fast-food-outline";
+              iconName = focused ? "leaf" : "leaf-outline";
               break;
             case "LivrariaScreen":
               iconName = focused ? "book" : "book-outline";

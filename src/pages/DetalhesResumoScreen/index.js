@@ -11,27 +11,31 @@ export default function DetalhesResumoScreen() {
   const { item } = route.params;
 
   const {
-    dieta 
+    dieta
   } = useContextProvider();
 
   const renderSelectedLivrarias = () => {
     return dieta.selectedLivrarias.map((livraria, index) => (
       <View key={livraria.id} style={styles.itensPercentageC}>
-        <Text style={styles.itens}>{livraria.nome}: {livraria.kgMs}</Text>
-        <Text style={styles.percetange}>em MS</Text>
+        <Text style={styles.itens}>{livraria.nome}: </Text>
+        <Text style={styles.percetange}>{livraria.kgMs} em MS</Text>
       </View>
     ));
   };
 
   return (
     <View style={styles.container}>
+
       <View style={styles.firstContainer}>
+
         <TouchableOpacity
           style={styles.backButton}
           onPress={() => navigation.goBack()}>
           <Ionicons name="chevron-back-outline" size={24} color="white" />
         </TouchableOpacity>
+
         <Text style={styles.title}>Detalhes do Resumo</Text>
+
       </View>
 
       <View style={styles.secondContainer}>
@@ -39,31 +43,34 @@ export default function DetalhesResumoScreen() {
         <View style={styles.containerProps}>
 
           <View style={styles.containerPropsItens}>
+            
+            <Text style={styles.itemTitle}>{item.nome_resumo}</Text>
+            
 
             {renderSelectedLivrarias()}
 
             <View style={styles.itensPercentage}>
-              <Text style={styles.detailText}>Milho Estimado: </Text>
+              <Text style={styles.itens}>Milho Estimado: </Text>
               <Text style={styles.percetange}>{item.milho_estimado} em MS</Text>
             </View>
 
             <View style={styles.itensPercentageC}>
-              <Text style={styles.detailText}>Matéria Seca Existente: </Text>
+              <Text style={styles.itens}>Matéria Seca Existente: </Text>
               <Text style={styles.percetange}>{item.materia_seca_existente} em MS</Text>
             </View>
 
             <View style={styles.itensPercentage}>
-              <Text style={styles.detailText}>Fração Proteica: </Text>
+              <Text style={styles.itens}>Fração Proteica: </Text>
               <Text style={styles.percetange}>{item.fracao_proteica_necessaria} em MS</Text>
             </View>
 
             <View style={styles.itensPercentageC}>
-              <Text style={styles.detailText}>Materia Seca Faltando: </Text>
+              <Text style={styles.itens}>Materia Seca Faltando: </Text>
               <Text style={styles.percetange}>{item.materia_seca_faltando} em MS</Text>
             </View>
 
             <View style={styles.itensPercentage}>
-              <Text style={styles.detailText}>Mineral: </Text>
+              <Text style={styles.itens}>Mineral: </Text>
               <Text style={styles.percetange}>{item.mineral} em KG</Text>
             </View>
 
