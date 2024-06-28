@@ -44,58 +44,58 @@ export default function DetalhesDietasScreen() {
 
           <View style={styles.containerPropsItens}>
             
-            <Text style={styles.itemTitle}>{item.nome_resumo}</Text>
+            <Text style={styles.itemTitle}>{item.nome_da_dieta}</Text>
             
             {renderSelectedLivrarias()}
 
             <View style={styles.itensPercentage}>
               <Text style={styles.itens}>PB: </Text>
-              <Text style={styles.percetange}>{item.pbTotal} %</Text>
+              <Text style={styles.percetange}>{item.pb_dieta} %</Text>
             </View>
 
             <View style={styles.itensPercentageC}>
               <Text style={styles.itens}>PNDR: </Text>
-              <Text style={styles.percetange}>{item.pndrTotal} %</Text>
+              <Text style={styles.percetange}>{item.pndr_dieta} %</Text>
             </View>
 
             <View style={styles.itensPercentage}>
               <Text style={styles.itens}>PDR: </Text>
-              <Text style={styles.percetange}>{item.pdrTotal} %</Text>
+              <Text style={styles.percetange}>{item.pdr_dieta} %</Text>
             </View>
 
             <View style={styles.itensPercentageC}>
               <Text style={styles.itens}>Proteína Solúvel: </Text>
-              <Text style={styles.percetange}>{item.proteinaSoluvelTotal} %</Text>
+              <Text style={styles.percetange}>{item.proteina_soluvel_dieta} %</Text>
             </View>
 
             <View style={styles.itensPercentage}>
               <Text style={styles.itens}>FDN Efetivo:</Text>
-              <Text style={styles.percetange}>{item.fdnEfetivoTotal} %</Text>
+              <Text style={styles.percetange}>{item.fdn_efetivo_dieta} %</Text>
             </View>
 
             <View style={styles.itensPercentageC}>
               <Text style={styles.itens}>NDT: </Text>
-              <Text style={styles.percetange}>{item.ndtTotal} %</Text>
+              <Text style={styles.percetange}>{item.ndt_dieta} %</Text>
             </View>
 
             <View style={styles.itensPercentage}>
               <Text style={styles.itens}>FDN: </Text>
-              <Text style={styles.percetange}>{item.itemFDNTotal} %</Text>
+              <Text style={styles.percetange}>{item.fdn_dieta} %</Text>
             </View>
 
             <View style={styles.itensPercentageC}>
               <Text style={styles.itens}>CNF: </Text>
-              <Text style={styles.percetange}>{item.cnfTotal} %</Text>
+              <Text style={styles.percetange}>{item.cnf_dieta} %</Text>
             </View>
 
             <View style={styles.itensPercentage}>
               <Text style={styles.itens}>AMIDO: </Text>
-              <Text style={styles.percetange}>{item.amidoTotal} %</Text>
+              <Text style={styles.percetange}>{item.amido_dieta} %</Text>
             </View>
 
             <View style={styles.itensPercentageC}>
               <Text style={styles.itens}>EE: </Text>
-              <Text style={styles.percetange}>{item.eeTotal} %</Text>
+              <Text style={styles.percetange}>{item.ee_dieta} %</Text>
             </View>
           </View>
         </View>

@@ -86,7 +86,6 @@ export default StyleSheet.create({
         backgroundColor: colors.cinzaBackground,
         paddingHorizontal: width * 0.02,
         paddingVertical: height * 0.004,
-
     },
 
     itensPercentageC: {
