@@ -149,6 +149,8 @@ export default function CadastroResumo3Screen() {
             calcularEEMilho(milhoEstimado);
             calcularEEFracaoProteica(fracaoProteica);
             calcularEETotal(eeAlimentos, materiaSecaExistente);
+            
+            calcularMOIndividualAlimentos();
 
             navigation.navigate("CadastroDieta4Screen");
             } catch (error) {

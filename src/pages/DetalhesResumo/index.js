@@ -55,7 +55,10 @@ export default function DetalhesResumo({ route }) {
         type: "success",
         text1: "Cadastro realizado com sucesso",
       });
-      navigation.navigate("ResumoScreen"); 
+      navigation.reset({
+        index: 0,
+        routes: [{ name: "ResumoScreen" }],
+      });
     } catch (error) {
       console.error("Erro ao cadastrar resumo:", error);
       Toast.show({

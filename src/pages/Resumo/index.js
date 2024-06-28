@@ -100,6 +100,7 @@ export default function ResumoScreen() {
 
       <ScrollView>
         <FlatList
+          scrollEnabled={false}
           data={resumos}
           keyExtractor={(item) => String(item.id)}
           renderItem={renderResumoItem}
