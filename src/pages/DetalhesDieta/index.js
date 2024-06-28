@@ -47,9 +47,9 @@ export default function DetalhesDieta({ route }) {
     amido_dieta: 0,
     ee_dieta: 0
   });
-
+ 
   useEffect(() => {
-    
+    console.log("nome da dieta PORRAAAAAAA" + nome_da_dieta)
     setDietaBack(prevDieta => ({
       ...prevDieta,
       nome_da_dieta: nome_da_dieta,
