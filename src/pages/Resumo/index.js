@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, TouchableOpacity, FlatList, Modal } from "react-native";
+import { View, Text, TouchableOpacity, FlatList, Modal, Alert } from "react-native";
 import styles from "../Resumo/styles";
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation, useIsFocused } from "@react-navigation/native"; 
@@ -13,9 +13,11 @@ export default function ResumoScreen() {
   const isFocused = useIsFocused(); 
   const [isModalVisible, setModalVisible] = useState(false);
   const [resumos, setResumos] = useState([]);
+  const [resumoToDelete, setResumoToDelete] = useState(null);
   const { loading, setLoading } = useContextProvider();
 
-  const toggleModal = () => {
+  const toggleModal = (resumo) => {
+    setResumoToDelete(resumo);
     setModalVisible(!isModalVisible);
   };
 
@@ -38,14 +40,36 @@ export default function ResumoScreen() {
     }
   }, [isFocused]); 
 
+  const handleDeletePress = (resumo) => {
+    toggleModal(resumo);
+  };
+
+  const confirmDelete = async () => {
+    if (resumoToDelete) {
+      setLoading(true);
+      try {
+        console.log("Excluindo resumo:", resumoToDelete);
+        await deleteResumo(resumoToDelete.id);
+        setResumos(resumos.filter(resumo => resumo.id !== resumoToDelete.id));
+        toggleModal(null);
+        Alert.alert("Sucesso", "Resumo excluído com sucesso!");
+      } catch (error) {
+        console.error("Erro ao excluir resumo:", error);
+        Alert.alert("Erro", "Não foi possível excluir o resumo.");
+      } finally {
+        setLoading(false);
+      }
+    }
+  };
+
   const renderResumoItem = ({ item }) => (
     <TouchableOpacity
       style={styles.listItemContainer}
-      onPress={() => navigation.navigate("DetalhesResumoScreen", { item })}
+      onPress={() => navigation.navigate("DetalhesResumo", { item })}
     >
       <Text style={styles.listTextItem}>{item.nome_resumo}</Text>
       <View style={styles.containerImages}>
-        <TouchableOpacity onPress={toggleModal}>
+        <TouchableOpacity onPress={() => handleDeletePress(item)}>
           <Ionicons name="trash" size={24} color="red" />
         </TouchableOpacity>
       </View>
@@ -76,7 +100,6 @@ export default function ResumoScreen() {
 
       <ScrollView>
         <FlatList
-          scrollEnabled={false}
           data={resumos}
           keyExtractor={(item) => String(item.id)}
           renderItem={renderResumoItem}
@@ -88,17 +111,19 @@ export default function ResumoScreen() {
         animationType="slide"
         transparent={true}
         visible={isModalVisible}
-        onRequestClose={toggleModal}
+        onRequestClose={() => toggleModal(null)}
       >
         <View style={styles.modalContainer}>
           <View style={styles.modalContent}>
             <Text style={styles.modalTitle}>Excluir Resumo</Text>
-            <Text style={styles.modalText}>Você tem certeza que deseja excluir este resumo?</Text>
+            <Text style={styles.modalText}>
+              Você tem certeza que deseja excluir o resumo "{resumoToDelete?.nome_resumo}"?
+            </Text>
             <View style={styles.modalButtons}>
-              <TouchableOpacity style={styles.cancelButton} onPress={toggleModal}>
+              <TouchableOpacity style={styles.cancelButton} onPress={() => toggleModal(null)}>
                 <Text style={styles.modalButton}>Cancelar</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={styles.excluirButton} onPress={() => { /* Adicionar lógica de exclusão aqui */ }}>
+              <TouchableOpacity style={styles.excluirButton} onPress={confirmDelete}>
                 <Text style={styles.modalButtonDelete}>Excluir</Text>
               </TouchableOpacity>
             </View>
