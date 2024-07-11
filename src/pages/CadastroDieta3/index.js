@@ -26,48 +26,43 @@ export default function CadastroDieta3Screen() {
         loading, 
         setLoading, 
         calcularAmidoTotalNecessario, 
-     
-        calcularPBAlimentos,
-        calcularPBMilho, 
-        calcularPBFracaoProteica, 
+        calcularPBAlimentos,  
         calcularPBTotal, 
         calcularPDRAlimentos,
-        calcularPDRMilho,
-        calcularPDRFracaoProteica,
+     
+  
         calcularPDRTotal,
         calcularProteinaSoluvelAlimentos,
-        calcularProteinaSoluvelMilho,
-        calcularProteinaSoluvelFracaoProteica,
+
+     
         calcularProteinaSoluvelTotal,
         calcularFDNEfetivoAlimentos,
-        calcularFDNEfetivoMilho,
-        calcularFDNEfetivoFracaoProteica,
+ 
+      
         calcularFDNEfetivoTotal,
         calcularPNDRAlimentos,
-        calcularPNDRMilho,
-        calcularPNDRFracaoProteica,
+
         calcularPNDRTotal,
         calcularNDTAlimentos,
-        calcularNDTMilho,
-        calcularNDTFracaoProteica,
+    
+
         calcularNDTTotal,
         calcularItemFDNAlimentos,
-        calcularItemFDNMilho,
-        calcularItemFDNFracaoProteica,
+    
+  
         calcularItemFDNTotal,
         calcularCNFAlimentos,
-        calcularCNFMilho,
-        calcularCNFFracaoProteica,
+  
+    
         calcularCNFTotal,
         calcularAMIDOAlimentos,
-        calcularAMIDOMilho,
-        calcularAMIDOFracaoProteica,
+     
+
         calcularAMIDOTotal,
         calcularEEAlimentos,
-        calcularEEMilho,
-        calcularEEFracaoProteica,
+  
+   
         calcularEETotal,
-
         calcularMateriaSecaExistente2, 
         calcularMOIndividualAlimentos,      
     } = useContextProvider();
@@ -98,54 +93,53 @@ export default function CadastroDieta3Screen() {
             calcularPBTotal(pbAlimentos)
 
             const pndrAlimentos = calcularPNDRAlimentos();
-            calcularPNDRMilho(milhoEstimado);
-            calcularPNDRFracaoProteica(fracaoProteica);
+        
+    
             calcularPNDRTotal(pndrAlimentos, materiaSecaExistente)
 
             const pdrAlimentos = calcularPDRAlimentos();
-            calcularPDRMilho(milhoEstimado);
-            calcularPDRFracaoProteica(fracaoProteica);
+         
+          
             calcularPDRTotal(pdrAlimentos, materiaSecaExistente)
 
             const proteinaSoluvelAlimentos = calcularProteinaSoluvelAlimentos();
-            calcularProteinaSoluvelMilho(milhoEstimado);
-            calcularProteinaSoluvelFracaoProteica(fracaoProteica);
+     
+           
             calcularProteinaSoluvelTotal(proteinaSoluvelAlimentos, materiaSecaExistente)
 
             const fdnEfetivoAlimentos = calcularFDNEfetivoAlimentos();
-            calcularFDNEfetivoMilho(milhoEstimado);
-            calcularFDNEfetivoFracaoProteica(fracaoProteica);
-            calcularFDNEfetivoTotal(fdnEfetivoAlimentos, materiaSecaExistente)
+        
+        
+            calcularFDNEfetivoTotal(fdnEfetivoAlimentos)
             
 
             
-            calcularPNDRMilho(milhoEstimado);
-            calcularPNDRFracaoProteica(fracaoProteica);
+
+       
             calcularPNDRTotal(pndrAlimentos, materiaSecaExistente);
 
             const ndtAlimentos = calcularNDTAlimentos();
-            calcularNDTMilho(milhoEstimado);
-            calcularNDTFracaoProteica(fracaoProteica);
+
             calcularNDTTotal(ndtAlimentos, materiaSecaExistente);
 
             const itemFDNAlimentos = calcularItemFDNAlimentos();
-            calcularItemFDNMilho(milhoEstimado);
-            calcularItemFDNFracaoProteica(fracaoProteica);
+   
+       
             calcularItemFDNTotal(itemFDNAlimentos, materiaSecaExistente);
 
             const cnfAlimentos = calcularCNFAlimentos();
-            calcularCNFMilho(milhoEstimado);
-            calcularCNFFracaoProteica(fracaoProteica);
+       
+          
             calcularCNFTotal(cnfAlimentos, materiaSecaExistente);
 
             const amidoAlimentos = calcularAMIDOAlimentos();
-            calcularAMIDOMilho(milhoEstimado);
-            calcularAMIDOFracaoProteica(fracaoProteica);
+       
+   
             calcularAMIDOTotal(amidoAlimentos, materiaSecaExistente);
 
             const eeAlimentos = calcularEEAlimentos();
-            calcularEEMilho(milhoEstimado);
-            calcularEEFracaoProteica(fracaoProteica);
+        
+
             calcularEETotal(eeAlimentos, materiaSecaExistente);
             
             calcularMOIndividualAlimentos();

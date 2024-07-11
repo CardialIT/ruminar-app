@@ -14,7 +14,7 @@ export default function DetalhesLivrariaScreen({ route }) {
     async function fetchData() {
       try {
         const response = await getLivraria();
-        console.log("oi", response);
+      
 
         if (response.data) {
           setDetails(response.data);

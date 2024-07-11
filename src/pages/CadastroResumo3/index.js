@@ -49,14 +49,6 @@ export default function CadastroResumo3Screen() {
                 const materiaSecaExistente2 = calcularMateriaSecaExistente2(milhoEstimado, fracaoProteica, mineral);
             calcularMateriaSecaFaltando(materiaSecaExistente2);
 
-            
-            //Mudar de tela
-            // // calcularMOTotalAlimentos();
-            // calcularMOIndividualAlimentos();
-            // const pbAlimentos = calcularPBAlimentos();
-            // calcularPBMilho(milhoEstimado);
-            // calcularPBFracaoProteica(fracaoProteica);
-            // calcularPBTotal(pbAlimentos, materiaSecaExistente)
             navigation.navigate("DetalhesResumo");
             } catch (error) {
                 Toast.show({

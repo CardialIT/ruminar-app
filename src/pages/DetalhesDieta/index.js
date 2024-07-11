@@ -49,7 +49,7 @@ export default function DetalhesDieta({ route }) {
   });
  
   useEffect(() => {
-    console.log("nome da dieta PORRAAAAAAA" + nome_da_dieta)
+
     setDietaBack(prevDieta => ({
       ...prevDieta,
       nome_da_dieta: nome_da_dieta,
@@ -119,8 +119,6 @@ export default function DetalhesDieta({ route }) {
       <View style={styles.secondContainer}>
         <View style={styles.containerProps}>
           <View style={styles.containerPropsItens}>
-       
-
             <View style={styles.itensPercentage}>
               <Text style={styles.itens}>PB: </Text>
               <Text style={styles.percetange}>{pbTotal} %</Text>
@@ -136,37 +134,37 @@ export default function DetalhesDieta({ route }) {
               <Text style={styles.percetange}>{pdrTotal} %</Text>
             </View>
 
-            <View style={styles.itensPercentageC}>
+            {/* <View style={styles.itensPercentageC}>
               <Text style={styles.itens}>Proteína Solúvel: </Text>
               <Text style={styles.percetange}>{proteinaSoluvelTotal} %</Text>
-            </View>
+            </View> */}
 
-            <View style={styles.itensPercentage}>
+            <View style={styles.itensPercentageC}>
               <Text style={styles.itens}>FDN Efetivo:</Text>
               <Text style={styles.percetange}>{fdnEfetivoTotal} %</Text>
             </View>
 
-            <View style={styles.itensPercentageC}>
+            <View style={styles.itensPercentage}>
               <Text style={styles.itens}>NDT: </Text>
               <Text style={styles.percetange}>{ndtTotal} %</Text>
             </View>
 
-            <View style={styles.itensPercentage}>
+            <View style={styles.itensPercentageC}>
               <Text style={styles.itens}>FDN: </Text>
               <Text style={styles.percetange}>{itemFDNTotal} %</Text>
             </View>
 
-            <View style={styles.itensPercentageC}>
+            <View style={styles.itensPercentage}>
               <Text style={styles.itens}>CNF: </Text>
               <Text style={styles.percetange}>{cnfTotal} %</Text>
             </View>
 
-            <View style={styles.itensPercentage}>
+            <View style={styles.itensPercentageC}>
               <Text style={styles.itens}>AMIDO: </Text>
               <Text style={styles.percetange}>{amidoTotal} %</Text>
             </View>
 
-            <View style={styles.itensPercentageC}>
+            <View style={styles.itensPercentage}>
               <Text style={styles.itens}>EE: </Text>
               <Text style={styles.percetange}>{eeTotal} %</Text>
             </View>

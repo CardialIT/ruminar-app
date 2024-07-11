@@ -40,23 +40,23 @@ export default function CadastroDietaScreen() {
 
   const onChangeNomeDaDieta = (nomeDaDieta) => {
     setNomeDaDieta(nomeDaDieta);
-    console.log(nomeDaDieta);
+
   };
   const onChangePesoMedio = (pesoMedio) => {
     setPesoMedio(pesoMedio);
-    console.log(pesoMedio);
+
   }
   const onChangeProducaoEstimada = (producaoEstimada) => {
     setProducaoEstimada(producaoEstimada);
-    console.log(producaoEstimada);
+    
   }
   const onChangeDel = (del) => {
     setDel(del);
-    console.log(del);
+  
   }
   const onChangeFillPreenchimentoRuminal = (fillPreenchimentoRuminal) => {
     setFillPreenchimentoRuminal(fillPreenchimentoRuminal);
-    console.log(fillPreenchimentoRuminal);
+
   }
 
 
@@ -84,8 +84,7 @@ export default function CadastroDietaScreen() {
     const mineral = producaoMineral * 0.14;
 
     setMineral(mineral.toFixed(2));
-    console.log("mineral" + mineral);
-    console.log("producaoEstimada" + producao);
+  
   }
 
   const postCadastroDieta = async () => {

@@ -40,23 +40,23 @@ export default function CadastroResumoScreen() {
 
   const onChangeNomeDaDieta = (nomeDaDieta) => {
     setNomeDaDieta(nomeDaDieta);
-    console.log(nomeDaDieta);
+   
   };
   const onChangePesoMedio = (pesoMedio) => {
     setPesoMedio(pesoMedio);
-    console.log(pesoMedio);
+
   }
   const onChangeProducaoEstimada = (producaoEstimada) => {
     setProducaoEstimada(producaoEstimada);
-    console.log(producaoEstimada);
+
   }
   const onChangeDel = (del) => {
     setDel(del);
-    console.log(del);
+ 
   }
   const onChangeFillPreenchimentoRuminal = (fillPreenchimentoRuminal) => {
     setFillPreenchimentoRuminal(fillPreenchimentoRuminal);
-    console.log(fillPreenchimentoRuminal);
+
   }
 
 
