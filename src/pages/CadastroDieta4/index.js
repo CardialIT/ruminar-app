@@ -18,7 +18,7 @@ export default function CadastroDieta4Screen() {
     return dieta.selectedLivrarias.map((livraria, index) => (
       <View key={index} style={styles.containerItemTitle}>
         <Text style={styles.listagemItemTitle}>{livraria.nome}</Text>
-        <Text>MO: {livraria.materiaOrganicaFormatada}</Text>
+        <Text>Valor em Materia organica: {livraria.materiaOrganicaFormatada}</Text>
       </View>
     ));
   };
@@ -41,7 +41,7 @@ export default function CadastroDieta4Screen() {
         <TouchableOpacity onPress={() => navigation.navigate("CadastroDieta3Screen")}>
           <Ionicons name="chevron-back-outline" size={24} color="white" />
         </TouchableOpacity>
-        <Text style={styles.title}>Valores em Matéria Orgânica</Text>
+        <Text style={styles.title}>Valores em MateriaOrganicaa</Text>
         <TouchableOpacity onPress={() => navigation.navigate("DetalhesLivrariaScreen")}>
         </TouchableOpacity>
       </View>

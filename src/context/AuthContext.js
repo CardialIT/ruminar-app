@@ -138,9 +138,11 @@ export function ContextProvider({ children }) {
     const updatedLivrarias = dieta.selectedLivrarias.map(livraria => {
       const kgMs = parseFloat(livraria.kgMs);
       const teorMS = parseFloat(livraria.ms);
-  
+      
+        const calculo = kgMs / teorMS
      
-        const materiaOrganica = kgMs * (teorMS / 100);
+        const materiaOrganica = calculo * 100;
+
         const materiaOrganicaFormatada = materiaOrganica.toFixed(2);
   
         console.log(`MO para ${livraria.nome}: ${materiaOrganicaFormatada}`);
@@ -152,22 +154,35 @@ export function ContextProvider({ children }) {
   };
   
 //==> PB <==
+const calcularPBAlimentos = () => {
+  let totalPB = 0;
+  let totalKGMS = 0;
+  const updatedLivrarias = dieta.selectedLivrarias.map(livraria => {
+    const kgMs = parseFloat(livraria.kgMs);
+    const teorPB = parseFloat(livraria.pb);
+    const conta = kgMs * teorPB;
+    const proteinaBruta = conta / 100;
+    totalPB += proteinaBruta;
+    
 
-  const calcularPBAlimentos = () => {
-    let totalPB = 0;
-    const updatedLivrarias = dieta.selectedLivrarias.map(livraria => {
-      const kgMs = parseFloat(livraria.kgMs);
-      const teorPB = parseFloat(livraria.pb);
-      const conta = kgMs * teorPB;
-      const proteinaBruta = conta / 100;
-      totalPB += proteinaBruta;
-      const pbFormatado = parseFloat(proteinaBruta.toFixed(2));
-      console.log("PB por alimentos " + pbFormatado);
-      return { ...livraria, pbFormatado };
-    });
-    updateDieta("selectedLivrarias", updatedLivrarias);
-    return totalPB;
-  };
+    const pbFormatado = parseFloat(proteinaBruta.toFixed(2));
+    console.log("*********************PB por alimentos:********************" + pbFormatado);
+    console.log("*********************PB por total :********************" + totalPB);
+
+    totalKGMS += kgMs;
+    console.log("*********************KG MS DIGITADO:********************" + kgMs);
+    console.log("*********************KG MS TOTAL:********************" + totalKGMS);
+    return { ...livraria, pbFormatado };
+  });
+
+  updateDieta("selectedLivrarias", updatedLivrarias);
+
+  const total = totalPB / totalKGMS;
+  const totalPorcentagem = total * 100
+  console.log("*****************Total PB + Total KGMS:************** " + totalPorcentagem);
+
+  return totalPorcentagem;
+};
 
   const calcularPBMilho = (milhoEstimado) => {
     const updatedLivrarias = dieta.selectedLivrarias.map(livraria => {
@@ -196,17 +211,14 @@ export function ContextProvider({ children }) {
   };
 
 
-  const calcularPBTotal = (PBAlimentos, materiaSecaExistente) => {
-    
-    const divisaoCalculoPBTotal = PBAlimentos / materiaSecaExistente
-    const calculoPBTotal = divisaoCalculoPBTotal * 100
+  const calcularPBTotal = (PBAlimentos) => {
 
-    const pbFormatadoTotal = parseFloat(calculoPBTotal.toFixed(2))
+    const pbFormatadoTotal = PBAlimentos
 
     console.log("CALCULO PB TOTAL " + pbFormatadoTotal.toFixed(2))
 
-    setPBTotal(pbFormatadoTotal);
-    return pbFormatadoTotal;
+    setPBTotal(pbFormatadoTotal.toFixed(2));
+    return pbFormatadoTotal.toFixed(2);
   };
 
   //==> PDR <==

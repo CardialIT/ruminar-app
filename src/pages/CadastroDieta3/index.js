@@ -95,9 +95,7 @@ export default function CadastroDieta3Screen() {
             calcularMOIndividualAlimentos();
             
             const pbAlimentos = calcularPBAlimentos();
-            calcularPBMilho(milhoEstimado);
-            calcularPBFracaoProteica(fracaoProteica);
-            calcularPBTotal(pbAlimentos, materiaSecaExistente)
+            calcularPBTotal(pbAlimentos)
 
             const pndrAlimentos = calcularPNDRAlimentos();
             calcularPNDRMilho(milhoEstimado);

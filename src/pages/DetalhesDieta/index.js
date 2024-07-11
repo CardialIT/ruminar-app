@@ -119,7 +119,7 @@ export default function DetalhesDieta({ route }) {
       <View style={styles.secondContainer}>
         <View style={styles.containerProps}>
           <View style={styles.containerPropsItens}>
-            {renderSelectedLivrarias()}
+       
 
             <View style={styles.itensPercentage}>
               <Text style={styles.itens}>PB: </Text>

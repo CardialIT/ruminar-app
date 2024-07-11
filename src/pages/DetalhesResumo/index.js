@@ -113,10 +113,10 @@ export default function DetalhesResumo({ route }) {
               <Text style={styles.percetange}>{fracaoProteica} em MS</Text>
             </View>
 
-            <View style={styles.itensPercentageC}>
+            {/* <View style={styles.itensPercentageC}>
               <Text style={styles.itens}>Materia Seca Faltando: </Text>
               <Text style={styles.percetange}>{materiaSecaFaltando} em KG</Text>
-            </View>
+            </View> */}
 
             <View style={styles.itensPercentage}>
               <Text style={styles.itens}>Mineral: </Text>
