@@ -46,7 +46,7 @@ export default function DetalhesDietasScreen() {
             
             <Text style={styles.itemTitle}>{item.nome_da_dieta}</Text>
             
-            {renderSelectedLivrarias()}
+        
 
             <View style={styles.itensPercentage}>
               <Text style={styles.itens}>PB: </Text>
@@ -63,10 +63,10 @@ export default function DetalhesDietasScreen() {
               <Text style={styles.percetange}>{item.pdr_dieta} %</Text>
             </View>
 
-            <View style={styles.itensPercentageC}>
+            {/* <View style={styles.itensPercentageC}>
               <Text style={styles.itens}>Proteína Solúvel: </Text>
               <Text style={styles.percetange}>{item.proteina_soluvel_dieta} %</Text>
-            </View>
+            </View> */}
 
             <View style={styles.itensPercentage}>
               <Text style={styles.itens}>FDN Efetivo:</Text>

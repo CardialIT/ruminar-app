@@ -43,11 +43,21 @@ export default StyleSheet.create({
         paddingVertical: width * 0.02,
     },
 
+    containerDietaName:{
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-between",
+        alignItems: "center",
+       
+    },
+
     listagemTitle: {
         fontWeight: "bold",
         fontSize: 24,
         marginTop: height * 0.04,
-        paddingHorizontal: width * 0.05
+        paddingHorizontal: width * 0.05,
+  
+
     },
 
     // ScrollView
@@ -110,6 +120,16 @@ export default StyleSheet.create({
 
     inputField: {
         width: '100%',
+        height: 40,
+        paddingHorizontal: width * 0.02,
+        borderRadius: width * 0.02,
+        borderColor: colors.cinza,
+        borderWidth: 0.6,
+        paddingRight: 40,
+    },
+
+    inputFieldName: {
+        width: 330,
         height: 40,
         paddingHorizontal: width * 0.02,
         borderRadius: width * 0.02,
