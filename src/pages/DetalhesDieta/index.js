@@ -22,6 +22,7 @@ export default function DetalhesDieta({ route }) {
     itemFDNTotal,
     cnfTotal,
     amidoTotal,
+    msTotalDieta, 
     eeTotal,
     loading,
     setLoading
@@ -36,6 +37,7 @@ export default function DetalhesDieta({ route }) {
     del: 0,
     fill_preenchimento_ruminal: 0,
     preco_do_leite: 0,
+    ms_dieta: 0,
     pb_dieta: 0,
     pndr_dieta: 0,
     pdr_dieta: 0,
@@ -53,6 +55,7 @@ export default function DetalhesDieta({ route }) {
     setDietaBack(prevDieta => ({
       ...prevDieta,
       nome_da_dieta: nome_da_dieta,
+      ms_dieta: msTotalDieta,
       pb_dieta: pbTotal,
       pndr_dieta: pndrTotal,
       pdr_dieta: pdrTotal,
@@ -119,6 +122,12 @@ export default function DetalhesDieta({ route }) {
       <View style={styles.secondContainer}>
         <View style={styles.containerProps}>
           <View style={styles.containerPropsItens}>
+          
+          <View style={styles.itensPercentage}>
+              <Text style={styles.itens}>MS: </Text>
+              <Text style={styles.percetange}>{msTotalDieta} %</Text>
+            </View>
+            
             <View style={styles.itensPercentage}>
               <Text style={styles.itens}>PB: </Text>
               <Text style={styles.percetange}>{pbTotal} %</Text>

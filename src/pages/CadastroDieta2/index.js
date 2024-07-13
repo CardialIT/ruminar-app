@@ -27,7 +27,6 @@ export default function CadastroDieta2Screen() {
         calcularProteinaSoluvelTotal,
         calcularFDNEfetivoAlimentos,
         calcularFDNEfetivoTotal,
-        calcularPNDRAlimentos,
         calcularPNDRTotal,
         calcularNDTAlimentos,  
         calcularNDTTotal,
@@ -90,16 +89,15 @@ export default function CadastroDieta2Screen() {
         try {
             calcularMOIndividualAlimentos();
             const pbAlimentos = calcularPBAlimentos();
-            calcularPBTotal(pbAlimentos)
-            const pndrAlimentos = calcularPNDRAlimentos();
-            calcularPNDRTotal(pndrAlimentos)
+           const pbTotal = calcularPBTotal(pbAlimentos)    
+           calcularPBTotal(pbAlimentos)           
             const pdrAlimentos = calcularPDRAlimentos();
+            const pdrTotal = calcularPDRTotal(pdrAlimentos)
             calcularPDRTotal(pdrAlimentos)
             const proteinaSoluvelAlimentos = calcularProteinaSoluvelAlimentos();
             calcularProteinaSoluvelTotal(proteinaSoluvelAlimentos)
             const fdnEfetivoAlimentos = calcularFDNEfetivoAlimentos();
             calcularFDNEfetivoTotal(fdnEfetivoAlimentos)
-            calcularPNDRTotal(pndrAlimentos);
             const ndtAlimentos = calcularNDTAlimentos();
             calcularNDTTotal(ndtAlimentos);
             const itemFDNAlimentos = calcularItemFDNAlimentos();
@@ -110,7 +108,8 @@ export default function CadastroDieta2Screen() {
             calcularAMIDOTotal(amidoAlimentos);
             const eeAlimentos = calcularEEAlimentos();
             calcularEETotal(eeAlimentos);
-            calcularMOIndividualAlimentos();
+            calcularMOIndividualAlimentos();          
+            calcularPNDRTotal(pbTotal, pdrTotal)
             updateDieta("nome_da_dieta", nomeDaDieta); // Salva o nome da dieta no contexto global
             navigation.navigate("CadastroDieta4Screen");
         } catch (error) {

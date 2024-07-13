@@ -14,6 +14,7 @@ export function ContextProvider({ children }) {
   const [pdrTotal, setPDRTotal] = useState(0);
   const [proteinaSoluvelTotal, setProteinaSoluvelTotal] = useState(0);
   const [fdnEfetivoTotal, setFdnEfetivoTotal] = useState(0);
+  const [msTotal, setMsTotal] = useState(0);
   const [pbTotal, setPBTotal] = useState(0);
   const [pndrTotal, setPNDRTotal] = useState(0);
   const [ndtTotal, setNDTTotal] = useState(0);
@@ -213,49 +214,22 @@ const calcularPBAlimentos = () => {
     return fdnEfetivoFormatadoTotal.toFixed(2);
         };
     
-  //==> PNDR <==
-
-  const calcularPNDRAlimentos = () => {
-    let totalPNDR = 0;
-    let totalKGMS = 0;
-    const updatedLivrarias = dieta.selectedLivrarias.map(livraria => {
-      const kgMs = parseFloat(livraria.kgMs);
-      const teorPNDR = parseFloat(livraria.pndr);
-      const conta = kgMs * teorPNDR;
-      const proteinaBruta = conta / 100;
-      totalPNDR += proteinaBruta;
-      totalKGMS += kgMs;
-      const pndrFormatado = parseFloat(proteinaBruta.toFixed(2));
-     
-      return { ...livraria, pndrFormatado };
-    });
-  
-    updateDieta("selectedLivrarias", updatedLivrarias);
-  
-    const total = totalPNDR / totalKGMS;
-    const totalPorcentagem = total * 100;
-  
-    return totalPorcentagem;
-  };
-  
-  const calcularPNDRTotal = (PNDRAlimentos) => {
-    const pndrFormatadoTotal = parseFloat(PNDRAlimentos.toFixed(2));
-    setPNDRTotal(pndrFormatadoTotal);
-    return pndrFormatadoTotal;
-  };
-  
   //==> PDR <==
   const calcularPDRAlimentos = () => {
     let totalPDR = 0;
     let totalKGMS = 0;
     const updatedLivrarias = dieta.selectedLivrarias.map(livraria => {
+      const teorPB = parseFloat(livraria.pb)
       const kgMs = parseFloat(livraria.kgMs);
       const teorPDR = parseFloat(livraria.pdr);
-      const conta = kgMs * teorPDR;
-      const proteinaBruta = conta / 100;
-      totalPDR += proteinaBruta;
+      const pdrConta = teorPB * teorPDR 
+      const pdrContaPorcentagem = pdrConta / 100
+      const conta = pdrContaPorcentagem * kgMs
+      const contaPorcentagem = conta / 100
+      totalPDR += contaPorcentagem;
       totalKGMS += kgMs;
-      const pdrFormatado = parseFloat(proteinaBruta.toFixed(2));
+      const pdrFormatado = parseFloat(contaPorcentagem.toFixed(2));
+
 
       return { ...livraria, pdrFormatado };
     });
@@ -263,6 +237,7 @@ const calcularPBAlimentos = () => {
     updateDieta("selectedLivrarias", updatedLivrarias);
   
     const total = totalPDR / totalKGMS;
+
     const totalPorcentagem = total * 100;
   
     return totalPorcentagem;
@@ -463,6 +438,13 @@ const calcularPBAlimentos = () => {
     return eeFormatadoTotal;
   };
   
+  const calcularPNDRTotal = (valorPb, valorPDR) => {
+    const pndrFormatadoTotal = valorPb - valorPDR
+    setPNDRTotal(pndrFormatadoTotal);
+    return pndrFormatadoTotal;
+  };
+  
+  
 
 
   useEffect(() => {
@@ -485,7 +467,6 @@ const calcularPBAlimentos = () => {
         calcularMateriaSecaExistente2,
         calcularMOIndividualAlimentos,
         calcularPBTotal,
-        calcularPNDRAlimentos,
         calcularPNDRTotal,
         calcularPDRAlimentos,
         calcularPDRTotal,
@@ -493,7 +474,6 @@ const calcularPBAlimentos = () => {
         calcularProteinaSoluvelTotal,
         calcularFDNEfetivoAlimentos,
         calcularFDNEfetivoTotal,
-        calcularPNDRAlimentos,
         calcularPNDRTotal,
         calcularNDTAlimentos,
         calcularNDTTotal,
@@ -529,6 +509,7 @@ const calcularPBAlimentos = () => {
         materiaSecaFaltando,
         loading,
         setLoading,
+        msTotal,
         pbTotal,
         pndrTotal,
         pdrTotal,
