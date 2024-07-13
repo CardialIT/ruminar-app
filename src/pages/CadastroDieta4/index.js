@@ -38,10 +38,10 @@ export default function CadastroDieta4Screen() {
   return (
     <View style={styles.container}>
       <View style={styles.firstContainer}>
-        <TouchableOpacity onPress={() => navigation.navigate("CadastroDieta3Screen")}>
+        <TouchableOpacity onPress={() => navigation.navigate("CadastroDieta2Screen")}>
           <Ionicons name="chevron-back-outline" size={24} color="white" />
         </TouchableOpacity>
-        <Text style={styles.title}>Valores em MateriaOrganicaa</Text>
+        <Text style={styles.title}>Valores em MO</Text>
         <TouchableOpacity onPress={() => navigation.navigate("DetalhesLivrariaScreen")}>
         </TouchableOpacity>
       </View>

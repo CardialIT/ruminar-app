@@ -98,7 +98,7 @@ export default function DietasScreen() {
       <View style={styles.secondContainer}>
         <TouchableOpacity
           style={styles.addButton}
-          onPress={() => navigation.navigate("CadastroDietaScreen")}
+          onPress={() => navigation.navigate("CadastroDieta2Screen")}
         >
           <Text style={styles.addButtonText}>CRIAR NOVA DIETA</Text>
           <Ionicons name="add-outline" size={24} color="white" />

@@ -16,8 +16,35 @@ import { useContextProvider } from "../../context/AuthContext.js";
 import Loading from "../../components/LoadingElement/index.js";
 
 export default function CadastroDieta2Screen() {
-    const { dieta, updateDieta, ims, fdn, calcularFDNAlimentos, calcularFDNTotal, loading, setLoading } = useContextProvider();
+    const { 
+        dieta,
+        updateDieta,
+        loading, 
+        setLoading,    
+        calcularPBAlimentos,  
+        calcularPBTotal, 
+        calcularPDRAlimentos,
+        calcularPDRTotal,
+        calcularProteinaSoluvelAlimentos,
+        calcularProteinaSoluvelTotal,
+        calcularFDNEfetivoAlimentos,
+        calcularFDNEfetivoTotal,
+        calcularPNDRAlimentos,
+        calcularPNDRTotal,
+        calcularNDTAlimentos,  
+        calcularNDTTotal,
+        calcularItemFDNAlimentos,   
+        calcularItemFDNTotal,
+        calcularCNFAlimentos, 
+        calcularCNFTotal,
+        calcularAMIDOAlimentos,    
+        calcularAMIDOTotal,
+        calcularEEAlimentos, 
+        calcularEETotal,
+        calcularMOIndividualAlimentos,   
+     } = useContextProvider();
     const navigation = useNavigation();
+
     const [selectedLivrarias, setSelectedLivrarias] = useState([]);
 
     const handleSelectLivraria = (item) => {
@@ -60,20 +87,43 @@ export default function CadastroDieta2Screen() {
         updateDieta("selectedLivrarias", updatedLivrarias);
     };
 
-    const handleProximo = () => {
-        setLoading(true);
-        try {
-            calcularFDNAlimentos();
-            calcularFDNTotal();
-            navigation.navigate("CadastroDieta3Screen");
-        } finally {
-            setLoading(false);
-        }
-    };
 
-    useEffect(() => {
-        calcularFDNTotal();
-    }, [dieta.selectedLivrarias]);
+    const handleProximo = async () => { 
+            setLoading(true);
+            try {                         
+            calcularMOIndividualAlimentos();           
+            const pbAlimentos = calcularPBAlimentos();
+            calcularPBTotal(pbAlimentos)
+            const pndrAlimentos = calcularPNDRAlimentos();
+            calcularPNDRTotal(pndrAlimentos)
+            const pdrAlimentos = calcularPDRAlimentos();                 
+            calcularPDRTotal(pdrAlimentos)
+            const proteinaSoluvelAlimentos = calcularProteinaSoluvelAlimentos();            
+            calcularProteinaSoluvelTotal(proteinaSoluvelAlimentos)
+            const fdnEfetivoAlimentos = calcularFDNEfetivoAlimentos();               
+            calcularFDNEfetivoTotal(fdnEfetivoAlimentos)                  
+            calcularPNDRTotal(pndrAlimentos);
+            const ndtAlimentos = calcularNDTAlimentos();
+            calcularNDTTotal(ndtAlimentos);
+            const itemFDNAlimentos = calcularItemFDNAlimentos();       
+            calcularItemFDNTotal(itemFDNAlimentos);
+            const cnfAlimentos = calcularCNFAlimentos();             
+            calcularCNFTotal(cnfAlimentos);
+            const amidoAlimentos = calcularAMIDOAlimentos();      
+            calcularAMIDOTotal(amidoAlimentos);
+            const eeAlimentos = calcularEEAlimentos();      
+            calcularEETotal(eeAlimentos); 
+            calcularMOIndividualAlimentos();
+            navigation.navigate("CadastroDieta4Screen");
+            } catch (error) {
+                Toast.show({
+                    type: "error",
+                    text1: "Erro ao calcular milho",
+                });
+            } finally {
+                setLoading(false);
+            }     
+    };
 
 
     return (
@@ -81,7 +131,7 @@ export default function CadastroDieta2Screen() {
 
             <View style={styles.firstContainer}>
 
-                <TouchableOpacity onPress={() => navigation.navigate("CadastroDietaScreen")}>
+                <TouchableOpacity onPress={() => navigation.navigate("Diets")}>
                     <Ionicons name="chevron-back-outline" size={24} color="white" />
                 </TouchableOpacity>
 
@@ -89,21 +139,15 @@ export default function CadastroDieta2Screen() {
 
                 <TouchableOpacity onPress={() => navigation.navigate("DetalhesLivrariaScreen")}>
 
-                </TouchableOpacity>
+                </TouchableOpacity> 
             </View>
 
             <View style={styles.secondContainer}>
-                <Text style={styles.listagemTitle}>Preencha os dados de FDN</Text>
+                <Text style={styles.listagemTitle}>Selecione os itens</Text>
 
                 <ScrollView style={styles.containerList}>
 
-                    <View style={styles.containerResult}>
-                        <View style={styles.containerResultItem}>
-                            <Text style={styles.containerTitle}>IMS: {ims.toFixed(2)} kg</Text>
-                            <View style={styles.separator}></View>
-                            <Text style={styles.containerTitle}>FDN: {fdn.toFixed(2)} kg</Text>
-                        </View>
-                    </View>
+                
 
                     {dieta.selectedLivraria && (
                         <View style={styles.containerItemTitle}>

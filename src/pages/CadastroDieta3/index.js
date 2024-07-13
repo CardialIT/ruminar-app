@@ -29,39 +29,22 @@ export default function CadastroDieta3Screen() {
         calcularPBAlimentos,  
         calcularPBTotal, 
         calcularPDRAlimentos,
-     
-  
         calcularPDRTotal,
         calcularProteinaSoluvelAlimentos,
-
-     
         calcularProteinaSoluvelTotal,
         calcularFDNEfetivoAlimentos,
- 
-      
         calcularFDNEfetivoTotal,
         calcularPNDRAlimentos,
-
         calcularPNDRTotal,
-        calcularNDTAlimentos,
-    
-
+        calcularNDTAlimentos,  
         calcularNDTTotal,
-        calcularItemFDNAlimentos,
-    
-  
+        calcularItemFDNAlimentos,   
         calcularItemFDNTotal,
-        calcularCNFAlimentos,
-  
-    
+        calcularCNFAlimentos, 
         calcularCNFTotal,
-        calcularAMIDOAlimentos,
-     
-
+        calcularAMIDOAlimentos,    
         calcularAMIDOTotal,
-        calcularEEAlimentos,
-  
-   
+        calcularEEAlimentos, 
         calcularEETotal,
         calcularMateriaSecaExistente2, 
         calcularMOIndividualAlimentos,      
