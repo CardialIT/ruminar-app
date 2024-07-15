@@ -72,7 +72,8 @@ export default function CadastroResumoScreen() {
 
     setFdn(fdn);
     setIms(ims);
-
+    updateDieta("peso_medio", peso.toFixed(2));
+    updateDieta("del", dell.toFixed(2));
     updateDieta("producao_estimada", producao.toFixed(2));
     updateDieta("ims", ims.toFixed(2));
     updateDieta("fdn", fdn.toFixed(2)) / 100;

@@ -65,7 +65,7 @@ export default StyleSheet.create({
     alignItems: "center",
     backgroundColor: colors.cinzaBackground,
     paddingHorizontal: width * 0.02,
-    paddingVertical: height * 0.004,
+    height: 30,
   },
 
   itensPercentageC: {
@@ -73,7 +73,7 @@ export default StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     paddingHorizontal: width * 0.02,
-    paddingVertical: height * 0.004,
+    height: 30,
     width: width * 0.94
   },
 

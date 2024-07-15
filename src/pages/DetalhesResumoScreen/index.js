@@ -49,29 +49,57 @@ export default function DetalhesResumoScreen() {
             {renderSelectedAlimentos()}
 
             <View style={styles.itensPercentageC}>
+              <Text style={styles.itens}>Peso Médio: </Text>
+              <Text style={styles.percetange}>{item.peso_medio} em MS</Text>
+            </View>
+
+            <View style={styles.itensPercentage}>
+              <Text style={styles.itens}>Produção Estimada: </Text>
+              <Text style={styles.percetange}>{item.producao_estimada} em MS</Text>
+            </View>
+
+            <View style={styles.itensPercentageC}>
+              <Text style={styles.itens}>Del: </Text>
+              <Text style={styles.percetange}>{item.del} em MS</Text>
+            </View>
+
+            <View style={styles.itensPercentage}>
+              <Text style={styles.itens}>Amido Estimado: </Text>
+              <Text style={styles.percetange}>{item.amido_estimado} % </Text>
+            </View>
+
+
+            <View style={styles.itensPercentageC}>
               <Text style={styles.itens}>Milho Estimado: </Text>
               <Text style={styles.percetange}>{item.milho_estimado} em MS</Text>
             </View>
 
+          
             <View style={styles.itensPercentage}>
-              <Text style={styles.itens}>Matéria Seca Existente: </Text>
-              <Text style={styles.percetange}>{item.materia_seca_existente} em MS</Text>
-            </View>
-
-            <View style={styles.itensPercentageC}>
               <Text style={styles.itens}>Fração Proteica: </Text>
               <Text style={styles.percetange}>{item.fracao_proteica_necessaria} em MS</Text>
             </View>
 
-            <View style={styles.itensPercentage}>
+            <View style={styles.itensPercentageC}>
               <Text style={styles.itens}>Matéria Seca Faltando: </Text>
               <Text style={styles.percetange}>{item.materia_seca_faltando} em MS</Text>
             </View>
 
-            <View style={styles.itensPercentageC}>
+            <View style={styles.itensPercentage}>
               <Text style={styles.itens}>Mineral: </Text>
               <Text style={styles.percetange}>{item.mineral} em KG</Text>
             </View>
+
+            <View style={styles.itensPercentageC}>
+              <Text style={styles.itens}>Matéria Seca Existente: </Text>
+              <Text style={styles.percetange}>{item.materia_seca_existente} em MS</Text>
+            </View>
+
+              <View style={styles.itensPercentage}>
+              <Text style={styles.itens}>Matéria Seca Faltando: </Text>
+              <Text style={styles.percetange}>{item.materia_seca_faltando} em MS</Text>
+            </View>
+
 
           </View>
         </View>

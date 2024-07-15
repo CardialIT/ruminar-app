@@ -21,7 +21,7 @@ export default function DetalhesResumo({ route }) {
     setLoading
   } = useContextProvider();
 
-  const { nome_da_dieta } = dieta;
+  const { nome_da_dieta, peso_medio, producao_estimada, del, amidoEstimado  } = dieta;
 
   const [resumo, setResumo] = useState({
     nome_resumo: nome_da_dieta,
@@ -30,7 +30,11 @@ export default function DetalhesResumo({ route }) {
     materia_seca_existente: 0,
     fracao_proteica_necessaria: 0,
     materia_seca_faltando: 0,
-    mineral: 0
+    mineral: 0,
+    peso_medio: 0,
+    producao_estimada: 0,
+    del: 0,
+    amido_estimado: 0,
   });
 
   useEffect(() => {
@@ -46,7 +50,11 @@ export default function DetalhesResumo({ route }) {
       fracao_proteica_necessaria: fracaoProteica,
       materia_seca_faltando: materiaSecaFaltando,
       mineral: mineral,
-      nome_resumo: nome_da_dieta
+      nome_resumo: nome_da_dieta,
+      peso_medio: peso_medio,
+      producao_estimada: producao_estimada,
+      del: del,
+      amido_estimado: amidoEstimado,
     }));
   }, [dieta, milhoEstimado, materiaSecaExistente, fracaoProteica, mineral, materiaSecaFaltando]);
 
@@ -114,7 +122,7 @@ export default function DetalhesResumo({ route }) {
               <Text style={styles.percetange}>{fracaoProteica} em MS</Text>
             </View>
 
-            <View style={styles.itensPercentage}>
+            <View style={styles.itensPercentageC}>
               <Text style={styles.itens}>Mineral: </Text>
               <Text style={styles.percetange}>{mineral} em KG</Text>
             </View>

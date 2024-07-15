@@ -28,6 +28,7 @@ export default function CadastroResumo3Screen() {
         setLoading, 
         calcularAmidoTotalNecessario, 
         calcularMateriaSecaExistente2, 
+        updateDieta
     } = useContextProvider();
 
     const [amidoEstimado, setAmidoEstimado] = useState("");
@@ -43,6 +44,7 @@ export default function CadastroResumo3Screen() {
             setLoading(true);
             try {
                 const amidoNecessario = calcularAmidoTotalNecessario(amido);
+                updateDieta("amidoEstimado", amido.toFixed(2));
                 const milhoEstimado = calcularMilhoEstimado(amidoNecessario);
                 const materiaSecaExistente = calcularMateriaSecaExistente(milhoEstimado);
                 const fracaoProteica = calcularFracaoProteica(materiaSecaExistente);

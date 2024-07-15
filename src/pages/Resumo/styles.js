@@ -45,6 +45,7 @@ export default StyleSheet.create({
         flex: 1,        
         padding: width * 0.06,
         alignItems: "center",
+    
         paddingBottom: 80,        
     },
 
@@ -54,7 +55,6 @@ export default StyleSheet.create({
         backgroundColor: colors.amarelo,
         alignItems: "center",
         justifyContent: "space-between",
-        alignSelf: 'center',
         borderRadius: width * 0.02,
         height: height * 0.06,
         marginTop: height * 0.04,

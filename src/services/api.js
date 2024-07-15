@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const api = axios.create({ baseURL: "https://ruminar.onrender.com" });
+export const api = axios.create({ baseURL: "https://ruminarback.onrender.com/" });
 
 export async function getLivraria() {
   const response = await api.get("/livraria");
