@@ -8,7 +8,7 @@ import { useContextProvider } from "../../context/AuthContext.js";
 import Loading from "../../components/LoadingElement/index.js";
 
 export default function CadastroDieta4Screen() {
-  const { dieta, loading, setLoading } = useContextProvider();
+  const { dieta, loading, setLoading, msTotalDigitado, moTotal, calcularMSDieta } = useContextProvider();
   const navigation = useNavigation();
   const [selectedLivrarias, setSelectedLivrarias] = useState([]);
 
@@ -26,7 +26,7 @@ export default function CadastroDieta4Screen() {
   const handleProximo = () => {
     setLoading(true);
     try {
-
+      calcularMSDieta(msTotalDigitado, moTotal)
       navigation.navigate("DetalhesDieta");
     } finally {
       setLoading(false);

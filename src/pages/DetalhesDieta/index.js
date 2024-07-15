@@ -22,39 +22,45 @@ export default function DetalhesDieta({ route }) {
     itemFDNTotal,
     cnfTotal,
     amidoTotal,
-    msTotalDieta, 
     eeTotal,
     loading,
-    setLoading
+    setLoading,
+    msTotalDieta
   } = useContextProvider();
 
   const { nome_da_dieta } = dieta;
 
   const [dietaBack, setDietaBack] = useState({
-    nome_da_dieta: " ",
+    nome_da_dieta: nome_da_dieta,
+    alimentos_select: [],
     peso_medio: 0,
     producao_estimada: 0,
     del: 0,
     fill_preenchimento_ruminal: 0,
     preco_do_leite: 0,
-    ms_dieta: 0,
-    pb_dieta: 0,
-    pndr_dieta: 0,
-    pdr_dieta: 0,
-    proteina_soluvel_dieta: 0,
-    fdn_efetivo_dieta: 0,
-    ndt_dieta: 0,
-    fdn_dieta: 0,
-    cnf_dieta: 0,
-    amido_dieta: 0,
-    ee_dieta: 0
+    ms_dieta: msTotalDieta,
+    pb_dieta: pbTotal,
+    pndr_dieta: pndrTotal,
+    pdr_dieta: pdrTotal,
+    proteina_soluvel_dieta: proteinaSoluvelTotal,
+    fdn_efetivo_dieta: fdnEfetivoTotal,
+    ndt_dieta: ndtTotal,
+    fdn_dieta: itemFDNTotal,
+    cnf_dieta: cnfTotal,
+    amido_dieta: amidoTotal,
+    ee_dieta: eeTotal
   });
  
   useEffect(() => {
-
+    const selectedAlimentos = dieta.selectedLivrarias.map(livraria => ({
+      nome: livraria.nome,
+      kgMs: livraria.kgMs,
+      kgMo: livraria.materiaOrganicaFormatada,
+    }));
+    
     setDietaBack(prevDieta => ({
       ...prevDieta,
-      nome_da_dieta: nome_da_dieta,
+      alimentos_select: selectedAlimentos,
       ms_dieta: msTotalDieta,
       pb_dieta: pbTotal,
       pndr_dieta: pndrTotal,
@@ -67,15 +73,13 @@ export default function DetalhesDieta({ route }) {
       amido_dieta: amidoTotal,
       ee_dieta: eeTotal
     }));
-  }, [dieta, pbTotal, pndrTotal, pdrTotal, proteinaSoluvelTotal, fdnEfetivoTotal,
-    ndtTotal, itemFDNTotal, cnfTotal, amidoTotal, eeTotal
-  ]);
-
+  }, [dieta, msTotalDieta, pbTotal, pndrTotal, pdrTotal, proteinaSoluvelTotal, fdnEfetivoTotal, ndtTotal, itemFDNTotal, cnfTotal, amidoTotal, eeTotal]);
 
   const handleCriarDieta = async () => {
     setLoading(true);
 
     try {
+      console.log("JSON QUE TA SENDO ENVIADO " + JSON.stringify(dietaBack, null, 2));
       await postDieta(dietaBack);
       Toast.show({
         type: "success",
@@ -96,12 +100,12 @@ export default function DetalhesDieta({ route }) {
     }
   };
 
-
   const renderSelectedLivrarias = () => {
     return dieta.selectedLivrarias.map((livraria, index) => (
       <View key={livraria.id} style={styles.itensPercentageC}>
         <Text style={styles.itens}>{livraria.nome}: </Text>
         <Text style={styles.percetange}>{livraria.kgMs} em MS</Text>
+
       </View>
     ));
   };
@@ -142,11 +146,6 @@ export default function DetalhesDieta({ route }) {
               <Text style={styles.itens}>PDR: </Text>
               <Text style={styles.percetange}>{pdrTotal} %</Text>
             </View>
-
-            {/* <View style={styles.itensPercentageC}>
-              <Text style={styles.itens}>Proteína Solúvel: </Text>
-              <Text style={styles.percetange}>{proteinaSoluvelTotal} %</Text>
-            </View> */}
 
             <View style={styles.itensPercentageC}>
               <Text style={styles.itens}>FDN Efetivo:</Text>

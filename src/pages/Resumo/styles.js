@@ -42,10 +42,10 @@ export default StyleSheet.create({
 
     // SECOND CONTAINER
     secondContainer: {
-        flex: 1,
-        marginTop: height * 0.02,
+        flex: 1,        
         padding: width * 0.06,
         alignItems: "center",
+        paddingBottom: 80,        
     },
 
 

@@ -34,7 +34,10 @@ export default function DetalhesResumo({ route }) {
   });
 
   useEffect(() => {
-    const selectedAlimentos = dieta.selectedLivrarias.map(livraria => livraria.nome);
+    const selectedAlimentos = dieta.selectedLivrarias.map(livraria => ({
+      nome: livraria.nome,
+      kgMs: livraria.kgMs
+    }));
     setResumo(prevResumo => ({
       ...prevResumo,
       alimentos_select: selectedAlimentos,
@@ -50,6 +53,7 @@ export default function DetalhesResumo({ route }) {
   const postCadastroResumo = async () => {
     setLoading(true);
     try {
+      console.log("JSON QUE TA SENDO ENVIADO " + JSON.stringify(resumo, null, 2));
       await postResumo(resumo);
       Toast.show({
         type: "success",
@@ -91,11 +95,8 @@ export default function DetalhesResumo({ route }) {
       </View>
 
       <View style={styles.secondContainer}>
-
         <View style={styles.containerProps}>
-
           <View style={styles.containerPropsItens}>
-
             {renderSelectedLivrarias()}
 
             <View style={styles.itensPercentage}>
@@ -113,11 +114,6 @@ export default function DetalhesResumo({ route }) {
               <Text style={styles.percetange}>{fracaoProteica} em MS</Text>
             </View>
 
-            {/* <View style={styles.itensPercentageC}>
-              <Text style={styles.itens}>Materia Seca Faltando: </Text>
-              <Text style={styles.percetange}>{materiaSecaFaltando} em KG</Text>
-            </View> */}
-
             <View style={styles.itensPercentage}>
               <Text style={styles.itens}>Mineral: </Text>
               <Text style={styles.percetange}>{mineral} em KG</Text>
@@ -125,10 +121,8 @@ export default function DetalhesResumo({ route }) {
 
           </View>
         </View>
-
-
       </View>
-      
+
       <View style={styles.containerButton}>
         <TouchableOpacity onPress={postCadastroResumo} style={styles.createButton}>
           <Text style={styles.textButton}> SALVAR RESUMO </Text>

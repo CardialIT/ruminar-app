@@ -14,11 +14,11 @@ export default function DetalhesResumoScreen() {
     dieta
   } = useContextProvider();
 
-  const renderSelectedLivrarias = () => {
-    return dieta.selectedLivrarias.map((livraria, index) => (
-      <View key={livraria.id} style={styles.itensPercentageC}>
-        <Text style={styles.itens}>{livraria.nome}: </Text>
-        <Text style={styles.percetange}>{livraria.kgMs} em MS</Text>
+  const renderSelectedAlimentos = () => {
+    return item.alimentos_select.map((alimento, index) => (
+      <View key={index} style={styles.itensPercentage}>
+        <Text style={styles.itens}>{alimento.nome}</Text>
+        <Text style={styles.percetange}>{alimento.kgMs} em MS</Text>
       </View>
     ));
   };
@@ -46,30 +46,29 @@ export default function DetalhesResumoScreen() {
             
             <Text style={styles.itemTitle}>{item.nome_resumo}</Text>
             
+            {renderSelectedAlimentos()}
 
-            {renderSelectedLivrarias()}
-
-            <View style={styles.itensPercentage}>
+            <View style={styles.itensPercentageC}>
               <Text style={styles.itens}>Milho Estimado: </Text>
               <Text style={styles.percetange}>{item.milho_estimado} em MS</Text>
             </View>
 
-            <View style={styles.itensPercentageC}>
+            <View style={styles.itensPercentage}>
               <Text style={styles.itens}>Matéria Seca Existente: </Text>
               <Text style={styles.percetange}>{item.materia_seca_existente} em MS</Text>
             </View>
 
-            <View style={styles.itensPercentage}>
+            <View style={styles.itensPercentageC}>
               <Text style={styles.itens}>Fração Proteica: </Text>
               <Text style={styles.percetange}>{item.fracao_proteica_necessaria} em MS</Text>
             </View>
 
-            <View style={styles.itensPercentageC}>
-              <Text style={styles.itens}>Materia Seca Faltando: </Text>
+            <View style={styles.itensPercentage}>
+              <Text style={styles.itens}>Matéria Seca Faltando: </Text>
               <Text style={styles.percetange}>{item.materia_seca_faltando} em MS</Text>
             </View>
 
-            <View style={styles.itensPercentage}>
+            <View style={styles.itensPercentageC}>
               <Text style={styles.itens}>Mineral: </Text>
               <Text style={styles.percetange}>{item.mineral} em KG</Text>
             </View>
@@ -77,6 +76,6 @@ export default function DetalhesResumoScreen() {
           </View>
         </View>
       </View>
-    </View >
+    </View>
   );
 }

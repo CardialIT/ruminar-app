@@ -14,7 +14,6 @@ export function ContextProvider({ children }) {
   const [pdrTotal, setPDRTotal] = useState(0);
   const [proteinaSoluvelTotal, setProteinaSoluvelTotal] = useState(0);
   const [fdnEfetivoTotal, setFdnEfetivoTotal] = useState(0);
-  const [msTotal, setMsTotal] = useState(0);
   const [pbTotal, setPBTotal] = useState(0);
   const [pndrTotal, setPNDRTotal] = useState(0);
   const [ndtTotal, setNDTTotal] = useState(0);
@@ -22,6 +21,9 @@ export function ContextProvider({ children }) {
   const [cnfTotal, setCNFTotal] = useState(0);
   const [amidoTotal, setAMIDOTotal] = useState(0);
   const [eeTotal, setEETotal] = useState(0);
+  const [msTotalDigitado, setMsTotalDigitado] = useState(0);
+  const [moTotal, setMoTotal] = useState(0);
+  const [msTotalDieta , setMsTotalDieta] = useState(0);
 
   
 
@@ -136,6 +138,7 @@ export function ContextProvider({ children }) {
   };
 
   const calcularMOIndividualAlimentos = () => {
+    let totalMO = 0;
     const updatedLivrarias = dieta.selectedLivrarias.map(livraria => {
       const kgMs = parseFloat(livraria.kgMs);
       const teorMS = parseFloat(livraria.ms);
@@ -145,8 +148,11 @@ export function ContextProvider({ children }) {
         const materiaOrganica = calculo * 100;
 
         const materiaOrganicaFormatada = materiaOrganica.toFixed(2);
-  
-     
+
+        totalMO += materiaOrganica;
+
+        setMoTotal(totalMO.toFixed(2));
+
         return { ...livraria, materiaOrganicaFormatada };
      
     });
@@ -166,6 +172,7 @@ const calcularPBAlimentos = () => {
     totalPB += proteinaBruta;
     const pbFormatado = parseFloat(proteinaBruta.toFixed(2));
     totalKGMS += kgMs;
+    setMsTotalDigitado(totalKGMS)
     return { ...livraria, pbFormatado };
   });
 
@@ -444,8 +451,12 @@ const calcularPBAlimentos = () => {
     return pndrFormatadoTotal;
   };
   
-  
-
+    const calcularMSDieta = (msTotalDigitado, moTotal) => {
+    const conta = msTotalDigitado / moTotal
+    const multiplicacao = conta * 100
+    setMsTotalDieta(multiplicacao.toFixed(2))
+    return multiplicacao.toFixed(2)
+  }
 
   useEffect(() => {
     calcularFDNTotal();
@@ -485,6 +496,8 @@ const calcularPBAlimentos = () => {
         calcularAMIDOTotal,
         calcularEEAlimentos,
         calcularEETotal,
+        calcularMSDieta,
+        msTotalDieta,
         nomeDieta,
         setNomeDieta,
         pesoMedio,
@@ -509,7 +522,7 @@ const calcularPBAlimentos = () => {
         materiaSecaFaltando,
         loading,
         setLoading,
-        msTotal,
+        moTotal,
         pbTotal,
         pndrTotal,
         pdrTotal,
@@ -521,7 +534,9 @@ const calcularPBAlimentos = () => {
         itemFDNTotal,
         cnfTotal,
         amidoTotal,
-        eeTotal
+        eeTotal,
+        msTotalDigitado,
+        calcularMSDieta
       }}
     >
       {children}

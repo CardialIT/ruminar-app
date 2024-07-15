@@ -18,6 +18,7 @@ import Loading from "../../components/LoadingElement/index.js";
 export default function CadastroResumo3Screen() {
     const navigation = useNavigation();
     const {
+        dieta,
         calcularMilhoEstimado, 
         calcularMineral, 
         calcularMateriaSecaExistente, 
@@ -84,6 +85,9 @@ export default function CadastroResumo3Screen() {
 
             <View style={styles.secondContainer}>
                 <Text style={styles.listagemTitle}>Preencha as informações relacionadas ao amido</Text>
+
+<Text>FDN</Text>
+<Text>{dieta.fdnTotal.toFixed(2)}</Text>
 
                 <ScrollView style={styles.containerList}>
 

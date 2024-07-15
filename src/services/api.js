@@ -38,6 +38,7 @@ export async function getResumo() {
 }
 
 export async function postResumo(data) {
+  // console.log("JSON QUE TA SENDO ENVIADO " + JSON.stringify(data))
   const response = await api.post("/resumo", data);
   return response.data;
 }

@@ -38,7 +38,7 @@ export default function CadastroDieta2Screen() {
         calcularAMIDOTotal,
         calcularEEAlimentos, 
         calcularEETotal,
-        calcularMOIndividualAlimentos,   
+        calcularMOIndividualAlimentos,       
      } = useContextProvider();
     const navigation = useNavigation();
 
