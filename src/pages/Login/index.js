@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { View, Text, TextInput, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { login } from "../../services/api";
 import { useContextProvider } from "../../context/AuthContext";
 import { Ionicons } from "@expo/vector-icons";
 import styles from "./styles";
-import Loading from "../../components/LoadingElement";
 import Toast from "react-native-toast-message";
 
 export default function LoginScreen() {
@@ -32,7 +31,13 @@ export default function LoginScreen() {
     const payload = { email, senha };
     try {
       setLoading(true);
- 
+      Toast.show({
+        type: "info",
+        text1: "Carregando",
+        text2: "Aguarde enquanto fazemos login...",
+        autoHide: false,
+      });
+
       const response = await login(payload);
       const { token, user } = response;
       
@@ -42,10 +47,12 @@ export default function LoginScreen() {
       setIsAuth(true);
       setLoading(false);
       setUserEmail(user.email);
-      setUserCreatedAt(user.data_cadastro)
-  
+      setUserCreatedAt(user.data_cadastro);
+
+      Toast.hide();
     } catch (err) {
       setLoading(false);
+      Toast.hide();
       Toast.show({
         type: "error",
         text1: "Login falhou",
@@ -53,8 +60,6 @@ export default function LoginScreen() {
       });
     }
   };
-
-  
 
   const handleRegisterPress = () => navigation.navigate("Register");
 
@@ -103,6 +108,7 @@ export default function LoginScreen() {
           <Text style={styles.register2}>Cadastre-se agora</Text>
         </Text>
       </TouchableOpacity>
+      <Toast />
     </View>
   );
 }
