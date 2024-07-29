@@ -3,11 +3,24 @@ import React from "react";
 import styles from "../Home/styles";
 import { useNavigation } from "@react-navigation/native";
 import { getLivraria } from "../../services/api";
+import { useContextProvider } from "../../context/AuthContext"
+import { Feather } from '@expo/vector-icons';
 
 export default function HomeScreen() {
   const Nome = "{Nome}";
 
   const navigation = useNavigation();
+
+  const {
+    userName, 
+    setIsAuth,
+    setToken
+  } = useContextProvider();
+
+function logout (){
+  setIsAuth(false)
+  setToken("")
+}
 
   // function btnGetLivraria() {
   //   console.log("Chamando btnGetLivraria");
@@ -24,22 +37,19 @@ export default function HomeScreen() {
   return (
     <View style={styles.container}>
       <View style={styles.firstContainer}>
-        <TouchableOpacity>
-          {/* <Image
-            source={require("../../../assets/Fill.png")}
-            style={styles.containerItem}
-          /> */}
+        <TouchableOpacity onPress={logout}>
+        <Feather name="log-out" size={25} color="white" />
         </TouchableOpacity>
       </View>
 
       <View style={styles.secondContainer}>
-        <Text style={styles.title}>Bem-vindo </Text>
+        <Text style={styles.title}>Bem-vindo {userName}</Text>
         <Text style={styles.subtitle}>O que você gostaria de fazer hoje?</Text>
       </View>
 
       <TouchableOpacity
         style={styles.imageContainer}
-        onPress={() => navigation.navigate("LivrariaScreen")}
+        onPress={() => navigation.navigate("Livraria")}
       >
         <Image
           source={require("../../../assets/Library.png")}
@@ -53,7 +63,7 @@ export default function HomeScreen() {
 
       <TouchableOpacity
         style={styles.imageContainer}
-        onPress={() => navigation.navigate("ResumoScreen")}
+        onPress={() => navigation.navigate("Resumo")}
       >
         <Image
           source={require("../../../assets/Cows.png")}
@@ -67,7 +77,7 @@ export default function HomeScreen() {
 
       <TouchableOpacity
         style={styles.imageContainer}
-        onPress={() => navigation.navigate("DietasScreen")}
+        onPress={() => navigation.navigate("Dietas")}
       >
         <Image
           source={require("../../../assets/imgDietas.jpg")}

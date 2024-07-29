@@ -13,7 +13,7 @@ export default function DietasCalculo() {
   return (
     <View style={styles.container}>
       <View style={styles.firstContainer}>
-        <TouchableOpacity onPress={() => navigation.navigate("HomeScreen")}>
+        <TouchableOpacity onPress={() => navigation.navigate("Home")}>
           <Ionicons name="chevron-back-outline" size={24} color="white" />
         </TouchableOpacity>
 

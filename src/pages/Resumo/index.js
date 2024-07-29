@@ -14,7 +14,7 @@ export default function ResumoScreen() {
   const [isModalVisible, setModalVisible] = useState(false);
   const [resumos, setResumos] = useState([]);
   const [resumoToDelete, setResumoToDelete] = useState(null);
-  const { loading, setLoading } = useContextProvider();
+  const { loading, setLoading, userId, token } = useContextProvider();
 
   const toggleModal = (resumo) => {
     setResumoToDelete(resumo);
@@ -24,7 +24,7 @@ export default function ResumoScreen() {
   async function fetchResumos() {
     setLoading(true);
     try {
-      const resumosData = await getResumo();
+      const resumosData = await getResumo(userId, token);
       console.log("Dados recebidos:", resumosData);
       setResumos(resumosData);
     } catch (error) {
@@ -49,7 +49,7 @@ export default function ResumoScreen() {
       setLoading(true);
       try {
         console.log("Excluindo resumo:", resumoToDelete);
-        await deleteResumo(resumoToDelete.id);
+        await deleteResumo(resumoToDelete.id, token);
         setResumos(resumos.filter(resumo => resumo.id !== resumoToDelete.id));
         toggleModal(null);
         Alert.alert("Sucesso", "Resumo excluído com sucesso!");
@@ -81,7 +81,7 @@ export default function ResumoScreen() {
       <View style={styles.firstContainer}>
         <TouchableOpacity
           style={styles.backButton}
-          onPress={() => navigation.navigate("HomeScreen")}
+          onPress={() => navigation.navigate("Home")}
         >
           <Ionicons name="chevron-back-outline" size={24} color="white" />
         </TouchableOpacity>

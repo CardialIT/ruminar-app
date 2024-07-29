@@ -23,7 +23,7 @@ export default function LivrariaScreen() {
   const [livrariaToDelete, setLivrariaToDelete] = useState(null);
   const isFocused = useIsFocused();
   const [livrariaAdicionada, setLivrariaAdicionada] = useState(false);
-  const {loading, setLoading } = useContextProvider();
+  const {loading, setLoading, userId, token} = useContextProvider();
 
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
@@ -32,7 +32,7 @@ export default function LivrariaScreen() {
   async function fetchLivrarias() {
     setLoading(true);
     try {
-      const livrariasData = await getLivraria();
+      const livrariasData = await getLivraria(userId, token);
       console.log("Dados recebidos:", livrariasData);
       setLivrarias(livrariasData);
     } catch (error) {
@@ -55,7 +55,7 @@ export default function LivrariaScreen() {
     setLoading(true);
     try {
       console.log("Excluindo livraria:", livrariaToDelete);
-      await deleteLivraria(livrariaToDelete.id);
+      await deleteLivraria(livrariaToDelete.id, token);
       setLivrarias(livrarias.filter(l => l.id !== livrariaToDelete.id));
       toggleModal();
     } catch (error) {
@@ -69,7 +69,7 @@ export default function LivrariaScreen() {
     <GestureHandlerRootView style={styles.container}>
       <View style={styles.container}>
         <View style={styles.firstContainer}>
-          <TouchableOpacity onPress={() => navigation.navigate("HomeScreen")}>
+          <TouchableOpacity onPress={() => navigation.navigate("Home")}>
             <Ionicons name="chevron-back-outline" size={24} color="white" />
           </TouchableOpacity>
 

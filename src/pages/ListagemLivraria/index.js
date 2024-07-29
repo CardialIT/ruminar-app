@@ -19,13 +19,13 @@ import Loading from "../../components/LoadingElement/index.js";
 export default function ListagemLivrariaScreen() {
     const navigation = useNavigation();
     const [livrarias, setLivrarias] = useState([]);
-    const { updateDieta, dieta, loading, setLoading } = useContextProvider();
+    const { updateDieta, dieta, loading, setLoading, userId, token } = useContextProvider();
 
     useEffect(() => {
         async function fetchLivrarias() {
             setLoading(true);
             try {
-                const livrariasData = await getLivraria();
+                const livrariasData = await getLivraria(userId, token);
                 console.log("Dados recebidos:", livrariasData);
                 setLivrarias(livrariasData);
             } catch (error) {

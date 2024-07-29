@@ -24,7 +24,13 @@ export function ContextProvider({ children }) {
   const [msTotalDigitado, setMsTotalDigitado] = useState(0);
   const [moTotal, setMoTotal] = useState(0);
   const [msTotalDieta , setMsTotalDieta] = useState(0);
-
+  
+  const [token, setToken] = useState("")
+  const [userName, setUserName] = useState("")
+  const [userId, setUserId] = useState("")
+  const [isAuth, setIsAuth] = useState(false)
+  const [userEmail, setUserEmail] = useState("")
+  const [userCreatedAt, setUserCreatedAt] = useState("")
   
 
   const handleAddLivraria = (livrariaSelecionada) => {
@@ -465,6 +471,14 @@ const calcularPBAlimentos = () => {
   return (
     <AuthContext.Provider
       value={{
+        token, 
+        setToken,
+        userName, 
+        setUserName,
+        userId, 
+        setUserId,
+        isAuth, 
+        setIsAuth,
         dieta,
         updateDieta,
         calcularFDNAlimentos,
@@ -536,7 +550,11 @@ const calcularPBAlimentos = () => {
         amidoTotal,
         eeTotal,
         msTotalDigitado,
-        calcularMSDieta
+        calcularMSDieta,
+        userEmail, 
+        setUserEmail,
+        userCreatedAt, 
+        setUserCreatedAt
       }}
     >
       {children}

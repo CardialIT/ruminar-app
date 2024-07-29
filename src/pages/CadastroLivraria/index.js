@@ -19,7 +19,7 @@ export default function CadastroLivrariaScreen() {
   const [cadastroStatus, setCadastroStatus] = useState(null);
   const navigation = useNavigation();
   const [modalVisible, setModalVisible] = useState(false);
-  const {loading, setLoading } = useContextProvider();
+  const {loading, setLoading, token, userId } = useContextProvider();
 
   const [livro, setLivro] = useState({
     nome: "",
@@ -48,7 +48,9 @@ export default function CadastroLivrariaScreen() {
   const postCadastroLivraria = async () => {
     setLoading(true);
     try {
-      await postLivraria(livro);
+      const livroComUsuarioId = { ...livro, usuario_id: userId };
+      console.log("LIVRO", JSON.stringify(livroComUsuarioId));
+      await postLivraria(livroComUsuarioId, token);
       setCadastroStatus("success");
       console.log("Cadastro realizado com sucesso");
       Toast.show({

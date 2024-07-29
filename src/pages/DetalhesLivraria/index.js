@@ -10,23 +10,6 @@ export default function DetalhesLivrariaScreen({ route }) {
   const [details, setDetails] = useState([]);
   const { item } = route.params;
 
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        const response = await getLivraria();
-      
-
-        if (response.data) {
-          setDetails(response.data);
-          console.log("Livraria", response.data);
-        }
-      } catch (error) {
-        console.error("Erro ao buscar os detalhes:", error);
-      }
-    }
-
-    fetchData();
-  }, [details]);
 
   return (
     <View style={styles.container}>
@@ -110,15 +93,6 @@ export default function DetalhesLivrariaScreen({ route }) {
         </View>
       </View>
 
-      <View style={styles.containerInfo}>
-        <Image
-          source={require("../../assets/Notification.png")}
-          style={styles.image}
-        />
-        <Text style={styles.infoText}>
-          Alguma mensagem de informação ou um texto?
-        </Text>
-      </View>
     </View>
     
   );

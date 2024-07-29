@@ -25,7 +25,9 @@ export default function DetalhesDieta({ route }) {
     eeTotal,
     loading,
     setLoading,
-    msTotalDieta
+    msTotalDieta,
+    userId,
+    token
   } = useContextProvider();
 
   const { nome_da_dieta } = dieta;
@@ -48,7 +50,8 @@ export default function DetalhesDieta({ route }) {
     fdn_dieta: itemFDNTotal,
     cnf_dieta: cnfTotal,
     amido_dieta: amidoTotal,
-    ee_dieta: eeTotal
+    ee_dieta: eeTotal,
+    usuario_id: userId
   });
  
   useEffect(() => {
@@ -71,7 +74,8 @@ export default function DetalhesDieta({ route }) {
       fdn_dieta: itemFDNTotal,
       cnf_dieta: cnfTotal,
       amido_dieta: amidoTotal,
-      ee_dieta: eeTotal
+      ee_dieta: eeTotal,
+      usuario_id: userId
     }));
   }, [dieta, msTotalDieta, pbTotal, pndrTotal, pdrTotal, proteinaSoluvelTotal, fdnEfetivoTotal, ndtTotal, itemFDNTotal, cnfTotal, amidoTotal, eeTotal]);
 
@@ -80,14 +84,14 @@ export default function DetalhesDieta({ route }) {
 
     try {
       console.log("JSON QUE TA SENDO ENVIADO " + JSON.stringify(dietaBack, null, 2));
-      await postDieta(dietaBack);
+      await postDieta(dietaBack, token);
       Toast.show({
         type: "success",
         text1: "Dieta criada com sucesso",
       });
       navigation.reset({
         index: 0,
-        routes: [{ name: "DietasScreen" }],
+        routes: [{ name: "Dietas" }],
       });
     } catch (error) {
       console.error("Erro ao criar dieta:", error);
@@ -113,7 +117,7 @@ export default function DetalhesDieta({ route }) {
   return (
     <View style={styles.container}>
       <View style={styles.firstContainer}>
-        <TouchableOpacity onPress={() => navigation.goBack()}>
+        <TouchableOpacity onPress={() => navigation.navigate("Home")}>
           <Ionicons name="chevron-back-outline" size={24} color="white" />
         </TouchableOpacity>
 

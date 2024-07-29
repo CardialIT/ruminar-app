@@ -22,7 +22,7 @@ export default function DietasScreen() {
   const [isModalVisible, setModalVisible] = useState(false);
   const [dietas, setDietas] = useState([]);
   const [dietaToDelete, setDietaToDelete] = useState(null);
-  const { loading, setLoading } = useContextProvider();
+  const { loading, setLoading, userId, token } = useContextProvider();
 
   const toggleModal = (dieta) => {
     setDietaToDelete(dieta);
@@ -32,7 +32,7 @@ export default function DietasScreen() {
   async function fetchDietas() {
     setLoading(true);
     try {
-      const dietasData = await getDieta();
+      const dietasData = await getDieta(userId, token);
       console.log("Dietas recebidas:", dietasData);
       setDietas(dietasData);
     } catch (error) {
@@ -57,7 +57,7 @@ export default function DietasScreen() {
       setLoading(true);
       try {
         console.log("Excluindo dieta:", dietaToDelete);
-        await deleteDieta(dietaToDelete.id);
+        await deleteDieta(dietaToDelete.id, token);
         setDietas(dietas.filter((dieta) => dieta.id !== dietaToDelete.id));
         toggleModal(null);
         Alert.alert("Sucesso", "Dieta excluída com sucesso!");
@@ -73,7 +73,7 @@ export default function DietasScreen() {
   const renderDietaItem = ({ item }) => (
     <TouchableOpacity
       style={styles.listItemContainer}
-      onPress={() => navigation.navigate("DetalhesDietasScreen", { item })}
+      onPress={() => navigation.navigate("DetalhesDietasScreen", { item })} 
     >
       <Text style={styles.listTextItem}>{item.nome_da_dieta}</Text>
       <View style={styles.containerImages}>
@@ -89,7 +89,7 @@ export default function DietasScreen() {
       <View style={styles.firstContainer}>
         <TouchableOpacity
           style={styles.backButton}
-          onPress={() => navigation.navigate("HomeScreen")}>
+          onPress={() => navigation.navigate("Home")}>
           <Ionicons name="chevron-back-outline" size={24} color="white" />
         </TouchableOpacity>
         <Text style={styles.title}>Dietas</Text>

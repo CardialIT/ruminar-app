@@ -18,7 +18,9 @@ export default function DetalhesResumo({ route }) {
     mineral,
     materiaSecaFaltando,
     loading,
-    setLoading
+    setLoading,
+    userId,
+    token
   } = useContextProvider();
 
   const { nome_da_dieta, peso_medio, producao_estimada, del, amidoEstimado  } = dieta;
@@ -35,6 +37,7 @@ export default function DetalhesResumo({ route }) {
     producao_estimada: 0,
     del: 0,
     amido_estimado: 0,
+    usuario_id: userId
   });
 
   useEffect(() => {
@@ -62,14 +65,14 @@ export default function DetalhesResumo({ route }) {
     setLoading(true);
     try {
       console.log("JSON QUE TA SENDO ENVIADO " + JSON.stringify(resumo, null, 2));
-      await postResumo(resumo);
+      await postResumo(resumo, token);
       Toast.show({
         type: "success",
         text1: "Cadastro realizado com sucesso",
       });
       navigation.reset({
         index: 0,
-        routes: [{ name: "ResumoScreen" }],
+        routes: [{ name: "Resumo" }],
       });
     } catch (error) {
       console.error("Erro ao cadastrar resumo:", error);

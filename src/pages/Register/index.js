@@ -2,18 +2,20 @@ import React, { useState } from "react";
 import { View, Text, TextInput, TouchableOpacity, Image } from "react-native";
 import styles from "./styles";
 import IconReturn from "../../assets/icons-voltar-.png";
+import { useNavigation } from "@react-navigation/native";
 
-export default function RegisterScreen({ navigation }) {
-  const handlePress = () => {
-    navigation.navigate('HomeScreen');
+export default function RegisterScreen() {
+  
+  const navigation = useNavigation();
+  
+  const handleLoginPress = () => {
+    navigation.navigate('Login');
+    
   };
 
   return (
     <>
       <View style={styles.container}>
-        <TouchableOpacity style={styles.topLeftButton}>
-          <Image source={IconReturn} style={styles.buttonReturn} />
-        </TouchableOpacity>
 
         <Text style={styles.welcomeText}>Olá! Registre-se para começar</Text>
 
@@ -50,13 +52,15 @@ export default function RegisterScreen({ navigation }) {
         </View>
 
         <TouchableOpacity
-          onPress={handlePress}
+          
           style={styles.loginButton}>
           <Text style={styles.buttonText}>REGISTRAR-SE</Text>
         </TouchableOpacity>
       </View>
       <View>
-        <TouchableOpacity>
+        <TouchableOpacity
+        onPress={handleLoginPress}
+        >
           <Text style={styles.register}>
             Você já tem uma conta?{" "}
             <Text style={styles.register2}>Faça login</Text>
