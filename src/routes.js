@@ -5,10 +5,13 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Ionicons } from "@expo/vector-icons";
 import "react-native-gesture-handler";
 
-import RegisterScreen from "./pages/Register/index";
-import LoginScreen from "./pages/Login";
 import HomeScreen from "./pages/Home";
 import LivrariaScreen from "./pages/Livraria";
+
+import FinanceScreen from "./pages/Finance";
+import CadastroFinanceScreen from "./pages/CadastroFinance";
+import DetalhesFinance from './pages/DetalhesFinance';
+
 import DietasScreen from "./pages/Dietas";
 import ResumoScreen from "./pages/Resumo";
 import DietasCalculo from "./pages/DietaCalculo";
@@ -115,6 +118,24 @@ function ProfileStackScreen() {
   );
 }
 
+const FinanceStack = createNativeStackNavigator();
+
+function FinanceStackScreen() {
+  return (
+    <FinanceStack.Navigator
+      screenOptions={{
+        headerShown: false
+      }}
+    >
+      <FinanceStack.Screen name="Finance" component={FinanceScreen} />
+      <FinanceStack.Screen name="CadastroFinanceScreen" component={CadastroFinanceScreen} />
+      <FinanceStack.Screen name="DetalhesFinanceScreen" component={DetalhesFinance} />
+
+    </FinanceStack.Navigator>
+  );
+}
+
+
 const Tab = createBottomTabNavigator();
 
 function BottomTabsScreen() {
@@ -136,9 +157,13 @@ function BottomTabsScreen() {
             case "LivrariaScreen":
               iconName = focused ? "book" : "book-outline";
               break;
+              case "FinanceScreen":
+                iconName = focused ? "cash" : "cash-outline";
+                break;
             case "ProfileScreen":
               iconName = focused ? "person-circle" : "person-circle-outline";
               break;
+            
             default:
               break;
           }
@@ -161,6 +186,7 @@ function BottomTabsScreen() {
       <Tab.Screen name="DietasScreen" component={DietasStackScreen} options={{ headerShown: false }} />
       <Tab.Screen name="LivrariaScreen" component={LibraryStackScreen} options={{ headerShown: false }} />
       <Tab.Screen name="ProfileScreen" component={ProfileStackScreen} options={{ headerShown: false }} />
+      <Tab.Screen name="FinanceScreen" component={FinanceStackScreen} options={{ headerShown: false }} />
     </Tab.Navigator>
   );
 }

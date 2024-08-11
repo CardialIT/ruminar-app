@@ -8,7 +8,7 @@ import Loading from "../../components/LoadingElement/index.js";
 import { postDieta } from "../../services/api.js";
 import Toast from "react-native-toast-message";
 
-export default function DetalhesDieta({ route }) {
+export default function DetalhesFinance({ route }) {
 
   const navigation = useNavigation();
   const {
@@ -117,11 +117,11 @@ export default function DetalhesDieta({ route }) {
   return (
     <View style={styles.container}>
       <View style={styles.firstContainer}>
-        <TouchableOpacity onPress={() => navigation.navigate("CadastroDieta4Screen")}>
+        <TouchableOpacity onPress={() => navigation.navigate("Home")}>
           <Ionicons name="chevron-back-outline" size={24} color="white" />
         </TouchableOpacity>
 
-        <Text style={styles.title}>Parâmetros da dieta</Text>
+        <Text style={styles.title}>Resultados das finanças</Text>
 
         <TouchableOpacity>
         </TouchableOpacity>
@@ -131,54 +131,11 @@ export default function DetalhesDieta({ route }) {
         <View style={styles.containerProps}>
           <View style={styles.containerPropsItens}>
           
-          <View style={styles.itensPercentage}>
-              <Text style={styles.itens}>MS: </Text>
-              <Text style={styles.percetange}>{msTotalDieta} %</Text>
-            </View>
-            
-            <View style={styles.itensPercentage}>
-              <Text style={styles.itens}>PB: </Text>
-              <Text style={styles.percetange}>{pbTotal} %</Text>
-            </View>
-
-            <View style={styles.itensPercentageC}>
-              <Text style={styles.itens}>PNDR: </Text>
-              <Text style={styles.percetange}>{pndrTotal} %</Text>
-            </View>
+        
 
             <View style={styles.itensPercentage}>
-              <Text style={styles.itens}>PDR: </Text>
-              <Text style={styles.percetange}>{pdrTotal} %</Text>
-            </View>
-
-            <View style={styles.itensPercentageC}>
-              <Text style={styles.itens}>FDN Efetivo:</Text>
-              <Text style={styles.percetange}>{fdnEfetivoTotal} %</Text>
-            </View>
-
-            <View style={styles.itensPercentage}>
-              <Text style={styles.itens}>NDT: </Text>
-              <Text style={styles.percetange}>{ndtTotal} %</Text>
-            </View>
-
-            <View style={styles.itensPercentageC}>
-              <Text style={styles.itens}>FDN: </Text>
-              <Text style={styles.percetange}>{itemFDNTotal} %</Text>
-            </View>
-
-            <View style={styles.itensPercentage}>
-              <Text style={styles.itens}>CNF: </Text>
-              <Text style={styles.percetange}>{cnfTotal} %</Text>
-            </View>
-
-            <View style={styles.itensPercentageC}>
-              <Text style={styles.itens}>AMIDO: </Text>
-              <Text style={styles.percetange}>{amidoTotal} %</Text>
-            </View>
-
-            <View style={styles.itensPercentage}>
-              <Text style={styles.itens}>EE: </Text>
-              <Text style={styles.percetange}>{eeTotal} %</Text>
+              <Text style={styles.itens}>Valor total da dieta: </Text>
+              <Text style={styles.percetange}>R$ {eeTotal}</Text>
             </View>
 
           </View>
@@ -187,7 +144,7 @@ export default function DetalhesDieta({ route }) {
       
       <View style={styles.containerButton}>
         <TouchableOpacity style={styles.createButton} onPress={handleCriarDieta}>
-          <Text style={styles.textButton}>CRIAR DIETA</Text>
+          <Text style={styles.textButton}>CRIAR FINANÇA</Text>
         </TouchableOpacity>
       </View>
       {loading && <Loading />}

@@ -51,7 +51,7 @@ export default function DetalhesDietasScreen() {
             </View>
             <View style={styles.itensPercentageC}>
               <Text style={styles.itens}>PNDR: </Text>
-              <Text style={styles.percetange}>{item.pndr_dieta} %</Text>
+              <Text style={styles.percetange}>{parseFloat(item.pndr_dieta).toFixed(2)} %</Text>
             </View>
             <View style={styles.itensPercentage}>
               <Text style={styles.itens}>PDR: </Text>

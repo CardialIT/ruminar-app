@@ -6,6 +6,7 @@ import ResumoStack from './ResumoStack';
 import DietasStack from './DietasStack';
 import LivrariaStack from './LivrariaStack';
 import ProfileStack from './ProfileStack';
+import FinanceStack from './FinanceStack';
 
 const Tab = createBottomTabNavigator();
 
@@ -31,9 +32,13 @@ function AppTabs() {
             case 'Livraria':
               iconName = focused ? 'library' : 'library-outline';
               break;
+              case 'Finance':
+                iconName = focused ? 'cash' : 'cash-outline';
+                break;
             case 'Profile':
               iconName = focused ? 'person' : 'person-outline';
               break;
+             
             default:
               iconName = 'circle';
               break;
@@ -46,7 +51,9 @@ function AppTabs() {
       <Tab.Screen name="Resumo" component={ResumoStack} />
       <Tab.Screen name="Dietas" component={DietasStack} />
       <Tab.Screen name="Livraria" component={LivrariaStack} />
+      <Tab.Screen name="Finance" component={FinanceStack} />
       <Tab.Screen name="Profile" component={ProfileStack} />
+   
     </Tab.Navigator>
   );
 }
