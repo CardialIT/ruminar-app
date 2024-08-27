@@ -84,6 +84,20 @@ export default function HomeScreen() {
             <Text style={styles.imageSubtitle}>Saiba quanto vai custar sua dieta</Text>
           </View>
         </TouchableOpacity>
+
+        <TouchableOpacity
+          style={styles.imageContainer}
+          onPress={() => navigation.navigate("Water")}
+        >
+          <Image
+            source={require("../../../assets/Library.png")}
+            style={styles.images}
+          />
+          <View style={styles.overlay}>
+            <Text style={styles.imageTitle}>Calculo da água</Text>
+            <Text style={styles.imageSubtitle}>Calcule a água</Text>
+          </View>
+        </TouchableOpacity>
       </ScrollView>
     </View>
   );

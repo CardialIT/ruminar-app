@@ -30,6 +30,10 @@ export function ContextProvider({ children }) {
   const [isAuth, setIsAuth] = useState(false)
   const [userEmail, setUserEmail] = useState("")
   const [userCreatedAt, setUserCreatedAt] = useState("")
+  const [nomeCalculoAgua, setNomeCalculoAgua] = useState("")
+  const [msEstimadaCalculoAgua, setMSEstimadaCalculoAgua] = useState(0)
+  const [msExistenteCalculoAgua, setMSExistenteCalculoAgua] = useState(0)
+  const[calculoAgua, setCalculoAgua] = useState(0)
   
 
   const handleAddLivraria = (livrariaSelecionada) => {
@@ -482,6 +486,19 @@ const calcularPBAlimentos = () => {
     setTotalCusto(total.toFixed(2)); // Arredonda para 2 casas decimais
   };
 
+  const calcularAgua = (msExistente, msEstimada) => {
+    console.log("chegou")
+    const conta = msExistente / msEstimada
+    const menosum = conta -1
+    const porcentagem = menosum * 100
+    
+    setMSEstimadaCalculoAgua(msEstimada)
+    setMSExistenteCalculoAgua(msExistente)
+    setCalculoAgua(porcentagem.toFixed(2))
+    console.log(porcentagem)
+    return porcentagem.toFixed(2)
+  }
+
   useEffect(() => {
     calcularFDNTotal();
   }, [dieta.selectedLivrarias]);
@@ -575,7 +592,16 @@ const calcularPBAlimentos = () => {
         setUserCreatedAt,
         calcularCustoTotal,
         totalCusto, 
-        setTotalCusto
+        setTotalCusto,
+        msEstimadaCalculoAgua, 
+        setMSEstimadaCalculoAgua,
+        msExistenteCalculoAgua, 
+        setMSExistenteCalculoAgua,
+        calculoAgua, 
+        setCalculoAgua,
+        calcularAgua,
+        nomeCalculoAgua,
+         setNomeCalculoAgua
 
       }}
     >
