@@ -84,6 +84,14 @@ export default StyleSheet.create({
     fontSize: 14,
   },
 
+  itensC : {
+    width: "60%",
+    height: height * 0.04,
+    color: colors.text,
+    fontSize: 14,
+     fontWeight: "bold"
+  },
+
   percetange: {
     alignContent: "flex-end",
     color: colors.verdePrincipal

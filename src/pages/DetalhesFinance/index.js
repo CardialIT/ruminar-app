@@ -13,44 +13,18 @@ export default function DetalhesFinance({ route }) {
   const navigation = useNavigation();
   const {
     dieta,
-    pdrTotal,
-    proteinaSoluvelTotal,
-    fdnEfetivoTotal,
-    pbTotal,
-    pndrTotal,
-    ndtTotal,
-    itemFDNTotal,
-    cnfTotal,
-    amidoTotal,
-    eeTotal,
     loading,
     setLoading,
-    msTotalDieta,
     userId,
-    token
+    token,
+    totalCusto
   } = useContextProvider();
 
-  const { nome_da_dieta } = dieta;
+  const { nomeDaFinanca } = dieta;
 
-  const [dietaBack, setDietaBack] = useState({
-    nome_da_dieta: nome_da_dieta,
+  const [financeBack, setFinanceBack] = useState({
+    nome_da_dieta: nomeDaFinanca,
     alimentos_select: [],
-    peso_medio: 0,
-    producao_estimada: 0,
-    del: 0,
-    fill_preenchimento_ruminal: 0,
-    preco_do_leite: 0,
-    ms_dieta: msTotalDieta,
-    pb_dieta: pbTotal,
-    pndr_dieta: pndrTotal,
-    pdr_dieta: pdrTotal,
-    proteina_soluvel_dieta: proteinaSoluvelTotal,
-    fdn_efetivo_dieta: fdnEfetivoTotal,
-    ndt_dieta: ndtTotal,
-    fdn_dieta: itemFDNTotal,
-    cnf_dieta: cnfTotal,
-    amido_dieta: amidoTotal,
-    ee_dieta: eeTotal,
     usuario_id: userId
   });
  
@@ -58,36 +32,25 @@ export default function DetalhesFinance({ route }) {
     const selectedAlimentos = dieta.selectedLivrarias.map(livraria => ({
       nome: livraria.nome,
       kgMs: livraria.kgMs,
-      kgMo: livraria.materiaOrganicaFormatada,
+      r$: livraria.r$,
     }));
     
-    setDietaBack(prevDieta => ({
+    setFinanceBack(prevDieta => ({
       ...prevDieta,
       alimentos_select: selectedAlimentos,
-      ms_dieta: msTotalDieta,
-      pb_dieta: pbTotal,
-      pndr_dieta: pndrTotal,
-      pdr_dieta: pdrTotal,
-      proteina_soluvel_dieta: proteinaSoluvelTotal,
-      fdn_efetivo_dieta: fdnEfetivoTotal,
-      ndt_dieta: ndtTotal,
-      fdn_dieta: itemFDNTotal,
-      cnf_dieta: cnfTotal,
-      amido_dieta: amidoTotal,
-      ee_dieta: eeTotal,
       usuario_id: userId
     }));
-  }, [dieta, msTotalDieta, pbTotal, pndrTotal, pdrTotal, proteinaSoluvelTotal, fdnEfetivoTotal, ndtTotal, itemFDNTotal, cnfTotal, amidoTotal, eeTotal]);
+  }, [dieta]);
 
   const handleCriarDieta = async () => {
     setLoading(true);
 
     try {
       console.log("JSON QUE TA SENDO ENVIADO " + JSON.stringify(dietaBack, null, 2));
-      await postDieta(dietaBack, token);
+      await postDieta(financeBack, token);
       Toast.show({
         type: "success",
-        text1: "Dieta criada com sucesso",
+        text1: "Finança criada com sucesso",
       });
       navigation.reset({
         index: 0,
@@ -117,7 +80,7 @@ export default function DetalhesFinance({ route }) {
   return (
     <View style={styles.container}>
       <View style={styles.firstContainer}>
-        <TouchableOpacity onPress={() => navigation.navigate("Home")}>
+        <TouchableOpacity onPress={() => navigation.navigate("CadastroFinanceScreen2")}>
           <Ionicons name="chevron-back-outline" size={24} color="white" />
         </TouchableOpacity>
 
@@ -135,7 +98,7 @@ export default function DetalhesFinance({ route }) {
 
             <View style={styles.itensPercentage}>
               <Text style={styles.itens}>Valor total da dieta: </Text>
-              <Text style={styles.percetange}>R$ {eeTotal}</Text>
+              <Text style={styles.percetange}>R$ ${totalCusto}</Text>
             </View>
 
           </View>

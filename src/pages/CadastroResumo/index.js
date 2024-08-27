@@ -196,12 +196,12 @@ export default function CadastroResumoScreen() {
         </View>
 
 
-        <View style={styles.containerResult}>
+        {/* <View style={styles.containerResult}>
           <View style={styles.containerResultItems}>
             <Text style={styles.containerTitle}>IMS: {ims.toFixed(2)} kg</Text>
             <Text style={styles.containerTitle}>FDN: {fdn.toFixed(2)} kg</Text>
           </View>
-        </View>
+        </View> */}
 
         <View style={styles.containerButton}>
 
@@ -232,21 +232,21 @@ export default function CadastroResumoScreen() {
         <View style={styles.modalContainer}>
           <View style={styles.modalContent}>
 
-            <Text style={styles.modalTitle}>Regras parar checar o Fill</Text>
+            <Text style={styles.modalTitle}>Regras parar definir o Fill</Text>
 
             <View style={styles.modalItemContainer}>
               <Text>{'\u2022'}</Text>
-              <Text style={styles.modalText}>Se o Del é de 0 a 60 dias Então o Fill que usuário deve preencher é de 0,8 a 1,05</Text>
+              <Text style={styles.modalText}>Se o Del é de 0 a 60 dias, então o Fill que usuário deve preencher é de 0,8 a 1,05</Text>
             </View>
 
             <View style={styles.modalItemContainer}>
               <Text>{'\u2022'}</Text>
-              <Text style={styles.modalText}>Se o Del é de 60 a 150 dias Então o Fill que usuário deve preencher é de 1,05 a 1,15</Text>
+              <Text style={styles.modalText}>Se o Del é de 60 a 150 dias, então o Fill que usuário deve preencher é de 1,05 a 1,15</Text>
             </View>
 
             <View style={styles.modalItemContainer}>
               <Text>{'\u2022'}</Text>
-              <Text style={styles.modalText}>Se o Del é de acima de 150 dias Então o Fill que usuário deve preencher é de 1,15 a 1,2</Text>
+              <Text style={styles.modalText}>Se o Del é de acima de 150 dias, então o Fill que usuário deve preencher é de 1,15 a 1,2</Text>
             </View>
 
             <View style={styles.modalButtons}>

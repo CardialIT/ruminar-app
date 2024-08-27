@@ -52,7 +52,7 @@ export default function HomeScreen() {
             style={styles.images}
           />
           <View style={styles.overlay}>
-            <Text style={styles.imageTitle}>Resumos</Text>
+            <Text style={styles.imageTitle}>Dietas base</Text>
             <Text style={styles.imageSubtitle}>Tenha uma ideia inicial de como será sua dieta</Text>
           </View>
         </TouchableOpacity>
@@ -66,7 +66,7 @@ export default function HomeScreen() {
             style={styles.images}
           />
           <View style={styles.overlay}>
-            <Text style={styles.imageTitle}>Dietas</Text>
+            <Text style={styles.imageTitle}>Dietas da propriedade</Text>
             <Text style={styles.imageSubtitle}>Crie a dieta ideal</Text>
           </View>
         </TouchableOpacity>

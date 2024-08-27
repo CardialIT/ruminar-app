@@ -24,7 +24,6 @@ export function ContextProvider({ children }) {
   const [msTotalDigitado, setMsTotalDigitado] = useState(0);
   const [moTotal, setMoTotal] = useState(0);
   const [msTotalDieta , setMsTotalDieta] = useState(0);
-  
   const [token, setToken] = useState("")
   const [userName, setUserName] = useState("")
   const [userId, setUserId] = useState("")
@@ -46,6 +45,7 @@ export function ContextProvider({ children }) {
 
   const [dieta, setDieta] = useState({
     nome_da_dieta: "",
+    nomeDaFinanca: "",
     peso_medio: 0,
     producao_estimada: 0,
     del: 0,
@@ -65,6 +65,7 @@ export function ContextProvider({ children }) {
   const [fillPreenchimentoRuminal, setFillPreenchimentoRuminal] = useState(0);
   const [ims, setIms] = useState(0);
   const [fdn, setFdn] = useState(0);
+  const [totalCusto, setTotalCusto] = useState(0);
 
   const updateDieta = (field, value) => {
     setDieta((prevDieta) => ({
@@ -464,6 +465,23 @@ const calcularPBAlimentos = () => {
     return multiplicacao.toFixed(2)
   }
 
+  const calcularCustoTotal = () => {
+    let total = 0;
+  
+    dieta.selectedLivrarias.forEach((livraria) => {
+      const kgMs = parseFloat(livraria.kgMs);
+      const preco = parseFloat(livraria.r$); 
+      
+      console.log(preco)
+
+      if (!isNaN(kgMs) && !isNaN(preco)) {
+        total += kgMs * preco;
+      }
+    });
+  
+    setTotalCusto(total.toFixed(2)); // Arredonda para 2 casas decimais
+  };
+
   useEffect(() => {
     calcularFDNTotal();
   }, [dieta.selectedLivrarias]);
@@ -554,7 +572,11 @@ const calcularPBAlimentos = () => {
         userEmail, 
         setUserEmail,
         userCreatedAt, 
-        setUserCreatedAt
+        setUserCreatedAt,
+        calcularCustoTotal,
+        totalCusto, 
+        setTotalCusto
+
       }}
     >
       {children}

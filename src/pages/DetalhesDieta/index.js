@@ -131,7 +131,7 @@ export default function DetalhesDieta({ route }) {
         <View style={styles.containerProps}>
           <View style={styles.containerPropsItens}>
           
-          <View style={styles.itensPercentage}>
+          <View style={styles.itensPercentageC}>
               <Text style={styles.itens}>MS: </Text>
               <Text style={styles.percetange}>{msTotalDieta} %</Text>
             </View>
@@ -142,9 +142,10 @@ export default function DetalhesDieta({ route }) {
             </View>
 
             <View style={styles.itensPercentageC}>
-              <Text style={styles.itens}>PNDR: </Text>
-              <Text style={styles.percetange}>{pndrTotal} %</Text>
+            <Text style={styles.itens}>PNDR: </Text>
+            <Text style={styles.percetange}>{pndrTotal.toFixed(2)} %</Text>
             </View>
+
 
             <View style={styles.itensPercentage}>
               <Text style={styles.itens}>PDR: </Text>

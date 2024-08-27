@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const api = axios.create({ baseURL: "https://ruminar-back.onrender.com/" });
+export const api = axios.create({ baseURL: "https://ruminar-back-production.up.railway.app/" });
 
 export async function login(data) {
   const response = await api.post("login", data);

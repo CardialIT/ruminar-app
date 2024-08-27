@@ -18,7 +18,8 @@ export default function CadastroFinanceScreen() {
         dieta,
         updateDieta,
         loading, 
-        setLoading,         
+        setLoading,
+        calcularCustoTotal         
      } = useContextProvider();
     const navigation = useNavigation();
 
@@ -59,7 +60,7 @@ export default function CadastroFinanceScreen() {
                         style={styles.inputField}
                         placeholder="R$"
                         onChangeText={(text) => handleInputChangeR$(text, index)}
-                       
+                        keyboardType="numeric"
                     />
                    
                 </View>
@@ -84,9 +85,10 @@ export default function CadastroFinanceScreen() {
     const handleProximo = async () => {
         setLoading(true);
         try {
-            // calcularPNDRTotal(pbTotal, pdrTotal)
+            calcularCustoTotal()
+            console.log("oi")
              updateDieta("nomeDaFinanca", nomeDaFinanca); 
-            navigation.navigate("CadastroFinanceScreen2");
+            navigation.navigate("DetalhesFinanceScreen");
         } catch (error) {
             Toast.show({
                 type: "error",
@@ -102,7 +104,7 @@ export default function CadastroFinanceScreen() {
         <View style={styles.container}>
 
             <View style={styles.firstContainer}>
-                <TouchableOpacity onPress={() => navigation.navigate("Finance")}>
+                <TouchableOpacity onPress={() => navigation.navigate("CadastroFinanceScreen")}>
                     <Ionicons name="chevron-back-outline" size={24} color="white" />
                 </TouchableOpacity>
 
@@ -114,42 +116,22 @@ export default function CadastroFinanceScreen() {
 
             <View style={styles.secondContainer}>
                 
-          
-                <Text style={styles.listagemTitle}>Selecione os itens</Text>
-
-                <ScrollView style={styles.containerList}>
-                    {dieta.selectedLivraria && (
-                        <View style={styles.containerItemTitle}>
-                            <Text style={styles.listagemItemTitle}>{dieta.selectedLivraria.nome}</Text>
-                            <TextInput
-                                style={styles.inputField}
-                                placeholder="KG"
-                                onChangeText={handleSelectLivraria}
-                            />
-                        </View>
-                    )}
-
-                    {renderSelectedLivrarias()}
-
-                    <View style={styles.containerAddItem}>
-                        <TouchableOpacity
-                            style={styles.addButton}
-                            onPress={() => navigation.navigate("ListagemLivrariaScreen")}
-                        >
-                            <Text style={styles.createButtonText}>ADICIONAR LIVRARIA</Text>
-                            <Ionicons name="add-outline" size={24} color="#307C31" />
-                        </TouchableOpacity>
-                    </View>
-
-                    <View style={styles.containerButton}>
-                        <TouchableOpacity
+                <View style={styles.containerDietaName}>
+                <Text style={styles.listagemTitle}>Dê um nome à sua finança</Text>
+                <TextInput
+                    style={styles.inputFieldName}
+                    placeholder="Nome da finança"
+                    value={nomeDaFinanca}
+                    onChangeText={setNomeDaFinanca}
+                />
+</View>
+                
+<TouchableOpacity
                             onPress={handleProximo}
                             style={styles.createButton}
                         >
                             <Text style={styles.textButton}>PRÓXIMO</Text>
                         </TouchableOpacity>
-                    </View>
-                </ScrollView>
             </View>
             {loading && <Loading />}
         </View >

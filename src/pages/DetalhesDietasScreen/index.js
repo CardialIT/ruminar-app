@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity, ScrollView } from "react-native";
 import { useRoute, useNavigation } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
 import styles from "../DetalhesDietasScreen/styles";
@@ -15,9 +15,11 @@ export default function DetalhesDietasScreen() {
   const renderSelectedAlimentos = () => {
     return item.alimentos_select.map((alimento, index) => (
       <View key={index} style={styles.itensPercentageC}>
-        <Text style={styles.itens}>{alimento.nome}</Text>
-        <Text style={styles.percetange}>MS: {alimento.kgMs}</Text>
-        <Text style={styles.percetange}>MO: {alimento.kgMo}</Text>
+        <Text style={styles.itensC}>{alimento.nome}</Text>
+        <Text style={styles.percetangeN}>MS: </Text>
+        <Text style={styles.percetangeB}>{alimento.kgMs}</Text>
+        <Text style={styles.percetangeN}>MO: </Text>
+        <Text style={styles.percetangeB}>{alimento.kgMo}</Text>
       </View>
     ));
   };
@@ -34,26 +36,27 @@ export default function DetalhesDietasScreen() {
         <Text style={styles.title}>Detalhes da Dieta</Text>
       </View>
 
+      <ScrollView>
       <View style={styles.secondContainer}>
         <View style={styles.containerProps}>
           <View style={styles.containerPropsItens}>
             <Text style={styles.itemTitle}>{item.nome_da_dieta}</Text>
             {renderSelectedAlimentos()}
 
-            <View style={styles.itensPercentageC}>
+            <View style={styles.itensPercentage}>
               <Text style={styles.itens}>MS: </Text>
               <Text style={styles.percetange}>{item.ms_dieta} %</Text>
             </View>
 
-            <View style={styles.itensPercentage}>
+            <View style={styles.itensPercentageC}>
               <Text style={styles.itens}>PB: </Text>
               <Text style={styles.percetange}>{item.pb_dieta} %</Text>
             </View>
-            <View style={styles.itensPercentageC}>
+            <View style={styles.itensPercentage}>
               <Text style={styles.itens}>PNDR: </Text>
               <Text style={styles.percetange}>{parseFloat(item.pndr_dieta).toFixed(2)} %</Text>
             </View>
-            <View style={styles.itensPercentage}>
+            <View style={styles.itensPercentageC}>
               <Text style={styles.itens}>PDR: </Text>
               <Text style={styles.percetange}>{item.pdr_dieta} %</Text>
             </View>
@@ -84,6 +87,7 @@ export default function DetalhesDietasScreen() {
           </View>
         </View>
       </View>
+      </ScrollView>
     </View>
   );
 }

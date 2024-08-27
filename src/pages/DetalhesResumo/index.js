@@ -88,7 +88,7 @@ export default function DetalhesResumo({ route }) {
   const renderSelectedLivrarias = () => {
     return dieta.selectedLivrarias.map((livraria, index) => (
       <View key={livraria.id} style={styles.itensPercentageC}>
-        <Text style={styles.itens}>{livraria.nome}: </Text>
+        <Text style={styles.itensC}>{livraria.nome}: </Text>
         <Text style={styles.percetange}>{livraria.kgMs} em MS</Text>
       </View>
     ));
@@ -110,15 +110,12 @@ export default function DetalhesResumo({ route }) {
           <View style={styles.containerPropsItens}>
             {renderSelectedLivrarias()}
 
-            <View style={styles.itensPercentage}>
+            <View style={styles.itensPercentageC}>
               <Text style={styles.itens}>Milho Estimado: </Text>
               <Text style={styles.percetange}>{milhoEstimado} em MS</Text>
             </View>
 
-            <View style={styles.itensPercentageC}>
-              <Text style={styles.itens}>Matéria Seca Existente: </Text>
-              <Text style={styles.percetange}>{materiaSecaExistente} em MS</Text>
-            </View>
+           
 
             <View style={styles.itensPercentage}>
               <Text style={styles.itens}>Fração Proteica Necessária: </Text>
@@ -128,6 +125,11 @@ export default function DetalhesResumo({ route }) {
             <View style={styles.itensPercentageC}>
               <Text style={styles.itens}>Mineral: </Text>
               <Text style={styles.percetange}>{mineral} em KG</Text>
+            </View>
+
+            <View style={styles.itensPercentage}>
+              <Text style={styles.itens}>Matéria Seca Existente: </Text>
+              <Text style={styles.percetange}>{materiaSecaExistente} em MS</Text>
             </View>
 
           </View>

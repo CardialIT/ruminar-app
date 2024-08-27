@@ -48,15 +48,15 @@ export default function DetalhesLivrariaScreen({ route }) {
               <Text style={styles.itens}>PNDR:</Text>
               <Text style={styles.percetange}>{item.pndr}%</Text>
             </View>
-            <View style={styles.itensPercentageC}>
+            <View style={styles.itensPercentage}>
               <Text style={styles.itens}>PDR:</Text>
               <Text style={styles.percetange}>{item.pdr}%</Text>
             </View>
 
-            <View style={styles.itensPercentage}>
+            {/* <View style={styles.itensPercentageC}>
               <Text style={styles.itens}>Proteína Solúvel:</Text>
               <Text style={styles.percetange}>{item.proteina_soluvel}%</Text>
-            </View>
+            </View> */}
 
             <View style={styles.itensPercentageC}>
               <Text style={styles.itens}>FDN Efetivo:</Text>
