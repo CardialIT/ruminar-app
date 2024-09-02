@@ -5,14 +5,13 @@ import { Ionicons } from "@expo/vector-icons";
 import styles from "../DetalhesDieta/styles.js";
 import { useContextProvider } from "../../context/AuthContext.js";
 import Loading from "../../components/LoadingElement/index.js";
-import { postDieta } from "../../services/api.js";
+import { postCalculoAgua } from "../../services/api.js";  // Certifique-se de importar a função corretamente
 import Toast from "react-native-toast-message";
 
 export default function DetalhesWater({ route }) {
 
   const navigation = useNavigation();
   const {
-
     loading,
     setLoading,
     userId,
@@ -25,39 +24,36 @@ export default function DetalhesWater({ route }) {
     nomeCalculoAgua
   } = useContextProvider();
 
+  const handleCriarCalculoAgua = async () => {
+    setLoading(true);
 
+    const waterData = {
+      nome_calculo: nomeCalculoAgua,
+      valor_materia_seca_estimada: msEstimadaCalculoAgua,
+      valor_materia_seca_existente: msExistenteCalculoAgua,
+      resultado: calculoAgua,
+      usuario_id: userId
+    };
 
-  // const [waterBack, setWaterBack] = useState({
-  //   nome_calculo_agua: nomeDaFinanca,
-  //   alimentos_select: [],
-  //   usuario_id: userId
-  // });
- 
-
-  // const handleCriarDieta = async () => {
-  //   setLoading(true);
-
-  //   try {
-  //     console.log("JSON QUE TA SENDO ENVIADO " + JSON.stringify(dietaBack, null, 2));
-  //     await postDieta(financeBack, token);
-  //     Toast.show({
-  //       type: "success",
-  //       text1: "Finança criada com sucesso",
-  //     });
-  //     navigation.reset({
-  //       index: 0,
-  //       routes: [{ name: "Dietas" }],
-  //     });
-  //   } catch (error) {
-  //     console.error("Erro ao criar dieta:", error);
-  //     Toast.show({
-  //       type: "error",
-  //       text1: "Erro ao criar dieta",
-  //     });
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // };
+    try {
+      
+      console.log("JSON QUE ESTÁ SENDO ENVIADO:", JSON.stringify(waterData, null, 2));
+      await postCalculoAgua(waterData, token);
+      Toast.show({
+        type: "success",
+        text1: "Cálculo de água criado com sucesso",
+      });
+      navigation.navigate("Water");
+    } catch (error) {
+      console.error("Erro ao criar cálculo de água:", error);
+      Toast.show({
+        type: "error",
+        text1: "Erro ao criar cálculo de água",
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <View style={styles.container}>
@@ -66,7 +62,7 @@ export default function DetalhesWater({ route }) {
           <Ionicons name="chevron-back-outline" size={24} color="white" />
         </TouchableOpacity>
 
-        <Text style={styles.title}>Resultados do calculo da água</Text>
+        <Text style={styles.title}>Resultados do cálculo da água</Text>
 
         <TouchableOpacity>
         </TouchableOpacity>
@@ -75,11 +71,8 @@ export default function DetalhesWater({ route }) {
       <View style={styles.secondContainer}>
         <View style={styles.containerProps}>
           <View style={styles.containerPropsItens}>
-          
-        
-
             <View style={styles.itensPercentage}>
-              <Text style={styles.itens}>Nome do calculo: </Text>
+              <Text style={styles.itens}>Nome do cálculo: </Text>
               <Text style={styles.percetange}>{nomeCalculoAgua}</Text>
             </View>
             
@@ -97,14 +90,13 @@ export default function DetalhesWater({ route }) {
               <Text style={styles.itens}>Resultado: </Text>
               <Text style={styles.percetange}>{calculoAgua}</Text>
             </View>
-
           </View>
         </View>
       </View>
       
       <View style={styles.containerButton}>
-        <TouchableOpacity style={styles.createButton} onPress={() => {}}>
-          <Text style={styles.textButton}>CRIAR CALCULO</Text>
+        <TouchableOpacity style={styles.createButton} onPress={handleCriarCalculoAgua}>
+          <Text style={styles.textButton}>CRIAR CÁLCULO</Text>
         </TouchableOpacity>
       </View>
       {loading && <Loading />}

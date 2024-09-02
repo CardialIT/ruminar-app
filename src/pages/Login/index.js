@@ -102,11 +102,11 @@ export default function LoginScreen() {
         <Text style={styles.buttonText}>LOGIN</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity onPress={handleRegisterPress}>
+    
         <Text style={styles.register}>
-          Não tem uma conta?{" "}
-          <Text style={styles.register2}>Cadastre-se agora</Text>
-        </Text>
+          Não tem uma conta?{" "}    </Text>
+          <TouchableOpacity  style={styles.linkregister} onPress={handleRegisterPress}>   
+            <Text style={styles.register2}>Cadastre-se agora</Text>
       </TouchableOpacity>
       <Toast />
     </View>

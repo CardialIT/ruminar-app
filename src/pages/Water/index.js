@@ -3,15 +3,14 @@ import {
   View,
   Text,
   TouchableOpacity,
-  Image,
-  FlatList,
   Modal,
+  FlatList,
 } from "react-native";
 import styles from "../Livraria/styles";
 import { Ionicons } from "@expo/vector-icons";
-import { useNavigation,  useIsFocused } from "@react-navigation/native";
+import { useNavigation, useIsFocused } from "@react-navigation/native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
-import { getLivraria, deleteLivraria } from "../../services/api.js";
+import { getCalculoAguaByUserId, deleteCalculoAgua } from "../../services/api.js";
 import { Feather } from "@expo/vector-icons";
 import Loading from "../../components/LoadingElement/index.js";
 import { useContextProvider } from "../../context/AuthContext.js";
@@ -19,47 +18,47 @@ import { useContextProvider } from "../../context/AuthContext.js";
 export default function WaterScreen() {
   const navigation = useNavigation();
   const [isModalVisible, setModalVisible] = useState(false);
-  const [livrarias, setLivrarias] = useState([]);
-  const [livrariaToDelete, setLivrariaToDelete] = useState(null);
+  const [calculosAgua, setCalculosAgua] = useState([]);
+  const [calculoAguaToDelete, setCalculoAguaToDelete] = useState(null);
   const isFocused = useIsFocused();
-  const [livrariaAdicionada, setLivrariaAdicionada] = useState(false);
-  const {loading, setLoading, userId, token} = useContextProvider();
+  const [calculoAguaAdicionado, setCalculoAguaAdicionado] = useState(false);
+  const { loading, setLoading, userId, token } = useContextProvider();
 
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
   };
 
-  async function fetchLivrarias() {
+  async function fetchCalculosAgua() {
     setLoading(true);
     try {
-      const livrariasData = await getLivraria(userId, token);
-      console.log("Dados recebidos:", livrariasData);
-      setLivrarias(livrariasData);
+      const calculosAguaData = await getCalculoAguaByUserId(userId, token);
+      console.log("Dados recebidos:", calculosAguaData);
+      setCalculosAgua(calculosAguaData);
     } catch (error) {
-      console.error("Erro ao buscar livrarias:", error);
+      console.error("Erro ao buscar cálculos de água:", error);
     } finally {
       setLoading(false);
     }
   }
 
   useEffect(() => {
-    fetchLivrarias();
-  }, [livrariaAdicionada, isFocused]);
+    fetchCalculosAgua();
+  }, [calculoAguaAdicionado, isFocused]);
 
-  const handleDeletePress = (livraria) => {
-    setLivrariaToDelete(livraria);
+  const handleDeletePress = (calculoAgua) => {
+    setCalculoAguaToDelete(calculoAgua);
     toggleModal();
   };
 
   const confirmDelete = async () => {
     setLoading(true);
     try {
-      console.log("Excluindo livraria:", livrariaToDelete);
-      await deleteLivraria(livrariaToDelete.id, token);
-      setLivrarias(livrarias.filter(l => l.id !== livrariaToDelete.id));
+      console.log("Excluindo cálculo de água:", calculoAguaToDelete);
+      await deleteCalculoAgua(calculoAguaToDelete.id, token);
+      setCalculosAgua(calculosAgua.filter(c => c.id !== calculoAguaToDelete.id));
       toggleModal();
     } catch (error) {
-      console.error("Erro ao excluir livraria:", error);
+      console.error("Erro ao excluir cálculo de água:", error);
     } finally {
       setLoading(false);
     }
@@ -73,54 +72,45 @@ export default function WaterScreen() {
             <Ionicons name="chevron-back-outline" size={24} color="white" />
           </TouchableOpacity>
 
-          <Text style={styles.title}>Calculo da água</Text>
+          <Text style={styles.title}>Hidratação da dieta</Text>
 
-          <TouchableOpacity>
-          
-          </TouchableOpacity>
+          <TouchableOpacity></TouchableOpacity>
         </View>
 
         <View style={styles.secondContainer}>
           <TouchableOpacity
             style={styles.addButton}
             onPress={() => {
-              setLivrariaAdicionada(false);
+              setCalculoAguaAdicionado(false);
               navigation.navigate("CadastroWaterScreen", {
-                onGoBack: () => setLivrariaAdicionada(true),
-              })}}
+                onGoBack: () => setCalculoAguaAdicionado(true),
+              });
+            }}
           >
-            <Text style={styles.addButtonText}>Adicionar Calculo da água</Text>
+            <Text style={styles.addButtonText}>Adicionar cálculo</Text>
             <Ionicons name="add-outline" size={24} color="white" />
           </TouchableOpacity>
 
-         
-          {/* <FlatList
-            data={livrarias}
+          <FlatList
+            data={calculosAgua}
             keyExtractor={(item) => String(item.id)}
             renderItem={({ item }) => (
               <TouchableOpacity
                 style={styles.listItemContainer}
                 onPress={() =>
-                  navigation.navigate("DetalhesFinancaScreen", { item })
+                  navigation.navigate("DetalhesCalculoAguaScreen", { item })
                 }
               >
-                <Text style={styles.listTextItem}>{item.nome}</Text>
+                <Text style={styles.listTextItem}>{item.nome_calculo}</Text>
 
                 <View style={styles.containerImages}>
-                 
                   <TouchableOpacity onPress={() => handleDeletePress(item)}>
-                  <Feather
-            name="trash-2"
-            size={20}
-            color="#FF0000"
-          
-          /> 
+                    <Feather name="trash-2" size={20} color="#FF0000" />
                   </TouchableOpacity>
                 </View>
-                
               </TouchableOpacity>
             )}
-          /> */}
+          />
         </View>
       </View>
 
@@ -132,10 +122,10 @@ export default function WaterScreen() {
       >
         <View style={styles.modalContainer}>
           <View style={styles.modalContent}>
-            <Text style={styles.modalTitle}>Excluir livraria</Text>
+            <Text style={styles.modalTitle}>Excluir cálculo de água</Text>
 
             <Text style={styles.modalText}>
-              Você tem certeza que deseja excluir a livraria "{livrariaToDelete?.nome}"?
+              Você tem certeza que deseja excluir o cálculo de água "{calculoAguaToDelete?.nome_calculo}"?
             </Text>
 
             <View style={styles.modalButtons}>

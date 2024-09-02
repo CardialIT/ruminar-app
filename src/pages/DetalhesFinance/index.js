@@ -5,7 +5,7 @@ import { Ionicons } from "@expo/vector-icons";
 import styles from "../DetalhesDieta/styles.js";
 import { useContextProvider } from "../../context/AuthContext.js";
 import Loading from "../../components/LoadingElement/index.js";
-import { postDieta } from "../../services/api.js";
+import { postFinanca } from "../../services/api.js";
 import Toast from "react-native-toast-message";
 
 export default function DetalhesFinance({ route }) {
@@ -23,11 +23,12 @@ export default function DetalhesFinance({ route }) {
   const { nomeDaFinanca } = dieta;
 
   const [financeBack, setFinanceBack] = useState({
-    nome_da_dieta: nomeDaFinanca,
+    nome_da_financa: nomeDaFinanca,
+    valor_total_dieta: totalCusto,
     alimentos_select: [],
     usuario_id: userId
   });
- 
+
   useEffect(() => {
     const selectedAlimentos = dieta.selectedLivrarias.map(livraria => ({
       nome: livraria.nome,
@@ -35,32 +36,29 @@ export default function DetalhesFinance({ route }) {
       r$: livraria.r$,
     }));
     
-    setFinanceBack(prevDieta => ({
-      ...prevDieta,
+    setFinanceBack(prevFinanca => ({
+      ...prevFinanca,
       alimentos_select: selectedAlimentos,
       usuario_id: userId
     }));
   }, [dieta]);
 
-  const handleCriarDieta = async () => {
+  const handleCriarFinanca = async () => {
     setLoading(true);
 
     try {
-      console.log("JSON QUE TA SENDO ENVIADO " + JSON.stringify(dietaBack, null, 2));
-      await postDieta(financeBack, token);
+      console.log("JSON QUE TA SENDO ENVIADO " + JSON.stringify(financeBack, null, 2));
+      await postFinanca(financeBack, token);
       Toast.show({
         type: "success",
         text1: "Finança criada com sucesso",
       });
-      navigation.reset({
-        index: 0,
-        routes: [{ name: "Dietas" }],
-      });
+      navigation.navigate("Finance");
     } catch (error) {
-      console.error("Erro ao criar dieta:", error);
+      console.error("Erro ao criar finança:", error);
       Toast.show({
         type: "error",
-        text1: "Erro ao criar dieta",
+        text1: "Erro ao criar finança",
       });
     } finally {
       setLoading(false);
@@ -72,7 +70,6 @@ export default function DetalhesFinance({ route }) {
       <View key={livraria.id} style={styles.itensPercentageC}>
         <Text style={styles.itens}>{livraria.nome}: </Text>
         <Text style={styles.percetange}>{livraria.kgMs} em MS</Text>
-
       </View>
     ));
   };
@@ -93,20 +90,16 @@ export default function DetalhesFinance({ route }) {
       <View style={styles.secondContainer}>
         <View style={styles.containerProps}>
           <View style={styles.containerPropsItens}>
-          
-        
-
             <View style={styles.itensPercentage}>
               <Text style={styles.itens}>Valor total da dieta: </Text>
-              <Text style={styles.percetange}>R$ ${totalCusto}</Text>
+              <Text style={styles.percetange}>R$ {totalCusto}</Text>
             </View>
-
           </View>
         </View>
       </View>
       
       <View style={styles.containerButton}>
-        <TouchableOpacity style={styles.createButton} onPress={handleCriarDieta}>
+        <TouchableOpacity style={styles.createButton} onPress={handleCriarFinanca}>
           <Text style={styles.textButton}>CRIAR FINANÇA</Text>
         </TouchableOpacity>
       </View>

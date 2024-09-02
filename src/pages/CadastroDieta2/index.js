@@ -139,7 +139,7 @@ export default function CadastroDieta2Screen() {
             <View style={styles.secondContainer}>
                 
                 <View style={styles.containerDietaName}>
-                <Text style={styles.listagemTitle}>Dê um nome à sua dieta</Text>
+                <Text style={styles.listagemTitle}>Preencha as informações abaixo</Text>
                 <TextInput
                     style={styles.inputFieldName}
                     placeholder="Nome da dieta"

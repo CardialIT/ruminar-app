@@ -39,17 +39,13 @@ export default StyleSheet.create({
     // SECOND CONTAINER 
 
     secondContainer: {
-        flex: 1,
-        paddingVertical: width * 0.02,
-    },
-
-    containerDietaName:{
         display: "flex",
         flexDirection: "column",
-        justifyContent: "space-between",
         alignItems: "center",
-       
+        justifyContent: "space-evenly",
+        height: '70%',
     },
+
 
     listagemTitle: {
         fontWeight: "bold",
@@ -184,23 +180,15 @@ export default StyleSheet.create({
 
     // BOTÃO "PRÓXIMO"
 
-    containerButton: {
-        justifyContent: "center",
-        alignItems: "center",
-        marginTop: height * 0.03,
-        marginHorizontal: width * 0.05,
-    },
 
     createButton: {
         backgroundColor: colors.verdePrincipal,
-        flexDirection: "row",
-        width: "100%",
+     
+        width: "80%",
         height: height * 0.06,
         borderRadius: width * 0.02,
-
         justifyContent: "center",
         alignItems: "center",
-
         borderColor: colors.verdePrincipal,
         borderWidth: 1
     },

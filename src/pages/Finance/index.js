@@ -3,15 +3,14 @@ import {
   View,
   Text,
   TouchableOpacity,
-  Image,
   FlatList,
   Modal,
 } from "react-native";
 import styles from "../Livraria/styles";
 import { Ionicons } from "@expo/vector-icons";
-import { useNavigation,  useIsFocused } from "@react-navigation/native";
+import { useNavigation, useIsFocused } from "@react-navigation/native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
-import { getLivraria, deleteLivraria } from "../../services/api.js";
+import { getFinancasByUserId, deleteFinanca } from "../../services/api.js"; // Substitua pelas funções corretas
 import { Feather } from "@expo/vector-icons";
 import Loading from "../../components/LoadingElement/index.js";
 import { useContextProvider } from "../../context/AuthContext.js";
@@ -19,47 +18,47 @@ import { useContextProvider } from "../../context/AuthContext.js";
 export default function FinanceScreen() {
   const navigation = useNavigation();
   const [isModalVisible, setModalVisible] = useState(false);
-  const [livrarias, setLivrarias] = useState([]);
-  const [livrariaToDelete, setLivrariaToDelete] = useState(null);
+  const [financas, setFinancas] = useState([]);
+  const [financaToDelete, setFinancaToDelete] = useState(null);
   const isFocused = useIsFocused();
-  const [livrariaAdicionada, setLivrariaAdicionada] = useState(false);
+  const [financaAdicionada, setFinancaAdicionada] = useState(false);
   const {loading, setLoading, userId, token} = useContextProvider();
 
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
   };
 
-  async function fetchLivrarias() {
+  async function fetchFinancas() {
     setLoading(true);
     try {
-      const livrariasData = await getLivraria(userId, token);
-      console.log("Dados recebidos:", livrariasData);
-      setLivrarias(livrariasData);
+      const financasData = await getFinancasByUserId(userId, token);
+      console.log("Dados recebidos:", financasData);
+      setFinancas(financasData);
     } catch (error) {
-      console.error("Erro ao buscar livrarias:", error);
+      console.error("Erro ao buscar finanças:", error);
     } finally {
       setLoading(false);
     }
   }
 
   useEffect(() => {
-    fetchLivrarias();
-  }, [livrariaAdicionada, isFocused]);
+    fetchFinancas();
+  }, [financaAdicionada, isFocused]);
 
-  const handleDeletePress = (livraria) => {
-    setLivrariaToDelete(livraria);
+  const handleDeletePress = (financa) => {
+    setFinancaToDelete(financa);
     toggleModal();
   };
 
   const confirmDelete = async () => {
     setLoading(true);
     try {
-      console.log("Excluindo livraria:", livrariaToDelete);
-      await deleteLivraria(livrariaToDelete.id, token);
-      setLivrarias(livrarias.filter(l => l.id !== livrariaToDelete.id));
+      console.log("Excluindo finança:", financaToDelete);
+      await deleteFinanca(financaToDelete.id, token); // Atualize a função de exclusão
+      setFinancas(financas.filter(f => f.id !== financaToDelete.id));
       toggleModal();
     } catch (error) {
-      console.error("Erro ao excluir livraria:", error);
+      console.error("Erro ao excluir finança:", error);
     } finally {
       setLoading(false);
     }
@@ -76,7 +75,7 @@ export default function FinanceScreen() {
           <Text style={styles.title}>Finanças</Text>
 
           <TouchableOpacity>
-          
+            {/* Botão adicional, se necessário */}
           </TouchableOpacity>
         </View>
 
@@ -84,18 +83,18 @@ export default function FinanceScreen() {
           <TouchableOpacity
             style={styles.addButton}
             onPress={() => {
-              setLivrariaAdicionada(false);
+              setFinancaAdicionada(false);
               navigation.navigate("CadastroFinanceScreen", {
-                onGoBack: () => setLivrariaAdicionada(true),
-              })}}
+                onGoBack: () => setFinancaAdicionada(true),
+              });
+            }}
           >
             <Text style={styles.addButtonText}>Adicionar Finança</Text>
             <Ionicons name="add-outline" size={24} color="white" />
           </TouchableOpacity>
 
-         
-          {/* <FlatList
-            data={livrarias}
+          <FlatList
+            data={financas}
             keyExtractor={(item) => String(item.id)}
             renderItem={({ item }) => (
               <TouchableOpacity
@@ -104,23 +103,16 @@ export default function FinanceScreen() {
                   navigation.navigate("DetalhesFinancaScreen", { item })
                 }
               >
-                <Text style={styles.listTextItem}>{item.nome}</Text>
+                <Text style={styles.listTextItem}>{item.nome_da_financa}</Text>
 
                 <View style={styles.containerImages}>
-                 
                   <TouchableOpacity onPress={() => handleDeletePress(item)}>
-                  <Feather
-            name="trash-2"
-            size={20}
-            color="#FF0000"
-          
-          /> 
+                    <Feather name="trash-2" size={20} color="#FF0000" />
                   </TouchableOpacity>
                 </View>
-                
               </TouchableOpacity>
             )}
-          /> */}
+          />
         </View>
       </View>
 
@@ -132,10 +124,10 @@ export default function FinanceScreen() {
       >
         <View style={styles.modalContainer}>
           <View style={styles.modalContent}>
-            <Text style={styles.modalTitle}>Excluir livraria</Text>
+            <Text style={styles.modalTitle}>Excluir finança</Text>
 
             <Text style={styles.modalText}>
-              Você tem certeza que deseja excluir a livraria "{livrariaToDelete?.nome}"?
+              Você tem certeza que deseja excluir a finança "{financaToDelete?.nome}"?
             </Text>
 
             <View style={styles.modalButtons}>

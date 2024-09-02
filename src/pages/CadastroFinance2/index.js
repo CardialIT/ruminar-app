@@ -116,15 +116,15 @@ export default function CadastroFinanceScreen() {
 
             <View style={styles.secondContainer}>
                 
-                <View style={styles.containerDietaName}>
-                <Text style={styles.listagemTitle}>Dê um nome à sua finança</Text>
+             
+                <Text style={styles.listagemTitle}>Para finalizar, nomee o seu calculo</Text>
                 <TextInput
                     style={styles.inputFieldName}
                     placeholder="Nome da finança"
                     value={nomeDaFinanca}
                     onChangeText={setNomeDaFinanca}
                 />
-</View>
+
                 
 <TouchableOpacity
                             onPress={handleProximo}

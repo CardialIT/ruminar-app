@@ -8,7 +8,49 @@ export default StyleSheet.create({
       flex: 1,
       backgroundColor: colors.background,
     },
-    
+
+    modalContainer: {
+      flex: 1,
+      justifyContent: "center",
+      alignItems: "center",
+      backgroundColor: "rgba(0, 0, 0, 0.5)",
+    },
+    modalContent: {
+      backgroundColor: "white",
+      padding: 20,
+      borderRadius: 10,
+      alignItems: "center",
+      marginHorizontal: 20,
+    },
+    modalText: {
+      marginBottom: 15,
+      textAlign: "center",
+      fontSize: 16,
+    },
+    modalButtons: {
+      flexDirection: "row",
+      justifyContent: "space-between",
+      width: "100%",
+     
+    },
+
+    buttonModal:{
+  backgroundColor:  colors.verdePrincipal,
+  height: 30,
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "center",
+  alignItems: "center",
+  borderRadius: 5,
+  paddingLeft: 10,
+paddingRight: 10,
+    },
+
+    buttonModalText:{
+color: "white", 
+fontWeight: "bold",
+    },
+  
     firstContainer: {
       flexDirection: "row",
       alignItems: "center",

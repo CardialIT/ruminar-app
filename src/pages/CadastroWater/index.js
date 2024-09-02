@@ -38,7 +38,7 @@ export default function CadastroWaterScreen() {
         setLoading(true);
         try {
             const resultado = calcularAgua(msExistente, msEstimada)
-            
+            console.log("NOME AQUIII" + nomeCalculo)
             setNomeCalculoAgua(nomeCalculo),
             setMSEstimadaCalculoAgua(msExistente),
             setMSExistenteCalculoAgua(msEstimada),
@@ -63,14 +63,14 @@ export default function CadastroWaterScreen() {
                     <Ionicons name="chevron-back-outline" size={24} color="white" />
                 </TouchableOpacity>
 
-                <Text style={styles.title}>Novo calculo da água</Text>
+                <Text style={styles.title}>Nova hidratação da dieta</Text>
 
                 <TouchableOpacity onPress={() => {}}>
                 </TouchableOpacity> 
             </View>
 
             <View style={styles.secondContainer}>
-            <Text style={styles.listagemTitle}>Dê um nome ao seu calculo</Text>
+            <Text style={styles.listagemTitle}>Preencha os valores abaixo</Text>
                 <View style={styles.containerDietaName}>
                 <TextInput
                     style={styles.inputFieldName}

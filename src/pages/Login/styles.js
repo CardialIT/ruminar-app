@@ -12,8 +12,9 @@ export default StyleSheet.create({
   },
 
   welcomeText: {
+    marginTop: 50,
     fontSize: width * 0.07,
-    marginBottom: height * 0.02,
+    marginBottom: 10,
     color: "#1E232C",
     fontWeight: "bold",
   },
@@ -54,6 +55,7 @@ export default StyleSheet.create({
     justifyContent: "center",
     borderRadius: width * 0.02,
     marginBottom: height * 0.01,
+    marginBottom: 60,
   },
 
   buttonText: {
@@ -83,18 +85,18 @@ export default StyleSheet.create({
     marginBottom: height * 0.025,
     alignSelf: "flex-end",
   },
+  linkregister: {
+
+ height: 30,
+
+  },
   register: {
-    position: "relative",
-    flexDirection: "row",
-    bottom: -height * 0.31,
-    fontSize: width * 0.04,
+    flexDirection: "row", 
     alignSelf: "center",
     color: "#6A707C",
+   
   },
   register2: {
-    flexDirection: "row",
-    bottom: -height * 0.31,
-    fontSize: width * 0.04,
     alignSelf: "center",
     color: "#FEAB13",
     fontWeight: "bold",

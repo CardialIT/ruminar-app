@@ -39,15 +39,21 @@ export default StyleSheet.create({
     // SECOND CONTAINER 
 
     secondContainer: {
-        flex: 1,
+    
         paddingVertical: width * 0.02,
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
     },
 
     containerDietaName:{
+        marginTop: 10,
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-between",
         alignItems: "center",
+        height: 70,
        
     },
 
@@ -194,15 +200,15 @@ export default StyleSheet.create({
     createButton: {
         backgroundColor: colors.verdePrincipal,
         flexDirection: "row",
-        width: "100%",
+        width: "80%",
         height: height * 0.06,
         borderRadius: width * 0.02,
-
         justifyContent: "center",
         alignItems: "center",
-
         borderColor: colors.verdePrincipal,
-        borderWidth: 1
+        borderWidth: 1,
+       
+       
     },
 
     textButton: {

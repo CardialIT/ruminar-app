@@ -95,3 +95,111 @@ export async function deleteResumo(id, token) {
   );
   return response.data;
 }
+
+export async function postFinanca(data, token) {
+  const response = await api.post("/financa", data, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return response.data;
+}
+
+export async function getFinancas(token) {
+  const response = await api.get("/financas", {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return response.data;
+}
+
+export async function getFinancaById(id, token) {
+  const response = await api.get(`/financa/${id}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return response.data;
+}
+
+export async function updateFinanca(id, data, token) {
+  const response = await api.put(`/financa/${id}`, data, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return response.data;
+}
+
+export async function deleteFinanca(id, token) {
+  const response = await api.delete(`/financa/${id}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return response.data;
+}
+
+export async function getFinancasByUserId(userId, token) {
+  const response = await api.get(`/financa/user/${userId}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return response.data;
+}
+
+export async function postCalculoAgua(data, token) {
+  const response = await api.post("/calculoagua", data, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return response.data;
+}
+
+export async function getCalculoAguas(token) {
+  const response = await api.get("/calculoaguas", {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return response.data;
+}
+
+export async function getCalculoAguaByUserId(userId, token) {
+  const response = await api.get(`/calculoagua/user/${userId}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return response.data;
+}
+
+export async function getCalculoAguaById(id, token) {
+  const response = await api.get(`/calculoagua/${id}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return response.data;
+}
+
+export async function updateCalculoAgua(id, data, token) {
+  const response = await api.put(`/calculoagua/${id}`, data, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return response.data;
+}
+
+export async function deleteCalculoAgua(id, token) {
+  const response = await api.delete(`/calculoagua/${id}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return response.data;
+}

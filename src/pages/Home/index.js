@@ -1,11 +1,12 @@
-import { View, TouchableOpacity, Image, Text, ScrollView } from "react-native";
-import React from "react";
-import styles from "../Home/styles";
+import { View, TouchableOpacity, Image, Text, ScrollView, Modal } from "react-native";
+import React, {useState} from "react";
+import styles from "./styles";
 import { useNavigation } from "@react-navigation/native";
 import { useContextProvider } from "../../context/AuthContext"
 import { Feather } from '@expo/vector-icons';
 
 export default function HomeScreen() {
+  const [modalVisible, setModalVisible] = useState(true);
   const navigation = useNavigation();
 
   const { userName, setIsAuth, setToken } = useContextProvider();
@@ -15,8 +16,43 @@ export default function HomeScreen() {
     setToken("");
   }
 
+  function handleAccept() {
+    setModalVisible(false);
+  }
+
+  function handleDecline() {
+    setIsAuth(false);
+    setToken("");
+  }
+
   return (
     <View style={styles.container}>
+
+<Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => {
+          logout();
+        }}
+      >
+        <View style={styles.modalContainer}>
+          <View style={styles.modalContent}>
+            <Text style={styles.modalText}>
+              O RESULTADO PRODUTIVO É BASEADO NO MANEJO NUTRICIONAL COMO UM TODO. AO CLICAR EM ACEITAR, O PRODUTOR/TÉCNICO SE RESPONSABILIZA PELA EXECUÇÃO DOS DADOS NUTRICIONAIS FORMULADOS NESTE APLICATIVO.
+            </Text>
+            <View style={styles.modalButtons}>
+              <TouchableOpacity style={styles.buttonModal} onPress={handleAccept}>
+                <Text style={styles.buttonModalText}>Aceitar</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.buttonModal} onPress={handleDecline}>
+                <Text style={styles.buttonModalText}>Recusar</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </View>
+      </Modal>
+
       <View style={styles.firstContainer}>
         <TouchableOpacity onPress={logout}>
           <Feather name="log-out" size={25} color="white" />
@@ -94,8 +130,8 @@ export default function HomeScreen() {
             style={styles.images}
           />
           <View style={styles.overlay}>
-            <Text style={styles.imageTitle}>Calculo da água</Text>
-            <Text style={styles.imageSubtitle}>Calcule a água</Text>
+            <Text style={styles.imageTitle}>Hidratação da dieta</Text>
+            <Text style={styles.imageSubtitle}>Saiba o percentual de hidratação da sua dieta</Text>
           </View>
         </TouchableOpacity>
       </ScrollView>
