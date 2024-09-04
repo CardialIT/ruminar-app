@@ -52,7 +52,7 @@ export default StyleSheet.create({
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-between",
-        alignItems: "center",
+        alignItems: "flex-start",
         height: 70,
        
     },
@@ -196,8 +196,14 @@ export default StyleSheet.create({
         marginTop: height * 0.03,
         marginHorizontal: width * 0.05,
     },
-
+    textName:{
+        fontWeight: "bold",
+        fontSize: 16,
+        color: 'black',
+        textAlign: "left",
+    },
     createButton: {
+        marginTop: 20,
         backgroundColor: colors.verdePrincipal,
         flexDirection: "row",
         width: "80%",

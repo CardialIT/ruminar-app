@@ -27,29 +27,18 @@ export default function RegisterScreen() {
       text2: "Aguarde enquanto fazemos seu cadastro...",
       autoHide: true,
     });
-
+    
     try {
-      const response = await register(payload);
-
-      console.log("Response:", response);
-      
-      // Exibe um Toast com base no status da resposta
-      if (response.status === 200) {
+       await register(payload);
+     
         Toast.show({
           type: "success",
           text1: "Cadastro realizado com sucesso!",
           text2: "Seja bem-vindo!",
+          autoHide: true,
         });
 
-        // Aqui você pode navegar para a tela de login, por exemplo
-        navigation.navigate('Login');
-      } else {
-        Toast.show({
-          type: "error",
-          text1: "Cadastro falhou",
-          text2: "Algo deu errado, tente novamente.",
-        });
-      }
+        navigation.navigate('Login');      
     } catch (err) {
       console.error("Erro no cadastro:", err);
       
@@ -57,10 +46,9 @@ export default function RegisterScreen() {
         type: "error",
         text1: "Cadastro falhou",
         text2: "Entre em contato com o suporte.",
+        autoHide: true,
       });
-    } finally {
-      Toast.hide(); // Isso vai garantir que o Toast de carregamento seja ocultado
-    }
+    } 
   };
 
   const handleLoginPress = () => {
@@ -120,6 +108,7 @@ export default function RegisterScreen() {
           </Text>
         </TouchableOpacity>
       </View>
+      <Toast />
     </>
   );
 }

@@ -28,10 +28,12 @@ export default StyleSheet.create({
       fontSize: 16,
     },
     modalButtons: {
-      flexDirection: "row",
+    
+     display: "flex",
+     flexDirection: "row",
       justifyContent: "space-between",
+      alignItems: "center",
       width: "100%",
-     
     },
 
     buttonModal:{
@@ -46,6 +48,18 @@ export default StyleSheet.create({
 paddingRight: 10,
     },
 
+    buttonModalDecline:{
+      backgroundColor:  'red',
+      height: 30,
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "center",
+      alignItems: "center",
+      borderRadius: 5,
+      paddingLeft: 10,
+    paddingRight: 10,
+        },
+
     buttonModalText:{
 color: "white", 
 fontWeight: "bold",
@@ -54,12 +68,17 @@ fontWeight: "bold",
     firstContainer: {
       flexDirection: "row",
       alignItems: "center",
-      justifyContent: "flex-end",
+      justifyContent: "space-between",
       backgroundColor: colors.verdePrincipal,
       height: "20%",
       paddingHorizontal: 20,
       paddingTop: 40,
       paddingBottom: 10,
+    },
+    textheader:{
+      fontWeight: "bold",
+      fontSize: 18,
+      color: 'white',
     },
   
     scrollViewContainer: {

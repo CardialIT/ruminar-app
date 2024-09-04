@@ -77,12 +77,12 @@ export default function DetalhesWater({ route }) {
             </View>
             
             <View style={styles.itensPercentage}>
-              <Text style={styles.itens}>Matéria seca estimada: </Text>
+              <Text style={styles.itens}>Matéria seca existente: </Text>
               <Text style={styles.percetange}>{msEstimadaCalculoAgua}</Text>
             </View>
             
             <View style={styles.itensPercentage}>
-              <Text style={styles.itens}>Matéria seca existente: </Text>
+              <Text style={styles.itens}>Matéria seca estimada: </Text>
               <Text style={styles.percetange}>{msExistenteCalculoAgua}</Text>
             </View>
             

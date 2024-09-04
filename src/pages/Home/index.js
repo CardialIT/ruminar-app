@@ -45,7 +45,7 @@ export default function HomeScreen() {
               <TouchableOpacity style={styles.buttonModal} onPress={handleAccept}>
                 <Text style={styles.buttonModalText}>Aceitar</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={styles.buttonModal} onPress={handleDecline}>
+              <TouchableOpacity style={styles.buttonModalDecline} onPress={handleDecline}>
                 <Text style={styles.buttonModalText}>Recusar</Text>
               </TouchableOpacity>
             </View>
@@ -54,6 +54,7 @@ export default function HomeScreen() {
       </Modal>
 
       <View style={styles.firstContainer}>
+<Text style={styles.textheader}>Ruminar Leite</Text>
         <TouchableOpacity onPress={logout}>
           <Feather name="log-out" size={25} color="white" />
         </TouchableOpacity>
@@ -98,7 +99,7 @@ export default function HomeScreen() {
           onPress={() => navigation.navigate("Dietas")}
         >
           <Image
-            source={require("../../../assets/Library.png")}
+            source={require("../../../assets/Cows-2.png")}
             style={styles.images}
           />
           <View style={styles.overlay}>
@@ -112,7 +113,7 @@ export default function HomeScreen() {
           onPress={() => navigation.navigate("Finance")}
         >
           <Image
-            source={require("../../../assets/Library.png")}
+            source={require("../../../assets/Finance.png")}
             style={styles.images}
           />
           <View style={styles.overlay}>
@@ -126,7 +127,7 @@ export default function HomeScreen() {
           onPress={() => navigation.navigate("Water")}
         >
           <Image
-            source={require("../../../assets/Library.png")}
+            source={require("../../../assets/Water.png")}
             style={styles.images}
           />
           <View style={styles.overlay}>

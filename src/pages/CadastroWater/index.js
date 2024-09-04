@@ -43,7 +43,7 @@ export default function CadastroWaterScreen() {
             setMSEstimadaCalculoAgua(msExistente),
             setMSExistenteCalculoAgua(msEstimada),
             setCalculoAgua(resultado)
-            navigation.navigate("DetalhesWaterScreen");
+            navigation.navigate("DetalhesWater");
         } catch (error) {
             Toast.show({
                 type: "error",
@@ -72,6 +72,7 @@ export default function CadastroWaterScreen() {
             <View style={styles.secondContainer}>
             <Text style={styles.listagemTitle}>Preencha os valores abaixo</Text>
                 <View style={styles.containerDietaName}>
+                    <Text style={styles.textName}>Nome do calculo</Text>
                 <TextInput
                     style={styles.inputFieldName}
                     placeholder="Nome do calculo"
@@ -81,6 +82,7 @@ export default function CadastroWaterScreen() {
                 </View>
 
                 <View style={styles.containerDietaName}>
+                <Text style={styles.textName}>Matéria seca existente</Text>
                 <TextInput
                     style={styles.inputFieldName}
                     placeholder="Matéria seca existente"
@@ -90,6 +92,7 @@ export default function CadastroWaterScreen() {
                 </View>
 
                 <View style={styles.containerDietaName}>
+                <Text style={styles.textName}>Matéria seca estimada</Text>
                 <TextInput
                     style={styles.inputFieldName}
                     placeholder="Materia seca estimada"

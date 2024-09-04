@@ -88,7 +88,7 @@ export default function CadastroFinanceScreen() {
             calcularCustoTotal()
             console.log("oi")
              updateDieta("nomeDaFinanca", nomeDaFinanca); 
-            navigation.navigate("DetalhesFinanceScreen");
+            navigation.navigate("DetalhesFinance");
         } catch (error) {
             Toast.show({
                 type: "error",

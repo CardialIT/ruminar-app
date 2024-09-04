@@ -36,9 +36,9 @@ function AppTabs() {
               case 'Finance':
                 iconName = focused ? 'cash' : 'cash-outline';
                 break;
-                // case 'Water':
-                // iconName = focused ? 'water' : 'water-outline';
-                // break;
+                case 'Water':
+                iconName = focused ? 'water' : 'water-outline';
+                break;
             case 'Profile':
               iconName = focused ? 'person' : 'person-outline';
               break;

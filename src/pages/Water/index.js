@@ -98,7 +98,7 @@ export default function WaterScreen() {
               <TouchableOpacity
                 style={styles.listItemContainer}
                 onPress={() =>
-                  navigation.navigate("DetalhesCalculoAguaScreen", { item })
+                  navigation.navigate("DetalhesWaterScreen", { item })
                 }
               >
                 <Text style={styles.listTextItem}>{item.nome_calculo}</Text>

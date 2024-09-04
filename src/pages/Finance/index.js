@@ -100,7 +100,7 @@ export default function FinanceScreen() {
               <TouchableOpacity
                 style={styles.listItemContainer}
                 onPress={() =>
-                  navigation.navigate("DetalhesFinancaScreen", { item })
+                  navigation.navigate("DetalhesFinanceScreen", { item })
                 }
               >
                 <Text style={styles.listTextItem}>{item.nome_da_financa}</Text>
