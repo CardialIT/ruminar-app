@@ -30,10 +30,10 @@ export function ContextProvider({ children }) {
   const [isAuth, setIsAuth] = useState(false)
   const [userEmail, setUserEmail] = useState("")
   const [userCreatedAt, setUserCreatedAt] = useState("")
-  const [nomeCalculoAgua, setNomeCalculoAgua] = useState("")
-  const [msEstimadaCalculoAgua, setMSEstimadaCalculoAgua] = useState(0)
-  const [msExistenteCalculoAgua, setMSExistenteCalculoAgua] = useState(0)
-  const[calculoAgua, setCalculoAgua] = useState(0)
+  const [nomeCalculoWater, setNomeCalculoWater] = useState("")
+  const [msEstimadaCalculoWater, setMSEstimadaCalculoWater] = useState(0)
+  const [msExistenteCalculoWater, setMSExistenteCalculoWater] = useState(0)
+  const[calculoWater, setCalculoWater] = useState(0)
   
 
   const handleAddLivraria = (livrariaSelecionada) => {
@@ -70,6 +70,8 @@ export function ContextProvider({ children }) {
   const [ims, setIms] = useState(0);
   const [fdn, setFdn] = useState(0);
   const [totalCusto, setTotalCusto] = useState(0);
+  const [kgMstotalDieta,setKgMstotalDieta] = useState(0)
+  
 
   const updateDieta = (field, value) => {
     setDieta((prevDieta) => ({
@@ -121,6 +123,12 @@ export function ContextProvider({ children }) {
     setMateriaSecaExistente(totalMateriaSecaExistente.toFixed(2));
     return totalMateriaSecaExistente.toFixed(2);
   };
+
+  const calcularKgMsTotal = () => {
+    const kgMsTotal = dieta.selectedLivrarias.reduce((acc, livraria) => acc + parseFloat(livraria.kgMs), 0);
+    setKgMstotalDieta(kgMsTotal)
+  
+  } 
 
   const calcularFracaoProteica = (materiaSecaExistente) => {
     const totalFracaoProteica = (parseFloat(ims) - parseFloat(materiaSecaExistente)) / 2;
@@ -486,17 +494,20 @@ const calcularPBAlimentos = () => {
     setTotalCusto(total.toFixed(2)); // Arredonda para 2 casas decimais
   };
 
-  const calcularAgua = (msExistente, msEstimada) => {
+  const calcularWater = (msExistente, msEstimada) => {
     console.log("chegou")
     const conta = msExistente / msEstimada
     const menosum = conta -1
     const porcentagem = menosum * 100
     
-    setMSEstimadaCalculoAgua(msEstimada)
-    setMSExistenteCalculoAgua(msExistente)
-    setCalculoAgua(porcentagem.toFixed(2))
-    console.log(porcentagem)
-    return porcentagem.toFixed(2)
+    setMSEstimadaCalculoWater(msEstimada)
+    setMSExistenteCalculoWater(msExistente)
+    const porcentagemArredondada = Math.round(porcentagem); 
+  
+    setCalculoWater(porcentagemArredondada);
+    console.log(porcentagemArredondada);
+    
+    return porcentagemArredondada;
   }
 
   useEffect(() => {
@@ -593,16 +604,18 @@ const calcularPBAlimentos = () => {
         calcularCustoTotal,
         totalCusto, 
         setTotalCusto,
-        msEstimadaCalculoAgua, 
-        setMSEstimadaCalculoAgua,
-        msExistenteCalculoAgua, 
-        setMSExistenteCalculoAgua,
-        calculoAgua, 
-        setCalculoAgua,
-        calcularAgua,
-        nomeCalculoAgua,
-         setNomeCalculoAgua
-
+        msEstimadaCalculoWater, 
+        setMSEstimadaCalculoWater,
+        msExistenteCalculoWater, 
+        setMSExistenteCalculoWater,
+        calculoWater, 
+        setCalculoWater,
+        calcularWater,
+        nomeCalculoWater,
+         setNomeCalculoWater,
+         calcularKgMsTotal,
+         kgMstotalDieta,
+         setKgMstotalDieta
       }}
     >
       {children}

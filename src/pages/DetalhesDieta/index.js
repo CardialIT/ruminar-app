@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity, ScrollView } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
 import styles from "../DetalhesDieta/styles.js";
@@ -27,7 +27,8 @@ export default function DetalhesDieta({ route }) {
     setLoading,
     msTotalDieta,
     userId,
-    token
+    token,
+    kgMstotalDieta
   } = useContextProvider();
 
   const { nome_da_dieta } = dieta;
@@ -106,7 +107,7 @@ export default function DetalhesDieta({ route }) {
 
   const renderSelectedLivrarias = () => {
     return dieta.selectedLivrarias.map((livraria, index) => (
-      <View key={livraria.id} style={styles.itensPercentageC}>
+      <View key={livraria.id} style={styles.itensPercentage}>
         <Text style={styles.itens}>{livraria.nome}: </Text>
         <Text style={styles.percetange}>{livraria.kgMs} em MS</Text>
 
@@ -126,11 +127,20 @@ export default function DetalhesDieta({ route }) {
         <TouchableOpacity>
         </TouchableOpacity>
       </View>
-
+      <ScrollView style={styles.containerList}>
       <View style={styles.secondContainer}>
+    
         <View style={styles.containerProps}>
           <View style={styles.containerPropsItens}>
-          
+         
+          <View style={styles.itensPercentageC}>
+              <Text style={styles.itenTotal}>Total em Kilos de matéria seca: </Text>
+              <Text style={styles.percetangeTotal}>{kgMstotalDieta}</Text>
+            </View>
+            
+
+          {renderSelectedLivrarias()}
+
           <View style={styles.itensPercentageC}>
               <Text style={styles.itens}>MS: </Text>
               <Text style={styles.percetange}>{msTotalDieta} %</Text>
@@ -184,8 +194,10 @@ export default function DetalhesDieta({ route }) {
 
           </View>
         </View>
+       
       </View>
-      
+      </ScrollView>
+   
       <View style={styles.containerButton}>
         <TouchableOpacity style={styles.createButton} onPress={handleCriarDieta}>
           <Text style={styles.textButton}>CRIAR DIETA</Text>

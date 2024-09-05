@@ -5,7 +5,7 @@ import { Ionicons } from "@expo/vector-icons";
 import styles from "../DetalhesDieta/styles.js";
 import { useContextProvider } from "../../context/AuthContext.js";
 import Loading from "../../components/LoadingElement/index.js";
-import { postCalculoAgua } from "../../services/api.js";  // Certifique-se de importar a função corretamente
+import { postCalculoWater } from "../../services/api.js";  // Certifique-se de importar a função corretamente
 import Toast from "react-native-toast-message";
 
 export default function DetalhesWater({ route }) {
@@ -16,34 +16,34 @@ export default function DetalhesWater({ route }) {
     setLoading,
     userId,
     token,
-    msEstimadaCalculoAgua, 
-    setMSEstimadaCalculoAgua,
-    msExistenteCalculoAgua, 
-    setMSExistenteCalculoAgua,
-    calculoAgua, 
-    nomeCalculoAgua
+    msEstimadaCalculoWater, 
+    setMSEstimadaCalculoWater,
+    msExistenteCalculoWater, 
+    setMSExistenteCalculoWater,
+    calculoWater, 
+    nomeCalculoWater
   } = useContextProvider();
 
-  const handleCriarCalculoAgua = async () => {
+  const handleCriarCalculoWater = async () => {
     setLoading(true);
 
     const waterData = {
-      nome_calculo: nomeCalculoAgua,
-      valor_materia_seca_estimada: msEstimadaCalculoAgua,
-      valor_materia_seca_existente: msExistenteCalculoAgua,
-      resultado: calculoAgua,
+      nome_calculo: nomeCalculoWater,
+      valor_materia_seca_estimada: msEstimadaCalculoWater,
+      valor_materia_seca_existente: msExistenteCalculoWater,
+      resultado: calculoWater,
       usuario_id: userId
     };
 
     try {
       
       console.log("JSON QUE ESTÁ SENDO ENVIADO:", JSON.stringify(waterData, null, 2));
-      await postCalculoAgua(waterData, token);
+      await postCalculoWater(waterData, token);
       Toast.show({
         type: "success",
         text1: "Cálculo de água criado com sucesso",
       });
-      navigation.navigate("Water");
+      navigation.navigate("Agua");
     } catch (error) {
       console.error("Erro ao criar cálculo de água:", error);
       Toast.show({
@@ -73,29 +73,29 @@ export default function DetalhesWater({ route }) {
           <View style={styles.containerPropsItens}>
             <View style={styles.itensPercentage}>
               <Text style={styles.itens}>Nome do cálculo: </Text>
-              <Text style={styles.percetange}>{nomeCalculoAgua}</Text>
+              <Text style={styles.percetange}>{nomeCalculoWater}</Text>
             </View>
             
             <View style={styles.itensPercentage}>
               <Text style={styles.itens}>Matéria seca existente: </Text>
-              <Text style={styles.percetange}>{msEstimadaCalculoAgua}</Text>
+              <Text style={styles.percetange}>{msEstimadaCalculoWater}</Text>
             </View>
             
             <View style={styles.itensPercentage}>
               <Text style={styles.itens}>Matéria seca estimada: </Text>
-              <Text style={styles.percetange}>{msExistenteCalculoAgua}</Text>
+              <Text style={styles.percetange}>{msExistenteCalculoWater}</Text>
             </View>
             
             <View style={styles.itensPercentage}>
               <Text style={styles.itens}>Resultado: </Text>
-              <Text style={styles.percetange}>{calculoAgua}</Text>
+              <Text style={styles.percetange}>{calculoWater}</Text>
             </View>
           </View>
         </View>
       </View>
       
       <View style={styles.containerButton}>
-        <TouchableOpacity style={styles.createButton} onPress={handleCriarCalculoAgua}>
+        <TouchableOpacity style={styles.createButton} onPress={handleCriarCalculoWater}>
           <Text style={styles.textButton}>CRIAR CÁLCULO</Text>
         </TouchableOpacity>
       </View>

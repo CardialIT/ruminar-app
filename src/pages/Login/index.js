@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { View, Text, TextInput, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { login } from "../../services/api";
@@ -6,6 +6,7 @@ import { useContextProvider } from "../../context/AuthContext";
 import { Ionicons } from "@expo/vector-icons";
 import styles from "./styles";
 import Toast from "react-native-toast-message";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function LoginScreen() {
   const navigation = useNavigation();
@@ -34,7 +35,7 @@ export default function LoginScreen() {
       Toast.show({
         type: "info",
         text1: "Carregando",
-        text2: "Aguarde enquanto fazemos login...",
+        text2: "Waterrde enquanto fazemos login...",
         autoHide: false,
       });
 
@@ -49,6 +50,10 @@ export default function LoginScreen() {
       setUserEmail(user.email);
       setUserCreatedAt(user.data_cadastro);
 
+      await AsyncStorage.setItem('userEmail', email);
+      await AsyncStorage.setItem('userPassword', senha);
+      console.log('Credenciais salvas com AsyncStorage!');
+
       Toast.hide();
     } catch (err) {
       setLoading(false);
@@ -62,6 +67,22 @@ export default function LoginScreen() {
   };
 
   const handleRegisterPress = () => navigation.navigate("Register");
+
+  useEffect(() => {
+    const loadCredentials = async () => {
+      const storedEmail = await AsyncStorage.getItem('userEmail');
+      const storedPassword = await AsyncStorage.getItem('userPassword');
+      if (storedEmail && storedPassword) {
+        setEmail(storedEmail);
+        setSenha(storedPassword);
+        // Se você quiser tentar o login automaticamente:
+        // handleLogin();
+      }
+    };
+
+    loadCredentials();
+  }, []);
+
 
   return (
     <View style={styles.container}>

@@ -33,13 +33,13 @@ function AppTabs() {
             case 'Livraria':
               iconName = focused ? 'library' : 'library-outline';
               break;
-              case 'Finance':
+              case 'Financa':
                 iconName = focused ? 'cash' : 'cash-outline';
                 break;
-                case 'Water':
+                case 'Agua':
                 iconName = focused ? 'water' : 'water-outline';
                 break;
-            case 'Profile':
+            case 'Perfil':
               iconName = focused ? 'person' : 'person-outline';
               break;
              
@@ -55,9 +55,9 @@ function AppTabs() {
       <Tab.Screen name="Resumo" component={ResumoStack} />
       <Tab.Screen name="Dietas" component={DietasStack} />
       <Tab.Screen name="Livraria" component={LivrariaStack} />
-      <Tab.Screen name="Finance" component={FinanceStack} />
-      <Tab.Screen name="Water" component={WaterStack} />
-      <Tab.Screen name="Profile" component={ProfileStack} />
+      <Tab.Screen name="Financa" component={FinanceStack} />
+      <Tab.Screen name="Agua" component={WaterStack} />
+      <Tab.Screen name="Perfil" component={ProfileStack} />
    
    
     </Tab.Navigator>

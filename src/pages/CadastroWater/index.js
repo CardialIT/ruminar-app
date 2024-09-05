@@ -17,11 +17,11 @@ export default function CadastroWaterScreen() {
     const {    
         loading, 
         setLoading,
-        calcularAgua,
-        setNomeCalculoAgua,
-        setMSEstimadaCalculoAgua,
-        setMSExistenteCalculoAgua,
-        setCalculoAgua,
+        calcularWater,
+        setNomeCalculoWater,
+        setMSEstimadaCalculoWater,
+        setMSExistenteCalculoWater,
+        setCalculoWater,
      } = useContextProvider();
     const navigation = useNavigation();
 
@@ -37,12 +37,12 @@ export default function CadastroWaterScreen() {
     const handleProximo = async (msExistente, msEstimada) => {
         setLoading(true);
         try {
-            const resultado = calcularAgua(msExistente, msEstimada)
+            const resultado = calcularWater(msExistente, msEstimada)
             console.log("NOME AQUIII" + nomeCalculo)
-            setNomeCalculoAgua(nomeCalculo),
-            setMSEstimadaCalculoAgua(msExistente),
-            setMSExistenteCalculoAgua(msEstimada),
-            setCalculoAgua(resultado)
+            setNomeCalculoWater(nomeCalculo),
+            setMSEstimadaCalculoWater(msExistente),
+            setMSExistenteCalculoWater(msEstimada),
+            setCalculoWater(resultado)
             navigation.navigate("DetalhesWater");
         } catch (error) {
             Toast.show({
@@ -59,7 +59,7 @@ export default function CadastroWaterScreen() {
         <View style={styles.container}>
 
             <View style={styles.firstContainer}>
-                <TouchableOpacity onPress={() => navigation.navigate("Water")}>
+                <TouchableOpacity onPress={() => navigation.navigate("Agua")}>
                     <Ionicons name="chevron-back-outline" size={24} color="white" />
                 </TouchableOpacity>
 

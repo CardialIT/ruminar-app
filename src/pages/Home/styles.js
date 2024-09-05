@@ -77,7 +77,7 @@ fontWeight: "bold",
     },
     textheader:{
       fontWeight: "bold",
-      fontSize: 18,
+      fontSize: 22,
       color: 'white',
     },
   
@@ -135,12 +135,12 @@ fontWeight: "bold",
   
     overlay: {
       position: 'absolute',
-      alignItems: 'flex-start',
-      justifyContent: 'flex-start',
+      alignItems: 'center',
+      justifyContent: 'center',
+      textAlign: 'start',
       width: '100%',
       height: '100%',
-      paddingHorizontal: 40,
-      paddingTop: 66,
+     
     },
   });
   

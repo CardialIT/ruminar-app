@@ -102,7 +102,7 @@ export default function CadastroFinanceScreen() {
         <View style={styles.container}>
 
             <View style={styles.firstContainer}>
-                <TouchableOpacity onPress={() => navigation.navigate("Finance")}>
+                <TouchableOpacity onPress={() => navigation.navigate("Financa")}>
                     <Ionicons name="chevron-back-outline" size={24} color="white" />
                 </TouchableOpacity>
 

@@ -47,17 +47,17 @@ export default function DetalhesWaterScreen() {
 
             <View style={styles.itensPercentage}>
               <Text style={styles.itensN}>Valor Materia seca existente</Text>
-              <Text style={styles.percetangeN}>{item.valor_materia_seca_existente} em Kg</Text>
+              <Text style={styles.percetangeN}>{item.valor_materia_seca_estimada} em %</Text>
             </View>
 
             <View style={styles.itensPercentageC}>
               <Text style={styles.itensN}>Valor Materia Seca Estimada</Text>
-              <Text style={styles.percetangeN}>{item.valor_materia_seca_estimada} em Kg</Text>
+              <Text style={styles.percetangeN}> {item.valor_materia_seca_existente} em %</Text>
             </View>
 
             <View style={styles.itensPercentage}>
               <Text style={styles.itensN}>Resultado</Text>
-              <Text style={styles.percetangeN}>{item.resultado} em Kg</Text>
+              <Text style={styles.percetangeN}>{item.resultado} em Litros</Text>
             </View>
           </View>
         </View>

@@ -85,6 +85,19 @@ export default StyleSheet.create({
     fontSize: 14,
    
   },
+  itenTotal : {
+    fontWeight: 'bold',
+  },
+  percetangeTotal:{
+    fontWeight: 'bold',
+    color: colors.verdePrincipal,
+
+  },
+  containerList: {
+    flex: 1,
+    backgroundColor: colors.background,
+    height: "100%"
+},
 
   percetange: {
     alignContent: "flex-end",

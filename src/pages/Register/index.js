@@ -24,7 +24,7 @@ export default function RegisterScreen() {
     Toast.show({
       type: "info",
       text1: "Carregando",
-      text2: "Aguarde enquanto fazemos seu cadastro...",
+      text2: "Waterrde enquanto fazemos seu cadastro...",
       autoHide: true,
     });
     

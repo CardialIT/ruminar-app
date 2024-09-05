@@ -13,7 +13,7 @@
     "@expo/metro-config": "^0.18.11",
     "@expo/prebuild-config": "~7.0.0",
     "@expo/vector-icons": "^14.0.2",
-    "@react-native-async-storage/async-storage": "1.23.1",
+    "@react-native-async-storage/async-storage": "^1.23.1",
     "@react-native-community/cli": "^13.6.6",
     "@react-navigation/bottom-tabs": "^6.5.20",
     "@react-navigation/native": "^6.1.17",

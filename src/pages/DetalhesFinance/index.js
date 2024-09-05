@@ -53,7 +53,7 @@ export default function DetalhesFinance({ route }) {
         type: "success",
         text1: "Finança criada com sucesso",
       });
-      navigation.navigate("Finance");
+      navigation.navigate("Financa");
     } catch (error) {
       console.error("Erro ao criar finança:", error);
       Toast.show({

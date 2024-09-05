@@ -10,7 +10,7 @@ import styles from "../Livraria/styles";
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation, useIsFocused } from "@react-navigation/native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
-import { getCalculoAguaByUserId, deleteCalculoAgua } from "../../services/api.js";
+import { getCalculoWaterByUserId, deleteCalculoWater } from "../../services/api.js";
 import { Feather } from "@expo/vector-icons";
 import Loading from "../../components/LoadingElement/index.js";
 import { useContextProvider } from "../../context/AuthContext.js";
@@ -18,22 +18,22 @@ import { useContextProvider } from "../../context/AuthContext.js";
 export default function WaterScreen() {
   const navigation = useNavigation();
   const [isModalVisible, setModalVisible] = useState(false);
-  const [calculosAgua, setCalculosAgua] = useState([]);
-  const [calculoAguaToDelete, setCalculoAguaToDelete] = useState(null);
+  const [calculosWater, setCalculosWater] = useState([]);
+  const [calculoWaterToDelete, setCalculoWaterToDelete] = useState(null);
   const isFocused = useIsFocused();
-  const [calculoAguaAdicionado, setCalculoAguaAdicionado] = useState(false);
+  const [calculoWaterAdicionado, setCalculoWaterAdicionado] = useState(false);
   const { loading, setLoading, userId, token } = useContextProvider();
 
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
   };
 
-  async function fetchCalculosAgua() {
+  async function fetchCalculosWater() {
     setLoading(true);
     try {
-      const calculosAguaData = await getCalculoAguaByUserId(userId, token);
-      console.log("Dados recebidos:", calculosAguaData);
-      setCalculosAgua(calculosAguaData);
+      const calculosWaterData = await getCalculoWaterByUserId(userId, token);
+      console.log("Dados recebidos:", calculosWaterData);
+      setCalculosWater(calculosWaterData);
     } catch (error) {
       console.error("Erro ao buscar cálculos de água:", error);
     } finally {
@@ -42,20 +42,20 @@ export default function WaterScreen() {
   }
 
   useEffect(() => {
-    fetchCalculosAgua();
-  }, [calculoAguaAdicionado, isFocused]);
+    fetchCalculosWater();
+  }, [calculoWaterAdicionado, isFocused]);
 
-  const handleDeletePress = (calculoAgua) => {
-    setCalculoAguaToDelete(calculoAgua);
+  const handleDeletePress = (calculoWater) => {
+    setCalculoWaterToDelete(calculoWater);
     toggleModal();
   };
 
   const confirmDelete = async () => {
     setLoading(true);
     try {
-      console.log("Excluindo cálculo de água:", calculoAguaToDelete);
-      await deleteCalculoAgua(calculoAguaToDelete.id, token);
-      setCalculosAgua(calculosAgua.filter(c => c.id !== calculoAguaToDelete.id));
+      console.log("Excluindo cálculo de água:", calculoWaterToDelete);
+      await deleteCalculoWater(calculoWaterToDelete.id, token);
+      setCalculosWater(calculosWater.filter(c => c.id !== calculoWaterToDelete.id));
       toggleModal();
     } catch (error) {
       console.error("Erro ao excluir cálculo de água:", error);
@@ -81,9 +81,9 @@ export default function WaterScreen() {
           <TouchableOpacity
             style={styles.addButton}
             onPress={() => {
-              setCalculoAguaAdicionado(false);
+              setCalculoWaterAdicionado(false);
               navigation.navigate("CadastroWaterScreen", {
-                onGoBack: () => setCalculoAguaAdicionado(true),
+                onGoBack: () => setCalculoWaterAdicionado(true),
               });
             }}
           >
@@ -92,7 +92,7 @@ export default function WaterScreen() {
           </TouchableOpacity>
 
           <FlatList
-            data={calculosAgua}
+            data={calculosWater}
             keyExtractor={(item) => String(item.id)}
             renderItem={({ item }) => (
               <TouchableOpacity
@@ -125,7 +125,7 @@ export default function WaterScreen() {
             <Text style={styles.modalTitle}>Excluir cálculo de água</Text>
 
             <Text style={styles.modalText}>
-              Você tem certeza que deseja excluir o cálculo de água "{calculoAguaToDelete?.nome_calculo}"?
+              Você tem certeza que deseja excluir o cálculo de água "{calculoWaterToDelete?.nome_calculo}"?
             </Text>
 
             <View style={styles.modalButtons}>

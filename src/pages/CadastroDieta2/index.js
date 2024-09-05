@@ -38,7 +38,8 @@ export default function CadastroDieta2Screen() {
         calcularAMIDOTotal,
         calcularEEAlimentos, 
         calcularEETotal,
-        calcularMOIndividualAlimentos,       
+        calcularMOIndividualAlimentos,  
+        calcularKgMsTotal     
      } = useContextProvider();
     const navigation = useNavigation();
 
@@ -111,6 +112,7 @@ export default function CadastroDieta2Screen() {
             calcularMOIndividualAlimentos();          
             calcularPNDRTotal(pbTotal, pdrTotal)
             updateDieta("nome_da_dieta", nomeDaDieta); // Salva o nome da dieta no contexto global
+            calcularKgMsTotal()
             navigation.navigate("CadastroDieta4Screen");
         } catch (error) {
             Toast.show({

@@ -12,7 +12,7 @@ const Stack = createNativeStackNavigator();
 function FinanceStack() {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="Finance" component={FinanceScreen} />
+      <Stack.Screen name="Financa" component={FinanceScreen} />
       <Stack.Screen name="ListagemLivrariaScreen" component={ListagemLivrariaScreen} />
       <Stack.Screen name="CadastroFinanceScreen" component={CadastroFinanceScreen} />
       <Stack.Screen name="CadastroFinanceScreen2" component={CadastroFinanceScreen2} />

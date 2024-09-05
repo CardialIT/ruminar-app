@@ -54,7 +54,7 @@ export default function HomeScreen() {
       </Modal>
 
       <View style={styles.firstContainer}>
-<Text style={styles.textheader}>Ruminar Leite</Text>
+<Text style={styles.textheader}>RUMINAR LEITE</Text>
         <TouchableOpacity onPress={logout}>
           <Feather name="log-out" size={25} color="white" />
         </TouchableOpacity>
@@ -110,7 +110,7 @@ export default function HomeScreen() {
 
         <TouchableOpacity
           style={styles.imageContainer}
-          onPress={() => navigation.navigate("Finance")}
+          onPress={() => navigation.navigate("Financa")}
         >
           <Image
             source={require("../../../assets/Finance.png")}
@@ -124,7 +124,7 @@ export default function HomeScreen() {
 
         <TouchableOpacity
           style={styles.imageContainer}
-          onPress={() => navigation.navigate("Water")}
+          onPress={() => navigation.navigate("Agua")}
         >
           <Image
             source={require("../../../assets/Water.png")}
@@ -132,7 +132,7 @@ export default function HomeScreen() {
           />
           <View style={styles.overlay}>
             <Text style={styles.imageTitle}>Hidratação da dieta</Text>
-            <Text style={styles.imageSubtitle}>Saiba o percentual de hidratação da sua dieta</Text>
+            <Text style={styles.imageSubtitle}>Saiba quantos litros de água sua dieta precisa</Text>
           </View>
         </TouchableOpacity>
       </ScrollView>

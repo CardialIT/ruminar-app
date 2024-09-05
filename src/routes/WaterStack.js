@@ -12,7 +12,7 @@ const Stack = createNativeStackNavigator();
 function WaterStack() {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="Water" component={WaterScreen} />
+      <Stack.Screen name="Agua" component={WaterScreen} />
       <Stack.Screen name="ListagemLivrariaScreen" component={ListagemLivrariaScreen} />
       <Stack.Screen name="CadastroWaterScreen" component={CadastroWaterScreen} />
       <Stack.Screen name="DetalhesWater" component={DetalhesWater} />

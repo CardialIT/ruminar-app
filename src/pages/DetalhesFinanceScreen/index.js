@@ -56,7 +56,7 @@ export default function DetalhesFinanceScreen() {
 
             <View style={styles.itensPercentageC}>
               <Text style={styles.itensN}>Valor total dieta </Text>
-              <Text style={styles.percetangeN}>{item.valor_total_dieta} em Kg</Text>
+              <Text style={styles.percetangeN}>R$ {item.valor_total_dieta}</Text>
             </View>
 
 
