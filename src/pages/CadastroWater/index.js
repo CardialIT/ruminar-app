@@ -72,10 +72,10 @@ export default function CadastroWaterScreen() {
             <View style={styles.secondContainer}>
             <Text style={styles.listagemTitle}>Preencha os valores abaixo</Text>
                 <View style={styles.containerDietaName}>
-                    <Text style={styles.textName}>Nome do calculo</Text>
+                    <Text style={styles.textName}>Nome do cálculo</Text>
                 <TextInput
                     style={styles.inputFieldName}
-                    placeholder="Nome do calculo"
+                    placeholder="Nome do cálculo"
                     value={nomeCalculo}
                     onChangeText={setNomeCalculo}
                 />

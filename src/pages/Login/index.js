@@ -35,7 +35,7 @@ export default function LoginScreen() {
       Toast.show({
         type: "info",
         text1: "Carregando",
-        text2: "Waterrde enquanto fazemos login...",
+        text2: "Aguarde enquanto fazemos login...",
         autoHide: false,
       });
 

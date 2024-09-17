@@ -33,7 +33,7 @@ export default function DetalhesWaterScreen() {
           <Ionicons name="chevron-back-outline" size={24} color="white" />
         </TouchableOpacity>
 
-        <Text style={styles.title}>Detalhes do calculo</Text>
+        <Text style={styles.title}>Detalhes do cálculo</Text>
 
       </View>
 

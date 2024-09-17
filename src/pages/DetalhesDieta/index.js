@@ -135,7 +135,7 @@ export default function DetalhesDieta({ route }) {
          
           <View style={styles.itensPercentageC}>
               <Text style={styles.itenTotal}>Total em Kilos de matéria seca: </Text>
-              <Text style={styles.percetangeTotal}>{kgMstotalDieta}</Text>
+              <Text style={styles.percetangeTotal}>{kgMstotalDieta.toFixed(2)}</Text>
             </View>
             
 
