@@ -80,6 +80,25 @@ export default function DetalhesDieta({ route }) {
     }));
   }, [dieta, msTotalDieta, pbTotal, pndrTotal, pdrTotal, proteinaSoluvelTotal, fdnEfetivoTotal, ndtTotal, itemFDNTotal, cnfTotal, amidoTotal, eeTotal]);
 
+  const getTextColor = (value, ranges) => {
+    if (value <= ranges.low) return "yellow"; // Amarelo
+    if (value > ranges.low && value <= ranges.high) return "green"; // Verde
+    return "red"; // Vermelho
+  };
+  
+  const ranges = {
+    ms: { low: 44, high: 55 },
+    pb: { low: 14.4, high: 17 },
+    pndr: { low: 4.4, high: 5.5 },
+    pdr: { low: 9.9, high: 11.5 },
+    fdnEfetivo: { low: 18.9, high: 24 },
+    ndt: { low: 68.9, high: 74 },
+    fdn: { low: 27.9, high: 40 },
+    cnf: { low: 29.9, high: 41 },
+    amido: { low: 19.9, high: 28 },
+    ee: { low: 1.99, high: 5 },
+  };
+  
   const handleCriarDieta = async () => {
     setLoading(true);
 
@@ -143,53 +162,73 @@ export default function DetalhesDieta({ route }) {
 
           <View style={styles.itensPercentageC}>
               <Text style={styles.itens}>MS: </Text>
-              <Text style={styles.percetange}>{msTotalDieta} %</Text>
+              <Text style={[styles.percetange, { color: getTextColor(msTotalDieta , ranges.ms) }]}>
+  {msTotalDieta} %
+</Text>
             </View>
             
             <View style={styles.itensPercentage}>
               <Text style={styles.itens}>PB: </Text>
-              <Text style={styles.percetange}>{pbTotal} %</Text>
+              <Text style={[styles.percetange, { color: getTextColor(pbTotal, ranges.pb) }]}>
+  {pbTotal} %
+</Text>
             </View>
 
             <View style={styles.itensPercentageC}>
             <Text style={styles.itens}>PNDR: </Text>
-            <Text style={styles.percetange}>{pndrTotal.toFixed(2)} %</Text>
+            <Text style={[styles.percetange, { color: getTextColor(pndrTotal, ranges.pndr) }]}>
+  {pndrTotal.toFixed(2)} %
+</Text>
             </View>
 
 
             <View style={styles.itensPercentage}>
               <Text style={styles.itens}>PDR: </Text>
-              <Text style={styles.percetange}>{pdrTotal} %</Text>
+              <Text style={[styles.percetange, { color: getTextColor(pdrTotal, ranges.pdr) }]}>
+  {pdrTotal} %
+</Text>
             </View>
 
             <View style={styles.itensPercentageC}>
               <Text style={styles.itens}>FDN Efetivo:</Text>
-              <Text style={styles.percetange}>{fdnEfetivoTotal} %</Text>
+              <Text style={[styles.percetange, { color: getTextColor(fdnEfetivoTotal, ranges.fdnEfetivo) }]}>
+  {fdnEfetivoTotal} %
+</Text>
             </View>
 
             <View style={styles.itensPercentage}>
               <Text style={styles.itens}>NDT: </Text>
-              <Text style={styles.percetange}>{ndtTotal} %</Text>
+              <Text style={[styles.percetange, { color: getTextColor(ndtTotal, ranges.ndt) }]}>
+  {ndtTotal} %
+</Text>
             </View>
 
             <View style={styles.itensPercentageC}>
               <Text style={styles.itens}>FDN: </Text>
-              <Text style={styles.percetange}>{itemFDNTotal} %</Text>
+              <Text style={[styles.percetange, { color: getTextColor(itemFDNTotal, ranges.fdn) }]}>
+  {itemFDNTotal} %
+</Text>
             </View>
 
             <View style={styles.itensPercentage}>
               <Text style={styles.itens}>CNF: </Text>
-              <Text style={styles.percetange}>{cnfTotal} %</Text>
+              <Text style={[styles.percetange, { color: getTextColor(cnfTotal, ranges.cnf) }]}>
+  {cnfTotal} %
+</Text>
             </View>
 
             <View style={styles.itensPercentageC}>
               <Text style={styles.itens}>AMIDO: </Text>
-              <Text style={styles.percetange}>{amidoTotal} %</Text>
+              <Text style={[styles.percetange, { color: getTextColor(amidoTotal, ranges.amido) }]}>
+  {amidoTotal} %
+</Text>
             </View>
 
             <View style={styles.itensPercentage}>
               <Text style={styles.itens}>EE: </Text>
-              <Text style={styles.percetange}>{eeTotal} %</Text>
+              <Text style={[styles.percetange, { color: getTextColor(eeTotal, ranges.ee) }]}>
+  {eeTotal} %
+</Text>
             </View>
 
           </View>
