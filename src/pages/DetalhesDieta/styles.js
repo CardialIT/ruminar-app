@@ -101,7 +101,8 @@ export default StyleSheet.create({
 
   percetange: {
     alignContent: "flex-end",
-    color: colors.verdePrincipal
+    color: colors.verdePrincipal,
+    
   },
 
   /// ÚLTIMO CONTAINER

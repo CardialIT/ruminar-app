@@ -153,11 +153,11 @@ export default function CadastroDietaScreen() {
           />
 
           <Text style={styles.containerTitle}>
-            Dias de Lactação (Del):
+            Dias em Lactação (Del):
           </Text>
           <TextInput
             onChangeText={onChangeDel}
-            placeholder={`Digite os dias de lactação (Del):`}
+            placeholder={`Digite os dias em lactação (Del):`}
             style={styles.containerInput}
             keyboardType="numeric"
           />
@@ -229,7 +229,7 @@ export default function CadastroDietaScreen() {
         <View style={styles.modalContainer}>
           <View style={styles.modalContent}>
 
-            <Text style={styles.modalTitle}>Regras parar checar o Fill</Text>
+            <Text style={styles.modalTitle}>Regras para checar o Fill</Text>
 
             <View style={styles.modalItemContainer}>
               <Text>{'\u2022'}</Text>

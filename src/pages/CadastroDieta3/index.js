@@ -217,7 +217,7 @@ export default function CadastroDieta3Screen() {
                     <View style={styles.modalContainer}>
                         <View style={styles.modalContent}>
 
-                            <Text style={styles.modalTitle}>Regras parar checar o amido</Text>
+                            <Text style={styles.modalTitle}>Regras para checar o amido</Text>
 
                             <View style={styles.modalItemContainer}>
                                 <Text style={styles.modalText}>Atenção: O amido estimado vai variar de acordo com a qualidade da fibra disponível, indo de 20 a 30% na dieta total. Valores acima de 30% são indicados para animais de alta produção, porém pode oferecer risco de acidose.</Text>
