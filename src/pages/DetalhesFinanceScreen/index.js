@@ -24,7 +24,7 @@ export default function DetalhesFinanceScreen() {
     return item.alimentos_select.map((alimento, index) => (
       <View key={index} style={styles.itensPercentage}>
         <Text style={styles.itens}>{alimento.nome}</Text>
-        <Text style={styles.percetange}>{alimento.kgMs} em MS</Text>
+        <Text style={styles.percetange}>{alimento.kgMs} em MO</Text>
       </View>
     ));
   };

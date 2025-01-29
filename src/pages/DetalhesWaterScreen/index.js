@@ -51,7 +51,7 @@ export default function DetalhesWaterScreen() {
             </View>
 
             <View style={styles.itensPercentageC}>
-              <Text style={styles.itensN}>Valor Materia Seca Estimada</Text>
+              <Text style={styles.itensN}>Valor Materia Seca Estimada</Text> 
               <Text style={styles.percetangeN}> {item.valor_materia_seca_existente} em %</Text>
             </View>
 

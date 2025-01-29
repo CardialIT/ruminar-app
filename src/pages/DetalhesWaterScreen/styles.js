@@ -87,7 +87,7 @@ export default StyleSheet.create({
     alignItems: "center",
     backgroundColor: colors.cinzaBackground,
     paddingHorizontal: width * 0.02,
-    height: 30,
+    height: "auto",
 
   },
 
@@ -96,7 +96,7 @@ export default StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     paddingHorizontal: width * 0.02,
-    height: 30,
+    height: "auto",
     width: width * 0.94
   },
 
