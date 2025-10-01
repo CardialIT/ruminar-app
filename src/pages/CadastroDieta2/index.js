@@ -66,6 +66,7 @@ export default function CadastroDieta2Screen() {
                     <TextInput
                         style={styles.inputField}
                         placeholder="KG / MS"
+                        placeholderTextColor="#000"
                         onChangeText={(text) => handleInputChange(text, index)}
                         keyboardType="numeric"
                     />
@@ -145,6 +146,7 @@ export default function CadastroDieta2Screen() {
                 <TextInput
                     style={styles.inputFieldName}
                     placeholder="Nome da dieta"
+                    placeholderTextColor="#000"
                     value={nomeDaDieta}
                     onChangeText={setNomeDaDieta}
                 />
@@ -158,6 +160,7 @@ export default function CadastroDieta2Screen() {
                             <TextInput
                                 style={styles.inputField}
                                 placeholder="KG / MS"
+                                placeholderTextColor="#000"
                                 onChangeText={handleSelectLivraria}
                             />
                         </View>

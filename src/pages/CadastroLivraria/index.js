@@ -106,6 +106,7 @@ export default function CadastroLivrariaScreen() {
               value={value}
               onChangeText={handleInputChange(fieldName)}
               placeholder={`Digite o ${fieldName}`}
+              placeholderTextColor="#000"
               style={styles.containerInput}
               keyboardType={getKeyboardType(fieldName)}
             />

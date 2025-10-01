@@ -64,6 +64,7 @@ export default function RegisterScreen() {
           <TextInput
             style={styles.input}
             placeholder="Nome"
+            placeholderTextColor="#000"
             onChangeText={onChangeNomeHandler}
           />
         </View>
@@ -72,6 +73,7 @@ export default function RegisterScreen() {
           <TextInput
             style={styles.input}
             placeholder="Email"
+            placeholderTextColor="#000"
             onChangeText={onChangeEmailHandler}
           />
         </View>
@@ -80,6 +82,7 @@ export default function RegisterScreen() {
           <TextInput
             style={styles.input}
             placeholder="Senha"
+            placeholderTextColor="#000"
             secureTextEntry={true}
             onChangeText={onChangeSenhaHandler}
           />
@@ -89,6 +92,7 @@ export default function RegisterScreen() {
           <TextInput
             style={styles.input}
             placeholder="Confirme sua Senha"
+            placeholderTextColor="#000"
             secureTextEntry={true}
           />
         </View>

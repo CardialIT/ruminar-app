@@ -53,12 +53,14 @@ export default function CadastroFinanceScreen() {
                     <TextInput
                         style={styles.inputField}
                         placeholder="KG"
+                        placeholderTextColor="#000"
                         onChangeText={(text) => handleInputChangeKg(text, index)}
                         keyboardType="numeric"
                     />
                       <TextInput
                         style={styles.inputField}
                         placeholder="R$"
+                        placeholderTextColor="#000"
                         onChangeText={(text) => handleInputChangeR$(text, index)}
                         keyboardType="numeric"
                     />
@@ -121,6 +123,7 @@ export default function CadastroFinanceScreen() {
                 <TextInput
                     style={styles.inputFieldName}
                     placeholder="Nome da finança"
+                    placeholderTextColor="#000"
                     value={nomeDaFinanca}
                     onChangeText={setNomeDaFinanca}
                 />

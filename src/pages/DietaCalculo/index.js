@@ -42,6 +42,7 @@ export default function DietasCalculo() {
           value={itemName}
           onChangeText={(text) => setItemName(text)}
           placeholder="KG / MS"
+          placeholderTextColor="#000"
           style={styles.containerInput}
         />
       </View>
@@ -51,12 +52,14 @@ export default function DietasCalculo() {
           value={itemName}
           onChangeText={(text) => setItemName(text)}
           placeholder="IMS:"
+          placeholderTextColor="#000"
           style={styles.containerInputIMSFDN}
         />
         <TextInput
           value={itemName}
           onChangeText={(text) => setItemName(text)}
           placeholder="FDN:"
+          placeholderTextColor="#000"
           style={styles.containerInputIMSFDN}
         />
       </View>
