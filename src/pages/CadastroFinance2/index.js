@@ -117,7 +117,7 @@ export default function CadastroFinanceScreen() {
             <View style={styles.secondContainer}>
                 
              
-                <Text style={styles.listagemTitle}>Para finalizar, nomee o seu calculo</Text>
+                <Text style={styles.listagemTitle}>Para finalizar, nomeie o seu cálculo</Text>
                 <TextInput
                     style={styles.inputFieldName}
                     placeholder="Nome da finança"

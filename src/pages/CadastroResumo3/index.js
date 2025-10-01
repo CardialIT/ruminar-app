@@ -99,6 +99,7 @@ export default function CadastroResumo3Screen() {
                         <TextInput
                             style={styles.inputField}
                             placeholder="em %"
+                            placeholderTextColor="#000"
                             value={amidoEstimado}
                             onChangeText={setAmidoEstimado}
                             keyboardType="numeric"

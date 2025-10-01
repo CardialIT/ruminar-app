@@ -130,6 +130,7 @@ export default function CadastroResumoScreen() {
           <TextInput
             onChangeText={onChangeNomeDaDieta}
             placeholder={`Digite o nome da resumo:`}
+            placeholderTextColor="#000"
             style={styles.containerInput}
             keyboardType="default"
           />
@@ -140,6 +141,7 @@ export default function CadastroResumoScreen() {
           <TextInput
             onChangeText={onChangePesoMedio}
             placeholder={`Digite o peso médio (KG):`}
+            placeholderTextColor="#000"
             style={styles.containerInput}
             keyboardType="numeric"
           />
@@ -150,6 +152,7 @@ export default function CadastroResumoScreen() {
           <TextInput
             onChangeText={onChangeProducaoEstimada}
             placeholder={`Digite a produção estimada:`}
+            placeholderTextColor="#000"
             style={styles.containerInput}
             keyboardType="numeric"
           />
@@ -160,6 +163,7 @@ export default function CadastroResumoScreen() {
           <TextInput
             onChangeText={onChangeDel}
             placeholder={`Digite os dias em lactação (Del):`}
+            placeholderTextColor="#000"
             style={styles.containerInput}
             keyboardType="numeric"
           />
@@ -188,6 +192,7 @@ export default function CadastroResumoScreen() {
           <TextInput
             onChangeText={onChangeFillPreenchimentoRuminal}
             placeholder={`Digite o fill - preenchimento ruminal:`}
+            placeholderTextColor="#000"
             style={styles.containerInput}
             keyboardType="numeric"
           />

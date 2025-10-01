@@ -85,9 +85,7 @@ export default function LivrariaScreen() {
             style={styles.addButton}
             onPress={() => {
               setLivrariaAdicionada(false);
-              navigation.navigate("CadastroLivrariaScreen", {
-                onGoBack: () => setLivrariaAdicionada(true),
-              })}}
+              navigation.navigate("CadastroLivrariaScreen")}}
           >
             <Text style={styles.addButtonText}>Adicionar Livraria</Text>
             <Ionicons name="add-outline" size={24} color="white" />

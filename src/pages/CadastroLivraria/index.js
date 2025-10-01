@@ -57,6 +57,8 @@ export default function CadastroLivrariaScreen() {
         type: "success",
         text1: "Cadastro realizado com sucesso",
       });
+      // After showing the success toast, go back to the previous screen
+      navigation.goBack();
     } catch (error) {
       setCadastroStatus("failed");
       console.error("Erro ao cadastrar livro:", error);
@@ -65,7 +67,7 @@ export default function CadastroLivrariaScreen() {
         text1: "Erro ao cadastrar livro",
       });
     } finally {
-      setLoading(false); 
+      setLoading(false);  
     }
   };
   
@@ -119,7 +121,7 @@ export default function CadastroLivrariaScreen() {
           </TouchableOpacity>
         </View>
       </ScrollView>
-      <Toast ref={(ref) => Toast.setRef(ref)} />
+      {/* Toast is mounted at the app root; no per-screen ref needed */}
       {loading && <Loading />}
     </View>
   );
