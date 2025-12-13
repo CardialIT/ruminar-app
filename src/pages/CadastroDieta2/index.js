@@ -70,6 +70,7 @@ export default function CadastroDieta2Screen() {
                     <TextInput
                         style={styles.inputField}
                         placeholder="KG / MS"
+                        placeholderTextColor="#000"
                         onChangeText={(text) => handleInputChange(text, index)}
                         keyboardType="numeric"
                         onFocus={() => handleInputFocus(index)}

@@ -117,7 +117,7 @@ export default function CadastroResumo2Screen() {
                             <TextInput
                                 style={styles.inputField}
                                 placeholder="KG / MS"
-                            placeholderTextColor="#000"
+                                placeholderTextColor="#000"
                                 onChangeText={handleSelectLivraria}
                             />
                         </View>

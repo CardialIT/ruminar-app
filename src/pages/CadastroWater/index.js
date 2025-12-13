@@ -76,6 +76,7 @@ export default function CadastroWaterScreen() {
                 <TextInput
                     style={styles.inputFieldName}
                     placeholder="Nome do cálculo"
+                    placeholderTextColor="#000"
                     value={nomeCalculo}
                     onChangeText={setNomeCalculo}
                 />
@@ -86,6 +87,7 @@ export default function CadastroWaterScreen() {
                 <TextInput
                     style={styles.inputFieldName}
                     placeholder="Matéria seca existente"
+                    placeholderTextColor="#000"
                     value={msExistente}
                     onChangeText={setMsExistente}
                 />
@@ -96,6 +98,7 @@ export default function CadastroWaterScreen() {
                 <TextInput
                     style={styles.inputFieldName}
                     placeholder="Materia seca estimada"
+                    placeholderTextColor="#000"
                     value={msEstimada}
                     onChangeText={setMsEstimada}
                 />

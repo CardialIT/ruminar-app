@@ -128,6 +128,7 @@ export default function CadastroDietaScreen() {
           <TextInput
             onChangeText={onChangeNomeDaDieta}
             placeholder={`Digite o nome da dieta:`}
+            placeholderTextColor="#000"
             style={styles.containerInput}
             keyboardType="default"
           />
@@ -138,6 +139,7 @@ export default function CadastroDietaScreen() {
           <TextInput
             onChangeText={onChangePesoMedio}
             placeholder={`Digite o peso médio (KG):`}
+            placeholderTextColor="#000"
             style={styles.containerInput}
             keyboardType="numeric"
           />
@@ -148,6 +150,7 @@ export default function CadastroDietaScreen() {
           <TextInput
             onChangeText={onChangeProducaoEstimada}
             placeholder={`Digite a produção estimada:`}
+            placeholderTextColor="#000"
             style={styles.containerInput}
             keyboardType="numeric"
           />
@@ -158,6 +161,7 @@ export default function CadastroDietaScreen() {
           <TextInput
             onChangeText={onChangeDel}
             placeholder={`Digite os dias em lactação (Del):`}
+            placeholderTextColor="#000"
             style={styles.containerInput}
             keyboardType="numeric"
           />
@@ -186,6 +190,7 @@ export default function CadastroDietaScreen() {
           <TextInput
             onChangeText={onChangeFillPreenchimentoRuminal}
             placeholder={`Digite o fill - preenchimento ruminal:`}
+            placeholderTextColor="#000"
             style={styles.containerInput}
             keyboardType="numeric"
           />
