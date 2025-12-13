@@ -1,10 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {
     View,
     ScrollView,
     Text,
     TextInput,
     TouchableOpacity,
+    KeyboardAvoidingView,
+    Platform,
+    Keyboard
 } from "react-native";
 import styles from "./styles.js";
 import { useNavigation } from "@react-navigation/native";
@@ -45,6 +48,7 @@ export default function CadastroDieta2Screen() {
 
     const [selectedLivrarias, setSelectedLivrarias] = useState([]);
     const [nomeDaDieta, setNomeDaDieta] = useState("");
+    const scrollViewRef = useRef();
 
     const handleSelectLivraria = (item) => {
         const updatedLivrarias = [...dieta.selectedLivrarias, item];
@@ -68,6 +72,7 @@ export default function CadastroDieta2Screen() {
                         placeholder="KG / MS"
                         onChangeText={(text) => handleInputChange(text, index)}
                         keyboardType="numeric"
+                        onFocus={() => handleInputFocus(index)}
                     />
                     <TouchableOpacity
                         style={styles.removeButton}
@@ -85,7 +90,19 @@ export default function CadastroDieta2Screen() {
         updateDieta("selectedLivrarias", updatedLivrarias);
     };
 
+    const handleInputFocus = (index) => {
+        // Rola para a posição do input quando focado
+        setTimeout(() => {
+            const offset = 100 + (index * 100); // Ajuste dinâmico baseado no índice
+            scrollViewRef.current?.scrollTo({
+                y: offset,
+                animated: true
+            });
+        }, 300);
+    };
+
     const handleProximo = async () => {
+        Keyboard.dismiss(); // Fecha o teclado antes de navegar
         setLoading(true);
         try {
             calcularMOIndividualAlimentos();
@@ -111,7 +128,7 @@ export default function CadastroDieta2Screen() {
             calcularEETotal(eeAlimentos);
             calcularMOIndividualAlimentos();          
             calcularPNDRTotal(pbTotal, pdrTotal)
-            updateDieta("nome_da_dieta", nomeDaDieta); // Salva o nome da dieta no contexto global
+            updateDieta("nome_da_dieta", nomeDaDieta);
             calcularKgMsTotal()
             navigation.navigate("CadastroDieta4Screen");
         } catch (error) {
@@ -124,68 +141,95 @@ export default function CadastroDieta2Screen() {
         }
     };
 
+    const handleBack = () => {
+        Keyboard.dismiss(); // Fecha o teclado ao voltar
+        navigation.navigate("Diets");
+    };
+
     return (
-        <View style={styles.container}>
+        <KeyboardAvoidingView 
+            style={styles.keyboardAvoidingContainer}
+            behavior={Platform.OS === "ios" ? "padding" : "height"}
+            keyboardVerticalOffset={Platform.OS === "ios" ? 60 : 0}
+        >
+            <View style={styles.container}>
+                <View style={styles.firstContainer}>
+                    <TouchableOpacity onPress={handleBack}>
+                        <Ionicons name="chevron-back-outline" size={24} color="white" />
+                    </TouchableOpacity>
 
-            <View style={styles.firstContainer}>
-                <TouchableOpacity onPress={() => navigation.navigate("Diets")}>
-                    <Ionicons name="chevron-back-outline" size={24} color="white" />
-                </TouchableOpacity>
+                    <Text style={styles.title}>Nova Dieta</Text>
 
-                <Text style={styles.title}>Nova Dieta</Text>
+                    <TouchableOpacity onPress={() => navigation.navigate("DetalhesLivrariaScreen")}>
+                    </TouchableOpacity> 
+                </View>
 
-                <TouchableOpacity onPress={() => navigation.navigate("DetalhesLivrariaScreen")}>
-                </TouchableOpacity> 
-            </View>
-
-            <View style={styles.secondContainer}>
-                
-                <View style={styles.containerDietaName}>
-                <Text style={styles.listagemTitle}>Preencha as informações abaixo</Text>
-                <TextInput
-                    style={styles.inputFieldName}
-                    placeholder="Nome da dieta"
-                    value={nomeDaDieta}
-                    onChangeText={setNomeDaDieta}
-                />
-</View>
-                <Text style={styles.listagemTitle}>Selecione os itens</Text>
-
-                <ScrollView style={styles.containerList}>
-                    {dieta.selectedLivraria && (
-                        <View style={styles.containerItemTitle}>
-                            <Text style={styles.listagemItemTitle}>{dieta.selectedLivraria.nome}</Text>
+                <ScrollView 
+                    ref={scrollViewRef}
+                    style={styles.scrollContainer}
+                    contentContainerStyle={styles.scrollContent}
+                    keyboardShouldPersistTaps="handled"
+                    showsVerticalScrollIndicator={true}
+                    bounces={true}
+                >
+                    
+                    <View style={styles.secondContainer}>
+                        <View style={styles.containerDietaName}>
+                            <Text style={styles.listagemTitle}>Preencha as informações abaixo</Text>
                             <TextInput
-                                style={styles.inputField}
-                                placeholder="KG / MS"
-                                onChangeText={handleSelectLivraria}
+                                style={styles.inputFieldName}
+                                placeholder="Nome da dieta"
+                                value={nomeDaDieta}
+                                onChangeText={setNomeDaDieta}
+                                onFocus={() => handleInputFocus(0)}
                             />
                         </View>
-                    )}
+                        
+                        <Text style={styles.listagemTitle}>Selecione os itens</Text>
 
-                    {renderSelectedLivrarias()}
+                        <View style={styles.containerList}>
+                            {dieta.selectedLivraria && (
+                                <View style={styles.containerItemTitle}>
+                                    <Text style={styles.listagemItemTitle}>{dieta.selectedLivraria.nome}</Text>
+                                    <TextInput
+                                        style={styles.inputField}
+                                        placeholder="KG / MS"
+                                        onChangeText={handleSelectLivraria}
+                                        keyboardType="numeric"
+                                        onFocus={() => handleInputFocus(1)}
+                                    />
+                                </View>
+                            )}
 
-                    <View style={styles.containerAddItem}>
-                        <TouchableOpacity
-                            style={styles.addButton}
-                            onPress={() => navigation.navigate("ListagemLivrariaScreen")}
-                        >
-                            <Text style={styles.createButtonText}>ADICIONAR LIVRARIA</Text>
-                            <Ionicons name="add-outline" size={24} color="#307C31" />
-                        </TouchableOpacity>
-                    </View>
+                            {renderSelectedLivrarias()}
 
-                    <View style={styles.containerButton}>
-                        <TouchableOpacity
-                            onPress={handleProximo}
-                            style={styles.createButton}
-                        >
-                            <Text style={styles.textButton}>PRÓXIMO</Text>
-                        </TouchableOpacity>
+                            <View style={styles.containerAddItem}>
+                                <TouchableOpacity
+                                    style={styles.addButton}
+                                    onPress={() => {
+                                        Keyboard.dismiss();
+                                        navigation.navigate("ListagemLivrariaScreen");
+                                    }}
+                                >
+                                    <Text style={styles.createButtonText}>ADICIONAR LIVRARIA</Text>
+                                    <Ionicons name="add-outline" size={24} color="#307C31" />
+                                </TouchableOpacity>
+                            </View>
+
+                            <View style={styles.containerButton}>
+                                <TouchableOpacity
+                                    onPress={handleProximo}
+                                    style={styles.createButton}
+                                    activeOpacity={0.8}
+                                >
+                                    <Text style={styles.textButton}>PRÓXIMO</Text>
+                                </TouchableOpacity>
+                            </View>
+                        </View>
                     </View>
                 </ScrollView>
             </View>
             {loading && <Loading />}
-        </View >
+        </KeyboardAvoidingView>
     );
 }

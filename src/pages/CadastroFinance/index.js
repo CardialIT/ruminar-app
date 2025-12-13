@@ -1,10 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {
     View,
     ScrollView,
     Text,
     TextInput,
     TouchableOpacity,
+    KeyboardAvoidingView,
+    Platform,
+    Keyboard
 } from "react-native";
 import styles from "./styles.js";
 import { useNavigation } from "@react-navigation/native";
@@ -24,11 +27,11 @@ export default function CadastroFinanceScreen() {
 
     const [selectedLivrarias, setSelectedLivrarias] = useState([]);
     const [nomeDaFinanca, setNomeDaFinanca] = useState("");
+    const scrollViewRef = useRef();
 
     const handleSelectLivraria = (item) => {
         const updatedLivrarias = [...dieta.selectedLivrarias, item];
         updateDieta("selectedLivrarias", updatedLivrarias);
-        // navigation.navigate("CadastroDieta2Screen");
     };
 
     const handleRemoveLivraria = (index) => {
@@ -36,32 +39,53 @@ export default function CadastroFinanceScreen() {
         updateDieta("selectedLivrarias", updatedLivrarias);
     };
 
-    
+    const handleInputFocus = (index, inputType = 'kg') => {
+        setTimeout(() => {
+            const baseOffset = 100;
+            const inputOffset = inputType === 'kg' ? 0 : 50; // Ajuste para diferentes campos
+            const offset = baseOffset + (index * 120) + inputOffset;
+            scrollViewRef.current?.scrollTo({
+                y: offset,
+                animated: true
+            });
+        }, 300);
+    };
+
     const renderSelectedLivrarias = () => {
         return dieta.selectedLivrarias.map((livraria, index) => (
             <View key={index} style={styles.containerItemTitle}>
-                   <TouchableOpacity
+                <View style={styles.titleRow}>
+                    <Text style={styles.listagemItemTitle}>{livraria.nome}</Text>
+                    <TouchableOpacity
                         style={styles.removeButton}
-                        onPress={() => handleRemoveLivraria(index)}>
+                        onPress={() => handleRemoveLivraria(index)}
+                    >
                         <Ionicons name="remove-outline" size={24} color="red" />
                     </TouchableOpacity>
-                <Text style={styles.listagemItemTitle}>{livraria.nome}</Text>
+                </View>
             
-                <View style={styles.inputContainer}> 
+                <View style={styles.inputRowContainer}>
+                    <View style={styles.inputWrapper}>
+                        <Text style={styles.inputLabel}>KG</Text>
+                        <TextInput
+                            style={styles.inputField}
+                            placeholder="Quantidade"
+                            onChangeText={(text) => handleInputChangeKg(text, index)}
+                            keyboardType="numeric"
+                            onFocus={() => handleInputFocus(index, 'kg')}
+                        />
+                    </View>
                     
-                    <TextInput
-                        style={styles.inputField}
-                        placeholder="KG"
-                        onChangeText={(text) => handleInputChangeKg(text, index)}
-                        keyboardType="numeric"
-                    />
-                      <TextInput
-                        style={styles.inputField}
-                        placeholder="R$"
-                        onChangeText={(text) => handleInputChangeR$(text, index)}
-                       
-                    />
-                   
+                    <View style={styles.inputWrapper}>
+                        <Text style={styles.inputLabel}>R$</Text>
+                        <TextInput
+                            style={styles.inputField}
+                            placeholder="Valor"
+                            onChangeText={(text) => handleInputChangeR$(text, index)}
+                            keyboardType="numeric"
+                            onFocus={() => handleInputFocus(index, 'valor')}
+                        />
+                    </View>
                 </View>
             </View>
         ));
@@ -70,88 +94,124 @@ export default function CadastroFinanceScreen() {
     const handleInputChangeKg = (text, index) => {
         const updatedLivrarias = [...dieta.selectedLivrarias];
         updatedLivrarias[index].kgMs = text;
-        console.log(updatedLivrarias)
         updateDieta("selectedLivrarias", updatedLivrarias);
     };
 
     const handleInputChangeR$ = (text, index) => {
         const updatedLivrarias = [...dieta.selectedLivrarias];
         updatedLivrarias[index].r$ = text;
-        console.log(updatedLivrarias)
         updateDieta("selectedLivrarias", updatedLivrarias);
     };
 
     const handleProximo = async () => {
+        Keyboard.dismiss();
         setLoading(true);
         try {
-            // calcularPNDRTotal(pbTotal, pdrTotal)
-             updateDieta("nomeDaFinanca", nomeDaFinanca); 
+            updateDieta("nomeDaFinanca", nomeDaFinanca); 
             navigation.navigate("CadastroFinanceScreen2");
         } catch (error) {
             Toast.show({
                 type: "error",
-                text1: "Erro ao calcular milho",
+                text1: "Erro ao salvar finanças",
             });
         } finally {
             setLoading(false);
         }
     };
-        
+
+    const handleBack = () => {
+        Keyboard.dismiss();
+        navigation.navigate("Financa");
+    };
 
     return (
-        <View style={styles.container}>
+        <KeyboardAvoidingView 
+            style={styles.keyboardAvoidingContainer}
+            behavior={Platform.OS === "ios" ? "padding" : "height"}
+            keyboardVerticalOffset={Platform.OS === "ios" ? 60 : 0}
+        >
+            <View style={styles.container}>
+                <View style={styles.firstContainer}>
+                    <TouchableOpacity onPress={handleBack}>
+                        <Ionicons name="chevron-back-outline" size={24} color="white" />
+                    </TouchableOpacity>
 
-            <View style={styles.firstContainer}>
-                <TouchableOpacity onPress={() => navigation.navigate("Financa")}>
-                    <Ionicons name="chevron-back-outline" size={24} color="white" />
-                </TouchableOpacity>
+                    <Text style={styles.title}>Nova Finança</Text>
 
-                <Text style={styles.title}>Nova Finança</Text>
+                    <TouchableOpacity onPress={() => {}}>
+                    </TouchableOpacity> 
+                </View>
 
-                <TouchableOpacity onPress={() => {}}>
-                </TouchableOpacity> 
-            </View>
-
-            <View style={styles.secondContainer}>
-                
-          
-                <Text style={styles.listagemTitle}>Selecione os itens</Text>
-
-                <ScrollView style={styles.containerList}>
-                    {dieta.selectedLivraria && (
-                        <View style={styles.containerItemTitle}>
-                            <Text style={styles.listagemItemTitle}>{dieta.selectedLivraria.nome}</Text>
+                <ScrollView 
+                    ref={scrollViewRef}
+                    style={styles.scrollContainer}
+                    contentContainerStyle={styles.scrollContent}
+                    keyboardShouldPersistTaps="handled"
+                    showsVerticalScrollIndicator={true}
+                    bounces={true}
+                >
+                    <View style={styles.secondContainer}>
+                        <View style={styles.containerFinancaName}>
+                            <Text style={styles.listagemTitle}>Nome da Finança</Text>
                             <TextInput
-                                style={styles.inputField}
-                                placeholder="KG"
-                                onChangeText={handleSelectLivraria}
+                                style={styles.inputFieldName}
+                                placeholder="Digite o nome"
+                                value={nomeDaFinanca}
+                                onChangeText={setNomeDaFinanca}
+                                onFocus={() => handleInputFocus(0, 'nome')}
                             />
                         </View>
-                    )}
+                        
+                        <Text style={styles.listagemTitle}>Selecione os itens</Text>
 
-                    {renderSelectedLivrarias()}
+                        <View style={styles.containerList}>
+                            {dieta.selectedLivraria && (
+                                <View style={styles.containerItemTitle}>
+                                    <Text style={styles.listagemItemTitle}>{dieta.selectedLivraria.nome}</Text>
+                                    <View style={styles.inputRowContainer}>
+                                        <View style={styles.inputWrapper}>
+                                            <Text style={styles.inputLabel}>KG</Text>
+                                            <TextInput
+                                                style={styles.inputField}
+                                                placeholder="Quantidade"
+                                                onChangeText={handleSelectLivraria}
+                                                keyboardType="numeric"
+                                                onFocus={() => handleInputFocus(0, 'kg')}
+                                            />
+                                        </View>
+                                    </View>
+                                </View>
+                            )}
 
-                    <View style={styles.containerAddItem}>
-                        <TouchableOpacity
-                            style={styles.addButton}
-                            onPress={() => navigation.navigate("ListagemLivrariaScreen")}
-                        >
-                            <Text style={styles.createButtonText}>ADICIONAR LIVRARIA</Text>
-                            <Ionicons name="add-outline" size={24} color="#307C31" />
-                        </TouchableOpacity>
-                    </View>
+                            {renderSelectedLivrarias()}
 
-                    <View style={styles.containerButton}>
-                        <TouchableOpacity
-                            onPress={handleProximo}
-                            style={styles.createButton}
-                        >
-                            <Text style={styles.textButton}>PRÓXIMO</Text>
-                        </TouchableOpacity>
+                            <View style={styles.containerAddItem}>
+                                <TouchableOpacity
+                                    style={styles.addButton}
+                                    onPress={() => {
+                                        Keyboard.dismiss();
+                                        navigation.navigate("ListagemLivrariaScreen");
+                                    }}
+                                >
+                                    <Text style={styles.createButtonText}>ADICIONAR LIVRARIA</Text>
+                                    <Ionicons name="add-outline" size={24} color="#307C31" />
+                                </TouchableOpacity>
+                            </View>
+
+                            <View style={styles.containerButton}>
+                                <TouchableOpacity
+                                    onPress={handleProximo}
+                                    style={styles.createButton}
+                                    activeOpacity={0.8}
+                                >
+                                    <Text style={styles.textButton}>PRÓXIMO</Text>
+                                </TouchableOpacity>
+                            </View>
+                        </View>
                     </View>
                 </ScrollView>
             </View>
             {loading && <Loading />}
-        </View >
+        </KeyboardAvoidingView>
     );
 }
