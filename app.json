@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "front_ruminar",
-    "slug": "front_ruminar",
+    "name": "Ruminar Leite",
+    "slug": "ruminar-leite",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -18,7 +18,7 @@
       "supportsTablet": true
     },
     "android": {
-      "package": "com.yourname.myapp",
+      "package": "com.thalis.ruminar_leite",
       "versionCode": 1,
       "permissions": [],
       "adaptiveIcon": {
@@ -31,7 +31,7 @@
     },
     "extra": {
       "eas": {
-        "projectId": "fa19480b-697b-4e10-bb52-62fa9f6de282"
+        "projectId": "f552e9b1-32d8-480b-8da5-afaab3819ce3"
       }
     },
     "plugins": [
